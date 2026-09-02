@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eason Han — Product Manager</title>
+<meta name="description" content="Product portfolio of Yichen (Eason) Han — MBA/MEng at UC Berkeley Haas, former AWS. 0-to-1 products, PRDs, and shipped code.">
+<meta property="og:title" content="Eason Han — Product Manager">
+<meta property="og:description" content="MBA/MEng at Berkeley Haas · ex-AWS. A PM who ships: PRDs, roadmaps, and working software.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Product Management Portfolio</p>
+  <h1>Yichen&nbsp;(Eason)&nbsp;Han</h1>
+  <p class="lede">
+    MBA / MEng candidate at <strong>UC Berkeley Haas &amp; IEOR</strong>. Three years at <strong>AWS</strong>
+    building analytics products for a $80B sales org — then I started shipping my own.
+    I write the PRD, cut the roadmap, and <strong>build the thing</strong>.
+  </p>
+  <nav class="links">
+    <a href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
+    <a href="https://www.linkedin.com/in/yichen-eason-han/">LinkedIn</a>
+    <a href="https://github.com/easonhanyc">GitHub</a>
+    <a href="https://tripmatch-app.github.io/">Live product ↗</a>
+  </nav>
+</header>
+
+<hr class="rule">
+
+<section>
+  <h2>Selected Work</h2>
+  <p class="sec-sub">Three case studies — a product I shipped alone, a platform I launched at scale, and an AI tool inside a large org.</p>
+
+  <div class="cards">
+
+    <article class="card">
+      <div class="card-top">
+        <h3><a href="case-studies/tripmatch.html">TripMatch</a></h3>
+        <span class="badge live">● Live</span>
+        <span class="badge">0 → 1</span>
+      </div>
+      <p class="role">Sole PM, designer, and engineer · 6 days to public launch · Aug 2026</p>
+      <p class="desc">
+        A 400-person cohort coordinated rides by scrolling a WhatsApp chat. I shipped a verified,
+        Berkeley-only rides board — PRD through production. The decision I'd point to:
+        <strong>I rebuilt my own v1 architecture the day before launch</strong> after finding three defects
+        that would have broken it inside its own expected load, including a race condition that
+        silently deleted users' posts.
+      </p>
+      <div class="metrics">
+        <div class="metric"><span class="n">34</span><span class="l">commits in 6 days</span></div>
+        <div class="metric"><span class="n">168</span><span class="l">automated checks</span></div>
+        <div class="metric"><span class="n">3</span><span class="l">feedback-driven iterations</span></div>
+        <div class="metric"><span class="n">~400</span><span class="l">cohort served</span></div>
+      </div>
+      <div class="card-links">
+        <a href="case-studies/tripmatch.html">Read the case study</a>
+        <a href="artifacts/tripmatch-prd.html">The PRD</a>
+        <a href="https://tripmatch-app.github.io/">Try it live</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <h3><a href="case-studies/aws-insights-platform.html">AWS Sales Insights Platform</a></h3>
+        <span class="badge">0 → 1 at scale</span>
+      </div>
+      <p class="role">Product owner · AWS Global Sales Strategy &amp; Analytics · 2023–2026</p>
+      <p class="desc">
+        AWS Sales had extensive dashboards and almost no <em>decisions</em> coming out of them.
+        I owned the end-to-end launch of the org's first action-oriented insights platform —
+        interviews, PRD, Figma, roadmap. The product bet:
+        <strong>sellers didn't need more data access, they needed the next action named for them.</strong>
+      </p>
+      <div class="metrics">
+        <div class="metric"><span class="n">70%</span><span class="l">less time-to-insight</span></div>
+        <div class="metric"><span class="n">10,000</span><span class="l">sellers served</span></div>
+        <div class="metric"><span class="n">56→82%</span><span class="l">request resolution</span></div>
+        <div class="metric"><span class="n">$80B</span><span class="l">business supported</span></div>
+      </div>
+      <div class="card-links">
+        <a href="case-studies/aws-insights-platform.html">Read the case study</a>
+        <a href="artifacts/prioritization-framework.html">How I cut the roadmap</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-top">
+        <h3><a href="case-studies/ai-code-review.html">AI Code-Review Automation</a></h3>
+        <span class="badge">AI product</span>
+      </div>
+      <p class="role">Builder and product owner · Amazon internal agentic-AI platform</p>
+      <p class="desc">
+        Shipped an agentic tool that cut manual review time by 80%. The judgment that mattered
+        wasn't the model — it was deciding <strong>which parts of the review the tool was allowed
+        to be wrong about.</strong> For code review, false positives cost reviewer trust, and trust
+        is spent non-renewably.
+      </p>
+      <div class="metrics">
+        <div class="metric"><span class="n">80%</span><span class="l">less manual processing</span></div>
+        <div class="metric"><span class="n">Precision</span><span class="l">chosen over recall</span></div>
+        <div class="metric"><span class="n">Agentic</span><span class="l">platform, in production</span></div>
+      </div>
+      <div class="card-links">
+        <a href="case-studies/ai-code-review.html">Read the case study</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <h2>Artifacts</h2>
+  <p class="sec-sub">The working documents, not just the summaries — so you can inspect the reasoning rather than take my word for it.</p>
+  <div class="arts">
+    <a class="art" href="artifacts/tripmatch-prd.html">
+      <div class="t">TripMatch PRD</div>
+      <div class="d">Problem framing, non-goals, user stories, P0/P1/P2 with acceptance criteria, success metrics, and the open questions I never closed.</div>
+    </a>
+    <a class="art" href="artifacts/tripmatch-infrastructure.html">
+      <div class="t">Pre-launch architecture review</div>
+      <div class="d">What would have broken, at what load, and why I rebuilt the storage layer before launch instead of after.</div>
+    </a>
+    <a class="art" href="artifacts/prioritization-framework.html">
+      <div class="t">Prioritization framework</div>
+      <div class="d">Four ordered gates for cutting a roadmap — and why scoring an incomparable list is theater.</div>
+    </a>
+    <a class="art" href="artifacts/metric-tree.html">
+      <div class="t">Metric trees &amp; scenario forecasting</div>
+      <div class="d">Separating liquidity failure from discoverability failure, and forecasting a category with no history.</div>
+    </a>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <h2>How I Work</h2>
+  <p class="sec-sub">Three things that show up in every case study above.</p>
+  <div class="principles">
+    <div class="principle">
+      <div class="p-t">Non-goals are the product decision.</div>
+      <div class="p-d">TripMatch shipped in six days because I wrote down what it would never do — no payments, no dispatch, no native app, no WhatsApp replacement — before writing any code. Scope discipline is the reason it exists at all.</div>
+    </div>
+    <div class="principle">
+      <div class="p-t">I'd rather kill my own work than ship a known defect.</div>
+      <div class="p-d">The easy path the day before TripMatch's launch was to ship. Instead I rebuilt the storage layer, because the version I'd already built would have silently deleted users' posts under exactly the load launch day produces.</div>
+    </div>
+    <div class="principle">
+      <div class="p-t">I write the limitations down.</div>
+      <div class="p-d">Every case study here ends with what I'd do differently, and the PRD carries its unresolved questions in the open. A portfolio that only contains wins isn't evidence of judgment — it's evidence of editing.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <h2>Background</h2>
+  <p class="sec-sub">Full detail on <a href="https://www.linkedin.com/in/yichen-eason-han/">LinkedIn</a>.</p>
+  <div class="xp">
+    <div class="row">
+      <div>
+        <div class="org">UC Berkeley — Haas School of Business &amp; IEOR</div>
+        <div class="title">MBA / M.Eng., Industrial Engineering &amp; Operations Research</div>
+      </div>
+      <div class="when">Expected 2028</div>
+    </div>
+    <div class="row">
+      <div>
+        <div class="org">Amazon Web Services</div>
+        <div class="title">Business Intelligence Engineer — Global Sales Strategy &amp; Analytics</div>
+      </div>
+      <div class="when">2023 – 2026</div>
+    </div>
+    <div class="row">
+      <div>
+        <div class="org">TikTok</div>
+        <div class="title">Ads Risk Integrity Intern — 35% reduction in high-risk ad exposure</div>
+      </div>
+      <div class="when">2021</div>
+    </div>
+    <div class="row">
+      <div>
+        <div class="org">IDG Capital</div>
+        <div class="title">Venture Capital Analyst Intern — supported 3 investment decisions</div>
+      </div>
+      <div class="when">2020</div>
+    </div>
+    <div class="row">
+      <div>
+        <div class="org">University of Notre Dame</div>
+        <div class="title">B.B.A. Business Analytics · B.S. Applied Mathematics</div>
+      </div>
+      <div class="when">2023</div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section>
+  <h2>Toolkit</h2>
+  <p class="sec-sub" style="margin-bottom:0">
+    <strong style="color:var(--ink-2)">Product</strong> — PRD writing, MVP definition, roadmapping, backlog prioritization, user research, metric design &nbsp;·&nbsp;
+    <strong style="color:var(--ink-2)">Technical</strong> — SQL, Python, R, JavaScript, Tableau, QuickSight, Figma, Salesforce, Cloudflare Workers/D1 &nbsp;·&nbsp;
+    <strong style="color:var(--ink-2)">Certified</strong> — AWS AI Practitioner, AWS Data Engineer Associate, Tableau Certified Data Analyst
+  </p>
+</section>
+
+<footer>
+  <p style="margin:0">
+    Built and maintained by Eason Han · <a href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a> ·
+    <a href="https://github.com/easonhanyc">github.com/easonhanyc</a>
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
