@@ -62,7 +62,7 @@ a key that could erase the entire board.
 `index.html` carried a JSONBin **master key** in plain source:
 
 ```js
-var JSONBIN_KEY = "$2a$10$LAmSUbxwq…";   // visible in View Source
+var JSONBIN_KEY = "$2a$10$REDACTED";     // visible in View Source
 var JSONBIN_AUTH_HEADER = "X-Master-Key";
 ```
 
