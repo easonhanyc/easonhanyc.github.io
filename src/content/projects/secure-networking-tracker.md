@@ -4,6 +4,8 @@ description: "A private contact tracker where ownership is enforced by Postgres 
 summary: "A networking tracker for Berkeley contacts where one user's list is unreachable to another even if the API layer were bypassed entirely — because the boundary lives in Postgres, not in application code."
 role: "Sole designer and engineer"
 period: "Sep 2026"
+depth: "project"
+org: "UC Berkeley"
 badges: ["Full-stack", "Security design"]
 live: true
 tags: ["eng", "shipped"]

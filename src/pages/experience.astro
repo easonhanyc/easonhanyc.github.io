@@ -1,0 +1,99 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const entries = (await getCollection('experience')).sort((a, b) => a.data.order - b.data.order);
+const projects = await getCollection('projects');
+const titleOf = (id: string) => projects.find((p) => p.id === id)?.data.title ?? id;
+---
+<BaseLayout
+  title="Experience — Eason Han"
+  description="Career and education of Yichen (Eason) Han — AWS, TikTok, IDG Capital, UC Berkeley Haas and Notre Dame."
+>
+  <div class="narrow sectionpad">
+    <p class="eyebrow">{entries.length} entries</p>
+    <h2 style="max-width:16ch">Where the work happened.</h2>
+    <p class="sub">
+      The roles behind the case studies. Where a project has its own write-up, it's linked from
+      the role it came out of.
+    </p>
+
+    <div class="tl">
+      {entries.map((e) => (
+        <article class:list={['tl-item', `is-${e.data.kind}`]}>
+          <div class="tl-when">{e.data.start} — {e.data.end}</div>
+          <div class="tl-body">
+            <h3 class="tl-org">{e.data.org}</h3>
+            <p class="tl-role">
+              {e.data.role}{e.data.location && <span class="tl-loc"> · {e.data.location}</span>}
+            </p>
+            <p class="tl-sum">{e.data.summary}</p>
+
+            {e.data.outcomes.length > 0 && (
+              <ul class="tl-out">
+                {e.data.outcomes.map((o) => <li>{o}</li>)}
+              </ul>
+            )}
+
+            {e.data.related.length > 0 && (
+              <div class="tl-rel">
+                {e.data.related.map((id) => (
+                  <a class="chip" href={`/work/${id}`}>{titleOf(id)} →</a>
+                ))}
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div style="margin-top:48px" class="chips">
+      <a class="chip solid" href="/work">See the work →</a>
+      <a class="chip" href="/about">About me</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .tl{display:flex; flex-direction:column; gap:0; margin-top:34px}
+
+  .tl-item{
+    display:grid; grid-template-columns:minmax(0,1fr); gap:4px;
+    padding:0 0 34px 26px; position:relative;
+  }
+  /* the rail, drawn per item so the last one can stop short */
+  .tl-item::before{
+    content:""; position:absolute; left:5px; top:9px; bottom:0; width:1px; background:var(--border);
+  }
+  .tl-item:last-child::before{display:none}
+  .tl-item::after{
+    content:""; position:absolute; left:0; top:6px; width:11px; height:11px; border-radius:50%;
+    background:var(--surface); border:2px solid var(--accent);
+  }
+  .tl-item.is-education::after{border-color:var(--gold)}
+  .tl-item.is-volunteer::after{border-color:var(--ink-3)}
+
+  .tl-when{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; color:var(--ink-3);
+    padding-top:2px;
+  }
+  .tl-org{font-size:17px; font-weight:640; letter-spacing:-.012em; color:var(--ink); margin:2px 0 0}
+  .tl-role{font-size:14.5px; color:var(--ink-2); margin:3px 0 0}
+  .tl-loc{color:var(--ink-3)}
+  .tl-sum{font-family:var(--prose); font-size:15.5px; line-height:1.65; color:var(--ink-2); margin:11px 0 0; max-width:var(--measure)}
+
+  .tl-out{margin:13px 0 0; padding-left:18px; max-width:var(--measure)}
+  .tl-out li{
+    font-family:var(--prose); font-size:15px; line-height:1.6; color:var(--ink-2); margin-bottom:7px;
+  }
+  .tl-out li::marker{color:var(--gold)}
+
+  .tl-rel{display:flex; flex-wrap:wrap; gap:8px; margin-top:15px}
+  .tl-rel .chip{font-size:12.5px; padding:6px 12px}
+
+  /* Date column moves alongside the entry once there is room for it. */
+  @media (min-width:820px){
+    .tl-item{grid-template-columns:minmax(0,150px) minmax(0,1fr); gap:0 28px; padding-left:30px}
+    .tl-when{text-align:right; padding-right:4px}
+  }
+</style>

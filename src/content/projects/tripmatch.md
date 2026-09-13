@@ -4,6 +4,8 @@ description: "Sole PM, designer and engineer. PRD to production in six days for 
 summary: "A 400-person cohort coordinated rides by scrolling a WhatsApp chat, where requests get buried and matching seats go unused. I shipped a verified, Berkeley-only rides board \u2014 problem framing through production."
 role: "Sole PM, designer, and engineer"
 period: "Aug 2026 \u00b7 6 days to public launch"
+depth: "case-study"
+org: "Independent"
 badges: ["0 \u2192 1"]
 live: true
 tags: ["product", "eng", "shipped"]

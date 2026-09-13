@@ -3,7 +3,9 @@ title: "AI Pull-Request Automation"
 description: "Automating the repo-to-production push with an agentic skill, and why release automation is not review automation."
 summary: "An AI-powered pull-request automation skill that took the repo-to-production push off people's hands, cutting manual processing time by 80%. Automating a path to production inverts the failure asymmetry most AI tooling is designed around."
 role: "Builder and product owner · Amazon internal agentic-AI platform"
-period: "AWS · 2023–2026"
+period: "2023–2026"
+depth: "project"
+org: "Amazon Web Services"
 badges: ["Agentic AI"]
 live: false
 tags: ["ai", "product", "eng"]

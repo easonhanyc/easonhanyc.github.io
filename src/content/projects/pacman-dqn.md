@@ -4,6 +4,8 @@ description: "A Deep Q-Network that nearly doubled its score — and a baseline 
 summary: "Mean evaluation score rose from 492 to 906 (+84%). The more interesting finding was that the untrained baseline wasn't random at all — it was stuck, repeating one move 95.4% of the time, which means the headline number flatters the result."
 role: "MBA 290T — Fundamentals of Agentic AI"
 period: "Sep 2026"
+depth: "project"
+org: "UC Berkeley"
 badges: ["Reinforcement learning"]
 live: false
 tags: ["ai"]

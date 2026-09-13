@@ -1,15 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const background = [
-  { org: 'UC Berkeley — Haas School of Business & IEOR', title: 'MBA / M.Eng., Industrial Engineering & Operations Research', when: 'Expected May 2028' },
-  { org: 'Amazon Web Services', title: 'Business Intelligence Engineer — Global Sales Strategy & Analytics, Seattle', when: 'Jul 2023 – May 2026' },
-  { org: 'Clean-shores.org — Seaside Sustainability', title: 'Fundraising Team Lead — founded and led a 6-person team taking a beach-cleaning robot from concept to launch', when: 'Apr 2025 – Jan 2026' },
-  { org: 'TikTok', title: 'Ads Risk Integrity Intern — 35% reduction in high-risk ad exposure, Beijing', when: 'May – Aug 2021' },
-  { org: 'IDG Capital', title: 'Venture Capital Analyst Intern — informed 3 investment decisions, Beijing', when: 'Jun – Aug 2020' },
-  { org: 'University of Notre Dame', title: 'B.B.A. Business Analytics · B.S. Applied Mathematics', when: 'May 2023' },
-];
-
 const skills = [
   { k: 'Product', v: 'MVP definition · PRD writing · product strategy · roadmapping · backlog prioritization · user research · metric design' },
   { k: 'Technical', v: 'Claude Code · SQL · Python · R · Excel · Tableau · Salesforce · Figma' },
@@ -48,17 +39,11 @@ const principles = [
 
     <section style="margin-top:56px">
       <p class="eyebrow">Background</p>
-      <div class="xp">
-        {background.map((r) => (
-          <div class="row">
-            <div>
-              <div class="org">{r.org}</div>
-              <div class="title">{r.title}</div>
-            </div>
-            <div class="when">{r.when}</div>
-          </div>
-        ))}
-      </div>
+      <p class="sub" style="margin-bottom:16px">
+        Three years at AWS, a summer at TikTok, a summer in venture, and a beach-cleaning robot.
+        The full timeline — with the projects each role produced — is its own page.
+      </p>
+      <div class="chips"><a class="chip solid" href="/experience">The timeline →</a></div>
     </section>
 
     <section style="margin-top:56px">

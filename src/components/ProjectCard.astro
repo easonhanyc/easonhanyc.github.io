@@ -8,6 +8,7 @@ const d = project.data;
   <div class="top">
     <h3><a href={`/work/${project.id}`}>{d.title}</a></h3>
     {d.live && <span class="tag live">● Live</span>}
+    {d.depth === 'case-study' && <span class="tag deep">Case study</span>}
     {d.badges.map((b) => <span class="tag">{b}</span>)}
   </div>
   <p class="role">{d.role} · {d.period}</p>

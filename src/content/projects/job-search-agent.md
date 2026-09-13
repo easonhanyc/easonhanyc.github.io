@@ -4,6 +4,8 @@ description: "A daily scanner for Summer 2027 PM internships — and a lesson in
 summary: "Scans roughly 29,400 postings in about 50 seconds every weekday, and opens a GitHub issue only when something new appears. The hard problem turned out not to be finding roles — it was deciding which two per company were worth your attention."
 role: "Sole engineer"
 period: "Sep 2026"
+depth: "project"
+org: "Independent"
 badges: ["Automation", "Runs daily"]
 live: false
 tags: ["eng", "shipped"]

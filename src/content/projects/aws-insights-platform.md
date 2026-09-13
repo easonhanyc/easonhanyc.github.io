@@ -4,6 +4,8 @@ description: "0-to-1 launch of an action-oriented insights platform for 10,000 s
 summary: "AWS Sales was not short on data. It was short on conclusions. I owned the end-to-end launch of the org's first action-oriented insights platform \u2014 interviews, PRD, Figma, roadmap."
 role: "Product owner \u00b7 AWS Global Sales Strategy & Analytics"
 period: "Jul 2023 – May 2026"
+depth: "case-study"
+org: "Amazon Web Services"
 badges: ["0 \u2192 1 at scale"]
 live: false
 tags: ["product", "ai"]

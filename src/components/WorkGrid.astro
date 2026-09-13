@@ -11,6 +11,17 @@ const FILTERS = [
   { f: 'eng', label: 'Engineering' },
   { f: 'shipped', label: 'Shipped & live' },
 ];
+
+// Group by employer so one org with several entries can't flood a flat list.
+// Group order follows the curation already encoded in each project's `order`.
+const groups = [...new Map(
+  projects.map((p) => [p.data.org ?? 'Other', null])
+).keys()]
+  .map((org) => ({
+    org,
+    items: projects.filter((p) => (p.data.org ?? 'Other') === org),
+  }))
+  .sort((a, b) => Math.min(...a.items.map((p) => p.data.order)) - Math.min(...b.items.map((p) => p.data.order)));
 ---
 <div class="filters" role="group" aria-label="Filter projects by discipline">
   {FILTERS.map((x, i) => (
@@ -18,25 +29,53 @@ const FILTERS = [
   ))}
 </div>
 
-<div class="grid" data-grid>
-  {projects.map((p) => <ProjectCard project={p} />)}
+<div data-groups>
+  {groups.map((g) => (
+    <section class="orggroup" data-org>
+      <h3 class="orghead">{g.org} <span>{g.items.length}</span></h3>
+      <div class="grid">
+        {g.items.map((p) => <ProjectCard project={p} />)}
+      </div>
+    </section>
+  ))}
 </div>
 <p class="empty" data-empty hidden>No projects match that filter.</p>
 
+<style>
+  .orggroup{margin-bottom:40px}
+  .orggroup[hidden]{display:none}
+  .orghead{
+    font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-3); font-weight:500; margin:0 0 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .orghead::after{content:""; flex:1; height:1px; background:var(--border)}
+  .orghead span{
+    color:var(--ink-3); font-size:10.5px; border:1px solid var(--border); border-radius:999px;
+    padding:1px 7px; order:1;
+  }
+</style>
+
 <script>
   const btns = Array.from(document.querySelectorAll<HTMLButtonElement>('.fbtn'));
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-grid] .proj'));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-groups] .proj'));
+  const groups = Array.from(document.querySelectorAll<HTMLElement>('[data-org]'));
   const empty = document.querySelector<HTMLElement>('[data-empty]');
 
   for (const b of btns) {
     b.addEventListener('click', () => {
       const f = b.dataset.f!;
       btns.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+
       let shown = 0;
       for (const c of cards) {
         const ok = f === 'all' || ` ${c.dataset.tags} `.includes(` ${f} `);
         c.hidden = !ok;
         if (ok) shown++;
+      }
+      // An org heading with nothing under it is noise, so hide the whole group.
+      for (const g of groups) {
+        g.hidden = !g.querySelector<HTMLElement>('.proj:not([hidden])');
       }
       if (empty) empty.hidden = shown !== 0;
     });

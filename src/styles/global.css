@@ -98,6 +98,7 @@ h2{font-size:clamp(30px,4.6vw,54px); line-height:1.06; letter-spacing:-.03em; fo
   padding:3px 8px; border-radius:5px; background:var(--tag-bg); color:var(--ink-3); white-space:nowrap;
 }
 .tag.live{background:var(--ok-bg); color:var(--ok-ink)}
+.tag.deep{background:transparent; color:var(--gold); border:1px solid var(--gold)}
 
 /* status strip */
 .strip{border-block:1px solid var(--border); background:var(--tag-bg); font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; color:var(--ink-3)}
