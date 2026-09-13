@@ -21,19 +21,16 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      # configure-pages only sets build_type when it *enables* Pages. This repo
-      # was already enabled as a branch-based (Jekyll) site, which is why the
-      # legacy "pages build and deployment" workflow kept firing and failing on
-      # an Astro tree. Setting it explicitly is a different API call.
-      - name: Build Pages from Actions, not the legacy Jekyll builder
+      # Reports as a step conclusion rather than only in the log, so the result
+      # is readable from the API. continue-on-error keeps a rejected call from
+      # blocking the deploy — the site is published by the next two steps.
+      - name: Force Pages build_type to workflow
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          echo "before: $(gh api repos/${{ github.repository }}/pages --jq '.build_type // "none"' 2>&1)"
-          gh api -X PUT repos/${{ github.repository }}/pages -f build_type=workflow \
-            && echo "set build_type=workflow" \
-            || echo "could not set build_type — change it in Settings > Pages"
-          echo "after:  $(gh api repos/${{ github.repository }}/pages --jq '.build_type // "none"' 2>&1)"
+          gh api repos/${{ github.repository }}/pages --jq '{build_type, source}'
+          gh api -X PUT repos/${{ github.repository }}/pages -f build_type=workflow
 
       - uses: actions/configure-pages@v5
         with:
