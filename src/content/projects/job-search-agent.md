@@ -21,7 +21,7 @@ metrics:
 # Repo is private, so no source link — a 404 is worse than no link.
 links: {}
 featured: false
-order: 10
+order: 11
 ---
 
 **Role:** Sole engineer · **Runs:** every weekday at 12:00 PT on GitHub Actions · **Note:** repository is currently private
