@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const artifacts = (await getCollection('artifacts')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title="Artifacts — Eason Han" description="Working product documents: a full PRD, a pre-launch architecture review, a prioritization framework, and a metric tree.">
+  <div class="narrow sectionpad">
+    <p class="eyebrow">{artifacts.length} documents</p>
+    <h2 style="max-width:18ch">The working documents, not just the summaries.</h2>
+    <p class="sub">So the reasoning is inspectable rather than asserted.</p>
+    <div class="arts">
+      {artifacts.map((a) => (
+        <a class="art" href={`/artifacts/${a.id}`}>
+          <span class="k">{a.data.kind}</span>
+          <span class="t">{a.data.title}</span>
+          <span class="d">{a.data.description}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

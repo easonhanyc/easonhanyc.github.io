@@ -1,0 +1,31 @@
+---
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="name">Yichen (Eason) Han</div>
+        <div class="meta">Berkeley, CA · Seeking a Summer 2027 PM internship</div>
+      </div>
+      <a class="chip" href="mailto:eason_han@berkeley.edu">Get in touch</a>
+    </div>
+    <div class="links">
+      <a href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
+      <a href="https://www.linkedin.com/in/yichen-eason-han/">LinkedIn ↗</a>
+      <a href="https://github.com/easonhanyc">GitHub ↗</a>
+      <a href="https://tripmatch-app.github.io/">TripMatch ↗</a>
+    </div>
+    <div class="fine">© {year} Yichen Han</div>
+  </div>
+</footer>
+
+<style>
+  footer{padding:56px 0 76px; color:var(--ink-3); font-size:14px; border-top:1px solid var(--border); margin-top:0}
+  .top{display:flex; flex-wrap:wrap; gap:18px; align-items:center; justify-content:space-between}
+  .name{font-weight:600; color:var(--ink); font-size:16px}
+  .meta{margin-top:4px}
+  .links{display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:22px; font-family:var(--mono); font-size:12px}
+  .links a{color:var(--ink-2)}
+  .fine{margin-top:26px; font-family:var(--mono); font-size:11px; color:var(--ink-3)}
+</style>

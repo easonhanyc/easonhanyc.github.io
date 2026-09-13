@@ -1,0 +1,22 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { project: CollectionEntry<'projects'>; reveal?: boolean }
+const { project, reveal = true } = Astro.props;
+const d = project.data;
+---
+<article class:list={['proj', reveal && 'rv']} data-tags={d.tags.join(' ')}>
+  <div class="top">
+    <h3><a href={`/work/${project.id}`}>{d.title}</a></h3>
+    {d.live && <span class="tag live">● Live</span>}
+    {d.badges.map((b) => <span class="tag">{b}</span>)}
+  </div>
+  <p class="role">{d.role} · {d.period}</p>
+  <p class="d">{d.summary}</p>
+  {d.metrics.length > 0 && (
+    <div class="mini">
+      {d.metrics.slice(0, 3).map((m) => (
+        <span><b>{m.n}</b> {m.l}</span>
+      ))}
+    </div>
+  )}
+</article>

@@ -1,10 +1,10 @@
 ---
-layout: doc
-title: "TripMatch — Infrastructure & scalability review"
+title: "TripMatch \u2014 Infrastructure & scalability review"
 description: "What would have broken at launch load, and why the storage layer was rebuilt before launch."
+kind: "Architecture review"
+related: "tripmatch"
+order: 2
 ---
-
-# TripMatch — Infrastructure
 
 How TripMatch is put together after the launch hardening, why the previous
 setup would not have survived the Haas cohort, and what to watch as it grows.

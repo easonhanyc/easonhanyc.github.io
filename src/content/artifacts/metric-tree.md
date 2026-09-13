@@ -1,10 +1,10 @@
 ---
-layout: doc
 title: "Metric trees & scenario forecasting"
 description: "Decomposing goals into levers, and forecasting a category with no history."
+kind: "Method"
+related: "aws-insights-platform"
+order: 4
 ---
-
-# Metric tree & scenario forecasting — how I structure measurement
 
 > **This is a reconstruction.** The method is the one I used defining success metrics for a new business line at AWS; the numbers and example decomposition below are invented for this portfolio.
 
@@ -81,4 +81,3 @@ The fourth scenario is the one most models omit and the one that most often turn
 > **When you can't reduce uncertainty, make it legible instead.** A forecast's job in a new category isn't accuracy — it's forcing the assumptions into the open where they can be argued with and monitored.
 
 ---
-

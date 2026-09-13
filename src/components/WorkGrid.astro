@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+interface Props { projects: CollectionEntry<'projects'>[] }
+const { projects } = Astro.props;
+
+const FILTERS = [
+  { f: 'all', label: 'All' },
+  { f: 'product', label: 'Product' },
+  { f: 'ai', label: 'AI / ML' },
+  { f: 'eng', label: 'Engineering' },
+  { f: 'shipped', label: 'Shipped & live' },
+];
+---
+<div class="filters" role="group" aria-label="Filter projects by discipline">
+  {FILTERS.map((x, i) => (
+    <button class="fbtn" type="button" data-f={x.f} aria-pressed={i === 0 ? 'true' : 'false'}>{x.label}</button>
+  ))}
+</div>
+
+<div class="grid" data-grid>
+  {projects.map((p) => <ProjectCard project={p} />)}
+</div>
+<p class="empty" data-empty hidden>No projects match that filter.</p>
+
+<script>
+  const btns = Array.from(document.querySelectorAll<HTMLButtonElement>('.fbtn'));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-grid] .proj'));
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+
+  for (const b of btns) {
+    b.addEventListener('click', () => {
+      const f = b.dataset.f!;
+      btns.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+      let shown = 0;
+      for (const c of cards) {
+        const ok = f === 'all' || ` ${c.dataset.tags} `.includes(` ${f} `);
+        c.hidden = !ok;
+        if (ok) shown++;
+      }
+      if (empty) empty.hidden = shown !== 0;
+    });
+  }
+</script>

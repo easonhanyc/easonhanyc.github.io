@@ -1,0 +1,78 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const d = project.data;
+const { Content } = await render(project);
+
+const artifacts = (await getCollection('artifacts'))
+  .filter((a) => a.data.related === project.id)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title={`${d.title} — Eason Han`} description={d.description}>
+  <div class="narrow">
+    <div class="backbar"><a href="/work">← All work</a></div>
+
+    <header class="dochead">
+      <p class="eyebrow">{d.period}</p>
+      <h1 style="font-size:clamp(32px,5.4vw,54px)">{d.title}</h1>
+      <p class="docmeta">
+        <span>{d.role}</span>
+        {d.live && <span class="tag live">● Live</span>}
+        {d.badges.map((b) => <span class="tag">{b}</span>)}
+      </p>
+
+      {d.metrics.length > 0 && (
+        <div class="metricrow">
+          {d.metrics.map((m) => (
+            <div class="m"><span class="n">{m.n}</span><span class="l">{m.l}</span></div>
+          ))}
+        </div>
+      )}
+
+      {(d.links.live || d.links.code || d.links.prd) && (
+        <div class="chips" style="margin:26px 0 8px">
+          {d.links.live && <a class="chip solid" href={d.links.live}>Try it live ↗</a>}
+          {d.links.code && <a class="chip" href={d.links.code}>Source ↗</a>}
+          {d.links.prd && <a class="chip" href={d.links.prd}>The PRD →</a>}
+        </div>
+      )}
+    </header>
+
+    <article class="prose" style="margin-top:40px"><Content /></article>
+
+    {artifacts.length > 0 && (
+      <section style="margin-top:64px; padding-top:34px; border-top:1px solid var(--border)">
+        <p class="eyebrow">Working documents</p>
+        <div class="arts">
+          {artifacts.map((a) => (
+            <a class="art" href={`/artifacts/${a.id}`}>
+              <span class="k">{a.data.kind}</span>
+              <span class="t">{a.data.title}</span>
+              <span class="d">{a.data.description}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <div style="padding:56px 0 20px"><a class="chip" href="/work">← All work</a></div>
+  </div>
+</BaseLayout>
+
+<style>
+  .metricrow{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:1px; background:var(--border); border:1px solid var(--border);
+    border-radius:10px; overflow:hidden; margin:26px 0 0;
+  }
+  .metricrow .m{background:var(--surface); padding:14px 16px}
+  .metricrow .n{display:block; font-size:21px; font-weight:660; letter-spacing:-.015em; color:var(--ink); font-variant-numeric:tabular-nums}
+  .metricrow .l{display:block; font-family:var(--mono); font-size:10.5px; color:var(--ink-3); margin-top:5px; line-height:1.4}
+</style>

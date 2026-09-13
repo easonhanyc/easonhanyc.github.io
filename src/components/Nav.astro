@@ -1,0 +1,40 @@
+---
+const path = Astro.url.pathname;
+const is = (p: string) => path === p || (p !== '/' && path.startsWith(p));
+---
+<nav class="bar">
+  <a class="sig" href="/">Eason Han <span>· Product</span></a>
+  <div class="navlinks">
+    <a href="/work" aria-current={is('/work') ? 'page' : undefined}>Work</a>
+    <a href="/artifacts" aria-current={is('/artifacts') ? 'page' : undefined}>Artifacts</a>
+    <a href="/about" aria-current={is('/about') ? 'page' : undefined}>About</a>
+    <button class="themebtn" id="theme-toggle" type="button" aria-label="Switch colour theme">Theme</button>
+  </div>
+</nav>
+
+<style>
+  .bar{
+    position:sticky; top:0; z-index:60;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:14px 24px; background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .sig{font-weight:600; letter-spacing:-.02em; font-size:15px; color:var(--ink)}
+  .sig:hover{text-decoration:none; color:var(--accent)}
+  .sig span{color:var(--ink-3); font-weight:400}
+  .navlinks{display:flex; align-items:center; gap:6px; flex-wrap:wrap}
+  .navlinks a,.themebtn{
+    font-family:var(--mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--ink-3); padding:6px 10px; border-radius:7px; border:1px solid transparent;
+    background:none; cursor:pointer; font-weight:500;
+  }
+  .navlinks a:hover,.themebtn:hover{color:var(--ink); border-color:var(--border-strong); text-decoration:none}
+  .navlinks a[aria-current="page"]{color:var(--ink); border-color:var(--border-strong)}
+  @media (max-width:560px){
+    .bar{padding:11px 16px; gap:8px}
+    .sig span{display:none}
+    .navlinks{gap:2px}
+    .navlinks a,.themebtn{padding:6px 7px; font-size:10px; letter-spacing:.05em}
+  }
+</style>

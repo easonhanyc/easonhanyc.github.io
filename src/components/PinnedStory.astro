@@ -1,0 +1,69 @@
+---
+// The one cinematic moment on the site. Ships as a plain stacked grid and
+// only becomes a pinned, stepping panel when JS runs and motion is allowed.
+interface Step { n: string; u: string; d: string }
+interface Props { eyebrow: string; title: string; sub: string; href: string; steps: Step[] }
+const { eyebrow, title, sub, href, steps } = Astro.props;
+---
+<section class="panel pin" data-pin>
+  <div class="stage wrap">
+    <div class="pin-head">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+      <p class="sub">{sub}</p>
+      <a class="chip" href={href}>Read the case study →</a>
+    </div>
+
+    <div class="steps" data-steps>
+      {steps.map((s) => (
+        <article class="step" data-step>
+          <span class="n">{s.n}</span>
+          <span class="u">{s.u}</span>
+          <p class="d">{s.d}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="rail" data-rail aria-hidden="true">
+      {steps.map(() => <i></i>)}
+    </div>
+  </div>
+</section>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const pins = Array.from(document.querySelectorAll<HTMLElement>('[data-pin]'));
+
+  // A short viewport can't hold a pinned stage without clipping content.
+  if (pins.length && !reduce && window.innerHeight >= 560) {
+    document.documentElement.classList.add('js-pin');
+
+    for (const pin of pins) {
+      const steps = Array.from(pin.querySelectorAll<HTMLElement>('[data-step]'));
+      const rail = Array.from(pin.querySelectorAll<HTMLElement>('[data-rail] i'));
+      if (!steps.length) continue;
+
+      const setActive = (i: number) => {
+        steps.forEach((s, n) => s.classList.toggle('on', n === i));
+        rail.forEach((r, n) => r.classList.toggle('on', n <= i));
+      };
+      setActive(0);
+
+      let ticking = false;
+      const update = () => {
+        ticking = false;
+        const r = pin.getBoundingClientRect();
+        const scrollable = r.height - window.innerHeight;
+        if (scrollable <= 0) return;
+        const p = Math.min(Math.max(-r.top / scrollable, 0), 0.9999);
+        setActive(Math.floor(p * steps.length));
+      };
+      const onScroll = () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      update();
+    }
+  }
+</script>

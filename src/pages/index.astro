@@ -1,0 +1,127 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PinnedStory from '../components/PinnedStory.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const aws = projects.find((p) => p.id === 'aws-insights-platform')!;
+const rest = projects.filter((p) => !p.data.featured);
+
+// Editorial narrative for the one cinematic moment — hand-written, not derived
+// from card metrics, because the story is the point rather than the figures.
+const tripmatchSteps = [
+  { n: '6',   u: 'Days — PRD to public launch',
+    d: 'Sole PM, designer and engineer. The non-goals were written before any code, which is the only reason a week was enough.' },
+  { n: '34',  u: 'Commits — 168 automated checks',
+    d: 'Verified sign-in, structured board, seat claims with capacity enforcement, comments, audit log, feedback inbox.' },
+  { n: '3',   u: 'Defects — found in my own v1',
+    d: "The day before launch, a race condition let two simultaneous posts silently delete each other. You post, you see it appear, on refresh it's gone — so you post again, which makes the race more likely. I rebuilt the storage layer rather than ship it." },
+  { n: '400', u: 'Cohort served — live today',
+    d: 'Three feedback-driven iterations after launch: owner-scoped delete, in-place edit that preserves comment threads, and date chips that only appear once the board spans more than one date.' },
+];
+
+const nonGoals = [
+  { t: 'Payments / cost-splitting', why: 'Venmo already works. Adding money introduces trust and liability complexity that buys no additional matches.' },
+  { t: 'Real-time dispatch', why: 'The job is surfacing the match. Logistics between two classmates is already solved — they text each other.' },
+  { t: 'A WhatsApp replacement', why: 'Final coordination stays in chat. Owning the whole conversation would mean competing with an app at 100% adoption.' },
+  { t: 'Public / open matching', why: 'Opening to strangers re-introduces the exact trust problem the design exists to avoid.' },
+  { t: 'A native mobile app', why: 'A link is the right form factor — zero install friction, one tap from the group chat where the users already are. Distribution determined the form factor, and later produced the nastiest bug in the project.' },
+];
+---
+<BaseLayout
+  title="Eason Han"
+  description="Product portfolio of Yichen (Eason) Han — MBA/MEng at UC Berkeley Haas, former AWS. 0-to-1 products, PRDs, and shipped code."
+>
+  <header class="hero wrap">
+    <p class="eyebrow">Product Management · Berkeley Haas</p>
+    <h1>I write the PRD<span class="dim">,</span> then I build the thing<span class="dim">.</span></h1>
+    <p class="lede">
+      MBA / MEng candidate at <strong>UC Berkeley Haas &amp; IEOR</strong>. Three years at
+      <strong>AWS</strong> building analytics products for an $80B sales org — then I started
+      shipping my own.
+    </p>
+    <div class="chips">
+      <a class="chip solid" href="/work">See the work</a>
+      <a class="chip" href="https://tripmatch-app.github.io/">Live product ↗</a>
+      <a class="chip" href="https://www.linkedin.com/in/yichen-eason-han/">LinkedIn ↗</a>
+      <a class="chip" href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
+    </div>
+  </header>
+
+  <div class="strip">
+    <div class="wrap">
+      <div><span class="dot"></span>Seeking <b>Summer 2027 PM internship</b></div>
+      <div>Focus <b>consumer · AI/GenAI · enterprise data</b></div>
+      <div>Based <b>Berkeley, CA</b></div>
+    </div>
+  </div>
+
+  <PinnedStory
+    eyebrow="01 — Shipped alone · Aug 2026"
+    title="TripMatch"
+    sub="A 400-person cohort coordinated rides by scrolling a WhatsApp chat, where requests get buried and matching seats go unused. I shipped a verified, Berkeley-only rides board — problem framing through production."
+    href="/work/tripmatch"
+    steps={tripmatchSteps}
+  />
+
+  <section class="sectionpad" id="nongoals">
+    <div class="narrow">
+      <p class="eyebrow rv">The product decision</p>
+      <h2 class="rv" style="max-width:18ch">Non-goals are the product decision.</h2>
+      <p class="sub rv">
+        TripMatch shipped in six days because I wrote down what it would never do, before writing
+        any code. Every line below was a deliberate cut, and each one bought the schedule.
+      </p>
+      <div class="ng-grid">
+        {nonGoals.map((n) => (
+          <div class="ng rv">
+            <div class="t">{n.t}</div>
+            <p class="why">{n.why}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="stage wrap sectionpad">
+      <div class="pin-head">
+        <p class="eyebrow">02 — 0 → 1 at scale · AWS, 2023–2026</p>
+        <h2>Sales Insights Platform</h2>
+        <p class="sub">
+          AWS Sales was not short on data. It was short on <em>conclusions</em>. I owned the
+          end-to-end launch of the org's first action-oriented insights platform — interviews,
+          PRD, Figma, roadmap.
+        </p>
+        <a class="chip" href="/work/aws-insights-platform">Read the case study →</a>
+      </div>
+      <div class="steps" style="margin-top:38px">
+        {aws.data.metrics.map((m) => (
+          <article class="step rv">
+            <span class="n">{m.n}</span>
+            <span class="u">{m.l}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sectionpad">
+    <div class="wrap">
+      <p class="eyebrow rv">Everything else</p>
+      <h2 class="rv" style="max-width:16ch">The full shelf.</h2>
+      <p class="sub rv">Three more builds — full-stack, reinforcement learning, and the tool that runs this job search.</p>
+      <div class="grid">
+        {rest.map((p) => <ProjectCard project={p} />)}
+      </div>
+      <p style="margin-top:28px"><a class="chip" href="/work">All work, filterable →</a></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero{padding:76px 0 60px}
+  h1 .dim{color:var(--ink-3)}
+  @media (max-width:560px){ .hero{padding:52px 0 44px} }
+</style>

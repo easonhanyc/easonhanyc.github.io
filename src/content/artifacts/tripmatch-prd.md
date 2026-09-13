@@ -1,10 +1,11 @@
 ---
-layout: doc
-title: "TripMatch — Product Requirements Document"
+title: "TripMatch \u2014 Product Requirements Document"
 description: "The full PRD: problem framing, non-goals, P0/P1/P2 requirements, success metrics, open questions."
+kind: "PRD"
+related: "tripmatch"
+order: 1
 ---
 
-# TripMatch — Product Requirements Document
 *(working title — carpool coordination for the Haas community)*
 
 **Author:** Eason Han
@@ -108,7 +109,7 @@ usage (~400 students, ~200 concurrent posts):
 Every mutation is now a targeted SQL statement against a single row, all
 credentials live server-side, and the free tier carries 30×+ headroom on every
 dimension but one (row reads, at 4×, with a documented mitigation). Full
-analysis in [INFRASTRUCTURE.md](tripmatch-infrastructure.html).
+analysis in [INFRASTRUCTURE.md](/artifacts/tripmatch-infrastructure).
 
 Verified by 70 automated checks against the real worker code and real SQL —
 including a concurrency test that fires 36 simultaneous writes and asserts all

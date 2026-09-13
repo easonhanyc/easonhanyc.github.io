@@ -1,12 +1,12 @@
 ---
-layout: doc
 title: "Prioritization framework"
 description: "Four ordered gates for cutting a roadmap."
+kind: "Method"
+related: "aws-insights-platform"
+order: 3
 ---
 
-# Prioritization framework — how I cut a roadmap
-
-> **This is a reconstruction.** The method is the one I used on the [AWS Sales insights platform](../case-studies/aws-insights-platform.html); the example features below are generic, invented for this portfolio. No internal roadmap content appears here.
+> **This is a reconstruction.** The method is the one I used on the [AWS Sales insights platform](/work/aws-insights-platform); the example features below are generic, invented for this portfolio. No internal roadmap content appears here.
 
 Most prioritization frameworks fail in practice for the same reason: they produce a *score* when what the room actually needs is a *decision*, and scores are easy to argue with. What follows is what I use instead — a small number of ordered gates, where a feature that fails an early gate doesn't get scored at all.
 
@@ -71,4 +71,3 @@ A ranked list alone reliably gets re-litigated. Three additions that prevent tha
 The mechanism that moved data-request resolution from 56% to 82% wasn't faster processing. It was an intake process that started distinguishing *one-off asks* from *repeated asks* — and promoted the second kind into the roadmap instead of re-answering them forever.
 
 ---
-

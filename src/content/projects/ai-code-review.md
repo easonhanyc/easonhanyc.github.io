@@ -1,10 +1,21 @@
 ---
-layout: doc
 title: "AI Code-Review Automation"
 description: "Shipping an agentic AI tool inside a large engineering org."
+summary: "The judgment that mattered wasn't the model \u2014 it was deciding which parts of the review the tool was allowed to be wrong about. False positives spend reviewer trust non-renewably."
+role: "Builder and product owner \u00b7 Amazon internal agentic-AI platform"
+period: "2024\u20132026"
+badges: ["Agentic AI"]
+live: false
+tags: ["ai", "product"]
+metrics: 
+  - n: "80%"
+    l: "less manual processing"
+  - n: "Precision"
+    l: "chosen over recall"
+links: {}
+featured: true
+order: 3
 ---
-
-# AI Code-Review Automation — shipping an agentic tool inside a large org
 
 **Role:** Builder and product owner · **Context:** Amazon internal agentic-AI platform · **Outcome:** 80% reduction in manual processing time
 
@@ -77,5 +88,4 @@ Three things I'd bring to an AI PM role:
 
 ---
 
-*Related: my [MBA 290T — Fundamentals of Agentic AI](../index.html) coursework at Berkeley covers the agent-design patterns underlying this work. [TripMatch](tripmatch.html) is the corresponding end-to-end build.*
-
+*Related: my [MBA 290T — Fundamentals of Agentic AI](/) coursework at Berkeley covers the agent-design patterns underlying this work. [TripMatch](/work/tripmatch) is the corresponding end-to-end build.*

@@ -1,10 +1,26 @@
 ---
-layout: doc
 title: "AWS Sales Insights Platform"
 description: "0-to-1 launch of an action-oriented insights platform for 10,000 sellers."
+summary: "AWS Sales was not short on data. It was short on conclusions. I owned the end-to-end launch of the org's first action-oriented insights platform \u2014 interviews, PRD, Figma, roadmap."
+role: "Product owner \u00b7 AWS Global Sales Strategy & Analytics"
+period: "2023\u20132026"
+badges: ["0 \u2192 1 at scale"]
+live: false
+tags: ["product", "ai"]
+metrics: 
+  - n: "70%"
+    l: "less time-to-insight"
+  - n: "10,000"
+    l: "sellers served"
+  - n: "56\u219282%"
+    l: "data-request resolution"
+  - n: "$80B"
+    l: "business supported"
+links: 
+  prd: "/artifacts/prioritization-framework"
+featured: true
+order: 2
 ---
-
-# AWS Sales Insights Platform — 0-to-1 for 10,000 sellers
 
 **Role:** Product owner (BIE, AWS Global Sales Strategy & Analytics) · **Timeline:** 2023–2026 · **Scale:** 10,000 sellers, $80B business
 
@@ -55,7 +71,7 @@ The initial ask was substantially larger than what shipped first. I ran prioriti
 2. **Does this work without a data-engineering dependency?** Features requiring new upstream pipelines carried timeline risk owned by another team. Those were sequenced later, deliberately, so v1's ship date depended only on my own execution.
 3. **Does it survive the seller's actual context?** Sellers are mobile, time-boxed, and interrupted. A feature requiring a ten-minute focused session was mis-designed regardless of its value.
 
-→ *[Reconstructed prioritization framework](../artifacts/prioritization-framework.html) — the method, on generic example features*
+→ *[Reconstructed prioritization framework](/artifacts/prioritization-framework) — the method, on generic example features*
 
 ---
 
@@ -88,7 +104,7 @@ I defined success metrics for AWS Sales' FY-2024 Generative AI business using a 
 
 The PM-relevant part is the scenario structure, not the regression. Point forecasts for a brand-new category invite false precision — nobody knew the shape of GenAI demand in FY-2024. **Four scenarios force the conversation to be about which assumptions leadership is willing to bet on**, rather than about whether a single number is right. That's a materially better input to target-setting.
 
-→ *[Reconstructed metric tree](../artifacts/metric-tree.html) — the decomposition method, on a generic example*
+→ *[Reconstructed metric tree](/artifacts/metric-tree) — the decomposition method, on a generic example*
 
 ---
 
@@ -99,4 +115,3 @@ The PM-relevant part is the scenario structure, not the regression. Point foreca
 - **Access management came late.** The centralized access-management app for 200+ users (replacing risk-prone spreadsheets with auditable controls) solved a real compliance gap, but it was a reaction rather than a design input. Governance is cheaper to build in than to retrofit.
 
 ---
-

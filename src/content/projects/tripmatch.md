@@ -1,10 +1,28 @@
 ---
-layout: doc
-title: "TripMatch — 0-to-1 carpool board"
+title: "TripMatch"
 description: "Sole PM, designer and engineer. PRD to production in six days for a 400-person cohort."
+summary: "A 400-person cohort coordinated rides by scrolling a WhatsApp chat, where requests get buried and matching seats go unused. I shipped a verified, Berkeley-only rides board \u2014 problem framing through production."
+role: "Sole PM, designer, and engineer"
+period: "Aug 2026 \u00b7 6 days to public launch"
+badges: ["0 \u2192 1"]
+live: true
+tags: ["product", "eng", "shipped"]
+metrics: 
+  - n: "6"
+    l: "days \u2014 PRD to public launch"
+  - n: "34"
+    l: "commits"
+  - n: "168"
+    l: "automated checks"
+  - n: "400"
+    l: "cohort served"
+links: 
+  live: "https://tripmatch-app.github.io/"
+  code: "https://github.com/tripmatch-app/tripmatch-app.github.io"
+  prd: "/artifacts/tripmatch-prd"
+featured: true
+order: 1
 ---
-
-# TripMatch — 0-to-1 carpool board for a 400-person cohort
 
 **Role:** Sole PM, designer, and engineer · **Timeline:** Aug 22–27, 2026 (6 days to public launch) · **Status:** Live at [tripmatch-app.github.io](https://tripmatch-app.github.io/)
 
@@ -39,7 +57,7 @@ That reframe is what made a one-week build viable. I wasn't solving matching at 
 
 ## 2. What I deliberately chose *not* to build
 
-Scope discipline was the main reason this shipped in a week. The [PRD's non-goals](../artifacts/tripmatch-prd.html) were written before any code:
+Scope discipline was the main reason this shipped in a week. The [PRD's non-goals](/artifacts/tripmatch-prd) were written before any code:
 
 | Non-goal | Reasoning |
 |---|---|
@@ -154,10 +172,9 @@ The honest caveat I'd give in an interview: there is **no pre-existing baseline*
 
 | Artifact | What it shows |
 |---|---|
-| [Product Requirements Document](../artifacts/tripmatch-prd.html) | Problem framing, non-goals, user stories, P0/P1/P2 requirements with acceptance criteria, success metrics, open questions |
-| [Infrastructure & scalability analysis](../artifacts/tripmatch-infrastructure.html) | The pre-launch architecture review — what would have broken, at what load, and the mitigation |
+| [Product Requirements Document](/artifacts/tripmatch-prd) | Problem framing, non-goals, user stories, P0/P1/P2 requirements with acceptance criteria, success metrics, open questions |
+| [Infrastructure & scalability analysis](/artifacts/tripmatch-infrastructure) | The pre-launch architecture review — what would have broken, at what load, and the mitigation |
 | [Live product](https://tripmatch-app.github.io/) | The shipped app |
 | [Source repository](https://github.com/tripmatch-app/tripmatch-app.github.io) | 34 commits, 168 automated checks, deploy runbook |
 
 ---
-

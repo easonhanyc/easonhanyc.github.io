@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const background = [
+  { org: 'UC Berkeley — Haas School of Business & IEOR', title: 'MBA / M.Eng., Industrial Engineering & Operations Research', when: 'Expected 2028' },
+  { org: 'Amazon Web Services', title: 'Business Intelligence Engineer — Global Sales Strategy & Analytics', when: '2023–2026' },
+  { org: 'TikTok', title: 'Ads Risk Integrity Intern — 35% reduction in high-risk ad exposure', when: '2021' },
+  { org: 'IDG Capital', title: 'Venture Capital Analyst Intern — supported 3 investment decisions', when: '2020' },
+  { org: 'University of Notre Dame', title: 'B.B.A. Business Analytics · B.S. Applied Mathematics', when: '2023' },
+];
+
+const skills = [
+  { k: 'Product', v: 'PRD writing · MVP definition · roadmapping · backlog prioritization · user research · metric design' },
+  { k: 'Technical', v: 'SQL · Python · R · TypeScript · Tableau · QuickSight · Figma · Postgres · Cloudflare Workers/D1' },
+  { k: 'Certified', v: 'AWS AI Practitioner · AWS Data Engineer Associate · Tableau Certified Data Analyst' },
+];
+
+const principles = [
+  { t: 'Non-goals are the product decision.', d: 'TripMatch shipped in six days because I wrote down what it would never do — no payments, no dispatch, no native app, no WhatsApp replacement — before writing any code.' },
+  { t: 'Distribution is a technical constraint, not just a growth decision.', d: "TripMatch's nastiest bug: a link tapped in WhatsApp opens in that app's built-in browser, where Google's popup sign-in has no window to return a credential to and dies on a blank page. The product's entire distribution channel was also its single point of auth failure — and it was invisible in desktop testing." },
+  { t: 'I write the limitations down.', d: "Every case study ends with what I'd do differently, and the PRD carries its unresolved questions in the open. A portfolio of only wins isn't evidence of judgment — it's evidence of editing." },
+];
+---
+<BaseLayout title="About — Eason Han" description="Background, skills and working principles of Yichen (Eason) Han — MBA/MEng at UC Berkeley Haas, former AWS.">
+  <div class="narrow sectionpad">
+    <p class="eyebrow">About</p>
+    <h2 style="max-width:18ch">A PM who ships the thing he specified.</h2>
+    <p class="sub">
+      Three years at AWS building analytics products for a $80B sales org, now at Berkeley doing
+      an MBA and an M.Eng at the same time. The through-line is that I don't hand the build off —
+      I write the PRD, cut the roadmap, and then go and make it.
+    </p>
+
+    <section style="margin-top:56px">
+      <p class="eyebrow">How I work</p>
+      <div class="principles">
+        {principles.map((p) => (
+          <div class="principle">
+            <div class="p-t">{p.t}</div>
+            <div class="p-d">{p.d}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section style="margin-top:56px">
+      <p class="eyebrow">Background</p>
+      <div class="xp">
+        {background.map((r) => (
+          <div class="row">
+            <div>
+              <div class="org">{r.org}</div>
+              <div class="title">{r.title}</div>
+            </div>
+            <div class="when">{r.when}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section style="margin-top:56px">
+      <p class="eyebrow">Skills</p>
+      <div class="xp">
+        {skills.map((s) => (
+          <div class="row">
+            <div><div class="org">{s.k}</div><div class="title">{s.v}</div></div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section style="margin-top:56px">
+      <p class="eyebrow">Reach me</p>
+      <div class="chips">
+        <a class="chip solid" href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
+        <a class="chip" href="https://www.linkedin.com/in/yichen-eason-han/">LinkedIn ↗</a>
+        <a class="chip" href="https://github.com/easonhanyc">GitHub ↗</a>
+      </div>
+      <p class="sub" style="margin-top:22px; font-size:15px">
+        Open to Summer 2027 PM internships — consumer, AI/GenAI, and enterprise/data products.
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .principles{display:flex; flex-direction:column; gap:22px}
+  .principle{border-left:2px solid var(--gold); padding-left:18px}
+  .p-t{font-weight:620; color:var(--ink); margin-bottom:5px; font-size:16px}
+  .p-d{font-family:var(--prose); font-size:15.5px; color:var(--ink-2); line-height:1.65}
+  .xp{display:flex; flex-direction:column}
+  .row{display:grid; grid-template-columns:1fr auto; gap:8px 20px; padding:16px 0; border-bottom:1px solid var(--border); align-items:baseline}
+  .row:last-child{border-bottom:0}
+  .org{font-weight:610; color:var(--ink); font-size:15.5px}
+  .title{font-size:14.5px; color:var(--ink-2); margin-top:3px; line-height:1.55}
+  .when{font-family:var(--mono); font-size:12px; color:var(--ink-3); white-space:nowrap; text-align:right}
+  @media (max-width:560px){ .row{grid-template-columns:1fr} .when{text-align:left} }
+</style>
