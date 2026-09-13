@@ -21,17 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      # Reports as a step conclusion rather than only in the log, so the result
-      # is readable from the API. continue-on-error keeps a rejected call from
-      # blocking the deploy — the site is published by the next two steps.
-      - name: Force Pages build_type to workflow
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh api repos/${{ github.repository }}/pages --jq '{build_type, source}'
-          gh api -X PUT repos/${{ github.repository }}/pages -f build_type=workflow
-
       - uses: actions/configure-pages@v5
         with:
           enablement: true
