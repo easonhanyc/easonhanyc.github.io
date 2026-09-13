@@ -5,7 +5,7 @@ import PinnedStory from '../components/PinnedStory.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
-const aws = projects.find((p) => p.id === 'aws-insights-platform')!;
+const aws = projects.find((p) => p.id === 'action-hub')!;
 const rest = projects.filter((p) => !p.data.featured);
 
 // Editorial narrative for the one cinematic moment — hand-written, not derived
@@ -88,13 +88,13 @@ const nonGoals = [
     <div class="stage wrap sectionpad">
       <div class="pin-head">
         <p class="eyebrow">02 — 0 → 1 at scale · AWS, 2023–2026</p>
-        <h2>Sales Insights Platform</h2>
+        <h2>Action Hub</h2>
         <p class="sub">
-          AWS Sales was not short on data. It was short on <em>conclusions</em>. I owned the
-          end-to-end launch of the org's first action-oriented insights platform — interviews,
-          PRD, Figma, roadmap.
+          A sales org running on roughly 200 dashboards, with no agreed place to start the day.
+          I owned the technical chapter's first tab: every open issue across a seller's accounts,
+          ranked, with the next action named on each one.
         </p>
-        <a class="chip" href="/work/aws-insights-platform">Read the case study →</a>
+        <a class="chip" href="/work/action-hub">Read the case study →</a>
       </div>
       <div class="steps" style="margin-top:38px">
         {aws.data.metrics.map((m) => (

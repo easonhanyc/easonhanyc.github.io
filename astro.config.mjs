@@ -10,5 +10,8 @@ export default defineConfig({
   markdown: { shikiConfig: { theme: 'github-dark-dimmed', wrap: true } },
   // The AI project was renamed when its case study was corrected to describe
   // release automation rather than code review. Keeps the old URL alive.
-  redirects: { '/work/ai-code-review': '/work/pr-automation' },
+  redirects: {
+    '/work/ai-code-review': '/work/pr-automation',
+    '/work/aws-insights-platform': '/work/action-hub',
+  },
 });

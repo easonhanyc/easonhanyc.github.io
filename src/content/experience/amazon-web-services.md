@@ -11,6 +11,6 @@ outcomes:
   - "Raised on-time delivery of business stakeholder requests from 56% to 82% by establishing recurring roadmap reviews that published the backlog"
   - "Launched a Business-Influence Tracker that lifted customer opportunity coverage 12% and became a standing Monthly Business Review KPI"
   - "Onboarded 1,100 LATAM sellers onto GenAI deal-prep tools, exceeding 75% participation in 60 days"
-related: ["aws-insights-platform", "pr-automation"]
+related: ["action-hub", "pr-automation"]
 order: 2
 ---

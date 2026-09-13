@@ -76,4 +76,4 @@ The reduction comes from removing the repetitive portion of the push, and it rea
 
 ---
 
-*Sibling work: the [access-management app](/work/aws-insights-platform) was built through spec-driven development in the Kiro agentic IDE — the same discipline as writing the PRD before the code. [TripMatch](/work/tripmatch) is the corresponding end-to-end build outside work.*
+*Sibling work: the [access-management app](/work/action-hub) was built through spec-driven development in the Kiro agentic IDE — the same discipline as writing the PRD before the code. [TripMatch](/work/tripmatch) is the corresponding end-to-end build outside work.*
