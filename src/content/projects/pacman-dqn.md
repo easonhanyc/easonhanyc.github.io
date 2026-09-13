@@ -21,7 +21,7 @@ metrics:
 links:
   code: "https://github.com/easonhanyc/mba290t-pacman-dqn"
 featured: false
-order: 6
+order: 7
 ---
 
 **Context:** MBA 290T, Fundamentals of Agentic AI · **Result:** mean evaluation score 492 → 906 (+414, +84%) under identical settings
