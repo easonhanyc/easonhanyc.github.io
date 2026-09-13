@@ -1,8 +1,8 @@
 ---
 title: "Pull-Request Automation"
-description: "An agentic skill that automates the ceremony between finishing a change and getting it reviewed — and deliberately stops there."
-summary: "Getting a finished change into code review took eight mandatory steps and 30–60 minutes, none of it thinking. An agentic skill now does all eight, leaving about five minutes of genuine decisions — and stops precisely where a human reviewer starts."
-role: "Builder and product owner · Amazon internal agentic platform"
+description: "An OpenClaw skill that automates the ceremony between finishing a change and getting it reviewed — and deliberately stops there."
+summary: "Getting a finished change into code review took eight mandatory steps and 30–60 minutes, none of it thinking. A skill built on Amazon's internal OpenClaw platform now does all eight, leaving about five minutes of genuine decisions — and stops precisely where a human reviewer starts."
+role: "Builder and product owner · Amazon's internal OpenClaw platform"
 period: "2023–2026"
 depth: "project"
 org: "Amazon Web Services"
@@ -21,11 +21,11 @@ featured: false
 order: 3
 ---
 
-**Role:** Builder and product owner · **Context:** Amazon internal agentic platform · **Outcome:** 80% reduction in manual processing time
+**Role:** Builder and product owner · **Built on:** Amazon's internal OpenClaw platform · **Outcome:** 80% reduction in manual processing time
 
-> **Confidentiality note.** Written at the level of detail already public on my resume. Internal platform names, repository paths, configuration and workflow specifics are omitted; the diagram is redrawn for this portfolio.
+> **Confidentiality note.** Written at the level of detail already public on my resume. Repository paths, build configuration and workflow specifics are omitted; the diagram is redrawn for this portfolio.
 
-> **The 30-second version.** Shipping a change — SQL or Python — to the production repository meant eight mandatory steps before anyone could even look at it, and 30 to 60 minutes each time. None of that time was spent thinking. I built an agentic skill that performs all eight, leaving about **five minutes** of actual decisions. It stops at the point a reviewer picks the change up, which is the only part of the sequence where a human was ever the point.
+> **The 30-second version.** Shipping a change — SQL or Python — to the production repository meant eight mandatory steps before anyone could even look at it, and 30 to 60 minutes each time. None of that time was spent thinking. I built a skill on **Amazon's internal OpenClaw platform** that performs all eight, leaving about **five minutes** of actual decisions. It stops at the point a reviewer picks the change up, which is the only part of the sequence where a human was ever the point.
 
 ---
 
