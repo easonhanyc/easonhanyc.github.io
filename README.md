@@ -1,85 +1,141 @@
-# Eason Han — Product Management Portfolio
+# easonhanyc.github.io
 
-**🌐 Read it as a site: [easonhanyc.github.io](https://easonhanyc.github.io)** ← the version to send a recruiter
+The source for **[easonhanyc.github.io](https://easonhanyc.github.io)** — a product portfolio built
+with Astro and deployed to GitHub Pages.
 
-MBA / MEng candidate at **UC Berkeley Haas & IEOR**. Three years at **AWS** building analytics products for an $80B sales org — then I started shipping my own. I write the PRD, cut the roadmap, and build the thing.
-
-📧 [eason_han@berkeley.edu](mailto:eason_han@berkeley.edu) · 💼 [LinkedIn](https://www.linkedin.com/in/yichen-eason-han/) · 🚗 [TripMatch, live](https://tripmatch-app.github.io/)
-
----
-
-## Case studies
-
-### 1. [TripMatch](case-studies/tripmatch.md) — 0→1, shipped and live
-*Sole PM, designer, and engineer · 6 days to public launch*
-
-A 400-person cohort coordinated rides by scrolling a WhatsApp chat. I shipped a verified, Berkeley-only rides board — PRD through production. The decision I'd point to: **I rebuilt my own v1 architecture the day before launch** after finding three defects that would have broken it inside its own expected load, including a race condition that silently deleted users' posts.
-
-`34 commits in 6 days` · `168 automated checks` · `3 feedback-driven iterations` · [**Try it live**](https://tripmatch-app.github.io/)
-
-### 2. [AWS Sales Insights Platform](case-studies/aws-insights-platform.md) — 0→1 at scale
-*Product owner · AWS Global Sales Strategy & Analytics · 2023–2026*
-
-AWS Sales had extensive dashboards and almost no *decisions* coming out of them. I owned the end-to-end launch of the org's first action-oriented insights platform — interviews, PRD, Figma, roadmap. The product bet: **sellers didn't need more data access, they needed the next action named for them.**
-
-`70% less time-to-insight` · `10,000 sellers` · `data-request resolution 56% → 82%` · `$80B business`
-
-### 3. [AI Code-Review Automation](case-studies/ai-code-review.md) — AI product judgment
-*Builder and product owner · Amazon internal agentic-AI platform*
-
-Shipped an agentic tool that cut manual review time by 80%. The judgment that mattered wasn't the model — it was deciding **which parts of the review the tool was allowed to be wrong about.** For code review, false positives cost reviewer trust, and trust is spent non-renewably.
-
-`80% less manual processing` · `precision chosen over recall`
+**This README is about how the site is built.** The writing, case studies and PRDs are on
+[the site itself](https://easonhanyc.github.io); duplicating them here would just create two copies
+to keep in sync.
 
 ---
 
-## Artifacts
+## Stack
 
-The working documents, not just the summaries — so the reasoning is inspectable.
-
-| Artifact | What it shows |
-|---|---|
-| [**TripMatch PRD**](artifacts/tripmatch-prd.md) | Problem framing, non-goals, user stories, P0/P1/P2 requirements with acceptance criteria, success metrics, and the open questions I never closed |
-| [**Pre-launch architecture review**](artifacts/tripmatch-infrastructure.md) | What would have broken, at what load, and why I rebuilt the storage layer before launch instead of after |
-| [**Prioritization framework**](artifacts/prioritization-framework.md) | Four ordered gates for cutting a roadmap — and why scoring an incomparable list is theater |
-| [**Metric trees & scenario forecasting**](artifacts/metric-tree.md) | Separating liquidity failure from discoverability failure, and forecasting a category with no history |
-
----
-
-## How I work
-
-**Non-goals are the product decision.** TripMatch shipped in six days because I wrote down what it would never do — no payments, no dispatch, no native app, no WhatsApp replacement — before writing any code.
-
-**I'd rather kill my own work than ship a known defect.** The easy path the day before TripMatch's launch was to ship. Instead I rebuilt the storage layer, because the version I'd already built would have silently deleted users' posts under exactly the load launch day produces.
-
-**I write the limitations down.** Every case study ends with what I'd do differently, and the PRD carries its unresolved questions in the open. A portfolio that only contains wins isn't evidence of judgment — it's evidence of editing.
-
----
-
-## Background
-
-| | | |
+| Layer | Choice | Why |
 |---|---|---|
-| **UC Berkeley** — Haas & IEOR | MBA / M.Eng. Industrial Engineering & Operations Research | Expected 2028 |
-| **Amazon Web Services** | Business Intelligence Engineer, Global Sales Strategy & Analytics | 2023–2026 |
-| **TikTok** | Ads Risk Integrity Intern — 35% reduction in high-risk ad exposure | 2021 |
-| **IDG Capital** | Venture Capital Analyst Intern — supported 3 investment decisions | 2020 |
-| **University of Notre Dame** | B.B.A. Business Analytics · B.S. Applied Mathematics | 2023 |
+| Framework | **Astro 7** | Content-first. Ships zero JavaScript by default and adds it per component, which suits a site that is mostly long-form prose with a few interactive moments. |
+| Content | **Content collections** (`glob` loader + Zod schemas) | Every project and artifact is one Markdown file with typed front matter. A missing or malformed field fails the build instead of rendering a broken page. |
+| Markup | **MDX** (`@astrojs/mdx`) | Markdown for the prose, with the option of components where a page needs one. |
+| Styling | **Plain CSS, custom properties** | The whole design system is ~270 lines. A framework would have been more code than the thing it replaced. |
+| Type | Instrument Sans · Source Serif 4 · JetBrains Mono | Display / long-form prose / spec labels. Serif body text is deliberate — a portfolio whose pitch is "I write the PRD" should read like a document. |
+| Hosting | **GitHub Pages** via GitHub Actions | Static, free, and the build step runs in CI rather than being committed. |
 
-**Product** — PRD writing, MVP definition, roadmapping, backlog prioritization, user research, metric design
-**Technical** — SQL, Python, R, JavaScript, Tableau, QuickSight, Figma, Salesforce, Cloudflare Workers/D1
-**Certified** — AWS AI Practitioner, AWS Data Engineer Associate, Tableau Certified Data Analyst
+Palette is Berkeley blue `#003262` and California gold `#c99700`, carried over from the previous
+version of this site.
 
----
-
-## About this repo
-
-This repository *is* the portfolio. [`index.html`](index.html) plus a Jekyll layout render it as a site on GitHub Pages; the case studies and artifacts are plain Markdown so they stay readable here on GitHub too.
+## Content model
 
 ```
-├── index.html              the one-page site (the 60-second skim)
-├── case-studies/           three deep dives
-├── artifacts/              PRD, architecture review, frameworks
-├── _layouts/doc.html       shared layout for the Markdown pages
-└── assets/style.css        one stylesheet for the whole site
+src/content/
+  projects/*.md     title, summary, role, period, badges, tags[],
+                    metrics[{n,l}], links{live,code,prd}, featured, order
+  artifacts/*.md    title, description, kind, related, order
 ```
+
+Schemas live in [`src/content.config.ts`](src/content.config.ts).
+
+**To add a project:** drop a Markdown file into `src/content/projects/`. The filename becomes the
+URL slug, the front matter drives the card on `/work`, and `tags` decides which filters it appears
+under. Nothing else needs editing — no index to update, no nav entry to add.
+
+`related` on an artifact links it back to a project, which is what renders the "working documents"
+section at the foot of a case study.
+
+## Routes
+
+```
+/                        cinematic home
+/work                    filterable index
+/work/[slug]             case study
+/artifacts               index
+/artifacts/[slug]        working document
+/about                   background
+404
+```
+
+## Motion, built in tiers
+
+The scroll treatment is layered so that it degrades instead of breaking. Each tier assumes less than
+the one above it.
+
+| Tier | Technique | Needs | If unavailable |
+|---|---|---|---|
+| 1 | Typography, full-bleed panels, `position: sticky` pinning | nothing | — |
+| 2 | Staggered reveal on scroll | `IntersectionObserver` | content renders in place |
+| 3 | Scroll-driven reading progress | `animation-timeline: scroll()` | bar is simply absent |
+
+Two rules hold the whole thing together:
+
+**Content ships visible.** `.rv` elements are fully opaque by default. JavaScript adds a `js-rv`
+class to `<html>`, and *that* class is what introduces the hidden start state. So if the script
+fails, never runs, or is blocked, the page renders complete rather than blank — the failure mode of
+parking content at `opacity: 0` and waiting for an observer that never fires.
+
+**Tier 3 is genuinely optional.** It sits behind `@supports (animation-timeline: scroll())` because
+Firefox stable still gates the feature behind a flag. It only ever drives decoration, never whether
+something is readable.
+
+`prefers-reduced-motion: reduce` collapses every tier: the pinned section becomes a normal stacked
+grid, reveals resolve instantly, and the progress bar is hidden.
+
+## Implementation notes
+
+**Three theme states, not two.** An explicit choice stamps `data-theme` on the root element, but the
+default "system" setting stamps nothing — so the un-stamped document is the common case. Tokens are
+therefore defined three times: the bare `:root` block carries the complete light palette,
+`@media (prefers-color-scheme: dark)` redefines them guarded by `:not([data-theme="light"])` so an
+explicit light choice beats a dark OS, and `:root[data-theme="dark"]` redefines them again so the
+toggle wins in the other direction. A small inline script applies the stored choice before first
+paint, so switching themes never flashes the other palette.
+
+**Wide tables scroll instead of pushing the page.** Markdown tables carry a minimum width so columns
+stay readable, which on a phone would drag the whole document sideways. Rather than wrapping every
+table with a build plugin or a script, the table is its own scroll container:
+
+```css
+.prose table { display: block; width: max-content; max-width: 100%; overflow-x: auto; }
+```
+
+**The pinned section checks viewport height.** Below 560px tall it stays unpinned, because a sticky
+full-height stage clips its own content on a short screen.
+
+## Local development
+
+```bash
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # → dist/
+npm run preview    # serve the build
+```
+
+## Deployment
+
+Every push to `main` runs [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
+`actions/configure-pages` (with `enablement: true`, so Pages turns itself on), then
+`withastro/action` to build, then `actions/deploy-pages` to publish.
+
+Pages must be set to deploy from **GitHub Actions** rather than from a branch — the site is built in
+CI, and `dist/` is not committed.
+
+## Structure
+
+```
+src/
+  content.config.ts        collection schemas
+  content/                 projects/ and artifacts/ Markdown
+  layouts/BaseLayout.astro head, theme bootstrap, reveal observer
+  components/              Nav · Footer · PinnedStory · ProjectCard · WorkGrid
+  pages/                   routes
+  styles/global.css        tokens and the whole design system
+```
+
+## Known gaps
+
+- **No automated tests.** The build catches schema and link errors; layout and motion were verified
+  by hand across viewport widths, themes, reduced-motion, and with JavaScript disabled. A Playwright
+  pass over those states would make it repeatable.
+- **No images.** The site is entirely type and layout. Screenshots of the products would help, and
+  would mean introducing `astro:assets` and a real image pipeline.
+- **The pinned section is a scroll-position calculation,** not a native scroll timeline. It could
+  move to `animation-timeline: view()` once Firefox ships it unflagged, which would remove the
+  scroll listener entirely.
