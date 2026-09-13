@@ -159,20 +159,10 @@ The second gate is the one I'd point to. It is tempting to treat an upstream dep
 
 That number is worth unpacking. Delivery improved not because requests were processed faster, but because the review turned *recurring* requests into *roadmap items*. A request that appears three times is a missing feature wearing a disguise. The metric moved when intake started telling the two apart.
 
-**Adoption is a product problem, not a communications problem.** Unused tooling is a product defect, and it responds to the same discovery loop as anything else. The clearest version: a gamified GenAI adoption programme across LATAM for 1,100 sellers, iterated on user feedback, exceeding 75% participation within 60 days. What generalises — when adoption is the goal, *feedback loop tightness* beats incentive size.
-
 ---
 
-## 6. Adjacent work in the same org
-
-- **Business-Influence Tracker** — surfaced customer opportunities being influenced but not captured in coverage reporting. **+12% opportunity coverage**, and it became a **standing Monthly Business Review KPI**. The second fact matters more: a shipped feature is a feature, but a metric leadership adopts into its operating review has changed how the business steers.
-- **[GenAI target setting](/work/genai-target-setting)** — the first annual target for a business with almost no history, built across 55,000 data points and four scenario simulations. It has its own write-up.
-
----
-
-## 7. What I'd do differently
+## 6. What I'd do differently
 
 - **I under-invested in instrumenting the "action taken" step.** Time-to-insight was measurable and improved 70% — measured as how long it took to locate the actual issue, before against after. Whether a seller then *acted* was much harder to observe, and I'd have designed for that measurement from the start instead of inferring it downstream.
 - **I sequenced data-engineering dependencies out of v1 for schedule safety — correctly — but didn't push hard enough on the joint roadmap afterward.** Deferred dependencies have a way of staying deferred once v1 succeeds without them.
 - **The weights were set from experience, not from evidence.** Severity weights came from judgment about what matters in a sales cycle. That was the right way to ship, and the wrong place to stay: every dismissal is a labelled example of a weight being wrong, and I did not capture them. A ranked list that never learns from being ignored is a ranked list that slowly stops being read.
-- **Access management came late.** I built the centralised access-management app end to end — replacing risk-prone spreadsheets with auditable data-access controls for 200+ data owners — through spec-driven development in the Kiro agentic IDE. Writing the spec first and letting the agent build against it is the same discipline as writing the PRD before the code, which is why it worked. But it answered a compliance gap as a reaction rather than a design input, and governance is cheaper to build in than to retrofit.

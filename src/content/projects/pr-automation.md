@@ -73,7 +73,3 @@ The reduction comes from removing the repetitive portion of the push, and it rea
 **Trust is spent non-renewably.** A tool that causes one bad deployment does not get graded on its average. People route around it afterwards, and the automation's value goes to zero while its maintenance cost does not.
 
 **Adoption depends on where the output lands.** Automation that requires a context switch competes with an existing habit and loses. Meeting people inside the workflow they already have is worth more than a large accuracy improvement.
-
----
-
-*Sibling work: the [access-management app](/work/action-hub) was built through spec-driven development in the Kiro agentic IDE — the same discipline as writing the PRD before the code. [TripMatch](/work/tripmatch) is the corresponding end-to-end build outside work.*

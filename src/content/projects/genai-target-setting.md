@@ -29,7 +29,23 @@ order: 4
 
 ---
 
-## 1. Why the obvious approach fails
+## 1. How a goal becomes a number
+
+The AWS Sales technical org — solutions architects and customer solutions managers — carries
+annual goals every year, drawn from whatever leadership has decided matters most that cycle.
+**2024 was the first year Generative AI was one of them.**
+
+That makes target-setting an analytics problem before it is a planning one. The sequence runs:
+construct the goal with the VP and the goal's business owners at the start of the year, derive
+the number, and then **release it down to every team and every individual contributor**.
+
+That last step is what raises the stakes. A target here is not a slide in a planning deck — it
+becomes the number a few thousand individual people are measured against for twelve months.
+Getting it wrong in either direction has a cost: too high and you have demotivated an entire
+org against a category nobody yet understands; too low and you have under-invested in the
+fastest-moving thing in the business.
+
+## 2. Why the obvious approach fails
 
 You set next year's target by looking at this year's trend. That assumes a trend exists.
 
@@ -39,7 +55,7 @@ Worse, it fails in a specific and expensive direction. A line fitted through an 
 
 So the first real decision was to stop trying.
 
-## 2. Forecast something that does have history
+## 3. Forecast something that does have history
 
 <figure class="dg">
 <svg viewBox="0 0 700 196" role="img" aria-labelledby="g1-t" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +100,7 @@ Pipeline creation had been running long enough to have a real series. So the mod
 
 Target for a month is therefore *pipeline created three months earlier × attach × win*, computed per region.
 
-## 3. The judgment calls inside that
+## 4. The judgment calls inside that
 
 **Which months feed the trend.** Only the window where the category was actually active. Including the dead months earlier in the year would have dragged the intercept down and flattened the slope — mathematically fine, commercially wrong.
 
@@ -96,7 +112,7 @@ Note that these two windows are deliberately different. The trend wants the long
 
 **Rates held flat, on purpose.** The model assumes conversion doesn't improve over the year, with an explicit note that the estimate should be revised as enablement mechanisms take effect. That is a conservative assumption and a knowingly wrong one — improvement was the whole point of the programme. It was the right default because a target built on assumed improvement is a target that blames the field for a forecasting choice.
 
-## 4. What the scenarios are for
+## 5. What the scenarios are for
 
 Four scenario simulations, run as sensitivity analysis across the model's assumptions.
 
@@ -106,16 +122,10 @@ Scenarios change the question. Instead of "is 'X' correct," the conversation bec
 
 → *[Reconstructed metric tree](/artifacts/metric-tree) — the decomposition method, on a generic example*
 
-## 5. The part that mattered most: planning to be wrong
+## 6. The part that mattered most: planning to be wrong
 
 A target for a category with no history **will** be wrong. Not might — will. The honest response is not a better model; it is to ship the number alongside the mechanism for correcting it.
 
 So the deliverable was not the target. It was the target plus a **quarterly review cadence**: measure actual conversion against the assumed rates, measure actual pipeline against the trend, and adjust while there is still year left to adjust in.
 
 This is the thing I'd argue for in any planning conversation. **An annual number set once in February and defended for eleven months is a worse instrument than a slightly worse number that gets corrected in April.** The first optimises for the appearance of rigour. The second optimises for the org steering correctly.
-
-## 6. What I'd do differently
-
-- **I'd have pre-committed the adjustment triggers.** The review cadence existed, but "we'll look at it quarterly and adjust if needed" leaves the threshold for acting undefined — which in practice biases toward not acting, because changing a published target is politically expensive. Naming the deviation that forces a revision, in advance, removes that.
-- **The flat-rate assumption should have had a stated expiry.** Holding conversion constant was right at the start and progressively less right as enablement landed. I'd write the date the assumption gets re-derived into the model itself rather than leaving it to a note.
-- **Scenarios were run once.** They were built for the initial target conversation and not re-run at each quarterly review, where the assumption set had genuinely moved. The sensitivity analysis was treated as a launch artifact when it should have been a standing one.
