@@ -1,7 +1,7 @@
 ---
 title: "GenAI Adoption Program"
 description: "A gamified adoption programme for 1,100 LATAM sellers — built so that participating, not winning, was the thing being rewarded."
-summary: "GenAI tooling existed; usage didn't. Rather than mandate it, I partnered with the LATAM sales director and a principal seller on a points-and-leaderboard programme that reached over 75% participation in 60 days — because the rewards were designed for the people who would never finish first."
+summary: "GenAI tooling existed; usage didn't. Mandating it produces compliance, not adoption — so the programme paid out on activity rather than on rank, giving the 99% who will never top a leaderboard a reason to take part. Over 75% of 1,100 sellers did, inside 60 days."
 role: "Product owner · with the LATAM sales director and a principal seller"
 period: "2024"
 depth: "project"
@@ -20,12 +20,9 @@ links: {}
 featured: false
 order: 6
 ---
-
-**Role:** Product owner, partnered with the LATAM sales director and a principal seller · **Reach:** 1,100 sellers · **Outcome:** over 75% participation within 60 days
-
 > **Confidentiality note.** Written at the level of detail already public on my resume. The programme's branding, internal materials, participant names, logins, teams and standings are all omitted — the source material is internal and personally identifying. What is described is the mechanic design.
 
-> **The 30-second version.** GenAI tools were available to sellers and were not being used much. Mandating usage produces compliance, not adoption, so instead I worked with the LATAM sales director and a principal seller on a gamified programme: activity earns points, points drive weekly and monthly leaderboards, badges, prizes and raffle entries, and leaders get recognised at live events. Over **75% of 1,100 sellers** participated within **60 days**.
+> **The 30-second version.** A leaderboard rewards the people already at the top — precisely the group that needs no convincing. This programme was built the other way round: activity earns points, points earn raffle entries, and an entry improves your odds whoever you are. Rankings, badges, prizes and live recognition sat on top of that, but the raffle is what turned a competition into a participation number. **Over 75% of 1,100 LATAM sellers** took part within **60 days**.
 
 ---
 

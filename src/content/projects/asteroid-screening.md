@@ -23,7 +23,7 @@ featured: false
 order: 12
 ---
 
-**Course:** ITAO 40420 · Mendoza College of Business · **Scope:** a two-person research project — mine was the framing, dataset selection, the literature and the written argument
+**Scope:** a two-person research project — the line above is my half of it.
 
 > **The 30-second version.** NASA tracks tens of thousands of near-Earth asteroids and cannot watch all of them closely. So the useful question is not *which asteroids are hazardous* — it is *which ones deserve scarce telescope time first*. That reframing decides everything downstream: which columns the model is allowed to use, and which of the two possible mistakes you would rather make. The first real decision was throwing away the most predictive variable in the dataset, because by the time you know it, the answer has already arrived.
 

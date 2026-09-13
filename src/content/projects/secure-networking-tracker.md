@@ -25,9 +25,9 @@ featured: false
 order: 7
 ---
 
-**Role:** Sole designer and engineer · **Stack:** Next.js 16 · Neon Postgres · Better Auth · Vercel · **Status:** [Live](https://secure-networking-tracker-phi.vercel.app)
+**Stack:** Next.js 16 · Neon Postgres · Better Auth · Vercel
 
-> **The 30-second version.** A private tracker for the people I meet at Berkeley — where we met, what they do, how much I want to prioritise the relationship. The interesting part is not the CRUD. It is that every contact belongs to exactly one account and that ownership is enforced by Postgres through Row Level Security, so one user's list stays unreachable to another *even if the API layer were bypassed entirely*.
+> **The 30-second version.** A private tracker for the people I meet at Berkeley — where we met, what they do, how much I want to prioritise the relationship. The CRUD is not the interesting part. The interesting part is where the ownership boundary sits: every contact belongs to exactly one account, and Postgres enforces that below the application through Row Level Security, so a bug in my own API code cannot hand one person's list to another.
 
 ---
 

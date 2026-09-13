@@ -10,9 +10,10 @@ const skills = [
 ];
 
 const principles = [
-  { t: 'Non-goals are the product decision.', d: 'TripMatch shipped in six days because I wrote down what it would never do — no payments, no dispatch, no native app, no WhatsApp replacement — before writing any code.' },
-  { t: 'Distribution is a technical constraint, not just a growth decision.', d: "TripMatch's nastiest bug: a link tapped in WhatsApp opens in that app's built-in browser, where Google's popup sign-in has no window to return a credential to and dies on a blank page. The product's entire distribution channel was also its single point of auth failure — and it was invisible in desktop testing." },
-  { t: 'I write the limitations down.', d: "Every case study ends with what I'd do differently, and the PRD carries its unresolved questions in the open. A portfolio of only wins isn't evidence of judgment — it's evidence of editing." },
+  { t: 'Non-goals are the product decision.', d: 'Five things TripMatch would never do were written down before any code was. Every one of them was a cut that bought schedule, which is the only reason six days was enough.' },
+  { t: 'Distribution is a technical constraint, not just a growth decision.', d: "A link tapped inside WhatsApp opens in that app's embedded browser, where Google's popup sign-in has nowhere to hand a credential back to. TripMatch's entire distribution channel was also its single point of auth failure, and no amount of desktop testing would have shown it." },
+  { t: 'The metric everyone quotes is usually the wrong one.', d: "The Pac-Man agent's +84% reads well until you notice the baseline was not random — it repeated a single move 95.4% of the time. The asteroid model that scored highest on accuracy missed nearly a quarter of the hazardous cases. Both write-ups lead with that instead of the headline." },
+  { t: 'I write the limitations down.', d: "Several case studies end on what I'd do differently, and the TripMatch PRD keeps its unresolved questions in the open rather than tidying them away. A portfolio of only wins isn't evidence of judgment — it's evidence of editing." },
 ];
 ---
 <BaseLayout title="About — Eason Han" description="Background, skills and working principles of Yichen (Eason) Han — MBA/MEng at UC Berkeley Haas, former AWS.">
@@ -20,7 +21,7 @@ const principles = [
     <p class="eyebrow">About</p>
     <h2 style="max-width:18ch">A PM who ships the thing he specified.</h2>
     <p class="sub">
-      Three years at AWS building analytics products for a $80B sales org, now at Berkeley doing
+      Three years at AWS building analytics products for an $80B sales org, now at Berkeley doing
       an MBA and an M.Eng at the same time. The through-line is that I don't hand the build off —
       I write the PRD, cut the roadmap, and then go and make it.
     </p>

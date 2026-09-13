@@ -23,7 +23,7 @@ featured: false
 order: 10
 ---
 
-**Course:** ITAO 40450 · Mendoza College of Business · **Scope:** individual — scraping, cleaning, modelling and write-up
+**Scope:** scraping, cleaning, modelling and the write-up — start to finish
 
 > **The 30-second version.** I wanted to know whether Formula 1 cars have actually got faster over three decades, and which teams and drivers the record really favours. Formula 1 publishes results, not speed — so the headline variable had to be constructed. Constructing it exposed **three separate places where the raw numbers were not comparable to each other**, and every fix cost sample size. The analysis that came out the other side is only worth reading because of what happened before it.
 

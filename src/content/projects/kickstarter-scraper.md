@@ -22,9 +22,6 @@ links: {}
 featured: false
 order: 11
 ---
-
-**Course:** ITAO 40450 · Mendoza College of Business · **Scope:** individual extra credit
-
 > **The 30-second version.** Pull a Kickstarter project's headline numbers off the page. On most sites that is fifteen lines of `rvest` and an afternoon. On Kickstarter the most valuable field comes back **empty** — and not with an error. The project is really about why that happens, and what you do instead: let a real browser execute the page, capture the document it builds, and parse that.
 
 ---

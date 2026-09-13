@@ -21,7 +21,7 @@ featured: false
 order: 5
 ---
 
-**Role:** Builder and product owner · **Built with:** spec-driven development in the Kiro agentic IDE · **Users:** 200+ data owners and strategy & ops partners
+**Built with:** spec-driven development in the Kiro agentic IDE
 
 > **Confidentiality note.** Written at the level of detail already public on my resume. No schema, field definitions, access rules or record contents appear here.
 

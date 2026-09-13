@@ -24,9 +24,9 @@ featured: false
 order: 13
 ---
 
-**Role:** Sole engineer · **Runs:** every weekday at 12:00 PT on GitHub Actions · **Note:** repository is currently private
+**Runs:** every weekday at 12:00 PT on GitHub Actions · **Note:** the repository is private, so there is no source link
 
-> **The 30-second version.** I built the tool that runs my own internship search. It scans a large registry of US technology companies every weekday, filters for Summer 2027 PM and MBA internships, and opens a GitHub issue only when something *new* appears. The engineering was straightforward. The product decisions were not.
+> **The 30-second version.** A scanner that surfaces everything is a worse tool than one that surfaces less. Finding the postings was the easy half — a full sweep of a large registry of US technology companies takes about fifty seconds. The half that took the thinking was deciding what to throw away, which is why the output caps at two roles per company and why a run that reports nothing is a run that worked.
 
 ---
 

@@ -26,9 +26,9 @@ featured: true
 order: 1
 ---
 
-**Role:** Sole PM, designer, and engineer · **Timeline:** Aug 22–27, 2026 (6 days to public launch) · **Status:** Live at [tripmatch-app.github.io](https://tripmatch-app.github.io/)
+**Timeline:** August 22–27, 2026
 
-> **The 30-second version.** Haas students coordinate ad-hoc rides by scrolling a 400-person WhatsApp chat, where requests get buried and matching seats go unused. I shipped a verified, Berkeley-only shared-rides board in six days — writing the PRD, designing the flow, building the front end and API, and running two feedback-driven iteration cycles. The launch-hardening round caught three defects that would have broken the product inside its own expected load, before a single real user hit them.
+> **The 30-second version.** Six days from PRD to a public, verified rides board for the Haas cohort — problem framing, flow design, front end, API, and two feedback-driven iteration cycles, done alone. The part worth reading is the launch-hardening round, which caught three defects that would have broken the product inside its own expected load, before a single real user hit them. The nastiest of them was caused by the distribution channel the product depends on.
 
 | | |
 |---|---|

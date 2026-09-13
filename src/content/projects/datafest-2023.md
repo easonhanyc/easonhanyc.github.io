@@ -21,9 +21,9 @@ featured: false
 order: 9
 ---
 
-**Role:** Team lead · trend analysis and framing · **Event:** ASA DataFest, hosted by Notre Dame's statistics department · **Result:** Best Insight
+**Event:** ASA DataFest, hosted by Notre Dame's statistics department
 
-> **The 30-second version.** The American Statistical Association hands you a dataset and an open brief, and you have **48 hours**. Ours was the American Bar Association's platform, where people on low incomes post legal questions and volunteer lawyers answer them free. I led a five-person team and owned the analysis. The finding we built the submission around: **the categories with the fewest cases had the highest rates of going unanswered** — and the recommendation system my teammates designed was weakest in precisely those categories. We won **Best Insight**.
+> **The 30-second version.** The American Statistical Association hands you a dataset, an open brief and **48 hours**. Ours was the American Bar Association's platform, where people on low incomes post legal questions and volunteer lawyers answer them free. The intuitive read is that the busiest areas of law fall furthest behind. The data said the reverse — and that reversal is what the submission was built on, including what it implied about the system we were proposing ourselves.
 
 ---
 

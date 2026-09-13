@@ -20,9 +20,6 @@ links: {}
 featured: false
 order: 3
 ---
-
-**Role:** Builder and product owner · **Built on:** Amazon's internal OpenClaw platform · **Outcome:** 80% reduction in manual processing time
-
 > **Confidentiality note.** Written at the level of detail already public on my resume. Repository paths, build configuration and workflow specifics are omitted; the diagram is redrawn for this portfolio.
 
 > **The 30-second version.** Shipping a change — SQL or Python — to the production repository meant eight mandatory steps before anyone could even look at it, and 30 to 60 minutes each time. None of that time was spent thinking. I built a skill on **Amazon's internal OpenClaw platform** that performs all eight, leaving about **five minutes** of actual decisions. It stops at the point a reviewer picks the change up, which is the only part of the sequence where a human was ever the point.

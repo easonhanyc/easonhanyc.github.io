@@ -24,7 +24,7 @@ featured: false
 order: 8
 ---
 
-**Context:** MBA 290T, Fundamentals of Agentic AI · **Result:** mean evaluation score 492 → 906 (+414, +84%) under identical settings
+**Measurement:** baseline and trained scores come from identical evaluation settings, so the comparison is like-for-like
 
 > **The 30-second version.** I trained a Deep Q-Network on Ms. Pac-Man and nearly doubled its score. But the finding I'd actually defend in a room is that the *baseline* was measuring the wrong thing — and that three of my going-in assumptions turned out to be wrong in ways the data made unambiguous.
 

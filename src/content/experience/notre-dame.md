@@ -5,9 +5,9 @@ location: "Notre Dame, IN"
 start: "Aug 2019"
 end: "May 2023"
 kind: "education"
-summary: "A double major in business analytics and applied mathematics."
+summary: "A double major in business analytics and applied mathematics — the quantitative methods on one side, the business framing for them on the other."
 outcomes:
-  - "Won Best Insight at ASA DataFest, leading a five-person team through a 48-hour analysis of the American Bar Association's free legal advice platform"
+  - "Best Insight, ASA DataFest 2023"
 related: ["datafest-2023", "formula-1-trends", "kickstarter-scraper", "asteroid-screening"]
 order: 6
 ---

@@ -21,12 +21,9 @@ links:
 featured: true
 order: 2
 ---
-
-**Role:** Product owner (BIE, AWS Global Sales Strategy & Analytics) · **Timeline:** Jul 2023 – May 2026 · **Scale:** 10,000+ sellers, $80B business
-
 > **Confidentiality note.** Written at the level of detail already public on my resume. Internal system names, screenshots, dashboards and proprietary data are omitted; the diagram below is redrawn for this portfolio rather than captured from the product. Where an artifact appears it is a **reconstruction** built to show method, and is labelled as one.
 
-> **The 30-second version.** AWS Sales ran on roughly 200 dashboards and had no agreed place to start the day. A company-wide effort set out to replace that with a single source of truth, with each org owning a chapter of it. I owned the technical sales chapter's **first tab** — the Action Hub — which ranks every open issue across a seller's accounts and names the next action on each. Time-to-insight fell **70%** for **10,000+ sellers**.
+> **The 30-second version.** A company-wide effort set out to replace AWS Sales's roughly 200 dashboards with a single source of truth, each org owning a chapter of it. I owned the technical sales chapter's **first tab** — the screen a seller lands on. The hard question was never what to display. It was what to put *first*, and what to say about it: an alert that names no next action moves the work rather than removing it. Time-to-insight fell **70%** for **10,000+ sellers**.
 
 | | |
 |---|---|
