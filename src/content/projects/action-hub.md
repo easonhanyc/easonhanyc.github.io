@@ -14,8 +14,6 @@ metrics:
     l: "less time-to-insight"
   - n: "10,000"
     l: "sellers served"
-  - n: "56→82%"
-    l: "on-time request delivery"
   - n: "$80B"
     l: "business supported"
 links:
@@ -34,7 +32,7 @@ order: 2
 |---|---|
 | **Problem** | Sellers had dashboards but no prescribed action; finding what was wrong took a manual sweep across 5–10 of them |
 | **My role** | End-to-end: discovery, PRD, mockups, alert design and ranking model, roadmap prioritization, launch |
-| **Outcome** | 70% reduction in time-to-insight · 10,000+ sellers · on-time request delivery 56% → 82% |
+| **Outcome** | 70% reduction in time-to-insight · 10,000+ sellers |
 | **Core decision** | Rank by **severity × account value**, and attach a destination to every alert — the alert is not the product, the redirect is |
 
 ---
@@ -153,15 +151,7 @@ The second gate is the one I'd point to. It is tempting to treat an upstream dep
 
 ---
 
-## 5. Execution: making the backlog visible
-
-**Roadmap reviews as the alignment mechanism.** I established recurring roadmap reviews that published the backlog and aligned engineering and business stakeholders on sprint priorities. On-time delivery of business stakeholder requests rose from **56% to 82%**.
-
-That number is worth unpacking. Delivery improved not because requests were processed faster, but because the review turned *recurring* requests into *roadmap items*. A request that appears three times is a missing feature wearing a disguise. The metric moved when intake started telling the two apart.
-
----
-
-## 6. What I'd do differently
+## 5. What I'd do differently
 
 - **I under-invested in instrumenting the "action taken" step.** Time-to-insight was measurable and improved 70% — measured as how long it took to locate the actual issue, before against after. Whether a seller then *acted* was much harder to observe, and I'd have designed for that measurement from the start instead of inferring it downstream.
 - **I sequenced data-engineering dependencies out of v1 for schedule safety — correctly — but didn't push hard enough on the joint roadmap afterward.** Deferred dependencies have a way of staying deferred once v1 succeeds without them.

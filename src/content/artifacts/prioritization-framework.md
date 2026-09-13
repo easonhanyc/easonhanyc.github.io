@@ -68,6 +68,6 @@ A ranked list alone reliably gets re-litigated. Three additions that prevent tha
 
 > **A request that shows up three times is a missing feature wearing a disguise.**
 
-The mechanism that moved on-time delivery of stakeholder requests from 56% to 82% wasn't faster processing. It was an intake process that started distinguishing *one-off asks* from *repeated asks* — and promoted the second kind into the roadmap instead of re-answering them forever.
+Intake is where this gets decided. A process that treats every request as a one-off spends its life re-answering the same question; one that separates *one-off asks* from *repeated asks*, and promotes the second kind into the roadmap, stops paying that cost twice. The recurring request is not a support burden — it is a feature you have not written down yet.
 
 ---
