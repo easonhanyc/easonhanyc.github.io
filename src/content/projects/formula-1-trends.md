@@ -124,7 +124,9 @@ advantage is mechanical rather than a better description of the data. Selecting 
 transformed and an untransformed model is not a like-for-like comparison — which is the same
 comparability problem as section 2, arriving one more time, now inside the model selection itself.
 
-The quartic model without the transform is the one I would quote in a room.
+So the result travels with its caveat attached rather than leaving someone else to find it.
+A model that wins on a metric it partly redefines is still the winner — but nobody should have
+to ask a follow-up question to learn that.
 
 ## 5. Clustering, and what unsupervised output is worth
 
