@@ -2,7 +2,7 @@
 title: "Metric trees & scenario forecasting"
 description: "Decomposing goals into levers, and forecasting a category with no history."
 kind: "Method"
-related: "action-hub"
+related: "genai-target-setting"
 order: 4
 ---
 

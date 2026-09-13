@@ -166,7 +166,7 @@ That number is worth unpacking. Delivery improved not because requests were proc
 ## 6. Adjacent work in the same org
 
 - **Business-Influence Tracker** — surfaced customer opportunities being influenced but not captured in coverage reporting. **+12% opportunity coverage**, and it became a **standing Monthly Business Review KPI**. The second fact matters more: a shipped feature is a feature, but a metric leadership adopts into its operating review has changed how the business steers.
-- **GenAI target-setting** — success metrics for a new business line, from a regression across **55,000 data points and four scenario simulations**. The PM-relevant part is the scenario structure, not the regression: point forecasts for a category with no history invite false precision, and four scenarios force the conversation to be about which assumptions leadership will bet on. → *[Reconstructed metric tree](/artifacts/metric-tree)*
+- **[GenAI target setting](/work/genai-target-setting)** — the first annual target for a business with almost no history, built across 55,000 data points and four scenario simulations. It has its own write-up.
 
 ---
 
