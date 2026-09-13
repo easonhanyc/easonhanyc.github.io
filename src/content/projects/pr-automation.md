@@ -1,75 +1,126 @@
 ---
-title: "AI Pull-Request Automation"
-description: "Automating the repo-to-production push with an agentic skill, and why release automation is not review automation."
-summary: "An AI-powered pull-request automation skill that took the repo-to-production push off people's hands, cutting manual processing time by 80%. Automating a path to production inverts the failure asymmetry most AI tooling is designed around."
-role: "Builder and product owner · Amazon internal agentic-AI platform"
+title: "Pull-Request Automation"
+description: "An agentic skill that automates the ceremony between finishing a change and getting it reviewed — and deliberately stops there."
+summary: "Getting a finished change into code review took eight mandatory steps and 30–60 minutes, none of it thinking. An agentic skill now does all eight, leaving about five minutes of genuine decisions — and stops precisely where a human reviewer starts."
+role: "Builder and product owner · Amazon internal agentic platform"
 period: "2023–2026"
 depth: "project"
 org: "Amazon Web Services"
 badges: ["Agentic AI"]
 live: false
-tags: ["ai", "product", "eng"]
+tags: ["ai", "eng", "product"]
 metrics:
   - n: "80%"
     l: "less manual processing time"
-  - n: "Repo → prod"
-    l: "push path automated"
+  - n: "5 min"
+    l: "human input, from 30–60"
+  - n: "8"
+    l: "ceremony steps automated"
 links: {}
 featured: false
 order: 3
 ---
 
-**Role:** Builder and product owner · **Context:** Amazon internal agentic-AI platform · **Outcome:** 80% reduction in manual processing time
+**Role:** Builder and product owner · **Context:** Amazon internal agentic platform · **Outcome:** 80% reduction in manual processing time
 
-> **Confidentiality note.** This page is written at the level of detail already public on my resume. No internal code, prompts, system names, pipeline topology, or proprietary workflow detail appears here. What generalizes is the reasoning, so that is what I have written down.
+> **Confidentiality note.** Written at the level of detail already public on my resume. Internal platform names, repository paths, configuration and workflow specifics are omitted; the diagram is redrawn for this portfolio.
 
-> **The 30-second version.** Getting a reviewed change from the repository to production carried a sequence of manual steps — individually small, individually easy, and collectively a queue. I shipped an AI-powered pull-request automation skill that automates the repo-to-production push, cutting manual processing time by **80%**.
+> **The 30-second version.** Shipping a change — SQL or Python — to the production repository meant eight mandatory steps before anyone could even look at it, and 30 to 60 minutes each time. None of that time was spent thinking. I built an agentic skill that performs all eight, leaving about **five minutes** of actual decisions. It stops at the point a reviewer picks the change up, which is the only part of the sequence where a human was ever the point.
 
 ---
 
-## 1. The work automation was pointed at
+## 1. Eight steps between finishing and being reviewed
 
-Release paths accumulate steps the way desks accumulate paper. Each one was added for a reason, each is quick, and none of them is interesting. The resulting profile is the one worth recognising:
+The change itself might take twenty minutes. Getting it to a place where a colleague could read it took longer than writing it:
 
-1. **High volume, low variance.** The same sequence, repeated per change.
-2. **Cost is latency, not difficulty.** Nothing in the path is hard. The expense is that each step waits on a person being free to perform it.
-3. **Inconsistency is invisible.** A step done slightly differently under time pressure usually goes unnoticed until something breaks.
+1. Open the cloud desktop
+2. Rebase against current main
+3. Copy the code up from local
+4. Authenticate and save it
+5. Build in the beta environment
+6. Run it in beta and check the output is right
+7. Push the change as a new commit
+8. Publish the review
 
-That third property is why "just write a runbook" does not solve it. A runbook describes the steps; it does not perform them, and the gap between the two widens exactly when the team is busiest.
+Then a peer reviews it, and the data engineer on the team merges it to production.
 
-## 2. Why automating a push is not like automating a review
+Every one of those eight is mandatory, none is difficult, and none is where the work lives. It is ceremony — the tax between having done something and being able to show it to somebody.
 
-This is the part I would actually argue in an interview, because the intuition most people carry over from AI review tooling is backwards here.
+Two things follow from that shape:
 
-A review tool that is wrong produces a bad comment. A human reads it, disagrees, moves on. The cost is attention, and it is paid by one person.
+**The cost is per-change, so it taxes small changes hardest.** A one-line fix and a substantial rewrite carry identical overhead. That is a quiet incentive to batch changes into larger ones — which is the opposite of what you want, because large reviews are worse reviews.
 
-**A release tool that is wrong produces a bad deployment.** The failure does not land in someone's inbox — it lands in production.
+**The step most likely to be skipped is step six.** Building and checking in beta is the one with no immediate consequence for skipping it, and it is the one you skip at 6pm on a Friday. The steps that protect you are always the steps under the most pressure.
 
-That inverts the asymmetry:
+## 2. What is automated, and where it stops
 
-| | Review automation | Release automation |
-|---|---|---|
-| Expensive failure | False **positive** — a wrong finding spends reviewer trust | False **negative** — a bad change waved through |
-| Where it lands | A reviewer's attention | Production |
-| Optimise for | Precision | Not letting the wrong thing pass |
+<figure class="dg">
+<svg viewBox="0 0 700 188" role="img" aria-labelledby="pr-t" xmlns="http://www.w3.org/2000/svg">
+ <title id="pr-t">The skill automates the eight ceremony steps up to publishing the review; peer review and the merge to production stay human</title>
+ <defs>
+  <marker id="pr-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+   <path d="M0 0 L10 5 L0 10 z" fill="var(--border-strong)"/>
+  </marker>
+ </defs>
+ <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" text-anchor="middle">
+  <rect x="8" y="40" width="86" height="48" rx="7" fill="var(--surface)" stroke="var(--border-strong)"/>
+  <text x="51" y="62" font-size="10" fill="var(--ink)">Code</text>
+  <text x="51" y="76" font-size="10" fill="var(--ink)">written</text>
+  <path d="M94 64 L118 64" stroke="var(--border-strong)" stroke-width="1.5" marker-end="url(#pr-ar)"/>
+  <rect x="122" y="26" width="286" height="76" rx="8" fill="var(--tag-bg)" stroke="var(--accent)"/>
+  <text x="265" y="20" font-size="10" fill="var(--accent)">automated &#8212; 8 steps</text>
+  <text x="265" y="48" font-size="9.5" fill="var(--ink-2)">rebase &#183; copy up &#183; authenticate &#183; build in beta</text>
+  <text x="265" y="64" font-size="9.5" fill="var(--ink-2)">run and validate &#183; push commit &#183; publish review</text>
+  <text x="265" y="86" font-size="9.5" fill="var(--ink-3)">30&#8211;60 min &#8594; ~5 min of human input</text>
+  <path d="M408 64 L432 64" stroke="var(--border-strong)" stroke-width="1.5" marker-end="url(#pr-ar)"/>
+  <rect x="436" y="40" width="96" height="48" rx="7" fill="var(--surface)" stroke="var(--gold)"/>
+  <text x="484" y="62" font-size="10" fill="var(--ink)">Peer</text>
+  <text x="484" y="76" font-size="10" fill="var(--ink)">review</text>
+  <path d="M532 64 L556 64" stroke="var(--border-strong)" stroke-width="1.5" marker-end="url(#pr-ar)"/>
+  <rect x="560" y="40" width="90" height="48" rx="7" fill="var(--surface)" stroke="var(--gold)"/>
+  <text x="605" y="62" font-size="10" fill="var(--ink)">Engineer</text>
+  <text x="605" y="76" font-size="10" fill="var(--ink)">merges</text>
+  <path d="M650 64 L676 64" stroke="var(--border-strong)" stroke-width="1.5" marker-end="url(#pr-ar)"/>
+  <text x="545" y="112" font-size="9.5" fill="var(--gold)">unchanged &#8212; where judgment lives</text>
+  <text x="350" y="146" font-size="10.5" fill="var(--ink-2)">The skill ends at &#8220;published for review&#8221;. It does not review,</text>
+  <text x="350" y="162" font-size="10.5" fill="var(--ink-2)">and it does not merge.</text>
+ </g>
+</svg>
+<figcaption>Redrawn for this portfolio. Internal platform and repository details omitted.</figcaption>
+</figure>
 
-So the design question is not "how accurate is the model." It is **which steps an agent may complete unattended, which keep a human gate, and how fast a wrong outcome can be undone.**
+The skill covers the whole span from opening the cloud desktop to publishing the review. It does not review the change, and it does not merge it.
 
-**Reversibility is the real design budget.** An automated step whose failure can be rolled back in seconds earns trust far earlier than an equally accurate step that cannot. Accuracy determines how often you are wrong; reversibility determines what being wrong costs. Only the second one is under your control at design time.
+That boundary is the design, and it is worth stating as a rule: **automate up to the point where judgment starts, and stop there sharply.** Not "stop where the model gets unreliable" — stop where a human being was the reason the step existed. A peer reads the change because somebody other than the author should look at it. A data engineer merges because production is their responsibility. Neither of those is overhead that happens to be manual; both are the point.
 
-## 3. The 80% is a latency number, not an effort number
+Automating *toward* the reviewer rather than *past* them also means the failure mode is contained. The worst thing the skill can do is publish a bad review — which a reviewer then reads, disagrees with, and rejects. That is the system working.
 
-The reduction comes from removing the repetitive portion of the push, and it reads better as queue behaviour than as time saved:
+## 3. The five minutes that stay human
 
-- The manual steps were blocking on **human availability**, not human thought. Removing a wait of that kind speeds the path by more than the raw minutes it consumed.
-- What remains is disproportionately the part that genuinely needs a person — judgment about whether this change should go out now.
+What remains is not leftover friction. It is the set of things the automation genuinely cannot infer, and naming them precisely is what made it possible to automate everything else:
 
-**Removing a queue's cheapest work speeds the queue more than the arithmetic suggests.**
+- **Where the file is locally.** No safe default; guessing wrong pushes the wrong change.
+- **What configuration applies on this push.** Depends on what the change is for.
+- **If there is a DDL change, which folder it belongs in.** Schema changes are placed by convention, and convention is a judgment about what the change *means*, not what it contains.
 
-## 4. What I would carry into an AI PM role
+Each of these is a question with a right answer that only the author holds. Everything else in the sequence was a step with exactly one correct execution, repeated identically every time — which is the definition of work worth automating.
 
-**The question is rarely "can the model do this."** It is: what is the cost asymmetry between the two failure directions, and does the design make that asymmetry visible to the person relying on it?
+**The useful test is not "can this be automated" but "does this step have more than one correct outcome."** If it does, a person decides. If it doesn't, nobody should be spending thirty minutes a week on it.
 
-**Trust is spent non-renewably.** A tool that causes one bad deployment does not get graded on its average. People route around it afterwards, and the automation's value goes to zero while its maintenance cost does not.
+## 4. Validation stops being skippable
 
-**Adoption depends on where the output lands.** Automation that requires a context switch competes with an existing habit and loses. Meeting people inside the workflow they already have is worth more than a large accuracy improvement.
+The skill builds the change in the beta environment, runs it, and validates the output before it pushes anything. It also handles the errors that come back rather than stopping at the first one.
+
+This is the part I would argue is more valuable than the time saved, even though the time saved is what the number measures.
+
+Step six — build it and check the result — was always the correct thing to do and always the first thing to go under deadline pressure. Making it automatic doesn't just make it faster; it makes it **unconditional**. The check now happens on the 6pm Friday change exactly as it happens on the Tuesday morning one.
+
+Reliability improvements that depend on people being disciplined degrade precisely when the system is under the most stress. Moving the check into the path removes the discipline requirement entirely.
+
+## 5. Why the 80% understates it
+
+Thirty to sixty minutes down to about five is the headline, and it is a per-change number.
+
+But the second-order effect is the one worth watching. When overhead per change is high, the rational response is to batch — bundle several changes into one review so the tax is paid once. Large reviews get worse scrutiny, because reviewer attention does not scale linearly with diff size, and problems hide in volume.
+
+**Cutting per-change overhead removes the incentive to batch.** Smaller, more frequent reviews are easier to read, easier to reason about, and easier to revert. None of that shows up in "80% less manual processing time," and all of it follows from it.
