@@ -68,6 +68,6 @@ A ranked list alone reliably gets re-litigated. Three additions that prevent tha
 
 > **A request that shows up three times is a missing feature wearing a disguise.**
 
-The mechanism that moved data-request resolution from 56% to 82% wasn't faster processing. It was an intake process that started distinguishing *one-off asks* from *repeated asks* — and promoted the second kind into the roadmap instead of re-answering them forever.
+The mechanism that moved on-time delivery of stakeholder requests from 56% to 82% wasn't faster processing. It was an intake process that started distinguishing *one-off asks* from *repeated asks* — and promoted the second kind into the roadmap instead of re-answering them forever.
 
 ---

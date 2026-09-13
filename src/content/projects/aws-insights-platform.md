@@ -3,7 +3,7 @@ title: "AWS Sales Insights Platform"
 description: "0-to-1 launch of an action-oriented insights platform for 10,000 sellers."
 summary: "AWS Sales was not short on data. It was short on conclusions. I owned the end-to-end launch of the org's first action-oriented insights platform \u2014 interviews, PRD, Figma, roadmap."
 role: "Product owner \u00b7 AWS Global Sales Strategy & Analytics"
-period: "2023\u20132026"
+period: "Jul 2023 – May 2026"
 badges: ["0 \u2192 1 at scale"]
 live: false
 tags: ["product", "ai"]
@@ -12,8 +12,8 @@ metrics:
     l: "less time-to-insight"
   - n: "10,000"
     l: "sellers served"
-  - n: "56\u219282%"
-    l: "data-request resolution"
+  - n: "56→82%"
+    l: "on-time request delivery"
   - n: "$80B"
     l: "business supported"
 links: 
@@ -22,11 +22,11 @@ featured: true
 order: 2
 ---
 
-**Role:** Product owner (BIE, AWS Global Sales Strategy & Analytics) · **Timeline:** 2023–2026 · **Scale:** 10,000 sellers, $80B business
+**Role:** Product owner (BIE, AWS Global Sales Strategy & Analytics) · **Timeline:** Jul 2023 – May 2026 · **Scale:** 10,000+ sellers, $80B business
 
 > **Confidentiality note.** This case study is written at the level of detail already public on my resume. Internal system names, screenshots, and proprietary data are omitted. Where an artifact appears below it is a **reconstruction built for this portfolio** to show method, not a copy of internal material — each is labeled as such.
 
-> **The 30-second version.** AWS Sales had extensive dashboards and almost no *decisions* coming out of them. I owned the end-to-end launch of the org's first action-oriented insights platform — user interviews through PRD, Figma mockups, and roadmap prioritization — cutting time-to-insight by 70% for 10,000 sellers. The core product bet: sellers didn't need more data access, they needed the *next action* named for them.
+> **The 30-second version.** AWS Sales had extensive dashboards and almost no *decisions* coming out of them. I owned the end-to-end launch of the org's first action-oriented insights platform — user interviews through PRD, Figma mockups, and roadmap prioritization — cutting time-to-insight by 70% for 10,000+ sellers. It replaced a manual 5–10 dashboard workflow with the **Action Hub**: one ranked account list carrying a recommended next action on every account. The core product bet: sellers didn't need more data access, they needed the *next action* named for them.
 
 | | |
 |---|---|
@@ -41,7 +41,7 @@ order: 2
 
 AWS Sales was not short on data. It was short on *conclusions*. The pattern I kept hitting as a BIE:
 
-- A seller opens a dashboard, sees twelve charts, and has to work out for themselves which one implies they should do something today.
+- A seller works through five to ten dashboards and has to determine for themselves which number implies they should do something today.
 - The org's analytics function absorbed the gap by fielding one-off data requests — which is a slow, unscalable, and unsatisfying substitute for a product.
 - The backlog of those requests was the clearest available signal that the self-service tooling wasn't self-service in practice.
 
@@ -53,7 +53,7 @@ That reframe is what turned a dashboard request into a product.
 
 ## 2. Discovery: what user interviews actually changed
 
-I ran user interviews with sellers across segments before writing requirements. Two findings changed the design:
+I ran **20 user interviews** with sellers across segments before writing requirements, then scoped the build from a PRD and Figma prototypes. Two findings changed the design:
 
 **Finding 1 — Sellers didn't distrust the data; they distrusted their own reading of it.** The hesitation wasn't "is this number right," it was "am I looking at the right number." That pointed away from *more* visualization and toward *fewer, ranked, prescribed* surfaces.
 
@@ -77,9 +77,9 @@ The initial ask was substantially larger than what shipped first. I ran prioriti
 
 ## 4. Execution: the part most PM portfolios skip
 
-**Roadmap reviews as the alignment mechanism.** I ran recurring roadmap reviews with engineering and business stakeholders, translating user feedback into backlog priorities. The measurable result: **data-request resolution rose from 56% to 82%.**
+**Roadmap reviews as the alignment mechanism.** I established recurring roadmap reviews that published the backlog and aligned engineering and business stakeholders on sprint priorities. The measurable result: **on-time delivery of business stakeholder requests rose from 56% to 82%.**
 
-That number is worth unpacking, because it's the one I find most interesting. Resolution improved not primarily because we processed requests faster, but because the review forum turned *recurring* requests into *roadmap items*. A request that shows up three times is a missing feature wearing a disguise. The metric moved when the intake process started distinguishing between the two.
+That number is worth unpacking, because it's the one I find most interesting. Delivery improved not primarily because we processed requests faster, but because the review forum turned *recurring* requests into *roadmap items*. A request that shows up three times is a missing feature wearing a disguise. The metric moved when the intake process started distinguishing between the two.
 
 **Adoption is a product problem, not a comms problem.** Driving self-service analytics adoption to 6,000 users across an $80B business (20,000+ views) was not accomplished by announcements. It came from treating unused tooling as a product defect and following the same discovery loop.
 
@@ -112,6 +112,6 @@ The PM-relevant part is the scenario structure, not the regression. Point foreca
 
 - **I under-invested in instrumenting the "action taken" step.** Time-to-insight was measurable and improved 70%. Whether a seller *acted* on the surfaced insight was much harder to observe, and I'd have designed for that measurement from the start rather than inferring it from downstream metrics.
 - **I sequenced data-engineering dependencies out of v1 for schedule safety — correctly — but didn't push hard enough on the joint roadmap afterward.** Deferred dependencies have a way of staying deferred once v1 succeeds without them.
-- **Access management came late.** The centralized access-management app for 200+ users (replacing risk-prone spreadsheets with auditable controls) solved a real compliance gap, but it was a reaction rather than a design input. Governance is cheaper to build in than to retrofit.
+- **Access management came late.** I built the centralized access-management app end to end — replacing risk-prone spreadsheets with auditable data-access controls for 200+ data owners and strategy & ops partners — through spec-driven development in the Kiro agentic IDE. Writing the spec first and letting the agent build against it is the same discipline as writing the PRD before the code, which is why it worked. But it solved a compliance gap as a reaction rather than a design input, and governance is cheaper to build in than to retrofit.
 
 ---
