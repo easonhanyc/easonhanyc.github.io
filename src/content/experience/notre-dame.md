@@ -8,6 +8,6 @@ kind: "education"
 summary: "A double major in business analytics and applied mathematics."
 outcomes:
   - "Won Best Insight at ASA DataFest, leading a five-person team through a 48-hour analysis of the American Bar Association's free legal advice platform"
-related: ["datafest-2023", "formula-1-trends"]
+related: ["datafest-2023", "formula-1-trends", "kickstarter-scraper"]
 order: 6
 ---
