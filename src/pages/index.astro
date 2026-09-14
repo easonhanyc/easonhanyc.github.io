@@ -28,14 +28,14 @@ const viz: Record<string, string> = {
 // Editorial narrative for the one cinematic moment — hand-written, not derived
 // from card metrics, because the story is the point rather than the figures.
 const tripmatchSteps = [
-  { n: '5',   u: 'Non-goals — fixed before any code',
-    d: 'No payments, no dispatch, no native app, no WhatsApp replacement, no open matching. Each one was a deliberate cut, and the list is the reason the scope held.' },
-  { n: '168', u: 'Automated checks at launch',
-    d: 'Which is what made rebuilding the storage layer the day before launch a decision rather than a gamble.' },
-  { n: '3',   u: 'Defects found in my own v1',
-    d: "A race condition let two simultaneous posts silently delete each other. You post, you see it appear, on refresh it's gone — so you post again, which makes the race more likely. I rebuilt the storage layer rather than ship it." },
-  { n: '36',  u: 'Simultaneous writes, asserted',
-    d: 'The concurrency test fires 36 writes at once and asserts every one survives; another fires ten claims at a one-seat car and asserts exactly one wins.' },
+  { n: '5',        u: 'Non-goals, fixed before any code',
+    d: 'No payments, no dispatch, no native app, no WhatsApp replacement, no open matching. Each was a deliberate cut, and the list is why the scope held.' },
+  { n: '3',        u: 'Gaps only real users surfaced',
+    d: 'Putting the prototype in front of classmates changed the product three times — including a post type that read as either offering a seat or wanting one, which nobody had noticed on paper.' },
+  { n: '0',        u: 'Known defects shipped',
+    d: 'The day before launch I found a race condition that silently deleted posts. Rebuilding the storage layer cost a full day under time pressure; shipping it would have cost the launch.' },
+  { n: 'Verified', u: 'Berkeley-only, by design',
+    d: 'Access is an email match against a verified account, enforced server-side. Opening it to strangers would have re-introduced exactly the trust problem the product exists to avoid.' },
 ];
 ---
 <BaseLayout

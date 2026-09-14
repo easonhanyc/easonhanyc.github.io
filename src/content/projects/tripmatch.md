@@ -12,12 +12,12 @@ tags: ["product", "eng", "shipped"]
 metrics: 
   - n: "5"
     l: "non-goals, fixed before any code"
-  - n: "168"
-    l: "automated checks at launch"
   - n: "3"
-    l: "defects found in my own v1"
-  - n: "36"
-    l: "simultaneous writes in the concurrency test"
+    l: "gaps only real users surfaced"
+  - n: "0"
+    l: "known defects shipped"
+  - n: "Verified"
+    l: "Berkeley-only access"
 links: 
   live: "https://tripmatch-app.github.io/"
   code: "https://github.com/tripmatch-app/tripmatch-app.github.io"

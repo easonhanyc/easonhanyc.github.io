@@ -24,8 +24,12 @@ const { eyebrow, title, sub, href, steps } = Astro.props;
       ))}
     </div>
 
-    <div class="rail" data-rail aria-hidden="true">
-      {steps.map(() => <i></i>)}
+    <div class="rail" data-rail>
+      {steps.map((s, i) => (
+        <button type="button" class="railb" data-go={i} aria-label={`Show step ${i + 1}: ${s.u}`}>
+          <i></i><span>{String(i + 1).padStart(2, '0')}</span>
+        </button>
+      ))}
     </div>
   </div>
 </section>
@@ -40,7 +44,7 @@ const { eyebrow, title, sub, href, steps } = Astro.props;
 
     for (const pin of pins) {
       const steps = Array.from(pin.querySelectorAll<HTMLElement>('[data-step]'));
-      const rail = Array.from(pin.querySelectorAll<HTMLElement>('[data-rail] i'));
+      const rail = Array.from(pin.querySelectorAll<HTMLElement>('[data-rail] .railb'));
       if (!steps.length) continue;
 
       const setActive = (i: number) => {
@@ -61,6 +65,15 @@ const { eyebrow, title, sub, href, steps } = Astro.props;
       const onScroll = () => {
         if (!ticking) { ticking = true; requestAnimationFrame(update); }
       };
+      // Clicking a step scrolls to where that step becomes active, so the
+      // pinned stage reads as a control rather than a stretch of frozen page.
+      rail.forEach((b, i) => b.addEventListener('click', () => {
+        const scrollable = pin.offsetHeight - window.innerHeight;
+        if (scrollable <= 0) return;
+        const top = pin.offsetTop + ((i + 0.5) / steps.length) * scrollable;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }));
+
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll, { passive: true });
       update();

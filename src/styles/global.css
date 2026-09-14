@@ -191,7 +191,7 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
 .step .d{font-family:var(--prose); font-size:15px; line-height:1.55; color:var(--panel-ink-2); margin-top:12px}
 @media (min-width:760px){ .steps{grid-template-columns:repeat(4,1fr)} }
 
-:root.js-pin .pin{height:360vh}
+:root.js-pin .pin{height:250vh}
 :root.js-pin .pin .stage{
   position:sticky; top:0; min-height:100vh; display:grid;
   grid-template-columns:minmax(0,1fr); align-content:center; gap:38px; padding-block:80px;
@@ -211,11 +211,21 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
 :root.js-pin .step .u{font-size:12px}
 :root.js-pin .step .d{font-size:17px; max-width:46ch}
 
-.rail{display:none; gap:8px; margin-top:36px}
+.rail{display:none; gap:10px; margin-top:34px}
 :root.js-pin .rail{display:flex}
-.rail i{height:2px; flex:1; background:var(--panel-line); border-radius:2px; overflow:hidden; position:relative}
-.rail i::after{content:""; position:absolute; inset:0; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .45s ease}
-.rail i.on::after{transform:scaleX(1)}
+.railb{
+  flex:1; display:flex; flex-direction:column; align-items:flex-start; gap:8px;
+  background:none; border:0; padding:0; cursor:pointer;
+  font-family:var(--mono); font-size:10px; letter-spacing:.13em; color:var(--panel-ink-3);
+  transition:color .3s;
+}
+.railb i{display:block; width:100%; height:2px; background:var(--panel-line); border-radius:2px; overflow:hidden; position:relative}
+.railb i::after{content:""; position:absolute; inset:0; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .45s ease}
+.railb.on i::after{transform:scaleX(1)}
+.railb.on{color:var(--gold)}
+.railb:hover{color:var(--panel-ink)}
+.railb:hover i::after{transform:scaleX(1); opacity:.45}
+.railb:focus-visible{outline:2px solid var(--gold); outline-offset:4px; border-radius:2px}
 
 @media (prefers-reduced-motion:reduce){
   :root.js-pin .pin{height:auto}
