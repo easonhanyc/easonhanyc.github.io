@@ -7,17 +7,35 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 const aws = projects.find((p) => p.id === 'action-hub')!;
 const rest = projects.filter((p) => !p.data.featured);
 
+// A small diagram per block — each one draws that project's own argument,
+// so the card carries a picture rather than an empty half.
+const L = 'stroke="rgba(255,255,255,.46)" stroke-width="1.5" fill="none"';
+const G = 'stroke="#d8a83a" stroke-width="1.7" fill="none"';
+const viz: Record<string, string> = {
+  'pr-automation': `<svg viewBox="0 0 200 46">${[0,1,2,3,4,5,6,7].map((i)=>`<rect x="${4+i*15}" y="14" width="10" height="18" rx="2" fill="rgba(255,255,255,.28)"/>`).join('')}<path d="M128 23 L152 23" ${L}/><rect x="156" y="10" width="40" height="26" rx="3" ${G}/></svg>`,
+  'genai-target-setting': `<svg viewBox="0 0 200 46"><path d="M4 40 L44 37 L84 31 L124 20 L164 7" ${L}/><path d="M124 40 L164 31 L196 16" ${G} stroke-dasharray="4 4"/></svg>`,
+  'allowlist': `<svg viewBox="0 0 200 46"><rect x="4" y="12" width="42" height="22" rx="3" ${L}/><rect x="54" y="12" width="42" height="22" rx="3" ${L}/><rect x="104" y="12" width="42" height="22" rx="3" stroke="rgba(255,255,255,.22)" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/><rect x="154" y="12" width="42" height="22" rx="3" stroke="rgba(255,255,255,.22)" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/></svg>`,
+  'genai-adoption-program': `<svg viewBox="0 0 200 46">${[0,1,2,3,4,5].map((i)=>`<rect x="${4+i*20}" y="${36-i*5}" width="13" height="${4+i*5}" rx="2" fill="rgba(255,255,255,.3)"/>`).join('')}<rect x="124" y="6" width="13" height="34" rx="2" fill="#d8a83a"/><path d="M148 23 L196 23" ${L} stroke-dasharray="3 3"/></svg>`,
+  'secure-networking-tracker': `<svg viewBox="0 0 200 46"><rect x="4" y="6" width="192" height="34" rx="3" ${L} stroke-dasharray="4 4"/><rect x="16" y="13" width="168" height="20" rx="2" ${L}/><rect x="28" y="18" width="144" height="10" rx="2" ${G}/></svg>`,
+  'pacman-dqn': `<svg viewBox="0 0 200 46"><rect x="4" y="10" width="52" height="11" rx="2" fill="rgba(255,255,255,.28)"/><rect x="4" y="27" width="110" height="11" rx="2" fill="#d8a83a"/><path d="M124 15 L196 15" ${L} stroke-dasharray="2 4"/><path d="M124 32 L196 32" ${L} stroke-dasharray="2 4"/></svg>`,
+  'datafest-2023': `<svg viewBox="0 0 200 46"><circle cx="100" cy="23" r="18" ${L}/><circle cx="100" cy="23" r="9" ${G} stroke-dasharray="2 4"/><path d="M100 1 l6 5 -6 5 z" fill="#d8a83a"/></svg>`,
+  'formula-1-trends': `<svg viewBox="0 0 200 46"><path d="M4 38 L38 31 L72 19 L98 9 L124 32 L152 28 L196 21" ${L}/><circle cx="98" cy="9" r="3" fill="#d8a83a"/></svg>`,
+  'kickstarter-scraper': `<svg viewBox="0 0 200 46"><path d="M4 14 L92 14" ${L} stroke-dasharray="3 3"/><path d="M96 9 l9 5 -9 5 z" fill="rgba(255,255,255,.3)"/><text x="112" y="18" font-family="ui-monospace,monospace" font-size="9" fill="rgba(255,255,255,.4)">nothing</text><path d="M4 34 L150 34" ${G}/><path d="M154 29 l9 5 -9 5 z" fill="#d8a83a"/></svg>`,
+  'asteroid-screening': `<svg viewBox="0 0 200 46"><circle cx="82" cy="23" r="17" ${L}/><circle cx="110" cy="23" r="17" ${G}/></svg>`,
+  'job-search-agent': `<svg viewBox="0 0 200 46"><rect x="4" y="6" width="192" height="9" rx="2" ${L}/><rect x="38" y="19" width="124" height="9" rx="2" ${L}/><rect x="86" y="32" width="28" height="9" rx="2" ${G}/></svg>`,
+};
+
 // Editorial narrative for the one cinematic moment — hand-written, not derived
 // from card metrics, because the story is the point rather than the figures.
 const tripmatchSteps = [
-  { n: '6',   u: 'Days — PRD to public launch',
-    d: 'Sole PM, designer and engineer, start to finish — specification, design, implementation, launch.' },
-  { n: '34',  u: 'Commits — 168 automated checks',
-    d: '168 automated checks, which is what made rebuilding the storage layer the day before launch a decision rather than a gamble.' },
-  { n: '3',   u: 'Defects — found in my own v1',
-    d: "The day before launch, a race condition let two simultaneous posts silently delete each other. You post, you see it appear, on refresh it's gone — so you post again, which makes the race more likely. I rebuilt the storage layer rather than ship it." },
-  { n: '400', u: 'Cohort served — live today',
-    d: 'Three feedback-driven iterations after launch: owner-scoped delete, in-place edit that preserves comment threads, and date chips that only appear once the board spans more than one date.' },
+  { n: '5',   u: 'Non-goals — fixed before any code',
+    d: 'No payments, no dispatch, no native app, no WhatsApp replacement, no open matching. Each one was a deliberate cut, and the list is the reason the scope held.' },
+  { n: '168', u: 'Automated checks at launch',
+    d: 'Which is what made rebuilding the storage layer the day before launch a decision rather than a gamble.' },
+  { n: '3',   u: 'Defects found in my own v1',
+    d: "A race condition let two simultaneous posts silently delete each other. You post, you see it appear, on refresh it's gone — so you post again, which makes the race more likely. I rebuilt the storage layer rather than ship it." },
+  { n: '36',  u: 'Simultaneous writes, asserted',
+    d: 'The concurrency test fires 36 writes at once and asserts every one survives; another fires ten claims at a one-seat car and asserts exactly one wins.' },
 ];
 ---
 <BaseLayout
@@ -49,7 +67,7 @@ const tripmatchSteps = [
   <PinnedStory
     eyebrow="01 — Shipped alone · Aug 2026"
     title="TripMatch"
-    sub="Rides for a 400-person cohort, shipped alone in under a week. The constraint that made it possible: five things written down before any code that the product would never do."
+    sub="A verified, Berkeley-only rides board for the Haas cohort — problem framing through production, alone. The part worth reading is what I wrote down that it would never do, and what broke when I tested it against its own launch load."
     href="/work/tripmatch"
     steps={tripmatchSteps}
   />
@@ -65,24 +83,27 @@ const tripmatchSteps = [
 
       <figure class="plate rv" style="margin-block:52px">
         <svg viewBox="0 0 880 300" role="img" aria-labelledby="ah-t">
-          <title id="ah-t">Two hundred scattered dashboard tiles resolving into one ranked list of three accounts, each carrying a named next action</title>
-          <g fill="var(--ink)" opacity="0.15"><g id="ah-tiles"></g></g>
-          <g transform="translate(468,40)" font-family="var(--display)">
-            <rect x="0" y="-30" width="400" height="26" rx="4" fill="var(--ink)" opacity="0.07"/>
+          <title id="ah-t">A stack of overlapping dashboards with no agreed starting point, beside one ranked list where each row carries a named next action</title>
+          <g id="ah-stack"></g>
+          <text x="16" y="288" font-size="11" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing="1.2">ROUGHLY 200 OF THESE. NO AGREED PLACE TO BEGIN.</text>
+          <path d="M336 150 L392 150" stroke="var(--border-strong)" stroke-width="1.4"/>
+          <path d="M392 150 l-9 -5 v10 z" fill="var(--border-strong)"/>
+          <g transform="translate(412,38)" font-family="var(--display)">
+            <rect x="0" y="-30" width="452" height="26" rx="4" fill="var(--ink)" opacity="0.07"/>
             <text x="12" y="-12" font-size="11" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing="1.4">RANK = SEVERITY × ACCOUNT VALUE</text>
-            <g><rect x="0" y="8" width="400" height="54" rx="5" fill="var(--panel)"/>
-              <text x="16" y="33" font-size="13.5" font-weight="600" fill="#f4f2ef">Renewal risk · 3 accounts</text>
-              <text x="16" y="51" font-size="11.5" fill="#a8b6c4">Next: schedule exec review this week</text>
-              <circle cx="376" cy="35" r="4" fill="#e0685c"/></g>
-            <g><rect x="0" y="72" width="400" height="54" rx="5" fill="var(--ink)" opacity="0.07"/>
-              <text x="16" y="97" font-size="13.5" font-weight="600" fill="var(--ink)">Idle capacity · 7 accounts</text>
-              <text x="16" y="115" font-size="11.5" fill="var(--ink-2)">Next: propose rightsizing plan</text>
-              <circle cx="376" cy="99" r="4" fill="var(--gold)"/></g>
-            <g><rect x="0" y="136" width="400" height="54" rx="5" fill="var(--ink)" opacity="0.07"/>
-              <text x="16" y="161" font-size="13.5" font-weight="600" fill="var(--ink)">Support backlog · 2 accounts</text>
-              <text x="16" y="179" font-size="11.5" fill="var(--ink-2)">Next: escalate to TAM</text>
-              <circle cx="376" cy="163" r="4" fill="#4a7c7e"/></g>
-            <text x="0" y="222" font-size="11" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing="1.2">TIME-TO-INSIGHT −70%   ·   10,000+ SELLERS</text>
+            <g><rect x="0" y="8" width="452" height="56" rx="5" fill="var(--panel)"/>
+              <text x="18" y="34" font-size="14" font-weight="600" fill="#f4f2ef">Renewal risk · 3 accounts</text>
+              <text x="18" y="53" font-size="12" fill="#a8b6c4">Next: schedule exec review this week</text>
+              <circle cx="426" cy="36" r="4.5" fill="#e0685c"/></g>
+            <g><rect x="0" y="74" width="452" height="56" rx="5" fill="var(--ink)" opacity="0.07"/>
+              <text x="18" y="100" font-size="14" font-weight="600" fill="var(--ink)">Idle capacity · 7 accounts</text>
+              <text x="18" y="119" font-size="12" fill="var(--ink-2)">Next: propose rightsizing plan</text>
+              <circle cx="426" cy="102" r="4.5" fill="var(--gold)"/></g>
+            <g><rect x="0" y="140" width="452" height="56" rx="5" fill="var(--ink)" opacity="0.07"/>
+              <text x="18" y="166" font-size="14" font-weight="600" fill="var(--ink)">Support backlog · 2 accounts</text>
+              <text x="18" y="185" font-size="12" fill="var(--ink-2)">Next: escalate to TAM</text>
+              <circle cx="426" cy="168" r="4.5" fill="#4a7c7e"/></g>
+            <text x="0" y="228" font-size="11" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing="1.2">TIME-TO-INSIGHT −70%   ·   10,000+ SELLERS</text>
           </g>
         </svg>
         <figcaption>Redrawn for this portfolio — the product itself is internal</figcaption>
@@ -101,6 +122,7 @@ const tripmatchSteps = [
           <a class="bk rv" href={`/work/${p.id}`}>
             <div class="glow" style={`background:${['#2f6fae','#4b63b8','#c99700','#2f8f6f','#2b6fa8','#8a5fae','#b0433f','#2f7f8f','#a8722b','#3f6f4f','#4b63b8'][i % 11]}`}></div>
             <span class="no">{String(i + 1).padStart(2, '0')}</span>
+            {viz[p.id] && <span class="viz" set:html={viz[p.id]} />}
             <span class="t">{p.data.title}</span>
             {p.data.metrics.length > 0 && (
               <span class="m"><b>{p.data.metrics[0].n}</b> {p.data.metrics[0].l}</span>
@@ -121,14 +143,34 @@ const tripmatchSteps = [
 </style>
 
 <script>
-  // 200 tiles — the count the case study names, drawn rather than listed
-  const t = document.getElementById('ah-tiles');
-  if (t) {
-    let s = '';
-    for (let i = 0; i < 200; i++) {
-      const c = i % 20, r = (i / 20) | 0;
-      s += `<rect x="${6 + c * 21}" y="${26 + r * 26}" width="14" height="9" rx="2"/>`;
+  // Five dashboards cascading over one another: the point is that they all look
+  // alike and none of them is the place to start. Deterministic, so it is the
+  // same picture on every build.
+  const stack = document.getElementById('ah-stack');
+  if (stack) {
+    const W = 184, H = 128, DX = 30, DY = 24;
+    let out = '';
+    for (let i = 0; i < 5; i++) {
+      const x = 10 + i * DX, y = 6 + i * DY;
+      const op = (0.42 + i * 0.145).toFixed(2);
+      let g = `<g opacity="${op}">`;
+      g += `<rect x="${x}" y="${y}" width="${W}" height="${H}" rx="5" fill="var(--surface)" stroke="var(--border-strong)"/>`;
+      g += `<rect x="${x}" y="${y}" width="${W}" height="21" rx="5" fill="var(--ink)" opacity="0.055"/>`;
+      g += `<rect x="${x + 9}" y="${y + 7}" width="${44 - i * 4}" height="6" rx="2" fill="var(--ink)" opacity="0.3"/>`;
+      for (let d = 0; d < 3; d++) g += `<circle cx="${x + W - 12 - d * 9}" cy="${y + 10}" r="2" fill="var(--ink)" opacity="0.18"/>`;
+      // three KPI tiles
+      for (let k = 0; k < 3; k++) {
+        g += `<rect x="${x + 9 + k * 56}" y="${y + 29}" width="50" height="22" rx="3" fill="var(--ink)" opacity="0.055"/>`;
+        g += `<rect x="${x + 14 + k * 56}" y="${y + 35}" width="${18 + ((i * 7 + k * 5) % 16)}" height="5" rx="2" fill="var(--ink)" opacity="0.26"/>`;
+      }
+      // a bar chart that differs per dashboard but is stable per build
+      for (let bI = 0; bI < 8; bI++) {
+        const h = 8 + ((i * 13 + bI * 29) % 34);
+        g += `<rect x="${x + 10 + bI * 16}" y="${y + H - 12 - h}" width="10" height="${h}" rx="2" fill="var(--ink)" opacity="0.17"/>`;
+      }
+      g += `<line x1="${x + 9}" y1="${y + 60}" x2="${x + W - 9}" y2="${y + 60}" stroke="var(--ink)" stroke-opacity="0.09"/>`;
+      out += g + '</g>';
     }
-    t.innerHTML = s;
+    stack.innerHTML = out;
   }
 </script>

@@ -1,23 +1,23 @@
 ---
 title: "TripMatch"
-description: "Sole PM, designer and engineer. PRD to production in six days for a 400-person cohort."
-summary: "A 400-person cohort coordinated rides by scrolling a WhatsApp chat, where requests get buried and matching seats go unused. I shipped a verified, Berkeley-only rides board \u2014 problem framing through production."
+description: "Sole PM, designer and engineer \u2014 problem framing, PRD, flow design, front end and API, through to production."
+summary: "A 400-person cohort coordinates rides by scrolling a WhatsApp chat, where requests get buried and matching seats go unused. I shipped a verified, Berkeley-only rides board \u2014 and then tested it against its own launch load, which is where the interesting part starts."
 role: "Sole PM, designer, and engineer"
-period: "Aug 2026 \u00b7 6 days to public launch"
+period: "Aug 2026"
 depth: "case-study"
 org: "Independent"
 badges: ["0 \u2192 1"]
 live: true
 tags: ["product", "eng", "shipped"]
 metrics: 
-  - n: "6"
-    l: "days \u2014 PRD to public launch"
-  - n: "34"
-    l: "commits"
+  - n: "5"
+    l: "non-goals, fixed before any code"
   - n: "168"
-    l: "automated checks"
-  - n: "400"
-    l: "cohort served"
+    l: "automated checks at launch"
+  - n: "3"
+    l: "defects found in my own v1"
+  - n: "36"
+    l: "simultaneous writes in the concurrency test"
 links: 
   live: "https://tripmatch-app.github.io/"
   code: "https://github.com/tripmatch-app/tripmatch-app.github.io"

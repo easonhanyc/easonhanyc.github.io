@@ -69,8 +69,8 @@ hr.rule{border:0; border-top:1px solid var(--border); margin:0}
   font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
   color:var(--ink-3); font-weight:500; margin:0 0 18px;
 }
-h1{font-size:clamp(40px,8.4vw,104px); line-height:1.0; letter-spacing:-.028em; font-weight:600; margin:0 0 28px; text-wrap:balance}
-h2{font-size:clamp(30px,5.4vw,66px); line-height:1.06; letter-spacing:-.022em; font-weight:600; margin:0 0 22px; text-wrap:balance}
+h1{font-size:clamp(34px,5.4vw,68px); line-height:1.06; letter-spacing:-.024em; font-weight:600; margin:0 0 28px; text-wrap:balance}
+h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; font-weight:600; margin:0 0 22px; text-wrap:balance}
 .sub{font-family:var(--prose); font-size:18px; line-height:1.62; color:var(--ink-2); max-width:var(--measure); margin:0 0 34px}
 .lede{font-family:var(--prose); font-size:clamp(18px,2vw,22px); line-height:1.62; color:var(--ink-2); max-width:var(--measure); margin:0 0 30px}
 .lede strong,.sub strong{color:var(--ink); font-weight:600}
@@ -300,7 +300,9 @@ h2{font-size:clamp(30px,5.4vw,66px); line-height:1.06; letter-spacing:-.022em; f
 .bk:hover{transform:translateY(-5px); border-color:rgba(255,255,255,.3); text-decoration:none}
 .bk > *{position:relative; z-index:1}
 .bk .no{font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--panel-ink-3)}
-.bk .t{font-size:21px; font-weight:600; letter-spacing:-.014em; line-height:1.2; margin-top:auto}
+.bk .viz{width:100%; height:56px; margin-top:16px; opacity:.9}
+.bk .viz svg{width:100%; height:100%; display:block; overflow:visible}
+.bk .t{font-size:20px; font-weight:600; letter-spacing:-.014em; line-height:1.2; margin-top:auto}
 .bk .m{font-family:var(--mono); font-size:11px; line-height:1.5; color:var(--panel-ink-2); margin-top:10px}
 .bk .m b{color:var(--gold); font-weight:500; font-variant-numeric:tabular-nums}
 .bk .glow{position:absolute; z-index:0; left:-14%; right:-14%; bottom:-62%; height:150px; border-radius:50%; filter:blur(52px); opacity:.32; transition:opacity .5s}
