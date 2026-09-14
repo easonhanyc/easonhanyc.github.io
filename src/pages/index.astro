@@ -19,20 +19,19 @@ const tripmatchSteps = [
   { n: '400', u: 'Cohort served — live today',
     d: 'Three feedback-driven iterations after launch: owner-scoped delete, in-place edit that preserves comment threads, and date chips that only appear once the board spans more than one date.' },
 ];
-
 ---
 <BaseLayout
   title="Eason Han"
   description="Product portfolio of Yichen (Eason) Han — MBA/MEng at UC Berkeley Haas, former AWS. 0-to-1 products, PRDs, and shipped code."
 >
   <header class="hero wrap">
-    <p class="eyebrow">Product Management · Berkeley Haas</p>
-    <h1>Product thinking<span class="dim">,</span> and the hands to build it<span class="dim">.</span></h1>
-    <p class="lede">
+    <p class="eyebrow rv">Product management · Berkeley Haas</p>
+    <h1 class="rv">Product thinking, and <span class="em">the hands to build it</span>.</h1>
+    <p class="lede rv">
       MBA / MEng candidate at <strong>UC Berkeley Haas &amp; IEOR</strong>.
       Three years at <strong>AWS</strong> building analytics products for an $80B sales org.
     </p>
-    <div class="chips">
+    <div class="chips rv">
       <a class="chip solid" href="/work">See the work</a>
       <a class="chip" href="https://www.linkedin.com/in/yichen-eason-han/">LinkedIn ↗</a>
       <a class="chip" href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
@@ -55,59 +54,81 @@ const tripmatchSteps = [
     steps={tripmatchSteps}
   />
 
-  <section class="panel">
-    <div class="stage wrap sectionpad">
-      <div class="pin-head">
-        <p class="eyebrow">02 — 0 → 1 at scale · AWS, 2023–2026</p>
-        <h2>Action Hub</h2>
-        <p class="sub">
-          Two hundred dashboards, and no agreed answer to "where do I start?". I owned the first
-          tab a seller lands on — which made the real question not what to show, but what to put
-          at the top and what to say about it.
-        </p>
-        <a class="chip" href="/work/action-hub">Read the case study →</a>
-      </div>
-      <div class="steps" style="margin-top:38px">
-        {aws.data.metrics.map((m) => (
-          <article class="step rv">
-            <span class="n">{m.n}</span>
-            <span class="u">{m.l}</span>
-          </article>
-        ))}
-      </div>
+  <section class="sectionpad">
+    <div class="wrap">
+      <p class="eyebrow rv">02 — 0 → 1 at scale · AWS, 2023–2026</p>
+      <h2 class="rv ahead">Two hundred dashboards.<br><span class="em">One place to start.</span></h2>
+      <p class="sub rv ahead">
+        The hard question was never what to display. It was what to put first — and what to say
+        about it. An alert that names no next action moves the work rather than removing it.
+      </p>
+
+      <figure class="plate rv" style="margin-block:52px">
+        <svg viewBox="0 0 880 300" role="img" aria-labelledby="ah-t">
+          <title id="ah-t">Two hundred scattered dashboard tiles resolving into one ranked list of three accounts, each carrying a named next action</title>
+          <g fill="var(--ink)" opacity="0.15"><g id="ah-tiles"></g></g>
+          <g transform="translate(468,40)" font-family="var(--display)">
+            <rect x="0" y="-30" width="400" height="26" rx="4" fill="var(--ink)" opacity="0.07"/>
+            <text x="12" y="-12" font-size="11" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing="1.4">RANK = SEVERITY × ACCOUNT VALUE</text>
+            <g><rect x="0" y="8" width="400" height="54" rx="5" fill="var(--panel)"/>
+              <text x="16" y="33" font-size="13.5" font-weight="600" fill="#f4f2ef">Renewal risk · 3 accounts</text>
+              <text x="16" y="51" font-size="11.5" fill="#a8b6c4">Next: schedule exec review this week</text>
+              <circle cx="376" cy="35" r="4" fill="#e0685c"/></g>
+            <g><rect x="0" y="72" width="400" height="54" rx="5" fill="var(--ink)" opacity="0.07"/>
+              <text x="16" y="97" font-size="13.5" font-weight="600" fill="var(--ink)">Idle capacity · 7 accounts</text>
+              <text x="16" y="115" font-size="11.5" fill="var(--ink-2)">Next: propose rightsizing plan</text>
+              <circle cx="376" cy="99" r="4" fill="var(--gold)"/></g>
+            <g><rect x="0" y="136" width="400" height="54" rx="5" fill="var(--ink)" opacity="0.07"/>
+              <text x="16" y="161" font-size="13.5" font-weight="600" fill="var(--ink)">Support backlog · 2 accounts</text>
+              <text x="16" y="179" font-size="11.5" fill="var(--ink-2)">Next: escalate to TAM</text>
+              <circle cx="376" cy="163" r="4" fill="#4a7c7e"/></g>
+            <text x="0" y="222" font-size="11" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing="1.2">TIME-TO-INSIGHT −70%   ·   10,000+ SELLERS</text>
+          </g>
+        </svg>
+        <figcaption>Redrawn for this portfolio — the product itself is internal</figcaption>
+      </figure>
+
+      <div class="chips rv"><a class="chip" href="/work/action-hub">Read the case study →</a></div>
     </div>
   </section>
 
-  <section class="sectionpad">
+  <section class="panel sectionpad">
     <div class="wrap">
       <p class="eyebrow rv">Everything else</p>
-      <h2 class="rv" style="max-width:16ch">The full shelf.</h2>
-      <p class="sub rv">{rest.length} more — agentic tooling, forecasting, data governance, go-to-market, full-stack engineering, and reinforcement learning.</p>
-      <ul class="shelf rv">
-        {rest.map((p) => (
-          <li><a href={`/work/${p.id}`}>{p.data.title}</a></li>
+      <h2 class="rv">{rest.length} more.</h2>
+      <div class="blocks">
+        {rest.map((p, i) => (
+          <a class="bk rv" href={`/work/${p.id}`}>
+            <div class="glow" style={`background:${['#2f6fae','#4b63b8','#c99700','#2f8f6f','#2b6fa8','#8a5fae','#b0433f','#2f7f8f','#a8722b','#3f6f4f','#4b63b8'][i % 11]}`}></div>
+            <span class="no">{String(i + 1).padStart(2, '0')}</span>
+            <span class="t">{p.data.title}</span>
+            {p.data.metrics.length > 0 && (
+              <span class="m"><b>{p.data.metrics[0].n}</b> {p.data.metrics[0].l}</span>
+            )}
+          </a>
         ))}
-      </ul>
-      <p style="margin-top:28px"><a class="chip" href="/work">All work, filterable →</a></p>
+      </div>
+      <div class="chips rv" style="margin-top:34px"><a class="chip" href="/work">All work, filterable →</a></div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .hero{padding:76px 0 60px}
-
-  /* Title-only index. No summaries or metrics — those live on /work and on the page itself. */
-  .shelf{list-style:none; margin:34px 0 0; padding:0; border-top:1px solid var(--border)}
-  .shelf li{border-bottom:1px solid var(--border)}
-  .shelf a{
-    display:flex; align-items:baseline; justify-content:space-between; gap:20px;
-    padding:17px 2px; color:var(--ink); text-decoration:none;
-    font-family:var(--display); font-size:clamp(19px,2.4vw,25px); letter-spacing:-.02em;
-  }
-  .shelf a::after{content:"→"; font-family:var(--mono); font-size:14px; color:var(--ink-3)}
-  .shelf a:hover{color:var(--accent); text-decoration:none}
-  .shelf a:hover::after{color:var(--accent); transform:translateX(4px)}
-  @media (prefers-reduced-motion:reduce){ .shelf a:hover::after{transform:none} }
-  h1 .dim{color:var(--ink-3)}
-  @media (max-width:560px){ .hero{padding:52px 0 44px} }
+  .hero{padding:104px 0 74px}
+  /* the display column hangs on a left axis; figures break past it */
+  @media (min-width:1000px){ .ahead{margin-left:7%} }
+  @media (max-width:560px){ .hero{padding:62px 0 46px} }
 </style>
+
+<script>
+  // 200 tiles — the count the case study names, drawn rather than listed
+  const t = document.getElementById('ah-tiles');
+  if (t) {
+    let s = '';
+    for (let i = 0; i < 200; i++) {
+      const c = i % 20, r = (i / 20) | 0;
+      s += `<rect x="${6 + c * 21}" y="${26 + r * 26}" width="14" height="9" rx="2"/>`;
+    }
+    t.innerHTML = s;
+  }
+</script>

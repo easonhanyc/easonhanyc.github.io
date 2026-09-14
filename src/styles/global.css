@@ -1,15 +1,15 @@
 /* ============================================================
-   Tokens — ported verbatim from the v1 portfolio stylesheet.
+   Tokens — stone ground, Berkeley ink.
    Berkeley blue #003262 / California gold #c99700.
    Three theme states are covered: bare :root is the complete light
    palette; the media query handles the un-stamped "system" default;
    [data-theme] handles an explicit choice in either direction.
    ============================================================ */
 :root{
-  --bg:#fbfaf8; --surface:#ffffff; --border:#e5e1da; --border-strong:#d4cec4;
-  --ink:#1a1a1a; --ink-2:#4a4a4a; --ink-3:#767470;
+  --bg:#eceae4; --surface:#f7f6f2; --border:#dbd8d0; --border-strong:#c6c2b8;
+  --ink:#14161a; --ink-2:#474b51; --ink-3:#5f636a;
   --accent:#003262; --accent-2:#1a5c96; --gold:#c99700;
-  --tag-bg:#f0ede8;
+  --tag-bg:#e2dfd7;
   /* cinematic panel — derived from the Berkeley accent, not a new hue */
   --panel:#0d1b2a; --panel-2:#12263a;
   --panel-ink:#f4f2ef; --panel-ink-2:#a8b6c4; --panel-ink-3:#6f8298;
@@ -62,24 +62,29 @@ a:hover{text-decoration:underline}
 
 .wrap{max-width:1080px; margin:0 auto; padding-inline:24px}
 .narrow{max-width:760px; margin:0 auto; padding-inline:24px}
-.sectionpad{padding-block:88px}
+.sectionpad{padding-block:112px}
 hr.rule{border:0; border-top:1px solid var(--border); margin:0}
 
 .eyebrow{
   font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
   color:var(--ink-3); font-weight:500; margin:0 0 18px;
 }
-h1{font-size:clamp(42px,7.4vw,82px); line-height:1.02; letter-spacing:-.035em; font-weight:700; margin:0 0 26px; text-wrap:balance}
-h2{font-size:clamp(30px,4.6vw,54px); line-height:1.06; letter-spacing:-.03em; font-weight:700; margin:0 0 20px; text-wrap:balance}
-.sub{font-family:var(--prose); font-size:17.5px; line-height:1.6; color:var(--ink-2); max-width:var(--measure); margin:0 0 34px}
-.lede{font-family:var(--prose); font-size:clamp(18px,2.2vw,21px); line-height:1.55; color:var(--ink-2); max-width:var(--measure); margin:0 0 30px}
+h1{font-size:clamp(40px,8.4vw,104px); line-height:1.0; letter-spacing:-.028em; font-weight:600; margin:0 0 28px; text-wrap:balance}
+h2{font-size:clamp(30px,5.4vw,66px); line-height:1.06; letter-spacing:-.022em; font-weight:600; margin:0 0 22px; text-wrap:balance}
+.sub{font-family:var(--prose); font-size:18px; line-height:1.62; color:var(--ink-2); max-width:var(--measure); margin:0 0 34px}
+.lede{font-family:var(--prose); font-size:clamp(18px,2vw,22px); line-height:1.62; color:var(--ink-2); max-width:var(--measure); margin:0 0 30px}
 .lede strong,.sub strong{color:var(--ink); font-weight:600}
+
+/* Display emphasis — serif italic in the accent, set against the sans display face.
+   Used on one phrase per heading, never more. */
+.em{font-family:var(--prose); font-style:italic; font-weight:400; color:var(--accent); letter-spacing:-.012em}
+.panel .em{color:var(--gold)}
 
 /* chips / buttons */
 .chips{display:flex; flex-wrap:wrap; gap:9px}
 .chip{
   display:inline-flex; align-items:center; gap:7px; padding:8px 15px;
-  border:1px solid var(--border-strong); border-radius:999px; background:var(--surface);
+  border:1px solid var(--border-strong); border-radius:4px; background:var(--surface);
   font-size:13.5px; font-weight:500; color:var(--ink-2);
   transition:border-color .16s, color .16s, transform .16s;
 }
@@ -114,7 +119,7 @@ h2{font-size:clamp(30px,4.6vw,54px); line-height:1.06; letter-spacing:-.03em; fo
 .panel a{color:var(--gold)}
 
 /* long-form prose */
-.prose{font-family:var(--prose); font-size:17.5px; line-height:1.72; color:var(--ink-2); max-width:var(--measure)}
+.prose{font-family:var(--prose); font-size:18.5px; line-height:1.74; color:var(--ink-2); max-width:var(--measure)}
 .prose > *:first-child{margin-top:0}
 .prose p{margin:0 0 19px}
 .prose strong{color:var(--ink); font-weight:600}
@@ -123,11 +128,11 @@ h2{font-size:clamp(30px,4.6vw,54px); line-height:1.06; letter-spacing:-.03em; fo
 .prose ul,.prose ol{margin:0 0 19px; padding-left:24px}
 .prose li{margin-bottom:9px}
 .prose li::marker{color:var(--ink-3)}
-.prose blockquote{margin:26px 0; padding:18px 24px; border-left:3px solid var(--gold); background:var(--surface); border-radius:0 10px 10px 0; font-size:16.5px}
+.prose blockquote{margin:26px 0; padding:18px 24px; border-left:3px solid var(--gold); background:var(--surface); border-radius:0 4px 4px 0; font-size:16.5px}
 .prose blockquote p:last-child{margin:0}
 .prose hr{border:0; border-top:1px solid var(--border); margin:44px 0}
 .prose code{font-family:var(--mono); font-size:13.5px; background:var(--tag-bg); padding:2px 6px; border-radius:4px; color:var(--ink)}
-.prose pre{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 18px; overflow-x:auto; margin:0 0 20px}
+.prose pre{background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:16px 18px; overflow-x:auto; margin:0 0 20px}
 .prose pre code{background:none; padding:0; font-size:12.8px; line-height:1.55}
 .tablewrap{overflow-x:auto; margin:0 0 22px}
 /* The table is its own scroll container: max-content keeps columns readable,
@@ -179,7 +184,7 @@ h2{font-size:clamp(30px,4.6vw,54px); line-height:1.06; letter-spacing:-.03em; fo
 .pin .stage{padding-block:96px}
 .pin-head h2{max-width:20ch}
 .pin-head .sub{max-width:var(--measure)}
-.steps{display:grid; gap:1px; background:var(--panel-line); border:1px solid var(--panel-line); border-radius:14px; overflow:hidden}
+.steps{display:grid; gap:1px; background:var(--panel-line); border:1px solid var(--panel-line); border-radius:8px; overflow:hidden}
 .step{background:var(--panel); padding:26px 24px}
 .step .n{font-size:clamp(34px,5vw,52px); font-weight:700; letter-spacing:-.035em; line-height:1; color:var(--panel-ink); font-variant-numeric:tabular-nums; display:block}
 .step .u{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-top:12px; display:block}
@@ -238,7 +243,7 @@ h2{font-size:clamp(30px,4.6vw,54px); line-height:1.06; letter-spacing:-.03em; fo
 
 .grid{display:grid; gap:16px; grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
 .proj{
-  background:var(--surface); border:1px solid var(--border); border-radius:14px;
+  background:var(--surface); border:1px solid var(--border); border-radius:6px;
   padding:24px 22px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:11px;
   transition:box-shadow .18s, border-color .18s, transform .18s;
 }
@@ -257,7 +262,7 @@ h2{font-size:clamp(30px,4.6vw,54px); line-height:1.06; letter-spacing:-.03em; fo
 
 /* ---- artifact cards ---- */
 .arts{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px}
-.art{display:flex; flex-direction:column; gap:6px; background:var(--surface); border:1px solid var(--border); border-radius:11px; padding:20px; transition:border-color .15s, transform .15s}
+.art{display:flex; flex-direction:column; gap:6px; background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:20px; transition:border-color .15s, transform .15s}
 .art:hover{border-color:var(--accent); text-decoration:none; transform:translateY(-2px)}
 .art .k{font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold)}
 .art .t{font-weight:610; color:var(--ink); font-size:15.5px}
@@ -274,8 +279,42 @@ h2{font-size:clamp(30px,4.6vw,54px); line-height:1.06; letter-spacing:-.03em; fo
 .prose .dg{margin:30px 0; padding:0}
 .prose .dg svg{
   display:block; width:100%; height:auto; max-width:100%;
-  border:1px solid var(--border); border-radius:12px; background:var(--bg); padding:14px 10px;
+  border:1px solid var(--border); border-radius:6px; background:var(--surface); padding:18px 14px;
 }
 .prose .dg figcaption{
   font-family:var(--mono); font-size:11px; color:var(--ink-3); margin-top:10px; text-align:center;
 }
+
+/* ── project blocks ─────────────────────────────────────────
+   The index of everything not featured. Lives on .panel, which is
+   the single dark beat on the home page. Replaces a plain title list. */
+.blocks{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(264px,1fr)); margin-top:42px}
+.bk{
+  position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between;
+  min-height:208px; padding:24px 22px; border-radius:6px; color:var(--panel-ink); text-decoration:none;
+  background:linear-gradient(165deg,rgba(255,255,255,.085),rgba(255,255,255,.018));
+  border:1px solid var(--panel-line);
+  transition:transform .5s cubic-bezier(.16,1,.3,1), border-color .5s;
+}
+.panel .bk,.panel .bk:hover{color:var(--panel-ink)}
+.bk:hover{transform:translateY(-5px); border-color:rgba(255,255,255,.3); text-decoration:none}
+.bk > *{position:relative; z-index:1}
+.bk .no{font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--panel-ink-3)}
+.bk .t{font-size:21px; font-weight:600; letter-spacing:-.014em; line-height:1.2; margin-top:auto}
+.bk .m{font-family:var(--mono); font-size:11px; line-height:1.5; color:var(--panel-ink-2); margin-top:10px}
+.bk .m b{color:var(--gold); font-weight:500; font-variant-numeric:tabular-nums}
+.bk .glow{position:absolute; z-index:0; left:-14%; right:-14%; bottom:-62%; height:150px; border-radius:50%; filter:blur(52px); opacity:.32; transition:opacity .5s}
+.bk:hover .glow{opacity:.56}
+@media (prefers-reduced-motion:reduce){ .bk,.bk .glow{transition:none} .bk:hover{transform:none} }
+
+/* ── figure plates ──────────────────────────────────────────
+   Rules rather than cards: the figure sits in the text column,
+   bracketed top and bottom, so it reads as part of the argument. */
+.plate{margin:44px 0; padding:26px 0; border-block:1px solid var(--border)}
+.plate svg{display:block; width:100%; height:auto; max-width:100%}
+.plate figcaption{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-3); margin-top:16px;
+}
+.panel .plate{border-block-color:var(--panel-line)}
+.panel .plate figcaption{color:var(--panel-ink-3)}
