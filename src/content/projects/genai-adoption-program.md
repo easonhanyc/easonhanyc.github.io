@@ -47,6 +47,7 @@ The principal seller also supplies something an analytics team structurally cann
 ## 3. The mechanics, and what each one buys
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 246" role="img" aria-labelledby="ga-t" xmlns="http://www.w3.org/2000/svg">
  <title id="ga-t">GenAI activity earns points, which feed three parallel reward paths — ranking, badges and raffle entries — that in turn drive further activity</title>
  <defs>
@@ -57,8 +58,8 @@ The principal seller also supplies something an analytics team structurally cann
  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
   <rect x="8" y="58" width="132" height="72" rx="8" fill="var(--surface)" stroke="var(--border-strong)"/>
   <text x="74" y="86" font-size="10.5" fill="var(--ink)" text-anchor="middle">GenAI activity</text>
-  <text x="74" y="104" font-size="9" fill="var(--ink-3)" text-anchor="middle">several qualifying</text>
-  <text x="74" y="116" font-size="9" fill="var(--ink-3)" text-anchor="middle">activity types</text>
+  <text x="74" y="104" font-size="9.8" fill="var(--ink-3)" text-anchor="middle">several qualifying</text>
+  <text x="74" y="116" font-size="9.8" fill="var(--ink-3)" text-anchor="middle">activity types</text>
   <path d="M140 94 L176 94" stroke="var(--border-strong)" stroke-width="1.5" marker-end="url(#ga-ar)"/>
   <rect x="180" y="70" width="96" height="48" rx="8" fill="var(--tag-bg)" stroke="var(--accent)"/>
   <text x="228" y="98" font-size="11" fill="var(--ink)" text-anchor="middle">points</text>
@@ -67,13 +68,13 @@ The principal seller also supplies something an analytics team structurally cann
   <path d="M276 102 L316 142" stroke="var(--border-strong)" stroke-width="1.3" marker-end="url(#ga-ar)"/>
   <rect x="320" y="18" width="236" height="52" rx="7" fill="var(--surface)" stroke="var(--border)"/>
   <text x="336" y="40" font-size="10.5" fill="var(--ink)">Weekly + monthly rank</text>
-  <text x="336" y="57" font-size="9" fill="var(--ink-3)">the month resets; all-time does not</text>
+  <text x="336" y="57" font-size="9.8" fill="var(--ink-3)">the month resets; all-time does not</text>
   <rect x="320" y="74" width="236" height="44" rx="7" fill="var(--surface)" stroke="var(--border)"/>
   <text x="336" y="92" font-size="10.5" fill="var(--ink)">Badge beside your name</text>
-  <text x="336" y="108" font-size="9" fill="var(--ink-3)">status, not compensation</text>
+  <text x="336" y="108" font-size="9.8" fill="var(--ink-3)">status, not compensation</text>
   <rect x="320" y="122" width="236" height="52" rx="7" fill="var(--surface)" stroke="var(--gold)"/>
   <text x="336" y="144" font-size="10.5" fill="var(--ink)">Raffle entries</text>
-  <text x="336" y="161" font-size="9" fill="var(--gold)">a reason to play without winning</text>
+  <text x="336" y="161" font-size="9.8" fill="var(--gold)">a reason to play without winning</text>
   <path d="M556 96 L596 96" stroke="var(--border-strong)" stroke-width="1.3" marker-end="url(#ga-ar)"/>
   <rect x="600" y="70" width="92" height="52" rx="7" fill="var(--surface)" stroke="var(--border-strong)"/>
   <text x="646" y="92" font-size="10" fill="var(--ink)" text-anchor="middle">Prizes and</text>
@@ -83,6 +84,7 @@ The principal seller also supplies something an analytics team structurally cann
   <text x="350" y="238" font-size="10.5" fill="var(--ink-2)" text-anchor="middle">Three reward paths, because a single ranking only motivates the people near the top of it.</text>
  </g>
 </svg>
+</div>
 <figcaption>Redrawn for this portfolio. Programme branding, activity definitions and point values omitted.</figcaption>
 </figure>
 

@@ -48,6 +48,7 @@ Intersection Distance of 0.05 au or less, and an absolute magnitude of 22.0 or l
 Both quantities were columns in the dataset.
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 212" role="img" aria-labelledby="as-t" xmlns="http://www.w3.org/2000/svg">
 <title id="as-t">NASA's two-part definition of a potentially hazardous asteroid maps directly onto two columns of the training data: minimum orbit intersection distance was removed because it is not known until the approach, and absolute magnitude was kept and became the top-ranked feature</title>
 <defs>
@@ -58,14 +59,14 @@ Both quantities were columns in the dataset.
 <text x="688" y="16" font-size="9.5" fill="var(--ink-3)" text-anchor="end">columns in the training data</text>
 <rect x="12" y="26" width="270" height="42" rx="8" fill="var(--surface)" stroke="var(--border-strong)"/>
 <text x="147" y="52" font-size="10" fill="var(--ink)">Earth MOID ≤ 0.05 au</text>
-<text x="348" y="41" font-size="9" fill="var(--ink-3)">the same number</text>
+<text x="348" y="41" font-size="9.8" fill="var(--ink-3)">the same number</text>
 <path d="M282 47 L414 47" stroke="var(--border-strong)" stroke-width="1.4" marker-end="url(#as-ar)"/>
 <rect x="418" y="26" width="270" height="42" rx="8" fill="var(--surface)" stroke="var(--gold)"/>
 <text x="553" y="52" font-size="10" fill="var(--ink)">Minimum.Orbit.Intersection</text>
 <text x="688" y="84" font-size="9.5" fill="var(--gold)" text-anchor="end">removed — not knowable until the approach</text>
 <rect x="12" y="100" width="270" height="42" rx="8" fill="var(--surface)" stroke="var(--border-strong)"/>
 <text x="147" y="126" font-size="10" fill="var(--ink)">Absolute magnitude ≤ 22.0</text>
-<text x="348" y="115" font-size="9" fill="var(--ink-3)">the same number</text>
+<text x="348" y="115" font-size="9.8" fill="var(--ink-3)">the same number</text>
 <path d="M282 121 L414 121" stroke="var(--border-strong)" stroke-width="1.4" marker-end="url(#as-ar)"/>
 <rect x="418" y="100" width="270" height="42" rx="8" fill="var(--surface)" stroke="var(--border-strong)"/>
 <text x="553" y="126" font-size="10" fill="var(--ink)">Absolute.Magnitude</text>
@@ -73,6 +74,7 @@ Both quantities were columns in the dataset.
 <text x="350" y="192" font-size="10.5" fill="var(--gold)">Half the label was still in the features.</text>
 </g>
 </svg>
+</div>
 <figcaption>Redrawn for this portfolio.</figcaption>
 </figure>
 

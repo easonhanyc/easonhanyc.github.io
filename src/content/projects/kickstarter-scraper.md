@@ -49,6 +49,7 @@ is the first thing you suspect.
 ## 2. Treating the page as a program, not a document
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 226" role="img" aria-labelledby="ks-t" xmlns="http://www.w3.org/2000/svg">
 <title id="ks-t">Two paths: rvest alone requests the URL and finds the react-campaign section absent, returning an empty result; Selenium loads the page in a browser, saves the built DOM to a local file, and rvest parses that snapshot with the same selectors</title>
 <defs>
@@ -87,6 +88,7 @@ is the first thing you suspect.
 <text x="350" y="206" font-size="10.5" fill="var(--gold)">Same selectors. Different document.</text>
 </g>
 </svg>
+</div>
 <figcaption>Redrawn for this portfolio.</figcaption>
 </figure>
 

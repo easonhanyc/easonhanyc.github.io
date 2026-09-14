@@ -69,6 +69,7 @@ The principle I'd carry into any PM role: **the org's internal information archi
 ## 3. How the product actually works
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 372" role="img" aria-labelledby="dg-t" xmlns="http://www.w3.org/2000/svg">
  <title id="dg-t">Alerts are detected per category, ranked by severity times account value, and each carries its own destination</title>
  <defs>
@@ -111,6 +112,7 @@ The principle I'd carry into any PM role: **the org's internal information archi
   </g>
  </g>
 </svg>
+</div>
 <figcaption>Redrawn for this portfolio. Top 50 alerts per person, scoped to their own accounts.</figcaption>
 </figure>
 

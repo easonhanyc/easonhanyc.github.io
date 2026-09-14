@@ -97,6 +97,7 @@ All three were validated against an isolated mock backend — multiple test pers
 This is the decision I'm proudest of, because the easy path was to ship.
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 216" role="img" aria-labelledby="tm-t" xmlns="http://www.w3.org/2000/svg">
 <title id="tm-t">A link tapped inside WhatsApp opens in that app&#8217;s embedded browser, where a popup sign-in has no opener window to return a credential to, so authentication dies on a blank page</title>
 <defs><marker id="tm-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--border-strong)"/></marker></defs>
@@ -115,6 +116,7 @@ This is the decision I'm proudest of, because the easy path was to ship.
 <text x="350" y="192" fill="var(--ink-3)">3 DEFECTS FOUND IN MY OWN V1 &#183; 168 AUTOMATED CHECKS &#183; 6 DAYS TO LAUNCH</text>
 </g>
 </svg>
+</div>
 <figcaption>Redrawn for this portfolio.</figcaption>
 </figure>
 

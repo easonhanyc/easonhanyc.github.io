@@ -55,6 +55,7 @@ So the first real decision was to stop trying.
 ## 3. Forecast something that does have history
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 196" role="img" aria-labelledby="g1-t" xmlns="http://www.w3.org/2000/svg">
  <title id="g1-t">Pipeline creation is forecast by linear trend, then converted through tech attach and win rate, landing three months later as the target</title>
  <defs>
@@ -74,7 +75,7 @@ So the first real decision was to stop trying.
   <rect x="382" y="34" width="140" height="52" rx="7" fill="var(--tag-bg)" stroke="var(--border)"/>
   <text x="452" y="52" font-size="11" fill="var(--ink)">&#215; tech attach</text>
   <text x="452" y="69" font-size="11" fill="var(--ink)">&#215; win rate</text>
-  <text x="452" y="82" font-size="9" fill="var(--ink-3)">per region</text>
+  <text x="452" y="82" font-size="9.8" fill="var(--ink-3)">per region</text>
   <path d="M522 60 L560 60" stroke="var(--border-strong)" stroke-width="1.5" marker-end="url(#g1-ar)"/>
   <rect x="564" y="34" width="128" height="52" rx="7" fill="var(--surface)" stroke="var(--accent)"/>
   <text x="628" y="57" font-size="11" fill="var(--ink)">Target</text>
@@ -85,6 +86,7 @@ So the first real decision was to stop trying.
   <text x="355" y="182" font-size="10.5" fill="var(--ink-2)">not the goal metric that has none.</text>
  </g>
 </svg>
+</div>
 <figcaption>Redrawn for this portfolio. Conversion rates and volumes omitted.</figcaption>
 </figure>
 

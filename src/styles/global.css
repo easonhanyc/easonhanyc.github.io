@@ -389,3 +389,20 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
 .bk .viz{color:var(--panel-ink)}
 .proj .viz{display:block; width:100%; height:46px; color:var(--ink-3); margin:2px 0 4px}
 .proj .viz svg{width:100%; height:100%; display:block; overflow:visible}
+
+/* ── diagram scroll container ────────────────────────────────────────
+   A 700-wide viewBox squeezed into a phone-width text column renders its
+   labels at about 5px. Below 700px the figure keeps its own size and the
+   reader swipes it, the same trade .tablewrap already makes for tables.
+   Only the SVG goes inside — a caption in here would need scrolling too. */
+.dgscroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.dgscroll svg{display:block; width:100%; height:auto}
+@media (max-width:700px){
+  /* .prose .dg svg and .plate svg both outrank a bare .dgscroll svg, so the
+     narrow-width width has to be at least as specific as they are. */
+  .prose .dg .dgscroll svg,
+  .plate .dgscroll svg{width:680px; max-width:none}
+  .prose .dg figcaption::before,
+  .plate figcaption::before{content:"Scroll the diagram sideways · "; color:var(--gold)}
+  .panel .plate figcaption::before{color:var(--gold)}
+}

@@ -35,6 +35,7 @@ order: 13
 The naive version shows every matching role. That version is unusable, and the reason is instructive.
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 214" role="img" aria-labelledby="js-t" xmlns="http://www.w3.org/2000/svg">
 <title id="js-t">Roughly 29,400 postings per scan narrow to two roles per company, and a run that finds nothing new opens no issue at all</title>
 <g font-family="var(--mono)" font-size="10" text-anchor="middle">
@@ -45,6 +46,7 @@ The naive version shows every matching role. That version is unusable, and the r
 <text x="350" y="200" fill="var(--gold)" font-size="10.5">Nothing new today means no issue is opened. Silence is the common case.</text>
 </g>
 </svg>
+</div>
 <figcaption>The filter is the easy half; the discarding is the product decision.</figcaption>
 </figure>
 

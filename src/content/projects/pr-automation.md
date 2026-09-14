@@ -52,6 +52,7 @@ Two things follow from that shape:
 ## 2. What is automated, and where it stops
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 188" role="img" aria-labelledby="pr-t" xmlns="http://www.w3.org/2000/svg">
  <title id="pr-t">The skill automates the eight ceremony steps up to publishing the review; peer review and the merge to production stay human</title>
  <defs>
@@ -83,6 +84,7 @@ Two things follow from that shape:
   <text x="350" y="162" font-size="10.5" fill="var(--ink-2)">and it does not merge.</text>
  </g>
 </svg>
+</div>
 <figcaption>Redrawn for this portfolio. Internal platform and repository details omitted.</figcaption>
 </figure>
 

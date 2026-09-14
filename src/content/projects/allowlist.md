@@ -47,6 +47,7 @@ That is the failure mode worth naming, because it doesn't look like a failure un
 ## 2. What replaced it
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 214" role="img" aria-labelledby="al-t" xmlns="http://www.w3.org/2000/svg">
  <title id="al-t">A shared spreadsheet where anyone edits any row, replaced by an application permitting read, add and remove but never in-place edits, with every action logged</title>
  <defs>
@@ -74,6 +75,7 @@ That is the failure mode worth naming, because it doesn't look like a failure un
   <text x="350" y="204" font-size="10.5" fill="var(--ink-2)" text-anchor="middle">Removing the edit is what makes the log complete.</text>
  </g>
 </svg>
+</div>
 <figcaption>Redrawn for this portfolio. Field definitions and access rules omitted.</figcaption>
 </figure>
 

@@ -32,8 +32,16 @@ const is = (p: string) => path === p || (p !== '/' && path.startsWith(p));
   .navlinks a:hover,.themebtn:hover{color:var(--ink); border-color:var(--border-strong); text-decoration:none}
   .navlinks a[aria-current="page"]{color:var(--ink); border-color:var(--border-strong)}
   @media (max-width:560px){
-    .bar{padding:11px 16px; gap:8px}
-    .navlinks{gap:2px}
-    .navlinks a,.themebtn{padding:6px 7px; font-size:10px; letter-spacing:.05em}
+    .bar{padding:11px 16px; gap:10px}
+    /* One row at any width: the links scroll rather than wrapping under the
+       logo, where a sticky translucent bar would sit over the content. */
+    .navlinks{gap:2px; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none}
+    .navlinks::-webkit-scrollbar{display:none}
+    .navlinks a,.themebtn{flex:0 0 auto}
+    .navlinks a,.themebtn{padding:6px 5px; font-size:9.5px; letter-spacing:.03em}
+    /* Fits without scrolling on a typical phone; below that the row scrolls and
+       the fade says so, rather than leaving a word chopped in half. */
+    .navlinks{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 20px),transparent);
+                      mask-image:linear-gradient(90deg,#000 calc(100% - 20px),transparent)}
   }
 </style>

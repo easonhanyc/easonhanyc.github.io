@@ -35,6 +35,7 @@ order: 8
 Mean score across five fixed evaluation seeds rose from **492 to 906**. Four of five seeds improved; one got worse.
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 250" role="img" aria-labelledby="pm-t" xmlns="http://www.w3.org/2000/svg">
 <title id="pm-t">Mean evaluation score rose from 492 to 906, but the untrained baseline was not random: it repeated a single action 95.4 per cent of the time</title>
 <g font-family="var(--mono)" font-size="10.5">
@@ -51,6 +52,7 @@ Mean score across five fixed evaluation seeds rose from **492 to 906**. Four of 
 <text x="0" y="224" fill="var(--ink-2)">Not a random agent. A stuck one — so the gain is measured against a floor that barely plays.</text>
 </g>
 </svg>
+</div>
 <figcaption>Figures as reported in the write-up below.</figcaption>
 </figure>
 

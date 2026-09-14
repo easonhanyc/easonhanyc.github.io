@@ -55,6 +55,7 @@ depends on it — a silently malformed time value doesn't error, it just produce
 ## 2. Three ways the numbers weren't comparable
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 252" role="img" aria-labelledby="f1-t" xmlns="http://www.w3.org/2000/svg">
 <title id="f1-t">A funnel: every race from 1991 to 2022 narrows to 32 Spanish Grands Prix once speed is derived and the circuit is held constant</title>
 <defs>
@@ -75,6 +76,7 @@ depends on it — a silently malformed time value doesn't error, it just produce
 <text x="350" y="228" font-size="10" fill="var(--gold)">one comparable point per season</text>
 </g>
 </svg>
+</div>
 <figcaption>The chain of constraints behind a single derived metric. Redrawn for this portfolio.</figcaption>
 </figure>
 

@@ -76,6 +76,7 @@ tells the ABA where another volunteer attorney buys the most.
 ## 4. The finding that inverted the expectation
 
 <figure class="dg">
+<div class="dgscroll">
 <svg viewBox="0 0 700 214" role="img" aria-labelledby="df-t" xmlns="http://www.w3.org/2000/svg">
  <title id="df-t">A reinforcing cycle: few cases in a category produce a thin corpus, which produces weaker similarity matches, which produces slower or no response, which keeps the category sparse</title>
  <defs>
@@ -105,6 +106,7 @@ tells the ABA where another volunteer attorney buys the most.
   <text x="350" y="196" font-size="10.5" fill="var(--ink-2)">0.586 for a sparse education one in the same state.</text>
  </g>
 </svg>
+</div>
 <figcaption>Redrawn for this portfolio from the submitted analysis.</figcaption>
 </figure>
 
