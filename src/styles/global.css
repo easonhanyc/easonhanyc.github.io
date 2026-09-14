@@ -128,7 +128,18 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
 .prose ul,.prose ol{margin:0 0 19px; padding-left:24px}
 .prose li{margin-bottom:9px}
 .prose li::marker{color:var(--ink-3)}
-.prose blockquote{margin:26px 0; padding:18px 24px; border-left:3px solid var(--gold); background:var(--surface); border-radius:0 4px 4px 0; font-size:16.5px}
+/* The 30-second abstract and mid-page pull-quotes — the loud end of a page.
+   A rule above rather than a box around, matching the figure plates. */
+.prose blockquote{
+  margin:36px 0; padding:22px 0 0; border:0; border-top:2px solid var(--gold);
+  background:none; border-radius:0; font-size:20.5px; line-height:1.56; color:var(--ink);
+}
+/* Boilerplate, deliberately quiet — it must not compete with the argument. */
+.prose .note{
+  font-size:14.5px; line-height:1.62; color:var(--ink-3);
+  border-block:1px solid var(--border); padding:14px 0; margin:26px 0;
+}
+.prose .note strong{color:var(--ink-2); font-weight:600}
 .prose blockquote p:last-child{margin:0}
 .prose hr{border:0; border-top:1px solid var(--border); margin:44px 0}
 .prose code{font-family:var(--mono); font-size:13.5px; background:var(--tag-bg); padding:2px 6px; border-radius:4px; color:var(--ink)}
@@ -372,3 +383,9 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
   :root.js-rv .plate svg [data-draw],
   :root.js-rv .prose .dg svg [data-draw]{stroke-dasharray:none !important; stroke-dashoffset:0 !important}
 }
+
+/* The block diagrams take their neutral stroke from currentColor, so each
+   surface sets the colour it wants and one drawing serves both. */
+.bk .viz{color:var(--panel-ink)}
+.proj .viz{display:block; width:100%; height:46px; color:var(--ink-3); margin:2px 0 4px}
+.proj .viz svg{width:100%; height:100%; display:block; overflow:visible}

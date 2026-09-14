@@ -23,7 +23,7 @@ order: 5
 
 **Built with:** spec-driven development in the Kiro agentic IDE
 
-> **Confidentiality note.** Written at the level of detail already public on my resume. No schema, field definitions, access rules or record contents appear here.
+<aside class="note"><strong>Confidentiality note.</strong> Written at the level of detail already public on my resume. No schema, field definitions, access rules or record contents appear here.</aside>
 
 > **The 30-second version.** Sellers see data for the territories and accounts they are assigned. The exceptions to that — the overrides and one-off extensions — were being managed in a shared spreadsheet that anyone could open and edit. I replaced it with **Allowlist**: a central application where everyone can read every record and submit or withdraw one, nobody outside admin can alter an existing record, and every action is written to a log.
 

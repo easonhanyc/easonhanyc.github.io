@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { viz } from '../lib/viz';
 interface Props { project: CollectionEntry<'projects'>; reveal?: boolean }
 const { project, reveal = true } = Astro.props;
 const d = project.data;
@@ -12,6 +13,7 @@ const d = project.data;
     {d.badges.map((b) => <span class="tag">{b}</span>)}
   </div>
   <p class="role">{d.role} · {d.period}</p>
+  {viz[project.id] && <span class="viz" set:html={viz[project.id]} />}
   <p class="d">{d.summary}</p>
   {d.metrics.length > 0 && (
     <div class="mini">

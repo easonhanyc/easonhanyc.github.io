@@ -20,7 +20,7 @@ links: {}
 featured: false
 order: 6
 ---
-> **Confidentiality note.** Written at the level of detail already public on my resume. The programme's branding, internal materials, participant names, logins, teams and standings are all omitted — the source material is internal and personally identifying. What is described is the mechanic design.
+<aside class="note"><strong>Confidentiality note.</strong> Written at the level of detail already public on my resume. The programme's branding, internal materials, participant names, logins, teams and standings are all omitted — the source material is internal and personally identifying. What is described is the mechanic design.</aside>
 
 > **The 30-second version.** A leaderboard rewards the people already at the top — precisely the group that needs no convincing. This programme was built the other way round: activity earns points, points earn raffle entries, and an entry improves your odds whoever you are. Rankings, badges, prizes and live recognition sat on top of that, but the raffle is what turned a competition into a participation number. **Over 75% of 1,100 LATAM sellers** took part within **60 days**.
 

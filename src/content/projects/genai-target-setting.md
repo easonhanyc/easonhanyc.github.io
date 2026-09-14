@@ -20,7 +20,7 @@ links: {}
 featured: false
 order: 4
 ---
-> **Confidentiality note.** Written at the level of detail already public on my resume. No actual targets, conversion rates, pipeline volumes or regional figures appear here — those are live commercial metrics. What is described is the method and the reasoning, which is the part that generalises.
+<aside class="note"><strong>Confidentiality note.</strong> Written at the level of detail already public on my resume. No actual targets, conversion rates, pipeline volumes or regional figures appear here — those are live commercial metrics. What is described is the method and the reasoning, which is the part that generalises.</aside>
 
 > **The 30-second version.** 2024 was the first year AWS Sales carried a Generative AI goal. The problem: the metric being targeted had barely existed a year earlier, and had grown by roughly two orders of magnitude across the baseline year. There was no stable series to regress on. I built the target-setting model across **55,000 data points and four scenario simulations**, and the decision that made it work was **not forecasting the target metric at all**.
 

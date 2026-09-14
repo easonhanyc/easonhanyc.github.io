@@ -2,28 +2,13 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PinnedStory from '../components/PinnedStory.astro';
+import { viz } from '../lib/viz';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 const aws = projects.find((p) => p.id === 'action-hub')!;
 const rest = projects.filter((p) => !p.data.featured);
 
-// A small diagram per block — each one draws that project's own argument,
-// so the card carries a picture rather than an empty half.
-const L = 'stroke="rgba(255,255,255,.46)" stroke-width="1.5" fill="none"';
-const G = 'stroke="#d8a83a" stroke-width="1.7" fill="none"';
-const viz: Record<string, string> = {
-  'pr-automation': `<svg viewBox="0 0 200 46">${[0,1,2,3,4,5,6,7].map((i)=>`<rect x="${4+i*15}" y="14" width="10" height="18" rx="2" fill="rgba(255,255,255,.28)"/>`).join('')}<path d="M128 23 L152 23" ${L}/><rect x="156" y="10" width="40" height="26" rx="3" ${G}/></svg>`,
-  'genai-target-setting': `<svg viewBox="0 0 200 46"><path d="M4 40 L44 37 L84 31 L124 20 L164 7" ${L}/><path d="M124 40 L164 31 L196 16" ${G} stroke-dasharray="4 4"/></svg>`,
-  'allowlist': `<svg viewBox="0 0 200 46"><rect x="4" y="12" width="42" height="22" rx="3" ${L}/><rect x="54" y="12" width="42" height="22" rx="3" ${L}/><rect x="104" y="12" width="42" height="22" rx="3" stroke="rgba(255,255,255,.22)" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/><rect x="154" y="12" width="42" height="22" rx="3" stroke="rgba(255,255,255,.22)" stroke-width="1.5" fill="none" stroke-dasharray="3 3"/></svg>`,
-  'genai-adoption-program': `<svg viewBox="0 0 200 46">${[0,1,2,3,4,5].map((i)=>`<rect x="${4+i*20}" y="${36-i*5}" width="13" height="${4+i*5}" rx="2" fill="rgba(255,255,255,.3)"/>`).join('')}<rect x="124" y="6" width="13" height="34" rx="2" fill="#d8a83a"/><path d="M148 23 L196 23" ${L} stroke-dasharray="3 3"/></svg>`,
-  'secure-networking-tracker': `<svg viewBox="0 0 200 46"><rect x="4" y="6" width="192" height="34" rx="3" ${L} stroke-dasharray="4 4"/><rect x="16" y="13" width="168" height="20" rx="2" ${L}/><rect x="28" y="18" width="144" height="10" rx="2" ${G}/></svg>`,
-  'pacman-dqn': `<svg viewBox="0 0 200 46"><rect x="4" y="10" width="52" height="11" rx="2" fill="rgba(255,255,255,.28)"/><rect x="4" y="27" width="110" height="11" rx="2" fill="#d8a83a"/><path d="M124 15 L196 15" ${L} stroke-dasharray="2 4"/><path d="M124 32 L196 32" ${L} stroke-dasharray="2 4"/></svg>`,
-  'datafest-2023': `<svg viewBox="0 0 200 46"><circle cx="100" cy="23" r="18" ${L}/><circle cx="100" cy="23" r="9" ${G} stroke-dasharray="2 4"/><path d="M100 1 l6 5 -6 5 z" fill="#d8a83a"/></svg>`,
-  'formula-1-trends': `<svg viewBox="0 0 200 46"><path d="M4 38 L38 31 L72 19 L98 9 L124 32 L152 28 L196 21" ${L}/><circle cx="98" cy="9" r="3" fill="#d8a83a"/></svg>`,
-  'kickstarter-scraper': `<svg viewBox="0 0 200 46"><path d="M4 14 L92 14" ${L} stroke-dasharray="3 3"/><path d="M96 9 l9 5 -9 5 z" fill="rgba(255,255,255,.3)"/><text x="112" y="18" font-family="ui-monospace,monospace" font-size="9" fill="rgba(255,255,255,.4)">nothing</text><path d="M4 34 L150 34" ${G}/><path d="M154 29 l9 5 -9 5 z" fill="#d8a83a"/></svg>`,
-  'asteroid-screening': `<svg viewBox="0 0 200 46"><circle cx="82" cy="23" r="17" ${L}/><circle cx="110" cy="23" r="17" ${G}/></svg>`,
-  'job-search-agent': `<svg viewBox="0 0 200 46"><rect x="4" y="6" width="192" height="9" rx="2" ${L}/><rect x="38" y="19" width="124" height="9" rx="2" ${L}/><rect x="86" y="32" width="28" height="9" rx="2" ${G}/></svg>`,
-};
+// Shared with /work, so a project's drawing is defined once.
 
 // Editorial narrative for the one cinematic moment — hand-written, not derived
 // from card metrics, because the story is the point rather than the figures.
