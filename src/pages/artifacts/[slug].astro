@@ -14,7 +14,7 @@ const { Content } = await render(artifact);
 const projects = await getCollection('projects');
 const parent = d.related ? projects.find((p) => p.id === d.related) : undefined;
 ---
-<BaseLayout title={`${d.title} — Eason Han`} description={d.description}>
+<BaseLayout title={`${d.title} · Eason Han`} description={d.description}>
   <div class="narrow">
     <div class="backbar"><a href="/artifacts">← All artifacts</a></div>
     <header class="dochead">

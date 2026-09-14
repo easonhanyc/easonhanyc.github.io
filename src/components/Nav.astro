@@ -21,7 +21,7 @@ const is = (p: string) => path === p || (p !== '/' && path.startsWith(p));
     backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
     border-bottom:1px solid var(--border);
   }
-  .sig{font-weight:600; letter-spacing:-.02em; font-size:15px; color:var(--ink)}
+  .sig{font-weight:600; letter-spacing:-.02em; font-size:15px; color:var(--ink); white-space:nowrap; flex-shrink:0}
   .sig:hover{text-decoration:none; color:var(--accent)}
   .navlinks{display:flex; align-items:center; gap:6px; flex-wrap:wrap}
   .navlinks a,.themebtn{

@@ -1,6 +1,6 @@
 ---
-title: "Action Hub"
-description: "The daily starting point for a technical sales org — ranked alerts with a next action on each, replacing a manual 5–10 dashboard sweep."
+title: "Action Hub — Ranked Alerts with Next Actions"
+description: "A technical sales org had roughly 200 dashboards and no agreed place to start the day. This is the screen that replaced a manual sweep across five to ten of them."
 summary: "A sales org with roughly 200 dashboards and no agreed starting point. The Action Hub ranks every open issue across a seller's accounts and puts the next action on each one — cutting time-to-insight 70% for 10,000+ sellers."
 role: "Product owner · AWS Global Sales Strategy & Analytics"
 period: "Jul 2023 – May 2026"
