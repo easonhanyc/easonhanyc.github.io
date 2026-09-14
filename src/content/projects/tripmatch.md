@@ -12,10 +12,10 @@ tags: ["product", "eng", "shipped"]
 metrics: 
   - n: "5"
     l: "non-goals, fixed before any code"
-  - n: "3"
-    l: "gaps only real users surfaced"
-  - n: "0"
-    l: "known defects shipped"
+  - n: "+1"
+    l: "had to mean exactly one thing"
+  - n: "1 tap"
+    l: "from the group chat, no install"
   - n: "Verified"
     l: "Berkeley-only access"
 links: 

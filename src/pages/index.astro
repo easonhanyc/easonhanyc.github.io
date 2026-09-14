@@ -30,10 +30,10 @@ const viz: Record<string, string> = {
 const tripmatchSteps = [
   { n: '5',        u: 'Non-goals, fixed before any code',
     d: 'No payments, no dispatch, no native app, no WhatsApp replacement, no open matching. Each was a deliberate cut, and the list is why the scope held.' },
-  { n: '3',        u: 'Gaps only real users surfaced',
-    d: 'Putting the prototype in front of classmates changed the product three times — including a post type that read as either offering a seat or wanting one, which nobody had noticed on paper.' },
-  { n: '0',        u: 'Known defects shipped',
-    d: 'The day before launch I found a race condition that silently deleted posts. Rebuilding the storage layer cost a full day under time pressure; shipping it would have cost the launch.' },
+  { n: '+1',       u: 'Had to mean exactly one thing',
+    d: 'On a driver\u2019s post it read as either \u201cI want a seat\u201d or \u201cI\u2019m also driving that way\u201d, and nothing stopped six people claiming three seats. Until it meant one thing and the cap was enforced in the write, the number on a post counted nothing.' },
+  { n: '1 tap',    u: 'From the group chat to the board',
+    d: 'A link is the right form factor \u2014 no install, one tap from the chat the users are already in. That choice set the form factor, and later produced the nastiest bug in the project.' },
   { n: 'Verified', u: 'Berkeley-only, by design',
     d: 'Access is an email match against a verified account, enforced server-side. Opening it to strangers would have re-introduced exactly the trust problem the product exists to avoid.' },
 ];
