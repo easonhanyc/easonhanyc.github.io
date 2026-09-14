@@ -53,14 +53,29 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : As
       try { localStorage.setItem('theme', next); } catch (e) {}
     });
 
-    const targets = Array.from(document.querySelectorAll<HTMLElement>('.rv'));
+    const targets = Array.from(document.querySelectorAll<HTMLElement>('.rv, .rv-w, .plate, .prose .dg'));
     if (hasIO && !reduce && targets.length) {
       document.documentElement.classList.add('js-rv');
+
+      // Stroked geometry inside a figure draws itself along its own length.
+      // Measured here rather than hand-authored so a diagram can be edited freely.
+      for (const fig of document.querySelectorAll('.plate svg, .prose .dg svg')) {
+        for (const el of fig.querySelectorAll<SVGGeometryElement>('path, line, polyline, circle, ellipse, rect')) {
+          const stroke = getComputedStyle(el).stroke;
+          if (!stroke || stroke === 'none') continue;
+          let len = 0;
+          try { len = el.getTotalLength(); } catch (e) { continue; }
+          if (len < 8 || len > 6000) continue;          // skip dots and outliers
+          el.setAttribute('data-draw', '');
+          el.style.setProperty('--len', String(Math.ceil(len)));
+        }
+      }
+
       const ro = new IntersectionObserver((entries) => {
         for (const e of entries) {
           if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
         }
-      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
       targets.forEach((el, i) => {
         el.style.transitionDelay = `${Math.min(i % 6, 5) * 60}ms`;
         ro.observe(el);

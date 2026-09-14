@@ -19,7 +19,7 @@ const parent = d.related ? projects.find((p) => p.id === d.related) : undefined;
     <div class="backbar"><a href="/artifacts">← All artifacts</a></div>
     <header class="dochead">
       <p class="eyebrow">{d.kind}</p>
-      <h1 style="font-size:clamp(30px,5vw,46px)">{d.title}</h1>
+      <h1 class="rv-w" style="font-size:clamp(30px,5vw,50px)">{d.title}</h1>
       {parent && (
         <p class="docmeta">
           <span>From <a href={`/work/${parent.id}`}>{parent.data.title}</a></span>

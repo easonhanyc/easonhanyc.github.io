@@ -8,7 +8,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 <BaseLayout title="Work · Eason Han" description="Product case studies and builds by Yichen (Eason) Han: 0-to-1 products, AI tooling, and full-stack engineering.">
   <div class="wrap sectionpad">
     <p class="eyebrow">{projects.length} projects</p>
-    <h2 style="max-width:16ch">The full shelf.</h2>
+    <h2 class="rv-w" style="max-width:16ch">The full shelf.</h2>
     <p class="sub">Filter by what you're actually screening for.</p>
     <WorkGrid projects={projects} />
   </div>
