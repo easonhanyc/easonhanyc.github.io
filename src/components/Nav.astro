@@ -44,4 +44,12 @@ const is = (p: string) => path === p || (p !== '/' && path.startsWith(p));
     .navlinks{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 20px),transparent);
                       mask-image:linear-gradient(90deg,#000 calc(100% - 20px),transparent)}
   }
+
+  /* Touch targets — last, because the narrow-width rule above also matches on a
+     phone and sets `padding` as a shorthand. Same specificity, so source order
+     decides. Lives here rather than global.css since Astro scopes these. */
+  @media (pointer:coarse){
+    .navlinks a,.themebtn{padding-block:15px}
+    .sig{padding-block:10px}
+  }
 </style>

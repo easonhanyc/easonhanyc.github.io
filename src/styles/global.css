@@ -406,3 +406,25 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
   .plate figcaption::before{content:"Scroll the diagram sideways · "; color:var(--gold)}
   .panel .plate figcaption::before{color:var(--gold)}
 }
+
+/* ── touch targets ──────────────────────────────────────────────────
+   Several controls are visually small by design — a 21px stepper segment,
+   a 30px nav link. Rather than inflate them and bloat the sticky bar, give
+   each an invisible 44px hit area on touch devices only. */
+@media (pointer:coarse){
+  .railb,.sig{position:relative}
+  .railb::before,.sig::before{
+    content:""; position:absolute; left:0; right:0; top:50%;
+    height:44px; transform:translateY(-50%);
+  }
+  /* A project card should be tappable anywhere, not on a 21px strip of title.
+     The title link stretches over the whole card. */
+  .proj{position:relative}
+  .proj h3 a::after{content:""; position:absolute; inset:0}
+  /* .navlinks scrolls horizontally, and an overflow container clips a
+     pseudo-element that reaches past the content box, so the nav uses real
+     padding instead — set in Nav.astro, where the scoped styles live. */
+  .fbtn{padding-block:14px}
+  .backbar a{position:relative; display:inline-block}
+  .backbar a::before{content:""; position:absolute; left:-6px; right:-6px; top:50%; height:44px; transform:translateY(-50%)}
+}

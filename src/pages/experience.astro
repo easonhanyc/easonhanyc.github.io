@@ -96,4 +96,8 @@ const titleOf = (id: string) => projects.find((p) => p.id === id)?.data.title ??
     .tl-item{grid-template-columns:minmax(0,150px) minmax(0,1fr); gap:0 28px; padding-left:30px}
     .tl-when{text-align:right; padding-right:4px}
   }
+
+  /* Touch target — scoped, and after the rule above, since Astro's scoping
+     outranks global.css and source order settles the tie. */
+  @media (pointer:coarse){ .tl-rel .chip{padding-block:11px} }
 </style>

@@ -28,4 +28,11 @@ const year = new Date().getFullYear();
   .links{display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:22px; font-family:var(--mono); font-size:12px}
   .links a{color:var(--ink-2)}
   .fine{margin-top:26px; font-family:var(--mono); font-size:11px; color:var(--ink-3)}
+
+  /* Real padding rather than an overlay: the links wrap onto several rows and
+     overlapping hit areas would steal taps from the row above. */
+  @media (pointer:coarse){
+    .links{gap:0 22px}
+    .links a{display:inline-block; padding-block:12px}
+  }
 </style>

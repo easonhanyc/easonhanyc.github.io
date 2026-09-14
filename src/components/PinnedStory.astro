@@ -38,8 +38,10 @@ const { eyebrow, title, sub, href, steps } = Astro.props;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const pins = Array.from(document.querySelectorAll<HTMLElement>('[data-pin]'));
 
-  // A short viewport can't hold a pinned stage without clipping content.
-  if (pins.length && !reduce && window.innerHeight >= 560) {
+  // A short viewport can't hold a pinned stage without clipping content, and on a
+  // phone scroll-jacking two and a half screens is disorienting rather than
+  // cinematic — narrow screens get the plain stacked grid instead.
+  if (pins.length && !reduce && window.innerHeight >= 560 && window.innerWidth >= 760) {
     document.documentElement.classList.add('js-pin');
 
     for (const pin of pins) {
