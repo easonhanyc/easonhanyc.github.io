@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PinnedStory from '../components/PinnedStory.astro';
-import ProjectCard from '../components/ProjectCard.astro';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 const aws = projects.find((p) => p.id === 'action-hub')!;
@@ -12,22 +11,15 @@ const rest = projects.filter((p) => !p.data.featured);
 // from card metrics, because the story is the point rather than the figures.
 const tripmatchSteps = [
   { n: '6',   u: 'Days — PRD to public launch',
-    d: 'Sole PM, designer and engineer. The non-goals were written before any code, which is the only reason a week was enough.' },
+    d: 'Sole PM, designer and engineer, start to finish — specification, design, implementation, launch.' },
   { n: '34',  u: 'Commits — 168 automated checks',
-    d: 'Verified sign-in, structured board, seat claims with capacity enforcement, comments, audit log, feedback inbox.' },
+    d: '168 automated checks, which is what made rebuilding the storage layer the day before launch a decision rather than a gamble.' },
   { n: '3',   u: 'Defects — found in my own v1',
     d: "The day before launch, a race condition let two simultaneous posts silently delete each other. You post, you see it appear, on refresh it's gone — so you post again, which makes the race more likely. I rebuilt the storage layer rather than ship it." },
   { n: '400', u: 'Cohort served — live today',
     d: 'Three feedback-driven iterations after launch: owner-scoped delete, in-place edit that preserves comment threads, and date chips that only appear once the board spans more than one date.' },
 ];
 
-const nonGoals = [
-  { t: 'Payments / cost-splitting', why: 'Venmo already works. Adding money introduces trust and liability complexity that buys no additional matches.' },
-  { t: 'Real-time dispatch', why: 'The job is surfacing the match. Logistics between two classmates is already solved — they text each other.' },
-  { t: 'A WhatsApp replacement', why: 'Final coordination stays in chat. Owning the whole conversation would mean competing with an app at 100% adoption.' },
-  { t: 'Public / open matching', why: 'Opening to strangers re-introduces the exact trust problem the design exists to avoid.' },
-  { t: 'A native mobile app', why: 'A link is the right form factor — zero install friction, one tap from the group chat where the users already are. Distribution determined the form factor, and later produced the nastiest bug in the project.' },
-];
 ---
 <BaseLayout
   title="Eason Han"
@@ -35,15 +27,13 @@ const nonGoals = [
 >
   <header class="hero wrap">
     <p class="eyebrow">Product Management · Berkeley Haas</p>
-    <h1>I write the PRD<span class="dim">,</span> then I build the thing<span class="dim">.</span></h1>
+    <h1>Product thinking<span class="dim">,</span> and the hands to build it<span class="dim">.</span></h1>
     <p class="lede">
-      MBA / MEng candidate at <strong>UC Berkeley Haas &amp; IEOR</strong>. Three years at
-      <strong>AWS</strong> building analytics products for an $80B sales org — then I started
-      shipping my own.
+      MBA / MEng candidate at <strong>UC Berkeley Haas &amp; IEOR</strong>.
+      Three years at <strong>AWS</strong> building analytics products for an $80B sales org.
     </p>
     <div class="chips">
       <a class="chip solid" href="/work">See the work</a>
-      <a class="chip" href="https://tripmatch-app.github.io/">Live product ↗</a>
       <a class="chip" href="https://www.linkedin.com/in/yichen-eason-han/">LinkedIn ↗</a>
       <a class="chip" href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
     </div>
@@ -52,7 +42,7 @@ const nonGoals = [
   <div class="strip">
     <div class="wrap">
       <div><span class="dot"></span>Seeking <b>Summer 2027 PM internship</b></div>
-      <div>Focus <b>consumer · AI/GenAI · enterprise data</b></div>
+      <div>Focus <b>AI · Mobility · Consumer · Enterprise</b></div>
       <div>Based <b>Berkeley, CA</b></div>
     </div>
   </div>
@@ -60,29 +50,10 @@ const nonGoals = [
   <PinnedStory
     eyebrow="01 — Shipped alone · Aug 2026"
     title="TripMatch"
-    sub="A 400-person cohort coordinated rides by scrolling a WhatsApp chat, where requests get buried and matching seats go unused. I shipped a verified, Berkeley-only rides board — problem framing through production."
+    sub="Rides for a 400-person cohort, shipped alone in under a week. The constraint that made it possible: five things written down before any code that the product would never do."
     href="/work/tripmatch"
     steps={tripmatchSteps}
   />
-
-  <section class="sectionpad" id="nongoals">
-    <div class="narrow">
-      <p class="eyebrow rv">The product decision</p>
-      <h2 class="rv" style="max-width:18ch">Non-goals are the product decision.</h2>
-      <p class="sub rv">
-        TripMatch shipped in six days because I wrote down what it would never do, before writing
-        any code. Every line below was a deliberate cut, and each one bought the schedule.
-      </p>
-      <div class="ng-grid">
-        {nonGoals.map((n) => (
-          <div class="ng rv">
-            <div class="t">{n.t}</div>
-            <p class="why">{n.why}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
 
   <section class="panel">
     <div class="stage wrap sectionpad">
@@ -90,9 +61,9 @@ const nonGoals = [
         <p class="eyebrow">02 — 0 → 1 at scale · AWS, 2023–2026</p>
         <h2>Action Hub</h2>
         <p class="sub">
-          A sales org running on roughly 200 dashboards, with no agreed place to start the day.
-          I owned the technical chapter's first tab: every open issue across a seller's accounts,
-          ranked, with the next action named on each one.
+          Two hundred dashboards, and no agreed answer to "where do I start?". I owned the first
+          tab a seller lands on — which made the real question not what to show, but what to put
+          at the top and what to say about it.
         </p>
         <a class="chip" href="/work/action-hub">Read the case study →</a>
       </div>
@@ -112,9 +83,11 @@ const nonGoals = [
       <p class="eyebrow rv">Everything else</p>
       <h2 class="rv" style="max-width:16ch">The full shelf.</h2>
       <p class="sub rv">{rest.length} more — agentic tooling, forecasting, data governance, go-to-market, full-stack engineering, and reinforcement learning.</p>
-      <div class="grid">
-        {rest.map((p) => <ProjectCard project={p} />)}
-      </div>
+      <ul class="shelf rv">
+        {rest.map((p) => (
+          <li><a href={`/work/${p.id}`}>{p.data.title}</a></li>
+        ))}
+      </ul>
       <p style="margin-top:28px"><a class="chip" href="/work">All work, filterable →</a></p>
     </div>
   </section>
@@ -122,6 +95,19 @@ const nonGoals = [
 
 <style>
   .hero{padding:76px 0 60px}
+
+  /* Title-only index. No summaries or metrics — those live on /work and on the page itself. */
+  .shelf{list-style:none; margin:34px 0 0; padding:0; border-top:1px solid var(--border)}
+  .shelf li{border-bottom:1px solid var(--border)}
+  .shelf a{
+    display:flex; align-items:baseline; justify-content:space-between; gap:20px;
+    padding:17px 2px; color:var(--ink); text-decoration:none;
+    font-family:var(--display); font-size:clamp(19px,2.4vw,25px); letter-spacing:-.02em;
+  }
+  .shelf a::after{content:"→"; font-family:var(--mono); font-size:14px; color:var(--ink-3)}
+  .shelf a:hover{color:var(--accent); text-decoration:none}
+  .shelf a:hover::after{color:var(--accent); transform:translateX(4px)}
+  @media (prefers-reduced-motion:reduce){ .shelf a:hover::after{transform:none} }
   h1 .dim{color:var(--ink-3)}
   @media (max-width:560px){ .hero{padding:52px 0 44px} }
 </style>

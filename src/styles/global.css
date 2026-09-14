@@ -222,11 +222,6 @@ h2{font-size:clamp(30px,4.6vw,54px); line-height:1.06; letter-spacing:-.03em; fo
 }
 
 /* ---- non-goals: struck-through motif ---- */
-.ng-grid{border-top:1px solid var(--border)}
-.ng{display:grid; grid-template-columns:minmax(0,1fr); gap:6px; padding:22px 0; border-bottom:1px solid var(--border); align-items:baseline}
-@media (min-width:720px){ .ng{grid-template-columns:minmax(0,26ch) minmax(0,1fr); gap:36px} }
-.ng .t{font-family:var(--mono); font-size:14px; font-weight:500; color:var(--ink-3); text-decoration:line-through; text-decoration-color:var(--gold); text-decoration-thickness:2px}
-.ng .why{font-family:var(--prose); font-size:15.5px; line-height:1.6; color:var(--ink-2); margin:0}
 
 /* ---- project grid ---- */
 .filters{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 28px}

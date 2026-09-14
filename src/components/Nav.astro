@@ -3,7 +3,7 @@ const path = Astro.url.pathname;
 const is = (p: string) => path === p || (p !== '/' && path.startsWith(p));
 ---
 <nav class="bar">
-  <a class="sig" href="/">Eason Han <span>· Product</span></a>
+  <a class="sig" href="/">Eason Han</a>
   <div class="navlinks">
     <a href="/work" aria-current={is('/work') ? 'page' : undefined}>Work</a>
     <a href="/experience" aria-current={is('/experience') ? 'page' : undefined}>Experience</a>
@@ -23,7 +23,6 @@ const is = (p: string) => path === p || (p !== '/' && path.startsWith(p));
   }
   .sig{font-weight:600; letter-spacing:-.02em; font-size:15px; color:var(--ink)}
   .sig:hover{text-decoration:none; color:var(--accent)}
-  .sig span{color:var(--ink-3); font-weight:400}
   .navlinks{display:flex; align-items:center; gap:6px; flex-wrap:wrap}
   .navlinks a,.themebtn{
     font-family:var(--mono); font-size:11px; letter-spacing:.07em; text-transform:uppercase;
@@ -34,7 +33,6 @@ const is = (p: string) => path === p || (p !== '/' && path.startsWith(p));
   .navlinks a[aria-current="page"]{color:var(--ink); border-color:var(--border-strong)}
   @media (max-width:560px){
     .bar{padding:11px 16px; gap:8px}
-    .sig span{display:none}
     .navlinks{gap:2px}
     .navlinks a,.themebtn{padding:6px 7px; font-size:10px; letter-spacing:.05em}
   }

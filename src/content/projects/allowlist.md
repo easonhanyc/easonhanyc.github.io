@@ -1,5 +1,5 @@
 ---
-title: "Allowlist"
+title: "Allowlist — Data Access Management App"
 description: "Replacing a freely editable shared spreadsheet — the one governing who could see whose data — with a constrained, logged application."
 summary: "Exceptions to sellers' data access lived in a spreadsheet anyone could edit, with no record of who changed what. Allowlist replaced it with a constrained application: read everything, add, remove — but never edit in place, and every action logged."
 role: "Builder and product owner · AWS Global Sales Strategy & Analytics"
