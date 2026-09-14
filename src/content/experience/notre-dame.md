@@ -7,7 +7,7 @@ end: "May 2023"
 kind: "education"
 summary: "A double major in business analytics and applied mathematics — the quantitative methods on one side, the business framing for them on the other."
 outcomes:
-  - "Best Insight, ASA DataFest 2023"
+  - "Won Best Insight, against a field of 10–15 competing teams"
 related: ["datafest-2023", "formula-1-trends", "kickstarter-scraper", "asteroid-screening"]
 order: 6
 ---

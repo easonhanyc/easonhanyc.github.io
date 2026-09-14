@@ -1,7 +1,7 @@
 ---
-title: "DataFest 2023"
+title: "DataFest 2023 — ASA Data Analysis Competition"
 description: "48 hours on the American Bar Association's free legal advice platform — and the finding that the categories with the fewest cases were the ones going unanswered."
-summary: "An open brief from the American Statistical Association, real data, and 48 hours. I led a five-person team and owned the analysis: the categories with the fewest cases carried the highest non-response rates — and our own recommendation system retrieved worst in exactly those categories. Won Best Insight."
+summary: "An open brief, real data, and 48 hours. I led a five-person team and owned the analysis: the categories with the fewest cases carried the highest non-response rates — and our own recommendation system retrieved worst in exactly those categories. Won Best Insight."
 role: "Team lead · trend analysis and framing"
 period: "2023 · 48 hours"
 depth: "project"
@@ -21,7 +21,7 @@ featured: false
 order: 9
 ---
 
-**Event:** ASA DataFest, hosted by Notre Dame's statistics department
+**Host:** Notre Dame's statistics department
 
 > **The 30-second version.** The American Statistical Association hands you a dataset, an open brief and **48 hours**. Ours was the American Bar Association's platform, where people on low incomes post legal questions and volunteer lawyers answer them free. The intuitive read is that the busiest areas of law fall furthest behind. The data said the reverse — and that reversal is what the submission was built on, including what it implied about the system we were proposing ourselves.
 
