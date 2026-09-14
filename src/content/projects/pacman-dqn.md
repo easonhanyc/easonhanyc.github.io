@@ -34,6 +34,26 @@ order: 8
 
 Mean score across five fixed evaluation seeds rose from **492 to 906**. Four of five seeds improved; one got worse.
 
+<figure class="dg">
+<svg viewBox="0 0 700 250" role="img" aria-labelledby="pm-t" xmlns="http://www.w3.org/2000/svg">
+<title id="pm-t">Mean evaluation score rose from 492 to 906, but the untrained baseline was not random: it repeated a single action 95.4 per cent of the time</title>
+<g font-family="var(--mono)" font-size="10.5">
+<text x="0" y="12" fill="var(--ink-3)" letter-spacing="1.2">MEAN EVALUATION SCORE</text>
+<rect x="0" y="26" width="150" height="34" rx="3" fill="var(--ink)" opacity="0.16"/>
+<rect x="0" y="70" width="276" height="34" rx="3" fill="var(--accent)"/>
+<text x="160" y="48" fill="var(--ink-2)">492 · untrained</text>
+<text x="286" y="92" fill="var(--ink-2)">906 · trained &#183; +84%</text>
+<line x1="0" y1="132" x2="700" y2="132" stroke="var(--border-strong)"/>
+<text x="0" y="158" fill="var(--ink-3)" letter-spacing="1.2">WHAT THE UNTRAINED BASELINE ACTUALLY DID</text>
+<rect x="0" y="172" width="620" height="30" rx="3" fill="var(--gold)" opacity="0.85"/>
+<rect x="622" y="172" width="78" height="30" rx="3" fill="var(--ink)" opacity="0.16"/>
+<text x="12" y="192" fill="#1a1a1a" font-weight="500">ONE SINGLE ACTION, REPEATED — 95.4%</text>
+<text x="0" y="224" fill="var(--ink-2)">Not a random agent. A stuck one — so the gain is measured against a floor that barely plays.</text>
+</g>
+</svg>
+<figcaption>Figures as reported in the write-up below.</figcaption>
+</figure>
+
 Then I replayed the untrained checkpoint and logged what it was actually doing. **95.4% of its moves were a single action — UPLEFT.**
 
 An untrained convolutional network scores every screen almost identically, so the same action wins the `argmax` every time. The "baseline" agent ploughs along whatever pellets lie in one direction, banks 350 points in its first 300 decisions, then scores *literally nothing* for its remaining 260 — jammed in a corner until the ghosts arrive.

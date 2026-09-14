@@ -96,6 +96,28 @@ All three were validated against an isolated mock backend — multiple test pers
 
 This is the decision I'm proudest of, because the easy path was to ship.
 
+<figure class="dg">
+<svg viewBox="0 0 700 216" role="img" aria-labelledby="tm-t" xmlns="http://www.w3.org/2000/svg">
+<title id="tm-t">A link tapped inside WhatsApp opens in that app&#8217;s embedded browser, where a popup sign-in has no opener window to return a credential to, so authentication dies on a blank page</title>
+<defs><marker id="tm-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--border-strong)"/></marker></defs>
+<g font-family="var(--mono)" font-size="10" text-anchor="middle">
+<text x="8" y="14" fill="var(--ink-3)" text-anchor="start" letter-spacing="1.2">THE CHANNEL THE PRODUCT DEPENDS ON</text>
+<rect x="8" y="26" width="152" height="46" rx="4" fill="var(--surface)" stroke="var(--border-strong)"/><text x="84" y="46" fill="var(--ink)">LINK SHARED IN</text><text x="84" y="62" fill="var(--ink)">THE GROUP CHAT</text>
+<path d="M162 49 L196 49" stroke="var(--border-strong)" stroke-width="1.4" marker-end="url(#tm-a)"/>
+<rect x="200" y="26" width="152" height="46" rx="4" fill="var(--surface)" stroke="var(--border-strong)"/><text x="276" y="46" fill="var(--ink)">OPENS IN THE APP&#8217;S</text><text x="276" y="62" fill="var(--ink)">EMBEDDED BROWSER</text>
+<path d="M354 49 L388 49" stroke="var(--border-strong)" stroke-width="1.4" marker-end="url(#tm-a)"/>
+<rect x="392" y="26" width="152" height="46" rx="4" fill="var(--surface)" stroke="var(--border-strong)"/><text x="468" y="46" fill="var(--ink)">POPUP SIGN-IN</text><text x="468" y="62" fill="var(--ink)">HAS NO OPENER</text>
+<path d="M546 49 L580 49" stroke="var(--border-strong)" stroke-width="1.4" marker-end="url(#tm-a)"/>
+<rect x="584" y="26" width="108" height="46" rx="4" fill="var(--surface)" stroke="var(--gold)" stroke-width="1.6"/><text x="638" y="53" fill="var(--gold)">BLANK PAGE</text>
+<text x="350" y="116" fill="var(--ink-2)" font-size="11">The distribution channel and the single point of auth failure were the same thing.</text>
+<text x="350" y="140" fill="var(--ink-3)">INVISIBLE IN DESKTOP TESTING &#183; FOUND IN THE LAUNCH-HARDENING ROUND</text>
+<line x1="140" y1="164" x2="560" y2="164" stroke="var(--border-strong)"/>
+<text x="350" y="192" fill="var(--ink-3)">3 DEFECTS FOUND IN MY OWN V1 &#183; 168 AUTOMATED CHECKS &#183; 6 DAYS TO LAUNCH</text>
+</g>
+</svg>
+<figcaption>Redrawn for this portfolio.</figcaption>
+</figure>
+
 Prototype feedback produced the three product gaps above. Preparing for *public* launch surfaced a different class of problem entirely: **the v1 storage design would not have survived the cohort it was built for.** V1 stored the whole board as one JSON document in a hosted-JSON service. Against the expected load — ~400 students, ~200 concurrent posts — it had three defects:
 
 | Defect | Consequence if launched |

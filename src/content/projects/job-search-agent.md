@@ -34,6 +34,20 @@ order: 13
 
 The naive version shows every matching role. That version is unusable, and the reason is instructive.
 
+<figure class="dg">
+<svg viewBox="0 0 700 214" role="img" aria-labelledby="js-t" xmlns="http://www.w3.org/2000/svg">
+<title id="js-t">Roughly 29,400 postings per scan narrow to two roles per company, and a run that finds nothing new opens no issue at all</title>
+<g font-family="var(--mono)" font-size="10" text-anchor="middle">
+<rect x="14" y="10" width="672" height="34" rx="3" fill="var(--surface)" stroke="var(--border-strong)"/><text x="350" y="31" fill="var(--ink)">~29,400 POSTINGS SCANNED &#183; ABOUT 50 SECONDS, EVERY WEEKDAY</text>
+<rect x="104" y="54" width="492" height="34" rx="3" fill="var(--surface)" stroke="var(--border-strong)"/><text x="350" y="75" fill="var(--ink)">SUMMER 2027 PM AND MBA INTERNSHIPS, MATCHED ON TITLE</text>
+<rect x="194" y="98" width="312" height="34" rx="3" fill="var(--surface)" stroke="var(--border-strong)"/><text x="350" y="119" fill="var(--ink)">RANKED WITHIN EACH COMPANY</text>
+<rect x="264" y="142" width="172" height="34" rx="3" fill="var(--accent)"/><text x="350" y="163" fill="#ffffff">TOP 2 PER COMPANY</text>
+<text x="350" y="200" fill="var(--gold)" font-size="10.5">Nothing new today means no issue is opened. Silence is the common case.</text>
+</g>
+</svg>
+<figcaption>The filter is the easy half; the discarding is the product decision.</figcaption>
+</figure>
+
 Big hirers post in bulk — TikTok can list a dozen qualifying roles at once. Show everything and one company crowds out the other hundred, which is precisely backwards: the point of scanning broadly is to surface the companies you'd otherwise miss.
 
 So each company shows its **two most relevant postings**, and the rest collapse into a "+N more" link.

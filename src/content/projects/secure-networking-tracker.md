@@ -45,6 +45,27 @@ I routed every request through my own server instead — and the reasoning is th
 
 Three independent mechanisms enforce one rule: a row belongs to the user whose token created it.
 
+<figure class="dg">
+<svg viewBox="0 0 700 236" role="img" aria-labelledby="sn-t" xmlns="http://www.w3.org/2000/svg">
+<title id="sn-t">Two request paths: one through the API and one bypassing it entirely. Both are stopped at Postgres by row level security, which returns not found rather than forbidden</title>
+<defs><marker id="sn-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="var(--border-strong)"/></marker></defs>
+<g font-family="var(--mono)" font-size="10" text-anchor="middle">
+<rect x="8" y="20" width="140" height="42" rx="4" fill="var(--surface)" stroke="var(--border-strong)"/><text x="78" y="45" fill="var(--ink)">SIGNED-IN USER</text>
+<path d="M150 41 L188 41" stroke="var(--border-strong)" stroke-width="1.4" marker-end="url(#sn-a)"/>
+<rect x="192" y="20" width="150" height="42" rx="4" fill="var(--surface)" stroke="var(--border-strong)"/><text x="267" y="45" fill="var(--ink)">API LAYER</text>
+<path d="M344 41 L382 41" stroke="var(--border-strong)" stroke-width="1.4" marker-end="url(#sn-a)"/>
+<rect x="8" y="104" width="334" height="42" rx="4" fill="var(--surface)" stroke="var(--accent)" stroke-dasharray="5 4"/><text x="175" y="129" fill="var(--accent)">API LAYER BYPASSED ENTIRELY</text>
+<path d="M344 125 L382 125 L382 70" stroke="var(--accent)" stroke-width="1.4" fill="none" marker-end="url(#sn-a)"/>
+<rect x="386" y="20" width="150" height="126" rx="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.6"/><text x="461" y="72" fill="var(--ink)">POSTGRES</text><text x="461" y="90" fill="var(--accent)">ROW LEVEL SECURITY</text>
+<path d="M538 83 L576 83" stroke="var(--border-strong)" stroke-width="1.4" marker-end="url(#sn-a)"/>
+<rect x="580" y="62" width="112" height="42" rx="4" fill="var(--surface)" stroke="var(--border-strong)"/><text x="636" y="87" fill="var(--ink)">YOUR ROWS ONLY</text>
+<text x="350" y="186" fill="var(--ink-2)" font-size="10.5">Someone else&#8217;s contact returns 404, not 403 &#8212; a 403 would confirm the row exists.</text>
+<text x="350" y="210" fill="var(--ink-3)">3 INDEPENDENT OWNERSHIP MECHANISMS &#183; 28 VALIDATION TESTS</text>
+</g>
+</svg>
+<figcaption>Redrawn for this portfolio.</figcaption>
+</figure>
+
 1. **The database assigns ownership.** `user_id` is `NOT NULL DEFAULT auth.user_id()`. The API never sends it, and the validation schema strips it if a client tries — so the value always comes from the verified token.
 2. **RLS filters every statement.** Four policies for `authenticated`, covering select, insert, update and delete.
 3. **The application checks too.** Route handlers reject unauthenticated requests before touching the database. Convenience and depth — not the boundary.

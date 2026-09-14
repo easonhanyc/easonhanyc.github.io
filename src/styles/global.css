@@ -276,13 +276,13 @@ h2{font-size:clamp(30px,5.4vw,66px); line-height:1.06; letter-spacing:-.022em; f
 .backbar a:hover{color:var(--accent)}
 
 /* ---- inline diagrams inside prose ---- */
-.prose .dg{margin:30px 0; padding:0}
-.prose .dg svg{
-  display:block; width:100%; height:auto; max-width:100%;
-  border:1px solid var(--border); border-radius:6px; background:var(--surface); padding:18px 14px;
-}
+/* Work-page figures use the same rule-bracketed plate as the home page,
+   so a diagram reads as part of the argument rather than a card beside it. */
+.prose .dg{margin:40px 0; padding:24px 0; border-block:1px solid var(--border)}
+.prose .dg svg{display:block; width:100%; height:auto; max-width:100%}
 .prose .dg figcaption{
-  font-family:var(--mono); font-size:11px; color:var(--ink-3); margin-top:10px; text-align:center;
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-3); margin-top:14px;
 }
 
 /* ── project blocks ─────────────────────────────────────────

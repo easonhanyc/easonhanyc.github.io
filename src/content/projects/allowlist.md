@@ -61,7 +61,7 @@ That is the failure mode worth naming, because it doesn't look like a failure un
   <text x="26" y="80" font-size="10.5" fill="var(--ink-2)">&#183; free text, inconsistent names</text>
   <text x="26" y="104" font-size="10.5" fill="var(--ink-2)">&#183; prior state overwritten</text>
   <text x="26" y="128" font-size="10.5" fill="var(--ink-2)">&#183; no record of who, or when</text>
-  <text x="26" y="148" font-size="9.5" fill="var(--gold)">&#8220;why does this person have access?&#8221; &#8212; unanswerable</text>
+  <text x="26" y="148" font-size="9.5" fill="var(--gold)">&#8220;why does this person have access?&#8221; &#8212; no answer</text>
   <path d="M306 92 L338 92" stroke="var(--border-strong)" stroke-width="1.5" marker-end="url(#al-ar)"/>
   <rect x="346" y="26" width="346" height="132" rx="8" fill="var(--surface)" stroke="var(--accent)"/>
   <text x="519" y="20" font-size="10" fill="var(--accent)" text-anchor="middle">after &#8212; Allowlist</text>
