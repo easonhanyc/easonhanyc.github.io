@@ -4,11 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Highlights from '../components/Highlights.astro';
 import { viz } from '../lib/viz';
 
+// viz is shared with /work, so a project's drawing is defined once.
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
-const aws = projects.find((p) => p.id === 'action-hub')!;
 const rest = projects.filter((p) => !p.data.featured);
-
-// Shared with /work, so a project's drawing is defined once.
 
 // The four things the product actually does, in the words a stranger would use.
 // Mirrors the metrics block in tripmatch.md, so the home page, the /work card and
