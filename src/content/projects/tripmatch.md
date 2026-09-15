@@ -200,7 +200,7 @@ The honest caveat I'd give in an interview: there is **no pre-existing baseline*
 |---|---|
 | [Product Requirements Document](/artifacts/tripmatch-prd) | Problem framing, non-goals, user stories, P0/P1/P2 requirements with acceptance criteria, success metrics, open questions |
 | [Infrastructure & scalability analysis](/artifacts/tripmatch-infrastructure) | The pre-launch architecture review — what would have broken, at what load, and the mitigation |
-| [Live product](https://tripmatch-app.github.io/) | The shipped app |
-| [Source repository](https://github.com/tripmatch-app/tripmatch-app.github.io) | 34 commits, 168 automated checks, deploy runbook |
+| <a href="https://tripmatch-app.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Live product (opens in a new tab)">Live product</a> | The shipped app |
+| <a href="https://github.com/tripmatch-app/tripmatch-app.github.io" target="_blank" rel="noopener noreferrer" aria-label="Source repository (opens in a new tab)">Source repository</a> | 34 commits, 168 automated checks, deploy runbook |
 
 ---

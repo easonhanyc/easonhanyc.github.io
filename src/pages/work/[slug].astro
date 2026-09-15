@@ -43,8 +43,8 @@ const artifacts = (await getCollection('artifacts'))
 
       {(d.links.live || d.links.code || d.links.prd) && (
         <div class="chips" style="margin:26px 0 8px">
-          {d.links.live && <a class="chip solid" href={d.links.live}>Try it live ↗</a>}
-          {d.links.code && <a class="chip" href={d.links.code}>Source ↗</a>}
+          {d.links.live && <a class="chip solid" href={d.links.live} target="_blank" rel="noopener noreferrer" aria-label="Try it live (opens in a new tab)">Try it live ↗</a>}
+          {d.links.code && <a class="chip" href={d.links.code} target="_blank" rel="noopener noreferrer" aria-label="Source (opens in a new tab)">Source ↗</a>}
           {d.links.prd && <a class="chip" href={d.links.prd}>The PRD →</a>}
         </div>
       )}
