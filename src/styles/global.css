@@ -213,6 +213,9 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
   font-size:clamp(34px,5vw,52px); font-weight:700; letter-spacing:-.025em; line-height:1.04;
   color:var(--panel-ink); font-variant-numeric:tabular-nums; display:block; text-wrap:balance;
 }
+.step .viz{display:none}
+.step .viz svg{display:block; width:100%; height:auto}
+:root.js-hl .step .viz{display:block; margin-bottom:26px}
 .step .u{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-top:14px; display:block}
 .step .d{font-family:var(--prose); font-size:17px; line-height:1.6; color:var(--panel-ink-2); margin-top:14px}
 @media (min-width:760px){ .steps{grid-template-columns:repeat(4,1fr)} }
@@ -240,7 +243,7 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
   transition:opacity .45s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.22,1,.36,1);
 }
 :root.js-hl .step.on{opacity:1; transform:none; pointer-events:auto}
-:root.js-hl .step .n{font-size:clamp(44px,7.2vw,96px)}
+:root.js-hl .step .n{font-size:clamp(38px,4.4vw,62px)}
 :root.js-hl .step .d{font-size:clamp(17px,1.5vw,20px); max-width:46ch}
 
 :root.js-hl .arw{
@@ -266,6 +269,13 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
 .railb.on{color:var(--gold)}
 .railb:hover{color:var(--panel-ink)}
 .railb:focus-visible{outline:2px solid var(--gold); outline-offset:4px; border-radius:2px}
+
+@media (min-width:1000px){
+  .hl .stage{display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:0 62px; align-items:start}
+  .hl-head .sub{max-width:none}
+  .steps{margin-top:0}
+  :root.js-hl .deck{margin-top:0; gap:30px 20px}
+}
 
 /* Narrow: the step takes the full width and the two buttons drop to either end
    of the rail, so they stay on opposite sides without crowding the text. */

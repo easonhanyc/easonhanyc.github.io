@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Highlights from '../components/Highlights.astro';
 import { viz } from '../lib/viz';
+import { tripmatchMocks as mock } from '../lib/tripmatch-mocks';
 
 // viz is shared with /work, so a project's drawing is defined once.
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
@@ -12,13 +13,13 @@ const rest = projects.filter((p) => !p.data.featured);
 // Mirrors the metrics block in tripmatch.md, so the home page, the /work card and
 // the case-study header all say the same thing.
 const tripmatchSteps = [
-  { n: 'One board', u: 'Every ride in one place',
+  { n: 'One board', u: 'Every ride in one place', v: mock.board,
     d: 'Drivers post the trips they are already making, riders post the seats they need, and both land on one page \u2014 instead of scrolling back through a 400-person group chat to find out if anyone is going your way.' },
-  { n: '+1',        u: 'One tap and the seat is yours',
+  { n: '+1',        u: 'One tap and the seat is yours', v: mock.plusOne,
     d: 'Tap +1 on a ride and you are on it. The seat count drops in front of everyone looking at the board, so nobody has to read a thread to work out who is actually going.' },
-  { n: 'No app',    u: 'Opens from the group chat',
+  { n: 'No app',    u: 'Opens from the group chat', v: mock.noApp,
     d: 'It is a link, not a download. Tap it in the chat the class already uses and the board is open on whatever you are holding.' },
-  { n: 'Verified',  u: 'Berkeley classmates only',
+  { n: 'Verified',  u: 'Berkeley classmates only', v: mock.verified,
     d: 'Access is an email check against a verified Berkeley account, enforced on the server. You know who is in the car before you get in.' },
 ];
 ---
@@ -60,8 +61,8 @@ const tripmatchSteps = [
   <section class="sectionpad">
     <div class="wrap">
       <p class="eyebrow eyebrow-lg rv">02 — 0→1 at scale · AWS, 2023–2026</p>
-      <h2 class="rv-w ahead">Two hundred dashboards.<br><span class="em">One place to start.</span></h2>
-      <p class="sub rv ahead">
+      <h2 class="rv-w">Two hundred dashboards.<br><span class="em">One place to start.</span></h2>
+      <p class="sub rv">
         The screen a seller opens first thing in the morning. It reads across every account they
         own, ranks what needs attention today, and writes the next step on each line — so the day
         starts with a list to work through instead of a hunt across two hundred dashboards.
@@ -128,8 +129,6 @@ const tripmatchSteps = [
   .hero{padding-block:104px 74px}
   /* the section descriptions were too small to read at a glance */
   .sub{font-size:20px}
-  /* the display column hangs on a left axis; figures break past it */
-  @media (min-width:1000px){ .ahead{margin-left:7%} }
   @media (max-width:560px){ .hero{padding-block:62px 46px} }
 </style>
 

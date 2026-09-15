@@ -69,6 +69,35 @@ const bad = (m) => { console.log('  ✗ ' + m); fail++; };
       await page.waitForTimeout(520);
     }
     if (!fail) ok(`${shape.steps} steps cycle and wrap, one at a time, none clipped`);
+
+    // each card carries a mock screen: its labels have to be readable at this
+    // width, and nothing may be drawn outside the viewBox it is scaled by
+    const mocks = await page.evaluate(() => {
+      const out = [];
+      for (const s of document.querySelectorAll('.step')) {
+        const svg = s.querySelector('.viz svg');
+        if (!svg) continue;
+        const vb = svg.viewBox.baseVal;
+        const scale = svg.getBoundingClientRect().width / vb.width;
+        if (!scale) continue;                       // hidden in the no-JS fallback
+        const labels = [...svg.querySelectorAll('text')]
+          .map((t) => ({ t: t.textContent.slice(0, 20), px: +(parseFloat(getComputedStyle(t).fontSize) * scale).toFixed(1) }));
+        const escaped = [...svg.querySelectorAll('text,rect,circle,path')]
+          .filter((el) => { const b = el.getBBox(); return b.x < -0.5 || b.y < -0.5 || b.x + b.width > vb.width + 0.5 || b.y + b.height > vb.height + 0.5; })
+          .map((el) => el.tagName + (el.textContent ? `:"${el.textContent.slice(0, 18)}"` : ''));
+        out.push({ name: s.querySelector('.n').textContent, min: labels.length ? Math.min(...labels.map((l) => l.px)) : null,
+                   worst: labels.length ? labels.reduce((a, b) => (b.px < a.px ? b : a)).t : '', escaped });
+      }
+      return out;
+    });
+    if (mocks.length) {
+      const tiny = mocks.filter((m) => m.min !== null && m.min < 9);
+      const out = mocks.filter((m) => m.escaped.length);
+      tiny.forEach((m) => bad(`"${m.name}" mock label at ${m.min}px ("${m.worst}") — under 9px`));
+      out.forEach((m) => bad(`"${m.name}" mock draws outside its viewBox: ${JSON.stringify(m.escaped.slice(0, 3))}`));
+      if (!tiny.length && !out.length)
+        ok(`${mocks.length} mock screens legible (min ${Math.min(...mocks.map((m) => m.min)).toFixed(1)}px) and inside their viewBox`);
+    }
     await page.close();
   }
 

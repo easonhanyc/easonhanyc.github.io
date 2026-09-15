@@ -6,7 +6,7 @@
 // either side. There is deliberately no scroll-driven behaviour here: pinning
 // the section made the page feel stuck, which is the opposite of inviting
 // someone to keep reading.
-interface Step { n: string; u: string; d: string }
+interface Step { n: string; u: string; d: string; v?: string }
 interface Props { eyebrow: string; title: string; sub: string; href: string; steps: Step[] }
 const { eyebrow, title, sub, href, steps } = Astro.props;
 
@@ -30,6 +30,7 @@ const chev = (d: string) =>
       <div class="steps" data-steps>
         {steps.map((s) => (
           <article class="step" data-step>
+            {s.v && <span class="viz" set:html={s.v} />}
             <span class="n">{s.n}</span>
             <span class="u">{s.u}</span>
             <p class="d">{s.d}</p>
