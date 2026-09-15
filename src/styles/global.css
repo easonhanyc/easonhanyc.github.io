@@ -116,6 +116,11 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
 .panel h1,.panel h2,.panel h3{color:var(--panel-ink)}
 .panel .sub{color:var(--panel-ink-2)}
 .panel .eyebrow{color:var(--panel-ink-3)}
+/* The home page's section labels are the only thing naming what kind of work each
+   section is, so they carry more weight than a page eyebrow. The .panel rule needs
+   the doubled class or the line above outranks it. */
+.eyebrow-lg{font-size:13px; letter-spacing:.14em; color:var(--ink-2); font-weight:600}
+.panel .eyebrow.eyebrow-lg{color:var(--panel-ink-2)}
 .panel a{color:var(--gold)}
 
 /* long-form prose */

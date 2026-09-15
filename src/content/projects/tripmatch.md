@@ -10,14 +10,14 @@ badges: ["0 \u2192 1"]
 live: true
 tags: ["product", "eng", "shipped"]
 metrics: 
-  - n: "5"
-    l: "non-goals, fixed before any code"
+  - n: "One board"
+    l: "every ride in one place"
   - n: "+1"
-    l: "had to mean exactly one thing"
-  - n: "1 tap"
-    l: "from the group chat, no install"
+    l: "one tap and the seat is yours"
+  - n: "No app"
+    l: "opens from the group chat"
   - n: "Verified"
-    l: "Berkeley-only access"
+    l: "Berkeley classmates only"
 links: 
   live: "https://tripmatch-app.github.io/"
   code: "https://github.com/tripmatch-app/tripmatch-app.github.io"

@@ -10,17 +10,18 @@ const rest = projects.filter((p) => !p.data.featured);
 
 // Shared with /work, so a project's drawing is defined once.
 
-// Editorial narrative for the one cinematic moment — hand-written, not derived
-// from card metrics, because the story is the point rather than the figures.
+// The four things the product actually does, in the words a stranger would use.
+// Mirrors the metrics block in tripmatch.md, so the home page, the /work card and
+// the case-study header all say the same thing.
 const tripmatchSteps = [
-  { n: '5',        u: 'Non-goals, fixed before any code',
-    d: 'No payments, no dispatch, no native app, no WhatsApp replacement, no open matching. Each was a deliberate cut, and the list is why the scope held.' },
-  { n: '+1',       u: 'Had to mean exactly one thing',
-    d: 'On a driver\u2019s post it read as either \u201cI want a seat\u201d or \u201cI\u2019m also driving that way\u201d, and nothing stopped six people claiming three seats. Until it meant one thing and the cap was enforced in the write, the number on a post counted nothing.' },
-  { n: '1 tap',    u: 'From the group chat to the board',
-    d: 'A link is the right form factor \u2014 no install, one tap from the chat the users are already in. That choice set the form factor, and later produced the nastiest bug in the project.' },
-  { n: 'Verified', u: 'Berkeley-only, by design',
-    d: 'Access is an email match against a verified account, enforced server-side. Opening it to strangers would have re-introduced exactly the trust problem the product exists to avoid.' },
+  { n: 'One board', u: 'Every ride in one place',
+    d: 'Drivers post the trips they are already making, riders post the seats they need, and both land on one page \u2014 instead of scrolling back through a 400-person group chat to find out if anyone is going your way.' },
+  { n: '+1',        u: 'One tap and the seat is yours',
+    d: 'Tap +1 on a ride and you are on it. The seat count drops in front of everyone looking at the board, so nobody has to read a thread to work out who is actually going.' },
+  { n: 'No app',    u: 'Opens from the group chat',
+    d: 'It is a link, not a download. Tap it in the chat the cohort already uses and the board is open on whatever you are holding.' },
+  { n: 'Verified',  u: 'Berkeley classmates only',
+    d: 'Access is an email check against a verified Berkeley account, enforced on the server. You know who is in the car before you get in.' },
 ];
 ---
 <BaseLayout
@@ -37,6 +38,7 @@ const tripmatchSteps = [
     <div class="chips rv">
       <a class="chip solid" href="/work">See the work</a>
       <a class="chip" href="https://www.linkedin.com/in/yichen-eason-han/">LinkedIn ↗</a>
+      <a class="chip" href="https://github.com/easonhanyc">GitHub ↗</a>
       <a class="chip" href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
     </div>
   </header>
@@ -50,20 +52,21 @@ const tripmatchSteps = [
   </div>
 
   <PinnedStory
-    eyebrow="01 — Shipped alone · Aug 2026"
+    eyebrow="01 — 0→1 build · Aug 2026"
     title="TripMatch"
-    sub="A verified, Berkeley-only rides board for the Haas cohort — problem framing through production, alone. The part worth reading is what I wrote down that it would never do, and what broke when I tested it against its own launch load."
+    sub="A rides board for the Berkeley Haas cohort. Someone driving to the airport posts the trip; whoever needs the seat taps once and it is theirs. It opens from a link in the group chat, with no app to install, and only verified classmates can see it. I designed it, built it and shipped it."
     href="/work/tripmatch"
     steps={tripmatchSteps}
   />
 
   <section class="sectionpad">
     <div class="wrap">
-      <p class="eyebrow rv">02 — 0 → 1 at scale · AWS, 2023–2026</p>
+      <p class="eyebrow eyebrow-lg rv">02 — 0→1 at scale · AWS, 2023–2026</p>
       <h2 class="rv-w ahead">Two hundred dashboards.<br><span class="em">One place to start.</span></h2>
       <p class="sub rv ahead">
-        The hard question was never what to display. It was what to put first — and what to say
-        about it. An alert that names no next action moves the work rather than removing it.
+        The screen a seller opens first thing in the morning. It reads across every account they
+        own, ranks what needs attention today, and writes the next step on each line — so the day
+        starts with a list to work through instead of a hunt across two hundred dashboards.
       </p>
 
       <figure class="plate rv" style="margin-block:52px">
@@ -71,25 +74,26 @@ const tripmatchSteps = [
         <svg viewBox="0 0 880 300" role="img" aria-labelledby="ah-t">
           <title id="ah-t">A stack of overlapping dashboards with no agreed starting point, beside one ranked list where each row carries a named next action</title>
           <g id="ah-stack"></g>
-          <text x="16" y="288" font-size="11" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing="1.2">ROUGHLY 200 OF THESE. NO AGREED PLACE TO BEGIN.</text>
+          <text x="16" y="288" font-size="12" font-weight="600" font-family="var(--mono)" fill="var(--ink-2)" letter-spacing=".7">ROUGHLY 200 OF THESE. NO AGREED PLACE TO BEGIN.</text>
           <path d="M336 150 L392 150" stroke="var(--border-strong)" stroke-width="1.4"/>
           <path d="M392 150 l-9 -5 v10 z" fill="var(--border-strong)"/>
           <g transform="translate(412,38)" font-family="var(--display)">
             <rect x="0" y="-30" width="452" height="26" rx="4" fill="var(--ink)" opacity="0.07"/>
-            <text x="12" y="-12" font-size="11" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing="1.4">RANK = SEVERITY × ACCOUNT VALUE</text>
+            <text x="12" y="-12" font-size="12" font-weight="600" font-family="var(--mono)" fill="var(--ink-2)" letter-spacing=".7">WHAT COSTS THE MOST TO IGNORE, FIRST</text>
+            <text x="440" y="-12" text-anchor="end" font-size="12" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing=".7">TODAY</text>
             <g><rect x="0" y="8" width="452" height="56" rx="5" fill="var(--panel)"/>
               <text x="18" y="34" font-size="14" font-weight="600" fill="#f4f2ef">Renewal risk · 3 accounts</text>
               <text x="18" y="53" font-size="12" fill="#a8b6c4">Next: schedule exec review this week</text>
-              <circle cx="426" cy="36" r="4.5" fill="#e0685c"/></g>
+              <circle cx="426" cy="36" r="4.5" fill="#e0685c"/><rect x="0" y="8" width="3.5" height="56" rx="1.75" fill="#e0685c"/><path d="M437 31.5 l5 4.5 l-5 4.5" fill="none" stroke="#6f8298" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
             <g><rect x="0" y="74" width="452" height="56" rx="5" fill="var(--ink)" opacity="0.07"/>
               <text x="18" y="100" font-size="14" font-weight="600" fill="var(--ink)">Idle capacity · 7 accounts</text>
               <text x="18" y="119" font-size="12" fill="var(--ink-2)">Next: propose rightsizing plan</text>
-              <circle cx="426" cy="102" r="4.5" fill="var(--gold)"/></g>
+              <circle cx="426" cy="102" r="4.5" fill="var(--gold)"/><rect x="0" y="74" width="3.5" height="56" rx="1.75" fill="var(--gold)"/><path d="M437 97.5 l5 4.5 l-5 4.5" fill="none" stroke="var(--ink-3)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
             <g><rect x="0" y="140" width="452" height="56" rx="5" fill="var(--ink)" opacity="0.07"/>
               <text x="18" y="166" font-size="14" font-weight="600" fill="var(--ink)">Support backlog · 2 accounts</text>
               <text x="18" y="185" font-size="12" fill="var(--ink-2)">Next: escalate to TAM</text>
-              <circle cx="426" cy="168" r="4.5" fill="#4a7c7e"/></g>
-            <text x="0" y="228" font-size="11" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing="1.2">TIME-TO-INSIGHT −70%   ·   10,000+ SELLERS</text>
+              <circle cx="426" cy="168" r="4.5" fill="#4a7c7e"/><rect x="0" y="140" width="3.5" height="56" rx="1.75" fill="#4a7c7e"/><path d="M437 163.5 l5 4.5 l-5 4.5" fill="none" stroke="var(--ink-3)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+            <text x="0" y="228" font-size="12" font-weight="600" font-family="var(--mono)" fill="var(--ink-2)" letter-spacing=".7">CUTS TIME TO THE FIRST ANSWER BY 70% · 10,000+ SELLERS</text>
           </g>
         </svg>
         </div>
@@ -102,8 +106,8 @@ const tripmatchSteps = [
 
   <section class="panel sectionpad">
     <div class="wrap">
-      <p class="eyebrow rv">Everything else</p>
-      <h2 class="rv-w">{rest.length} more.</h2>
+      <p class="eyebrow eyebrow-lg rv">03 — Everything else · 2022–2026</p>
+      <h2 class="rv-w">More <span class="em">projects</span>.</h2>
       <div class="blocks">
         {rest.map((p, i) => (
           <a class="bk rv" href={`/work/${p.id}`}>
@@ -130,32 +134,99 @@ const tripmatchSteps = [
 </style>
 
 <script>
-  // Five dashboards cascading over one another: the point is that they all look
-  // alike and none of them is the place to start. Deterministic, so it is the
-  // same picture on every build.
+  // Five dashboards cascading over one another. The point is that each is a
+  // perfectly good screen and none of them is the place to start, so they have
+  // to look like five real, *different* dashboards rather than five copies of
+  // one sketch: a nav rail, a filter row, KPI tiles, and a different chart in
+  // each. Deterministic, so every build draws the same picture.
   const stack = document.getElementById('ah-stack');
   if (stack) {
     const W = 184, H = 128, DX = 30, DY = 24;
+    // fills are all var(--ink) at low opacity, so one drawing serves both themes
+    const ink = (o: number, extra = '') => `fill="var(--ink)" fill-opacity="${o}" ${extra}`;
+    const bar = (x: number, y: number, w: number, h: number, o: number, r = 1.5) =>
+      `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" ${ink(o)}/>`;
+
     let out = '';
     for (let i = 0; i < 5; i++) {
       const x = 10 + i * DX, y = 6 + i * DY;
-      const op = (0.42 + i * 0.145).toFixed(2);
-      let g = `<g opacity="${op}">`;
+      // content box, to the right of the nav rail and below the header
+      const cx = x + 23, cy = y + 27, cw = W - 37;
+      const chartTop = y + 59, chartH = 60, chartBot = chartTop + chartH;
+      const kind = ['stacked', 'line', 'table', 'donut', 'bars'][i];
+      let g = `<g opacity="${(0.5 + i * 0.125).toFixed(3)}">`;
+
       g += `<rect x="${x}" y="${y}" width="${W}" height="${H}" rx="5" fill="var(--surface)" stroke="var(--border-strong)"/>`;
-      g += `<rect x="${x}" y="${y}" width="${W}" height="21" rx="5" fill="var(--ink)" opacity="0.055"/>`;
-      g += `<rect x="${x + 9}" y="${y + 7}" width="${44 - i * 4}" height="6" rx="2" fill="var(--ink)" opacity="0.3"/>`;
-      for (let d = 0; d < 3; d++) g += `<circle cx="${x + W - 12 - d * 9}" cy="${y + 10}" r="2" fill="var(--ink)" opacity="0.18"/>`;
-      // three KPI tiles
-      for (let k = 0; k < 3; k++) {
-        g += `<rect x="${x + 9 + k * 56}" y="${y + 29}" width="50" height="22" rx="3" fill="var(--ink)" opacity="0.055"/>`;
-        g += `<rect x="${x + 14 + k * 56}" y="${y + 35}" width="${18 + ((i * 7 + k * 5) % 16)}" height="5" rx="2" fill="var(--ink)" opacity="0.26"/>`;
+      // left nav rail with a logo mark and four menu items
+      g += `<path d="M${x} ${y + 5}a5 5 0 0 1 5 -5h11v${H}H${x + 5}a5 5 0 0 1 -5 -5z" ${ink(0.05)}/>`;
+      g += bar(x + 5, y + 6, 7, 7, 0.24, 2);
+      for (let m = 0; m < 4; m++) g += bar(x + 5, y + 22 + m * 9, m === i % 4 ? 7 : 5, 3, m === i % 4 ? 0.3 : 0.14, 1);
+      // header: page title, then two filter pills pushed right
+      g += `<path d="M${x + 16} ${y}h${W - 21}a5 5 0 0 1 5 5v15H${x + 16}z" ${ink(0.045)}/>`;
+      g += bar(x + 23, y + 8, 40 - i * 3, 5, 0.3, 2);
+      for (let f = 0; f < 2; f++) g += bar(x + W - 60 + f * 28, y + 6, 24, 9, 0.09, 4.5);
+      // two KPI tiles: a caption line above a value
+      for (let k = 0; k < 2; k++) {
+        const tx = cx + k * (cw / 2 + 3);
+        g += bar(tx, cy, cw / 2 - 3, 24, 0.045, 3);
+        g += bar(tx + 5, cy + 6, 18, 3, 0.16, 1);
+        g += bar(tx + 5, cy + 13, 22 + ((i * 5 + k * 9) % 12), 6, 0.3, 2);
       }
-      // a bar chart that differs per dashboard but is stable per build
-      for (let bI = 0; bI < 8; bI++) {
-        const h = 8 + ((i * 13 + bI * 29) % 34);
-        g += `<rect x="${x + 10 + bI * 16}" y="${y + H - 12 - h}" width="10" height="${h}" rx="2" fill="var(--ink)" opacity="0.17"/>`;
+
+      if (kind === 'bars') {
+        // grouped bars on a baseline
+        g += `<line x1="${cx}" y1="${chartBot}" x2="${cx + cw}" y2="${chartBot}" stroke="var(--ink)" stroke-opacity=".18"/>`;
+        for (let b = 0; b < 6; b++) {
+          const h1 = 12 + ((b * 17) % 40), h2 = 8 + ((b * 29) % 30);
+          g += bar(cx + 3 + b * 25, chartBot - h1, 9, h1, 0.26, 1);
+          g += bar(cx + 13 + b * 25, chartBot - h2, 9, h2, 0.13, 1);
+        }
+      } else if (kind === 'line') {
+        // a line with the area filled under it, over gridlines
+        const pts = [46, 28, 37, 15, 24, 8, 18].map((v, n) =>
+          `${(cx + (n * cw) / 6).toFixed(1)},${chartBot - v}`);
+        for (let r = 1; r <= 3; r++) {
+          const gy = chartTop + (r * chartH) / 4;
+          g += `<line x1="${cx}" y1="${gy}" x2="${cx + cw}" y2="${gy}" stroke="var(--ink)" stroke-opacity=".08"/>`;
+        }
+        g += `<polygon points="${cx},${chartBot} ${pts.join(' ')} ${cx + cw},${chartBot}" ${ink(0.1)}/>`;
+        g += `<polyline points="${pts.join(' ')}" fill="none" stroke="var(--ink)" stroke-opacity=".42" stroke-width="1.6"/>`;
+      } else if (kind === 'table') {
+        // a table: header row, then rows of cells
+        g += bar(cx, chartTop, cw, 10, 0.1, 2);
+        for (let c = 0; c < 3; c++) g += bar(cx + 5 + c * 50, chartTop + 3, 26, 4, 0.2, 1);
+        for (let r = 0; r < 4; r++) {
+          const ry = chartTop + 14 + r * 12;
+          for (let c = 0; c < 3; c++) g += bar(cx + 5 + c * 50, ry, 20 + ((r * 7 + c * 11) % 18), 4, 0.15, 1);
+          g += `<line x1="${cx}" y1="${ry + 8}" x2="${cx + cw}" y2="${ry + 8}" stroke="var(--ink)" stroke-opacity=".06"/>`;
+        }
+      } else if (kind === 'donut') {
+        // a donut with a legend beside it
+        const dx = cx + 26, dy = chartTop + 29, R = 21, C = 2 * Math.PI * R;
+        let off = 0;
+        [[0.44, 0.34], [0.32, 0.2], [0.24, 0.11]].forEach(([frac, op]) => {
+          g += `<circle cx="${dx}" cy="${dy}" r="${R}" fill="none" stroke="var(--ink)" stroke-opacity="${op}"`
+            + ` stroke-width="9" stroke-dasharray="${(frac * C).toFixed(1)} ${((1 - frac) * C).toFixed(1)}"`
+            + ` stroke-dashoffset="${(-off * C).toFixed(1)}" transform="rotate(-90 ${dx} ${dy})"/>`;
+          off += frac;
+        });
+        for (let l = 0; l < 3; l++) {
+          g += bar(cx + 60, chartTop + 12 + l * 15, 6, 6, 0.3 - l * 0.09, 1.5);
+          g += bar(cx + 71, chartTop + 14 + l * 15, 44 - l * 9, 4, 0.14, 1);
+        }
+      } else {
+        // stacked horizontal bars
+        for (let r = 0; r < 4; r++) {
+          const ry = chartTop + 4 + r * 14;
+          g += bar(cx, ry, 22, 4, 0.16, 1);
+          let sx = cx + 28;
+          [[0.42, 0.3], [0.3, 0.19], [0.28, 0.09]].forEach(([frac, op], n) => {
+            const sw = (cw - 28) * frac * (n === 2 ? 1 - r * 0.12 : 1);
+            g += `<rect x="${sx.toFixed(1)}" y="${ry - 2}" width="${sw.toFixed(1)}" height="8" ${ink(op)}/>`;
+            sx += sw + 1.5;
+          });
+        }
       }
-      g += `<line x1="${x + 9}" y1="${y + 60}" x2="${x + W - 9}" y2="${y + 60}" stroke="var(--ink)" stroke-opacity="0.09"/>`;
       out += g + '</g>';
     }
     stack.innerHTML = out;
