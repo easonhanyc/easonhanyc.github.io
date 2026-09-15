@@ -1,0 +1,86 @@
+---
+// Four product highlights the reader clicks through.
+//
+// Ships as a plain four-up grid that reads on its own, so a reader with no JS
+// gets all four at once. JS turns it into a deck with a previous/next button on
+// either side. There is deliberately no scroll-driven behaviour here: pinning
+// the section made the page feel stuck, which is the opposite of inviting
+// someone to keep reading.
+interface Step { n: string; u: string; d: string }
+interface Props { eyebrow: string; title: string; sub: string; href: string; steps: Step[] }
+const { eyebrow, title, sub, href, steps } = Astro.props;
+
+const chev = (d: string) =>
+  `<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="${d}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+---
+<section class="panel hl" data-hl>
+  <div class="stage wrap">
+    <div class="hl-head">
+      <p class="eyebrow eyebrow-lg">{eyebrow}</p>
+      <h2>{title}</h2>
+      <p class="sub">{sub}</p>
+      <a class="chip" href={href}>Read the case study →</a>
+    </div>
+
+    <div class="deck">
+      <button type="button" class="arw prev" data-dir="-1" aria-label="Previous highlight" hidden>
+        <Fragment set:html={chev('M15 5 L8 12 L15 19')} />
+      </button>
+
+      <div class="steps" data-steps>
+        {steps.map((s) => (
+          <article class="step" data-step>
+            <span class="n">{s.n}</span>
+            <span class="u">{s.u}</span>
+            <p class="d">{s.d}</p>
+          </article>
+        ))}
+      </div>
+
+      <button type="button" class="arw next" data-dir="1" aria-label="Next highlight" hidden>
+        <Fragment set:html={chev('M9 5 L16 12 L9 19')} />
+      </button>
+
+      <div class="rail" data-rail>
+        {steps.map((s, i) => (
+          <button type="button" class="railb" data-go={i} aria-label={`Show highlight ${i + 1}: ${s.u}`}>
+            <i></i><span>{String(i + 1).padStart(2, '0')}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  for (const hl of document.querySelectorAll<HTMLElement>('[data-hl]')) {
+    const steps = Array.from(hl.querySelectorAll<HTMLElement>('[data-step]'));
+    const rail = Array.from(hl.querySelectorAll<HTMLElement>('[data-rail] .railb'));
+    const arws = Array.from(hl.querySelectorAll<HTMLButtonElement>('.arw'));
+    if (steps.length < 2) continue;
+
+    // Only now does the four-up grid become a deck — the class gates every rule
+    // that hides a step, so the stacked layout is what ships.
+    document.documentElement.classList.add('js-hl');
+    arws.forEach((a) => (a.hidden = false));
+
+    let at = 0;
+    const show = (n: number) => {
+      at = (n + steps.length) % steps.length;
+      steps.forEach((s, k) => {
+        s.classList.toggle('on', k === at);
+        s.setAttribute('aria-hidden', String(k !== at));
+      });
+      rail.forEach((r, k) => r.classList.toggle('on', k === at));
+    };
+    show(0);
+
+    arws.forEach((a) => a.addEventListener('click', () => show(at + Number(a.dataset.dir))));
+    rail.forEach((b, n) => b.addEventListener('click', () => show(n)));
+    hl.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      show(at + (e.key === 'ArrowRight' ? 1 : -1));
+      e.preventDefault();
+    });
+  }
+</script>

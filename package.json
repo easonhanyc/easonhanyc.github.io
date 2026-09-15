@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "check:diagrams": "node scripts/check-diagrams.cjs",
-    "check:touch": "node scripts/check-touch.cjs"
+    "check:touch": "node scripts/check-touch.cjs",
+    "check:deck": "node scripts/check-deck.cjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.1",

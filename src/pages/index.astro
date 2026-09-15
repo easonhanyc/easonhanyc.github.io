@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PinnedStory from '../components/PinnedStory.astro';
+import Highlights from '../components/Highlights.astro';
 import { viz } from '../lib/viz';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
@@ -19,7 +19,7 @@ const tripmatchSteps = [
   { n: '+1',        u: 'One tap and the seat is yours',
     d: 'Tap +1 on a ride and you are on it. The seat count drops in front of everyone looking at the board, so nobody has to read a thread to work out who is actually going.' },
   { n: 'No app',    u: 'Opens from the group chat',
-    d: 'It is a link, not a download. Tap it in the chat the cohort already uses and the board is open on whatever you are holding.' },
+    d: 'It is a link, not a download. Tap it in the chat the class already uses and the board is open on whatever you are holding.' },
   { n: 'Verified',  u: 'Berkeley classmates only',
     d: 'Access is an email check against a verified Berkeley account, enforced on the server. You know who is in the car before you get in.' },
 ];
@@ -51,10 +51,10 @@ const tripmatchSteps = [
     </div>
   </div>
 
-  <PinnedStory
+  <Highlights
     eyebrow="01 — 0→1 build · Aug 2026"
     title="TripMatch"
-    sub="A rides board for the Berkeley Haas cohort. Someone driving to the airport posts the trip; whoever needs the seat taps once and it is theirs. It opens from a link in the group chat, with no app to install, and only verified classmates can see it. I designed it, built it and shipped it."
+    sub="A rides board for the Berkeley Haas class. Someone driving to the airport posts the trip; whoever needs the seat taps once and it is theirs. It opens from a link in the group chat, with no app to install, and only verified classmates can see it. I designed it, built it and shipped it."
     href="/work/tripmatch"
     steps={tripmatchSteps}
   />
@@ -79,8 +79,7 @@ const tripmatchSteps = [
           <path d="M392 150 l-9 -5 v10 z" fill="var(--border-strong)"/>
           <g transform="translate(412,38)" font-family="var(--display)">
             <rect x="0" y="-30" width="452" height="26" rx="4" fill="var(--ink)" opacity="0.07"/>
-            <text x="12" y="-12" font-size="12" font-weight="600" font-family="var(--mono)" fill="var(--ink-2)" letter-spacing=".7">WHAT COSTS THE MOST TO IGNORE, FIRST</text>
-            <text x="440" y="-12" text-anchor="end" font-size="12" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing=".7">TODAY</text>
+            <text x="12" y="-12" font-size="12" font-weight="600" font-family="var(--mono)" fill="var(--ink-2)" letter-spacing=".7">TODAY&#8217;S LIST &#183; MOST URGENT FIRST</text>
             <g><rect x="0" y="8" width="452" height="56" rx="5" fill="var(--panel)"/>
               <text x="18" y="34" font-size="14" font-weight="600" fill="#f4f2ef">Renewal risk · 3 accounts</text>
               <text x="18" y="53" font-size="12" fill="#a8b6c4">Next: schedule exec review this week</text>
@@ -93,7 +92,8 @@ const tripmatchSteps = [
               <text x="18" y="166" font-size="14" font-weight="600" fill="var(--ink)">Support backlog · 2 accounts</text>
               <text x="18" y="185" font-size="12" fill="var(--ink-2)">Next: escalate to TAM</text>
               <circle cx="426" cy="168" r="4.5" fill="#4a7c7e"/><rect x="0" y="140" width="3.5" height="56" rx="1.75" fill="#4a7c7e"/><path d="M437 163.5 l5 4.5 l-5 4.5" fill="none" stroke="var(--ink-3)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
-            <text x="0" y="228" font-size="12" font-weight="600" font-family="var(--mono)" fill="var(--ink-2)" letter-spacing=".7">CUTS TIME TO THE FIRST ANSWER BY 70% · 10,000+ SELLERS</text>
+            <text x="0" y="228" font-size="12" font-weight="600" font-family="var(--mono)" fill="var(--ink-2)" letter-spacing=".7">CUT THE TIME TO FIND ACCOUNT INSIGHTS BY 70%</text>
+            <text x="0" y="248" font-size="12" font-weight="600" font-family="var(--mono)" fill="var(--ink-3)" letter-spacing=".7">FOR 10,000+ SELLERS</text>
           </g>
         </svg>
         </div>
@@ -121,13 +121,15 @@ const tripmatchSteps = [
           </a>
         ))}
       </div>
-      <div class="chips rv" style="margin-top:34px"><a class="chip" href="/work">All work, filterable →</a></div>
+      <div class="chips rv" style="margin-top:34px"><a class="chip" href="/work">All work →</a></div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .hero{padding-block:104px 74px}
+  /* the section descriptions were too small to read at a glance */
+  .sub{font-size:20px}
   /* the display column hangs on a left axis; figures break past it */
   @media (min-width:1000px){ .ahead{margin-left:7%} }
   @media (max-width:560px){ .hero{padding-block:62px 46px} }

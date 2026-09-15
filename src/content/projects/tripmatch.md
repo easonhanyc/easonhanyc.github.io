@@ -1,7 +1,7 @@
 ---
 title: "TripMatch"
 description: "Sole PM, designer and engineer \u2014 problem framing, PRD, flow design, front end and API, through to production."
-summary: "A 400-person cohort coordinates rides by scrolling a WhatsApp chat, where requests get buried and matching seats go unused. I shipped a verified, Berkeley-only rides board \u2014 and then tested it against its own launch load, which is where the interesting part starts."
+summary: "A 400-person class coordinates rides by scrolling a WhatsApp chat, where requests get buried and matching seats go unused. I shipped a verified, Berkeley-only rides board \u2014 and then tested it against its own launch load, which is where the interesting part starts."
 role: "Sole PM, designer, and engineer"
 period: "Aug 2026"
 depth: "case-study"
@@ -28,7 +28,7 @@ order: 1
 
 **Timeline:** August 22–27, 2026
 
-> **The 30-second version.** Six days from PRD to a public, verified rides board for the Haas cohort — problem framing, flow design, front end, API, and two feedback-driven iteration cycles, done alone. The part worth reading is the launch-hardening round, which caught three defects that would have broken the product inside its own expected load, before a single real user hit them. The nastiest of them was caused by the distribution channel the product depends on.
+> **The 30-second version.** Six days from PRD to a public, verified rides board for the Haas class — problem framing, flow design, front end, API, and two feedback-driven iteration cycles, done alone. The part worth reading is the launch-hardening round, which caught three defects that would have broken the product inside its own expected load, before a single real user hit them. The nastiest of them was caused by the distribution channel the product depends on.
 
 | | |
 |---|---|
@@ -51,7 +51,7 @@ Three costs fall out of that:
 
 **The interesting question is not "why hasn't anyone built a carpool app" — plenty have.** Waze Carpool and a string of campus carpool startups mostly failed or stayed niche. My read on why: they all had to manufacture *trust* and *liquidity* between strangers simultaneously, which is the hardest possible cold-start.
 
-A single MBA cohort already has both. Trust is pre-existing — these are classmates. Liquidity is naturally clustered, because travel demand spikes around shared events: treks, class trips, weekend commutes. **The gap wasn't "no carpool tool exists." It was that nobody had built the version scoped to a small, trusted, high-overlap community rather than a stranger marketplace.**
+A single MBA class already has both. Trust is pre-existing — these are classmates. Liquidity is naturally clustered, because travel demand spikes around shared events: treks, class trips, weekend commutes. **The gap wasn't "no carpool tool exists." It was that nobody had built the version scoped to a small, trusted, high-overlap community rather than a stranger marketplace.**
 
 That reframe is what made a one-week build viable. I wasn't solving matching at scale; I was replacing a group chat's search function for ~400 people who already know each other.
 
@@ -75,7 +75,7 @@ The last one mattered most. **Distribution determined the form factor.** The pro
 
 ## 3. From prototype to launch: what real users changed
 
-V1 went to a slice of the cohort. Three gaps surfaced within days — all of them things no amount of pre-launch reasoning had surfaced, and all of them shipped in the next round:
+V1 went to a slice of the class. Three gaps surfaced within days — all of them things no amount of pre-launch reasoning had surfaced, and all of them shipped in the next round:
 
 **1. No way to remove a post.** A rider whose plans fell through had no way to take a stale post down; it sat on the board until it aged out. *Shipped: owner-scoped Delete with a two-step confirm.*
 
@@ -120,7 +120,7 @@ This is the decision I'm proudest of, because the easy path was to ship.
 <figcaption>Redrawn for this portfolio.</figcaption>
 </figure>
 
-Prototype feedback produced the three product gaps above. Preparing for *public* launch surfaced a different class of problem entirely: **the v1 storage design would not have survived the cohort it was built for.** V1 stored the whole board as one JSON document in a hosted-JSON service. Against the expected load — ~400 students, ~200 concurrent posts — it had three defects:
+Prototype feedback produced the three product gaps above. Preparing for *public* launch surfaced a different class of problem entirely: **the v1 storage design would not have survived the class it was built for.** V1 stored the whole board as one JSON document in a hosted-JSON service. Against the expected load — ~400 students, ~200 concurrent posts — it had three defects:
 
 | Defect | Consequence if launched |
 |---|---|

@@ -192,43 +192,61 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
 }
 
 /* ============================================================
-   Cinematic pinned panel.
-   Default (no JS, or reduced motion) is a plain stacked grid that
-   reads fine on its own; JS opts into the pinned behaviour.
+   Feature highlights.
+   Ships as a four-up grid that reads on its own; JS turns it into a
+   deck with a button on either side. Nothing here is driven by scroll
+   position — pinning the section made the page feel stuck.
    ============================================================ */
-.pin{position:relative}
-.pin .stage{padding-block:96px}
-.pin-head h2{max-width:20ch}
-.pin-head .sub{max-width:var(--measure)}
-.steps{display:grid; gap:1px; background:var(--panel-line); border:1px solid var(--panel-line); border-radius:8px; overflow:hidden}
+.hl .stage{padding-block:96px}
+.hl-head h2{max-width:20ch}
+.hl-head .sub{max-width:var(--measure); font-size:20px}
+.steps{display:grid; gap:1px; margin-top:48px; background:var(--panel-line); border:1px solid var(--panel-line); border-radius:8px; overflow:hidden}
 .step{background:var(--panel); padding:26px 24px}
-.step .n{font-size:clamp(34px,5vw,52px); font-weight:700; letter-spacing:-.035em; line-height:1; color:var(--panel-ink); font-variant-numeric:tabular-nums; display:block}
-.step .u{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-top:12px; display:block}
-.step .d{font-family:var(--prose); font-size:15px; line-height:1.55; color:var(--panel-ink-2); margin-top:12px}
+.step .n{
+  font-size:clamp(34px,5vw,52px); font-weight:700; letter-spacing:-.025em; line-height:1.04;
+  color:var(--panel-ink); font-variant-numeric:tabular-nums; display:block; text-wrap:balance;
+}
+.step .u{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-top:14px; display:block}
+.step .d{font-family:var(--prose); font-size:17px; line-height:1.6; color:var(--panel-ink-2); margin-top:14px}
 @media (min-width:760px){ .steps{grid-template-columns:repeat(4,1fr)} }
 
-:root.js-pin .pin{height:250vh}
-:root.js-pin .pin .stage{
-  position:sticky; top:0; min-height:100vh; display:grid;
-  grid-template-columns:minmax(0,1fr); align-content:center; gap:38px; padding-block:80px;
-}
-@media (min-width:900px){
-  :root.js-pin .pin .stage{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); gap:64px; align-items:center}
-  :root.js-pin .pin .rail{grid-column:1 / -1}
-}
-:root.js-pin .steps{grid-template-columns:1fr; background:none; border:0; border-radius:0; gap:0; position:relative; min-height:340px}
-:root.js-pin .step{
-  position:absolute; inset:0; opacity:0; transform:translateY(22px);
-  transition:opacity .5s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1);
-  pointer-events:none; padding:0; display:flex; flex-direction:column; justify-content:center;
-}
-:root.js-pin .step.on{opacity:1; transform:none; pointer-events:auto}
-:root.js-pin .step .n{font-size:clamp(58px,10vw,124px)}
-:root.js-pin .step .u{font-size:12px}
-:root.js-pin .step .d{font-size:17px; max-width:46ch}
+/* the deck's own children are laid out by .stage until JS says otherwise */
+.deck{display:contents}
+.arw,.rail{display:none}
 
-.rail{display:none; gap:10px; margin-top:34px}
-:root.js-pin .rail{display:flex}
+/* ---- the deck, once JS is running ---- */
+:root.js-hl .deck{
+  display:grid; align-items:center;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  grid-template-areas:"prev steps next" ".    rail  .";
+  gap:34px clamp(10px,3.4vw,44px); margin-top:54px;
+}
+:root.js-hl .steps{
+  grid-area:steps; grid-template-columns:1fr; background:none; border:0; border-radius:0;
+  gap:0; margin:0; overflow:visible;
+}
+/* Every step shares one grid cell, so the deck is exactly as tall as the tallest
+   of them. The previous build gave the cell a fixed height and hid the overflow,
+   which sheared the top off any heading that ran to two lines. */
+:root.js-hl .step{
+  grid-area:1 / 1; padding:0; opacity:0; transform:translateY(14px); pointer-events:none;
+  transition:opacity .45s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.22,1,.36,1);
+}
+:root.js-hl .step.on{opacity:1; transform:none; pointer-events:auto}
+:root.js-hl .step .n{font-size:clamp(44px,7.2vw,96px)}
+:root.js-hl .step .d{font-size:clamp(17px,1.5vw,20px); max-width:46ch}
+
+:root.js-hl .arw{
+  display:grid; place-items:center; width:54px; height:54px; border-radius:50%;
+  background:none; border:1px solid var(--panel-line); color:var(--panel-ink);
+  cursor:pointer; transition:background .25s, border-color .25s;
+}
+:root.js-hl .arw.prev{grid-area:prev}
+:root.js-hl .arw.next{grid-area:next}
+:root.js-hl .arw:hover{background:rgba(255,255,255,.09); border-color:var(--panel-ink-3)}
+:root.js-hl .arw:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
+
+:root.js-hl .rail{grid-area:rail; display:flex; gap:10px}
 .railb{
   flex:1; display:flex; flex-direction:column; align-items:flex-start; gap:8px;
   background:none; border:0; padding:0; cursor:pointer;
@@ -240,16 +258,17 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
 .railb.on i::after{transform:scaleX(1)}
 .railb.on{color:var(--gold)}
 .railb:hover{color:var(--panel-ink)}
-.railb:hover i::after{transform:scaleX(1); opacity:.45}
 .railb:focus-visible{outline:2px solid var(--gold); outline-offset:4px; border-radius:2px}
 
+/* Narrow: the step takes the full width and the two buttons drop to either end
+   of the rail, so they stay on opposite sides without crowding the text. */
+@media (max-width:760px){
+  :root.js-hl .deck{grid-template-areas:"steps steps steps" "prev rail next"; gap:26px 14px}
+  :root.js-hl .arw{width:46px; height:46px}
+}
+
 @media (prefers-reduced-motion:reduce){
-  :root.js-pin .pin{height:auto}
-  :root.js-pin .pin .stage{position:static; min-height:0; grid-template-columns:minmax(0,1fr)}
-  :root.js-pin .steps{min-height:0}
-  :root.js-pin .step{position:static; opacity:1; transform:none; pointer-events:auto; padding-block:22px; border-bottom:1px solid var(--panel-line)}
-  :root.js-pin .step .n{font-size:clamp(40px,7vw,64px)}
-  .rail,:root.js-pin .rail{display:none !important}
+  :root.js-hl .step{transition:none}
 }
 
 /* ---- non-goals: struck-through motif ---- */

@@ -7,7 +7,7 @@ order: 2
 ---
 
 How TripMatch is put together after the launch hardening, why the previous
-setup would not have survived the Haas cohort, and what to watch as it grows.
+setup would not have survived the Haas class, and what to watch as it grows.
 
 *Written August 26, 2026, the day before public launch.*
 

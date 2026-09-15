@@ -18,13 +18,13 @@ order: 1
 
 Haas students regularly need ad hoc rides — day trips and treks into SF, weekend getaways to and from the South Bay, Sunday returns to campus — but today this is coordinated entirely through word of mouth and scrolling the class WhatsApp chat. Requests get buried under unrelated messages, there's no way to see who else is going the same way at the same time, and finding a match requires either getting lucky with timing or posting redundant "does anyone have a car" messages. This wastes seats on trips that already have room, and it wastes students' money and time on solo rideshares or long transit connections when a matching classmate exists.
 
-This isn't a new problem to solve from scratch — general-purpose carpool apps (Waze Carpool, various campus carpool startups) have tried and mostly failed or stayed niche, largely because they had to build trust and liquidity among strangers. The Haas cohort already has both: shared trust and naturally clustered travel patterns around specific events (treks, class events, weekend commutes). The gap isn't "no carpool tool exists" — it's "no one has built the version that fits a small, trusted, high-overlap community" instead of a stranger marketplace.
+This isn't a new problem to solve from scratch — general-purpose carpool apps (Waze Carpool, various campus carpool startups) have tried and mostly failed or stayed niche, largely because they had to build trust and liquidity among strangers. The Haas class already has both: shared trust and naturally clustered travel patterns around specific events (treks, class events, weekend commutes). The gap isn't "no carpool tool exists" — it's "no one has built the version that fits a small, trusted, high-overlap community" instead of a stranger marketplace.
 
 ---
 
 ## Post-Launch Update — External User Feedback (Aug 25, 2026)
 
-V1 shipped and got its first round of real external usage from the Haas cohort. Three gaps surfaced immediately once real posts started accumulating on the shared board:
+V1 shipped and got its first round of real external usage from the Haas class. Three gaps surfaced immediately once real posts started accumulating on the shared board:
 
 1. **No way to remove a post.** A rider whose plans fell through, or a driver whose seats filled up off-platform, had no way to take their post down — stale entries just sat on the board until they aged out at midnight on the trip date. *(Shipped just before this round, in [182a33f](https://github.com/tripmatch-app/tripmatch-app.github.io/commit/182a33f911ab00ffefcb1bf398b0dec7afcf0c23): a Delete button appears only on posts matching the viewer's remembered name, and requires a second "Yes, delete" tap before it actually removes the post.)*
 2. **No way to correct a post.** If a detail changed — a later pickup time, one more open seat, a different notes line — the only fix was deleting the post and re-posting from scratch, losing any comments already on it. **Added this round:** an Edit button next to Delete, scoped to the same owner check, that reopens the post form pre-filled and updates the existing entry (including its custom "other city" values) in place, preserving its comment thread and posted-at time.
@@ -38,7 +38,7 @@ All three were validated locally against an isolated mock backend (multiple test
 
 Prototype feedback drove the three product gaps above. Preparing for public
 launch surfaced a different class of problem: the v1 storage design would not
-have survived the cohort it was built for. Four things shipped this round.
+have survived the class it was built for. Four things shipped this round.
 
 ### 1. Verified identity replaces the typed name
 
@@ -121,7 +121,7 @@ of them survive, which the v1 design would have failed.
 
 1. Give students a faster way to find a matching ride than scrolling WhatsApp — target: a user can post or find a match in under 2 minutes.
 2. Surface unmet demand and unclaimed supply automatically, rather than requiring students to keep re-asking in chat.
-3. Achieve real, organic weekly usage within the Haas cohort during the build's active testing window (no baseline exists today since coordination is informal).
+3. Achieve real, organic weekly usage within the Haas class during the build's active testing window (no baseline exists today since coordination is informal).
 4. Demonstrate that structured categorization (route + date) meaningfully outperforms unstructured chat search for finding a match.
 
 ---
@@ -184,7 +184,7 @@ of them survive, which the v1 design would have failed.
 
 ### Future Considerations (P2)
 
-- Expansion to other Haas cohorts (EWMBA, other class years) or other Berkeley grad programs
+- Expansion to other Haas programs (EWMBA, other class years) or other Berkeley grad programs
 - In-app contact/request-to-join flow instead of manual WhatsApp handoff
 - Personalized suggestions based on a user's recurring travel patterns (e.g., "you usually go home Fridays — post automatically?")
 
