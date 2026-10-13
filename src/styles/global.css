@@ -1,76 +1,70 @@
 /* ============================================================
    Eason Han — design system.
 
-   A showroom and a timing sheet. Travertine ground, warm ink, racing
-   green for the interface and brass for emphasis inside figures —
-   green leather and brass fittings rather than a tech palette.
-   Fraunces carries the one serif moment on each screen, Hanken Grotesk
-   everything that is read, IBM Plex Mono every number and label.
+   White ground, near-black ink, one racing green for the interface and
+   violet for the second meaning inside figures. Geist throughout, with
+   Geist Mono for every number and label — a neo-grotesque in the family
+   of the faces big product sites use, without being any one of them.
 
    Three theme states: bare :root is the complete light palette, the
    media query covers the unstamped "system" default, and [data-theme]
    covers an explicit choice in either direction.
    ============================================================ */
 :root{
-  --bg:#F3EFE8; --bg-2:#EBE5DB; --surface:#F8F5F0;
-  --rule:rgba(31,29,26,.14); --rule-strong:rgba(31,29,26,.3);
-  --ink:#1F1D1A; --ink-2:#4B4740; --ink-3:#67625A;
-  --accent:#1E5A43; --accent-2:#164536; --accent-ink:#F3EFE8;
-  /* The highlight colour inside figures. Named --gold for the 40-odd drawings
-     that already use it; brass now, and lighter wherever it sits on a plinth. */
-  --gold:#7A5A22;
-  --tag-bg:#E2DBCE;
+  --bg:#FFFFFF; --bg-2:#F4F4F5; --surface:#FAFAFA;
+  --rule:rgba(0,0,0,.09); --rule-strong:rgba(0,0,0,.2);
+  --ink:#0F0F11; --ink-2:#3F3F46; --ink-3:#66666E;
+  --accent:#1E5A43; --accent-2:#164536; --accent-ink:#FFFFFF;
+  /* The second colour inside figures. Named --gold for the 40-odd drawings
+     that already use it; violet now, lighter wherever it sits on a plinth. */
+  --gold:#5B3CC4;
+  --tag-bg:#EDEDEF;
   --ok-ink:var(--accent); --ok-bg:rgba(30,90,67,.1);
 
   /* Product mocks stand on a dark plinth in both themes. */
-  --plinth:#1B1A18; --plinth-2:#262420;
-  --plinth-ink:#EDE8E0; --plinth-ink-2:#B5AEA3; --plinth-ink-3:#8E877C;
-  --plinth-line:rgba(255,255,255,.11); --plinth-hi:#D4B37C;
+  --plinth:#0F0F11; --plinth-2:#1A1A1D;
+  --plinth-ink:#F4F4F5; --plinth-ink-2:#A1A1AA; --plinth-ink-3:#8B8B94;
+  --plinth-line:rgba(255,255,255,.12); --plinth-hi:#B4A5FF;
 
   /* Older names still used by inline SVG and scoped styles. */
   --border:var(--rule); --border-strong:var(--rule-strong); --panel:var(--plinth);
 
-  --f-display:"Fraunces","Iowan Old Style","Times New Roman",serif;
-  --f-sans:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --f-display:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --f-sans:"Geist",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --f-mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --display:var(--f-sans); --prose:var(--f-sans); --mono:var(--f-mono);
 
   --max:1440px;
   --gutter:clamp(20px,5.5vw,88px);
   --gap:clamp(16px,2vw,28px);
-  --measure:66ch;
+  --measure:68ch;
   --ease:cubic-bezier(.16,1,.3,1);
-
-  /* paper grain — a 4% speckle tiled behind everything */
-  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .045 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#131211; --bg-2:#1B1917; --surface:#211F1C;
-    --rule:rgba(237,232,224,.13); --rule-strong:rgba(237,232,224,.28);
-    --ink:#EDE8E0; --ink-2:#BDB6AB; --ink-3:#958E83;
-    --accent:#8FCFAB; --accent-2:#AEDDC3; --accent-ink:#0F1A14;
-    --gold:#D4B37C; --tag-bg:#29261F;
-    --ok-bg:rgba(143,207,171,.12);
-    --plinth:#0B0A09; --plinth-2:#171513;
-    --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .03 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    --bg:#0B0B0C; --bg-2:#151517; --surface:#18181B;
+    --rule:rgba(255,255,255,.1); --rule-strong:rgba(255,255,255,.22);
+    --ink:#F4F4F5; --ink-2:#C4C4CC; --ink-3:#8E8E97;
+    --accent:#7FD1A8; --accent-2:#A3E0C1; --accent-ink:#06130D;
+    --gold:#B4A5FF; --tag-bg:#202024;
+    --ok-bg:rgba(127,209,168,.12);
+    --plinth:#151517; --plinth-2:#1E1E21;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#131211; --bg-2:#1B1917; --surface:#211F1C;
-  --rule:rgba(237,232,224,.13); --rule-strong:rgba(237,232,224,.28);
-  --ink:#EDE8E0; --ink-2:#BDB6AB; --ink-3:#958E83;
-  --accent:#8FCFAB; --accent-2:#AEDDC3; --accent-ink:#0F1A14;
-  --gold:#D4B37C; --tag-bg:#29261F;
-  --ok-bg:rgba(143,207,171,.12);
-  --plinth:#0B0A09; --plinth-2:#171513;
-  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .03 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  --bg:#0B0B0C; --bg-2:#151517; --surface:#18181B;
+  --rule:rgba(255,255,255,.1); --rule-strong:rgba(255,255,255,.22);
+  --ink:#F4F4F5; --ink-2:#C4C4CC; --ink-3:#8E8E97;
+  --accent:#7FD1A8; --accent-2:#A3E0C1; --accent-ink:#06130D;
+  --gold:#B4A5FF; --tag-bg:#202024;
+  --ok-bg:rgba(127,209,168,.12);
+  --plinth:#151517; --plinth-2:#1E1E21;
 }
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
 body{
-  margin:0; background-color:var(--bg); background-image:var(--grain); color:var(--ink);
+  margin:0; background-color:var(--bg); color:var(--ink);
   font:400 17px/1.6 var(--f-sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   overflow-x:hidden;
 }
@@ -94,25 +88,22 @@ hr.rule{border:0; border-top:1px solid var(--rule); margin:0}
   font-family:var(--f-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
   color:var(--ink-3); font-weight:500; margin:0 0 22px;
 }
-h1,h2,h3{
-  font-family:var(--f-display); font-optical-sizing:auto; font-weight:340; color:var(--ink);
-  text-wrap:balance; margin:0;
-}
-h1{font-size:clamp(46px,8.2vw,140px); line-height:.98; letter-spacing:-.036em; margin:0 0 36px}
-h2{font-size:clamp(38px,5.6vw,92px); line-height:1; letter-spacing:-.032em; margin:0 0 28px}
-h3{font-size:clamp(22px,1.9vw,28px); line-height:1.15; letter-spacing:-.016em; font-weight:400}
-/* The italic half of a display line — Fraunces' italic, in the accent. One per heading. */
-.em{font-family:var(--f-display); font-style:italic; font-weight:300; color:var(--accent); letter-spacing:-.02em}
-.sub{font-size:clamp(18px,1.4vw,20px); line-height:1.6; color:var(--ink-2); max-width:46ch; margin:0 0 36px}
-.lede{font-size:clamp(19px,1.6vw,23px); line-height:1.55; color:var(--ink-2); max-width:44ch; margin:0 0 40px}
+h1,h2,h3{font-family:var(--f-display); font-weight:600; color:var(--ink); text-wrap:balance; margin:0}
+h1{font-size:clamp(44px,7.6vw,124px); line-height:1; letter-spacing:-.048em; margin:0 0 36px}
+h2{font-size:clamp(36px,5.2vw,84px); line-height:1.02; letter-spacing:-.044em; margin:0 0 28px}
+h3{font-size:clamp(21px,1.8vw,26px); line-height:1.2; letter-spacing:-.024em}
+/* The second half of a display line, in the accent. One per heading. */
+.em{color:var(--accent)}
+.sub{font-size:clamp(17.5px,1.35vw,19.5px); line-height:1.6; color:var(--ink-2); max-width:46ch; margin:0 0 36px}
+.lede{font-size:clamp(18.5px,1.5vw,22px); line-height:1.55; color:var(--ink-2); max-width:44ch; margin:0 0 40px}
 .lede strong,.sub strong{color:var(--ink); font-weight:600}
 
 /* Chapter opener: a light numeral, a hairline, then the label — a catalogue's
    section mark rather than a web eyebrow. */
 .chap{display:flex; align-items:center; gap:18px; margin:0 0 clamp(28px,3vw,44px)}
 .chap .no{
-  font-family:var(--f-display); font-weight:300; font-size:clamp(40px,4vw,60px); line-height:.8;
-  letter-spacing:-.04em; color:var(--ink); font-variant-numeric:lining-nums;
+  font-family:var(--f-display); font-weight:300; font-size:clamp(38px,3.8vw,56px); line-height:.8;
+  letter-spacing:-.05em; color:var(--ink); font-variant-numeric:tabular-nums;
 }
 .chap .ln{flex:1; height:1px; background:var(--rule-strong); min-width:24px}
 .chap .lb{
@@ -162,8 +153,8 @@ h3{font-size:clamp(22px,1.9vw,28px); line-height:1.15; letter-spacing:-.016em; f
 .figs{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr)); gap:0 var(--gap); margin:0}
 .figs > div{border-top:1px solid var(--rule-strong); padding:18px 0 4px}
 .figs .n{
-  display:block; font-family:var(--f-display); font-weight:330; font-size:clamp(34px,3.6vw,54px);
-  line-height:1; letter-spacing:-.03em; color:var(--ink); font-variant-numeric:lining-nums tabular-nums;
+  display:block; font-family:var(--f-display); font-weight:500; font-size:clamp(32px,3.4vw,50px);
+  line-height:1; letter-spacing:-.045em; color:var(--ink); font-variant-numeric:tabular-nums;
 }
 .figs .l{display:block; font-family:var(--f-mono); font-size:11.5px; line-height:1.45; color:var(--ink-3); margin-top:12px; letter-spacing:.02em}
 
@@ -185,8 +176,8 @@ h3{font-size:clamp(22px,1.9vw,28px); line-height:1.15; letter-spacing:-.016em; f
 .prose a{text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; text-decoration-color:color-mix(in srgb, var(--accent) 45%, transparent)}
 .prose a:hover{text-decoration-color:var(--accent)}
 .prose h2{
-  font-family:var(--f-display); font-weight:360; font-size:clamp(28px,2.7vw,40px); line-height:1.1;
-  letter-spacing:-.024em; color:var(--ink); margin:80px 0 22px; padding-top:30px;
+  font-family:var(--f-display); font-weight:600; font-size:clamp(26px,2.4vw,34px); line-height:1.15;
+  letter-spacing:-.035em; color:var(--ink); margin:80px 0 22px; padding-top:30px;
   border-top:1px solid var(--rule-strong); scroll-margin-top:96px;
 }
 .prose h3{font-family:var(--f-sans); font-size:19px; font-weight:600; letter-spacing:-.008em; color:var(--ink); margin:36px 0 10px}
@@ -196,10 +187,10 @@ h3{font-size:clamp(22px,1.9vw,28px); line-height:1.15; letter-spacing:-.016em; f
 /* The 30-second version and pull-quotes: the page's serif moment. */
 .prose blockquote{
   margin:44px 0; padding:0 0 0 26px; border:0; border-left:2px solid var(--accent);
-  font-family:var(--f-display); font-weight:340; font-size:clamp(21px,1.9vw,26px); line-height:1.45;
-  letter-spacing:-.008em; color:var(--ink);
+  font-family:var(--f-display); font-weight:500; font-size:clamp(20px,1.75vw,24px); line-height:1.45;
+  letter-spacing:-.02em; color:var(--ink);
 }
-.prose blockquote strong{font-weight:500}
+.prose blockquote strong{font-weight:650}
 .prose blockquote p:last-child{margin:0}
 /* Boilerplate, deliberately quiet — it must not compete with the argument. */
 .prose .note{
@@ -314,7 +305,7 @@ h3{font-size:clamp(22px,1.9vw,28px); line-height:1.15; letter-spacing:-.016em; f
 .proj[hidden]{display:none}
 .proj .pos{font-family:var(--f-mono); font-size:13px; color:var(--ink-3); padding-top:6px; font-variant-numeric:tabular-nums; transition:color .3s}
 .proj .main{min-width:0}
-.proj h3{font-size:clamp(22px,2vw,28px); font-weight:380; margin:0}
+.proj h3{font-size:clamp(21px,1.8vw,25px); margin:0}
 .proj h3 a{color:var(--ink)}
 .proj h3 a:hover{text-decoration:none; color:var(--accent)}
 .proj .d{font-size:15.5px; line-height:1.55; color:var(--ink-2); margin:8px 0 0; max-width:62ch}
@@ -348,7 +339,7 @@ h3{font-size:clamp(22px,1.9vw,28px); line-height:1.15; letter-spacing:-.016em; f
 .art:hover{text-decoration:none}
 .art:hover .t{color:var(--accent)}
 .art .k{font-family:var(--f-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
-.art .t{font-family:var(--f-display); font-weight:380; font-size:24px; line-height:1.15; letter-spacing:-.015em; color:var(--ink); transition:color .3s}
+.art .t{font-family:var(--f-display); font-weight:600; font-size:22px; line-height:1.2; letter-spacing:-.028em; color:var(--ink); transition:color .3s}
 .art .d{font-size:15px; color:var(--ink-2); line-height:1.55}
 
 /* ── home: catalogue of everything else ───────────────────
@@ -366,7 +357,7 @@ h3{font-size:clamp(22px,1.9vw,28px); line-height:1.15; letter-spacing:-.016em; f
 .bk .viz{display:block; height:112px; padding:24px 26px; background:var(--bg-2); color:var(--ink-2); transition:background-color .45s var(--ease), color .45s var(--ease)}
 .bk:hover .viz{background:var(--plinth); color:var(--plinth-ink); --gold:var(--plinth-hi)}
 .bk .viz svg{width:100%; height:100%; display:block; overflow:visible}
-.bk .t{font-family:var(--f-display); font-weight:380; font-size:clamp(22px,1.8vw,26px); line-height:1.15; letter-spacing:-.016em; margin-top:6px}
+.bk .t{font-family:var(--f-display); font-weight:600; font-size:clamp(20px,1.6vw,23px); line-height:1.2; letter-spacing:-.03em; margin-top:6px}
 .bk .m{display:flex; justify-content:space-between; align-items:baseline; gap:16px; font-family:var(--f-mono); font-size:12px; line-height:1.5; color:var(--ink-3); margin-top:auto}
 .bk .m b{color:var(--ink); font-weight:500; font-variant-numeric:tabular-nums}
 .bk .arrow{flex:none; font-family:var(--f-sans); font-size:15px; color:var(--ink-3); transition:transform .45s var(--ease), color .3s}
@@ -384,7 +375,7 @@ h3{font-size:clamp(22px,1.9vw,28px); line-height:1.15; letter-spacing:-.016em; f
 .steps{display:grid; gap:1px; margin-top:48px; background:var(--plinth-line); border-radius:2px; overflow:hidden}
 .step{background:var(--plinth); padding:28px 26px}
 .step .n{
-  font-family:var(--f-display); font-weight:330; font-size:clamp(34px,4vw,52px); letter-spacing:-.03em; line-height:1.02;
+  font-family:var(--f-display); font-weight:600; font-size:clamp(32px,3.8vw,48px); letter-spacing:-.045em; line-height:1.04;
   color:var(--plinth-ink); display:block; text-wrap:balance;
 }
 .step .viz{display:none}
@@ -419,7 +410,7 @@ h3{font-size:clamp(22px,1.9vw,28px); line-height:1.15; letter-spacing:-.016em; f
 }
 :root.js-hl .step.on{opacity:1; transform:none; pointer-events:auto}
 :root.js-hl .step .viz{display:block; margin-bottom:28px}
-:root.js-hl .step .n{font-size:clamp(36px,3.8vw,58px)}
+:root.js-hl .step .n{font-size:clamp(34px,3.6vw,54px)}
 :root.js-hl .step .d{font-size:clamp(16.5px,1.3vw,18.5px); max-width:46ch}
 
 :root.js-hl .arw{

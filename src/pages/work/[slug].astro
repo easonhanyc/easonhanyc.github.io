@@ -13,7 +13,7 @@ const d = project.data;
 const { Content, headings } = await render(project);
 
 // Retitled projects carry their context after an em-dash. Setting that half in
-// the serif italic keeps the name itself the thing you read first.
+// the accent keeps the name itself the thing you read first.
 const [name, ...ctx] = d.title.split(' — ');
 const context = ctx.join(' — ');
 
