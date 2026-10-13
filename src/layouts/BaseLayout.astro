@@ -32,7 +32,9 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Hanken+Grotesk:wght@300..700&family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <meta name="theme-color" content="#F3EFE8" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#131211" media="(prefers-color-scheme: dark)" />
   <!-- Applied before first paint so an explicit theme choice never flashes the other palette. -->
   <script is:inline>
     try {
@@ -62,7 +64,7 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
       try { localStorage.setItem('theme', next); } catch (e) {}
     });
 
-    const targets = Array.from(document.querySelectorAll<HTMLElement>('.rv, .rv-w, .plate, .prose .dg'));
+    const targets = Array.from(document.querySelectorAll<HTMLElement>('.rv, .rv-w, .plate, .prose .dg, .apex'));
     if (hasIO && !reduce && targets.length) {
       document.documentElement.classList.add('js-rv');
 
@@ -86,7 +88,9 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
         }
       }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
       targets.forEach((el, i) => {
-        el.style.transitionDelay = `${Math.min(i % 6, 5) * 60}ms`;
+        // A stagger for the reveal only. An inline transition-delay would also hold
+        // back every other transition on the element — a theme switch included.
+        el.style.setProperty('--d', `${Math.min(i % 6, 5) * 60}ms`);
         ro.observe(el);
       });
     }

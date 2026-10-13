@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Toc from '../../components/Toc.astro';
 
 export async function getStaticPaths() {
   const artifacts = await getCollection('artifacts');
@@ -9,27 +10,46 @@ export async function getStaticPaths() {
 
 const { artifact } = Astro.props;
 const d = artifact.data;
-const { Content } = await render(artifact);
+const { Content, headings } = await render(artifact);
 
 const projects = await getCollection('projects');
 const parent = d.related ? projects.find((p) => p.id === d.related) : undefined;
 ---
 <BaseLayout title={`${d.title} · Eason Han`} description={d.description}>
-  <div class="narrow">
+  <div class="wrap">
     <div class="backbar"><a href="/artifacts">← All artifacts</a></div>
     <header class="dochead">
       <p class="eyebrow">{d.kind}</p>
-      <h1 class="rv-w" style="font-size:clamp(30px,5vw,50px)">{d.title}</h1>
+      <h1 class="rv-w">{d.title}</h1>
       {parent && (
-        <p class="docmeta">
-          <span>From <a href={`/work/${parent.id}`}>{parent.data.title}</a></span>
-        </p>
+        <dl class="spec rv">
+          <div><dt>Written for</dt><dd><a class="ulink" href={`/work/${parent.id}`}>{parent.data.title}</a></dd></div>
+        </dl>
       )}
     </header>
-    <article class="prose" style="margin-top:34px"><Content /></article>
-    <div style="padding:56px 0 20px">
+
+    <div class="doc">
+      <Toc headings={headings} />
+      <article class="prose"><Content /></article>
+    </div>
+
+    <div class="end chips">
       <a class="chip" href="/artifacts">← All artifacts</a>
       {parent && <a class="chip" href={`/work/${parent.id}`}>{parent.data.title} case study →</a>}
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .dochead h1{font-size:clamp(38px,5.4vw,84px); max-width:18ch; margin-bottom:clamp(32px,4vw,52px)}
+  .dochead .spec{max-width:480px}
+  .doc{margin-top:clamp(56px,7vw,104px)}
+  .doc :global(.toc){display:none}
+  .doc .prose{max-width:820px}
+  @media (min-width:1100px){
+    .doc{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gap); align-items:start}
+    .doc :global(.toc){display:block; grid-column:1 / span 3; padding-right:clamp(0px,1.5vw,24px)}
+    .doc .prose{grid-column:4 / span 8; max-width:none}
+  }
+  .end{padding:clamp(56px,6vw,88px) 0 24px}
+</style>

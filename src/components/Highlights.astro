@@ -7,19 +7,19 @@
 // the section made the page feel stuck, which is the opposite of inviting
 // someone to keep reading.
 interface Step { n: string; u: string; d: string; v?: string }
-interface Props { eyebrow: string; title: string; sub: string; href: string; steps: Step[] }
-const { eyebrow, title, sub, href, steps } = Astro.props;
+interface Props { no: string; label: string; title: string; sub: string; href: string; steps: Step[] }
+const { no, label, title, sub, href, steps } = Astro.props;
 
 const chev = (d: string) =>
   `<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="${d}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 ---
-<section class="panel hl" data-hl>
+<section class="hl" data-hl>
   <div class="stage wrap">
     <div class="hl-head">
-      <p class="eyebrow eyebrow-lg">{eyebrow}</p>
-      <h2>{title}</h2>
-      <p class="sub">{sub}</p>
-      <a class="chip" href={href}>Read the case study →</a>
+      <div class="chap rv"><span class="no">{no}</span><span class="ln"></span><span class="lb">{label}</span></div>
+      <h2 class="rv-w">{title}</h2>
+      <p class="sub rv">{sub}</p>
+      <div class="chips rv"><a class="chip" href={href}>Read the case study →</a></div>
     </div>
 
     <div class="deck">

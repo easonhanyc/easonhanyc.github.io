@@ -1,0 +1,57 @@
+---
+// Sticky contents for a long document. Each row is a section of the page, and
+// its hairline fills as you read through that section — sector times on a lap,
+// shown as progress rather than numbers. Without JS it is a plain list of
+// anchors, which is all it needs to be.
+interface Heading { depth: number; slug: string; text: string }
+interface Props { headings: Heading[]; label?: string }
+const { headings, label = 'Contents' } = Astro.props;
+
+// Section headings already carry their own "1." numbering in the prose; the
+// rail sets its own index, so strip it here rather than show it twice.
+const items = headings
+  .filter((h) => h.depth === 2)
+  .map((h, i) => ({ slug: h.slug, k: String(i + 1).padStart(2, '0'), text: h.text.replace(/^\d+\.\s*/, '') }));
+---
+{items.length > 1 && (
+  <nav class="toc" aria-label={label} data-toc>
+    <p class="eyebrow">{label}</p>
+    <ol>
+      {items.map((it) => (
+        <li><a href={`#${it.slug}`} data-sec={it.slug}><span class="k">{it.k}</span><span>{it.text}</span></a></li>
+      ))}
+    </ol>
+  </nav>
+)}
+
+<script>
+  const toc = document.querySelector<HTMLElement>('[data-toc]');
+  if (toc) {
+    const links = Array.from(toc.querySelectorAll<HTMLAnchorElement>('a[data-sec]'));
+    const heads = links.map((a) => document.getElementById(a.dataset.sec!));
+    const article = toc.parentElement?.querySelector<HTMLElement>('.prose');
+
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      if (toc.offsetParent === null) return;          // rail hidden at this width
+      const line = window.scrollY + window.innerHeight * 0.32;
+      const end = article ? article.offsetTop + article.offsetHeight : document.body.scrollHeight;
+      let current = -1;
+      heads.forEach((h, i) => {
+        if (!h) return;
+        const top = h.getBoundingClientRect().top + window.scrollY;
+        const next = heads[i + 1];
+        const bottom = next ? next.getBoundingClientRect().top + window.scrollY : end;
+        const p = Math.min(Math.max((line - top) / Math.max(bottom - top, 1), 0), 1);
+        links[i].style.setProperty('--p', p.toFixed(3));
+        if (line >= top) current = i;
+      });
+      links.forEach((a, i) => a.classList.toggle('on', i === current));
+    };
+    const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  }
+</script>

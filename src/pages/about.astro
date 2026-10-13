@@ -17,72 +17,87 @@ const principles = [
 ];
 ---
 <BaseLayout title="About · Eason Han" description="Background, skills and working principles of Yichen (Eason) Han — MBA/MEng at UC Berkeley Haas, former AWS.">
-  <div class="narrow sectionpad">
-    <p class="eyebrow">About</p>
-    <h2 class="rv-w" style="max-width:17ch">The thinking and the building, <span class="em">same person</span>.</h2>
-    <p class="sub">
+  <div class="wrap sectionpad">
+    <p class="eyebrow rv">About</p>
+    <h2 class="rv-w lead">The thinking and the building, <span class="em">same person</span>.</h2>
+    <p class="lede rv">
       Two degrees at Berkeley at once — an MBA at Haas and an M.Eng in IEOR. Before that, three
       years inside an $80B sales organisation at AWS, building the internal products it ran on.
       The through-line is that I don't hand the build off: whoever argues for the thing should be
       the one who makes it.
     </p>
 
-    <section style="margin-top:56px">
+    <section class="band">
       <p class="eyebrow">How I work</p>
-      <div class="principles">
-        {principles.map((p) => (
-          <div class="principle">
-            <div class="p-t">{p.t}</div>
-            <div class="p-d">{p.d}</div>
-          </div>
+      <ol class="principles">
+        {principles.map((p, i) => (
+          <li class="rv">
+            <span class="k">{String(i + 1).padStart(2, '0')}</span>
+            <div><h3>{p.t}</h3><p>{p.d}</p></div>
+          </li>
         ))}
-      </div>
+      </ol>
     </section>
 
-    <section style="margin-top:56px">
+    <section class="band">
       <p class="eyebrow">Background</p>
-      <p class="sub" style="margin-bottom:16px">
-        Three years at AWS, a summer at TikTok, a summer in venture, and a beach-cleaning robot.
-        The full timeline — with the projects each role produced — is its own page.
-      </p>
-      <div class="chips"><a class="chip solid" href="/experience">The timeline →</a></div>
+      <div>
+        <p class="sub rv">
+          Three years at AWS, a summer at TikTok, a summer in venture, and a beach-cleaning robot.
+          The full timeline — with the projects each role produced — is its own page.
+        </p>
+        <div class="chips rv"><a class="chip solid" href="/experience">The timeline →</a></div>
+      </div>
     </section>
 
-    <section style="margin-top:56px">
+    <section class="band">
       <p class="eyebrow">Skills</p>
-      <div class="xp">
+      <dl class="skills">
         {skills.map((s) => (
-          <div class="row">
-            <div><div class="org">{s.k}</div><div class="title">{s.v}</div></div>
-          </div>
+          <div class="rv"><dt>{s.k}</dt><dd>{s.v}</dd></div>
         ))}
-      </div>
+      </dl>
     </section>
 
-    <section style="margin-top:56px">
+    <section class="band">
       <p class="eyebrow">Reach me</p>
-      <div class="chips">
-        <a class="chip solid" href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
-        <a class="chip" href="https://www.linkedin.com/in/yichen-eason-han/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">LinkedIn ↗</a>
-        <a class="chip" href="https://github.com/easonhanyc" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">GitHub ↗</a>
+      <div>
+        <div class="chips rv">
+          <a class="chip solid" href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
+          <a class="chip" href="https://www.linkedin.com/in/yichen-eason-han/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">LinkedIn ↗</a>
+          <a class="chip" href="https://github.com/easonhanyc" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">GitHub ↗</a>
+        </div>
+        <p class="note rv">Open to Summer 2027 PM internships — consumer, AI/GenAI, and enterprise/data products.</p>
       </div>
-      <p class="sub" style="margin-top:22px; font-size:15px">
-        Open to Summer 2027 PM internships — consumer, AI/GenAI, and enterprise/data products.
-      </p>
     </section>
   </div>
 </BaseLayout>
 
 <style>
-  .principles{display:flex; flex-direction:column; gap:22px}
-  .principle{border-left:2px solid var(--gold); padding-left:18px}
-  .p-t{font-weight:620; color:var(--ink); margin-bottom:5px; font-size:16px}
-  .p-d{font-family:var(--prose); font-size:15.5px; color:var(--ink-2); line-height:1.65}
-  .xp{display:flex; flex-direction:column}
-  .row{display:grid; grid-template-columns:1fr auto; gap:8px 20px; padding:16px 0; border-bottom:1px solid var(--border); align-items:baseline}
-  .row:last-child{border-bottom:0}
-  .org{font-weight:610; color:var(--ink); font-size:15.5px}
-  .title{font-size:14.5px; color:var(--ink-2); margin-top:3px; line-height:1.55}
-  .when{font-family:var(--mono); font-size:12px; color:var(--ink-3); white-space:nowrap; text-align:right}
-  @media (max-width:560px){ .row{grid-template-columns:1fr} .when{text-align:left} }
+  .lead{max-width:15ch; font-size:clamp(42px,6.6vw,112px)}
+  .lede{max-width:52ch}
+
+  /* Each section is a row: its label on a narrow rail, the content beside it —
+     a catalogue's spec page rather than a stacked document. */
+  .band{display:grid; gap:18px; margin-top:clamp(64px,8vw,120px); padding-top:24px; border-top:1px solid var(--rule-strong)}
+  @media (min-width:900px){
+    .band{grid-template-columns:minmax(0,3fr) minmax(0,9fr); column-gap:var(--gap)}
+  }
+  .band .eyebrow{margin:0}
+
+  .principles{list-style:none; margin:0; padding:0; display:grid; gap:clamp(28px,3vw,44px) var(--gap)}
+  @media (min-width:900px){ .principles{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  .principles li{display:grid; grid-template-columns:52px minmax(0,1fr); gap:6px}
+  .principles .k{font-family:var(--f-display); font-weight:300; font-size:34px; line-height:1; color:var(--accent); letter-spacing:-.03em}
+  .principles h3{font-size:clamp(21px,1.7vw,25px); line-height:1.2; margin:0 0 10px}
+  .principles p{font-size:16px; line-height:1.65; color:var(--ink-2); margin:0}
+
+  .skills{margin:0}
+  .skills > div{display:grid; gap:6px 24px; padding:16px 0; border-bottom:1px solid var(--rule)}
+  .skills > div:first-child{padding-top:0}
+  @media (min-width:700px){ .skills > div{grid-template-columns:180px minmax(0,1fr)} }
+  .skills dt{font-family:var(--f-mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); padding-top:3px}
+  .skills dd{margin:0; font-size:16.5px; line-height:1.55; color:var(--ink)}
+
+  .note{margin:20px 0 0; font-size:15px; color:var(--ink-3)}
 </style>

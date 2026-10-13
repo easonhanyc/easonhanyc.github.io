@@ -10,44 +10,54 @@ const titleOf = (id: string) => projects.find((p) => p.id === id)?.data.title ??
   title="Experience · Eason Han"
   description="Career and education of Yichen (Eason) Han — AWS, TikTok, IDG Capital, UC Berkeley Haas and Notre Dame."
 >
-  <div class="narrow sectionpad">
-    <p class="eyebrow">{entries.length} entries</p>
-    <h2 class="rv-w" style="max-width:15ch">Where the work <span class="em">happened</span>.</h2>
-    <p class="sub">
-      The roles behind the case studies. Where a project has its own write-up, it's linked from
-      the role it came out of.
-    </p>
+  <div class="wrap sectionpad">
+    <div class="chap rv"><span class="no">{String(entries.length).padStart(2, '0')}</span><span class="ln"></span><span class="lb">Experience · 2019–2028</span></div>
+    <div class="head">
+      <h2 class="rv-w">Where the work <span class="em">happened</span>.</h2>
+      <div>
+        <p class="sub rv">
+          The roles behind the case studies. Where a project has its own write-up, it's linked from
+          the role it came out of.
+        </p>
+        <ul class="legend rv" aria-label="Line key">
+          <li class="k-work">Work</li><li class="k-education">Study</li><li class="k-volunteer">Volunteer</li>
+        </ul>
+      </div>
+    </div>
 
-    <div class="tl">
+    <!-- A transit line rather than a bullet list: each role is a stop, and the
+         line changes colour with what kind of stop it is. -->
+    <ol class="line">
       {entries.map((e) => (
-        <article class:list={['tl-item', `is-${e.data.kind}`]}>
-          <div class="tl-when">{e.data.start} — {e.data.end}</div>
-          <div class="tl-body">
-            <h3 class="tl-org">{e.data.org}</h3>
-            <p class="tl-role">
-              {e.data.role}{e.data.location && <span class="tl-loc"> · {e.data.location}</span>}
+        <li class:list={['stop', 'rv', `is-${e.data.kind}`]}>
+          <div class="when">{e.data.start} — {e.data.end}</div>
+          <span class="node" aria-hidden="true"></span>
+          <div class="body">
+            <h3>{e.data.org}</h3>
+            <p class="role">
+              {e.data.role}{e.data.location && <span class="loc"> · {e.data.location}</span>}
             </p>
-            <p class="tl-sum">{e.data.summary}</p>
+            <p class="sum">{e.data.summary}</p>
 
             {e.data.outcomes.length > 0 && (
-              <ul class="tl-out">
+              <ul class="out">
                 {e.data.outcomes.map((o) => <li>{o}</li>)}
               </ul>
             )}
 
             {e.data.related.length > 0 && (
-              <div class="tl-rel">
+              <div class="rel">
                 {e.data.related.map((id) => (
                   <a class="chip" href={`/work/${id}`}>{titleOf(id)} →</a>
                 ))}
               </div>
             )}
           </div>
-        </article>
+        </li>
       ))}
-    </div>
+    </ol>
 
-    <div style="margin-top:48px" class="chips">
+    <div class="chips end">
       <a class="chip solid" href="/work">See the work →</a>
       <a class="chip" href="/about">About me</a>
     </div>
@@ -55,49 +65,58 @@ const titleOf = (id: string) => projects.find((p) => p.id === id)?.data.title ??
 </BaseLayout>
 
 <style>
-  .tl{display:flex; flex-direction:column; gap:0; margin-top:34px}
-
-  .tl-item{
-    display:grid; grid-template-columns:minmax(0,1fr); gap:4px;
-    padding:0 0 34px 26px; position:relative;
+  .head{display:grid; margin-bottom:clamp(48px,6vw,96px)}
+  .head h2{max-width:12ch}
+  @media (min-width:1000px){
+    .head{grid-template-columns:minmax(0,7fr) minmax(0,5fr); column-gap:var(--gap); align-items:end}
   }
-  /* the rail, drawn per item so the last one can stop short */
-  .tl-item::before{
-    content:""; position:absolute; left:5px; top:9px; bottom:0; width:1px; background:var(--border);
-  }
-  .tl-item:last-child::before{display:none}
-  .tl-item::after{
-    content:""; position:absolute; left:0; top:6px; width:11px; height:11px; border-radius:50%;
-    background:var(--surface); border:2px solid var(--accent);
-  }
-  .tl-item.is-education::after{border-color:var(--gold)}
-  .tl-item.is-volunteer::after{border-color:var(--ink-3)}
+  .legend{display:flex; flex-wrap:wrap; gap:8px 22px; list-style:none; margin:0 0 6px; padding:0;
+    font-family:var(--f-mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3)}
+  .legend li{display:flex; align-items:center; gap:9px}
+  .legend li::before{content:""; width:26px; height:0; border-top:3px solid var(--ink)}
+  .legend .k-education::before{border-top-color:var(--accent)}
+  .legend .k-volunteer::before{border-top-style:dotted; border-top-color:var(--ink-3)}
 
-  .tl-when{
-    font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; color:var(--ink-3);
-    padding-top:2px;
+  .line{list-style:none; margin:0; padding:0; --node:17px}
+  .stop{
+    position:relative; display:grid; grid-template-columns:var(--node) minmax(0,1fr); column-gap:22px;
+    padding-bottom:clamp(44px,5vw,72px); --c:var(--ink); --ls:solid;
   }
-  .tl-org{font-size:17px; font-weight:640; letter-spacing:-.012em; color:var(--ink); margin:2px 0 0}
-  .tl-role{font-size:14.5px; color:var(--ink-2); margin:3px 0 0}
-  .tl-loc{color:var(--ink-3)}
-  .tl-sum{font-family:var(--prose); font-size:15.5px; line-height:1.65; color:var(--ink-2); margin:11px 0 0; max-width:var(--measure)}
-
-  .tl-out{margin:13px 0 0; padding-left:18px; max-width:var(--measure)}
-  .tl-out li{
-    font-family:var(--prose); font-size:15px; line-height:1.6; color:var(--ink-2); margin-bottom:7px;
+  .stop.is-education{--c:var(--accent)}
+  .stop.is-volunteer{--c:var(--ink-3); --ls:dotted}
+  /* the line itself, from this stop's node down to the next */
+  .stop::before{
+    content:""; position:absolute; left:calc(var(--node) / 2 - 1.5px); top:calc(var(--node) / 2 + 6px); bottom:-6px;
+    border-left:3px var(--ls) var(--c);
   }
-  .tl-out li::marker{color:var(--gold)}
+  .stop:last-child::before{display:none}
+  .node{
+    grid-column:1; grid-row:1 / span 2; width:var(--node); height:var(--node); margin-top:6px; border-radius:50%;
+    background:var(--bg); border:3px solid var(--c); position:relative; z-index:1;
+  }
+  .when{grid-column:2; font-family:var(--f-mono); font-size:12.5px; letter-spacing:.06em; color:var(--ink-3); margin-bottom:8px}
+  .body{grid-column:2; max-width:760px}
+  .body h3{font-size:clamp(26px,2.6vw,38px); margin:0}
+  .role{font-size:16.5px; color:var(--ink); margin:8px 0 0; font-weight:500}
+  .loc{color:var(--ink-3); font-weight:400}
+  .sum{font-size:16.5px; line-height:1.65; color:var(--ink-2); margin:14px 0 0}
+  .out{margin:16px 0 0; padding-left:18px}
+  .out li{font-size:16px; line-height:1.6; color:var(--ink-2); margin-bottom:8px}
+  .out li::marker{color:var(--c)}
+  .rel{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px}
+  .rel .chip{min-height:40px; font-size:14px; padding:0 14px}
 
-  .tl-rel{display:flex; flex-wrap:wrap; gap:8px; margin-top:15px}
-  .tl-rel .chip{font-size:12.5px; padding:6px 12px}
-
-  /* Date column moves alongside the entry once there is room for it. */
-  @media (min-width:820px){
-    .tl-item{grid-template-columns:minmax(0,150px) minmax(0,1fr); gap:0 28px; padding-left:30px}
-    .tl-when{text-align:right; padding-right:4px}
+  @media (min-width:900px){
+    .stop{grid-template-columns:200px var(--node) minmax(0,1fr); column-gap:28px}
+    .stop::before{left:calc(200px + 28px + var(--node) / 2 - 1.5px)}
+    .when{grid-column:1; grid-row:1; text-align:right; margin:5px 0 0}
+    .node{grid-column:2; grid-row:1 / span 2}
+    .body{grid-column:3; grid-row:1 / span 2}
   }
 
-  /* Touch target — scoped, and after the rule above, since Astro's scoping
-     outranks global.css and source order settles the tie. */
-  @media (pointer:coarse){ .tl-rel .chip{padding-block:11px} }
+  .end{margin-top:clamp(24px,3vw,40px)}
+
+  /* Touch target — scoped, and last, since Astro's scoping outranks
+     global.css and source order settles the tie. */
+  @media (pointer:coarse){ .rel .chip{min-height:44px} }
 </style>

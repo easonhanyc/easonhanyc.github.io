@@ -3,35 +3,60 @@ const year = new Date().getFullYear();
 ---
 <footer>
   <div class="wrap">
-    <div class="top">
-      <div>
-        <div class="name">Yichen (Eason) Han</div>
-        <div class="meta">Berkeley, CA · Seeking a Summer 2027 PM internship</div>
+    <p class="eyebrow">Get in touch</p>
+    <a class="mail" href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
+
+    <div class="row">
+      <div class="who">
+        <span class="name">Yichen (Eason) Han</span>
+        <span>Berkeley, CA · Seeking a Summer 2027 PM internship</span>
       </div>
-      <a class="chip" href="mailto:eason_han@berkeley.edu">Get in touch</a>
+      <div class="links">
+        <a href="https://www.linkedin.com/in/yichen-eason-han/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">LinkedIn ↗</a>
+        <a href="https://github.com/easonhanyc" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">GitHub ↗</a>
+      </div>
     </div>
-    <div class="links">
-      <a href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
-      <a href="https://www.linkedin.com/in/yichen-eason-han/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">LinkedIn ↗</a>
-      <a href="https://github.com/easonhanyc" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">GitHub ↗</a>
-    </div>
-    <div class="fine">© {year} Yichen Han</div>
+
+    <a class="off" href="/work/formula-1-trends">
+      <span class="k">Off the clock</span>
+      <span>Formula 1 — home simulation and race analytics</span>
+      <span aria-hidden="true">→</span>
+    </a>
+
+    <p class="fine">© {year} Yichen Han · Set in Fraunces, Hanken Grotesk and IBM Plex Mono · Built with Astro</p>
   </div>
 </footer>
 
 <style>
-  footer{padding:56px 0 76px; color:var(--ink-3); font-size:14px; border-top:1px solid var(--border); margin-top:0}
-  .top{display:flex; flex-wrap:wrap; gap:18px; align-items:center; justify-content:space-between}
-  .name{font-weight:600; color:var(--ink); font-size:16px}
-  .meta{margin-top:4px}
-  .links{display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:22px; font-family:var(--mono); font-size:12px}
+  footer{padding-block:clamp(72px,9vw,128px) 44px; border-top:1px solid var(--rule-strong); color:var(--ink-2)}
+  .mail{
+    display:inline-block; font-family:var(--f-display); font-weight:320; color:var(--ink);
+    font-size:clamp(30px,6.4vw,104px); line-height:1; letter-spacing:-.04em;
+    overflow-wrap:anywhere; padding-bottom:10px;
+    background:linear-gradient(var(--accent),var(--accent)) 0 100% / 0 2px no-repeat;
+    transition:background-size .7s var(--ease), color .35s;
+  }
+  .mail:hover{text-decoration:none; color:var(--accent); background-size:100% 2px}
+  .row{
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:20px 40px;
+    margin-top:clamp(40px,5vw,72px); padding-top:22px; border-top:1px solid var(--rule);
+  }
+  .who{display:flex; flex-direction:column; gap:4px; font-size:15px}
+  .name{color:var(--ink); font-weight:600}
+  .links{display:flex; gap:0 28px; font-family:var(--f-mono); font-size:13px; letter-spacing:.04em}
   .links a{color:var(--ink-2)}
-  .fine{margin-top:26px; font-family:var(--mono); font-size:11px; color:var(--ink-3)}
+  .links a:hover{color:var(--accent); text-decoration:none}
+  .off{
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; margin-top:34px; padding-block:10px;
+    color:var(--ink-2); font-size:15px;
+  }
+  .off .k{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
+  .off:hover{color:var(--accent); text-decoration:none}
+  .fine{margin:26px 0 0; font-family:var(--f-mono); font-size:11.5px; color:var(--ink-3); letter-spacing:.02em; line-height:1.6}
 
-  /* Real padding rather than an overlay: the links wrap onto several rows and
-     overlapping hit areas would steal taps from the row above. */
+  /* Real padding rather than an overlay: these sit close together and an
+     overlay would steal taps from its neighbour. */
   @media (pointer:coarse){
-    .links{gap:0 22px}
     .links a{display:inline-block; padding-block:12px}
   }
 </style>

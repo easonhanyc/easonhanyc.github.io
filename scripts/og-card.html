@@ -1,26 +1,29 @@
 <style>
   *{box-sizing:border-box;margin:0}
-  body{width:1200px;height:630px;background:#eceae4;color:#14161a;
-       font-family:"Instrument Sans",system-ui,sans-serif;position:relative;overflow:hidden}
-  .frame{position:absolute;inset:0;padding:70px 80px 80px;display:flex;flex-direction:column;justify-content:space-between}
-  .top{display:flex;align-items:baseline;justify-content:space-between;gap:36px}
-  .eyebrow{font-family:"JetBrains Mono",monospace;font-size:19px;letter-spacing:.17em;
-           text-transform:uppercase;color:#474b51;font-weight:500}
-  .url{font-family:"JetBrains Mono",monospace;font-size:18px;letter-spacing:.09em;color:#5f636a;white-space:nowrap}
-  h1{font-size:86px;line-height:1.05;letter-spacing:-.026em;font-weight:600}
-  .em{font-family:"Source Serif 4",Georgia,serif;font-style:italic;font-weight:400;
-      color:#003262;letter-spacing:-.014em}
-  .who{font-family:"Source Serif 4",Georgia,serif;font-size:27px;line-height:1.5;color:#474b51}
-  .who b{color:#14161a;font-weight:600}
-  .rule{position:absolute;left:0;right:0;bottom:0;height:9px;
-        background:linear-gradient(90deg,#003262 0 62%,#c99700 62% 100%)}
+  body{width:1200px;height:630px;background:#F3EFE8;color:#1F1D1A;font-family:"Hanken Grotesk",system-ui,sans-serif;position:relative;overflow:hidden}
+  .frame{position:absolute;inset:0;padding:64px 80px 58px;display:flex;flex-direction:column}
+  .top{display:flex;justify-content:space-between;align-items:baseline;font-family:"IBM Plex Mono",monospace;font-size:17px;letter-spacing:.12em;text-transform:uppercase;color:#4B4740}
+  .top .url{letter-spacing:.06em;text-transform:none;color:#67625A}
+  h1{font-family:"Fraunces",Georgia,serif;font-weight:330;font-size:104px;line-height:.98;letter-spacing:-.036em;margin-top:52px}
+  h1 em{font-style:italic;font-weight:300;color:#1E5A43;letter-spacing:-.02em}
+  svg{display:block;width:100%;height:30px;margin-top:auto}
+  svg path{fill:none;vector-effect:non-scaling-stroke}
+  .spec{display:flex;gap:56px;margin-top:18px}
+  .spec dt{font-family:"IBM Plex Mono",monospace;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#67625A}
+  .spec dd{margin-top:6px;font-size:21px;color:#1F1D1A}
+  .spec .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#1E5A43;margin-right:10px;vertical-align:2px}
 </style>
 <div class="frame">
-  <div class="top">
-    <p class="eyebrow">Product management · Berkeley Haas</p>
-    <p class="url">easonhanyc.github.io</p>
-  </div>
-  <h1>Product thinking, and<br><span class="em">the hands to build it</span>.</h1>
-  <p class="who"><b>Yichen (Eason) Han</b> — MBA / MEng at UC Berkeley Haas &amp; IEOR, three years at <b>AWS</b>.<br>Seeking a Summer 2027 PM internship.</p>
+  <div class="top"><span>Eason Han · Product management</span><span class="url">easonhanyc.github.io</span></div>
+  <h1>Product thinking, and<br><em>the hands to build it</em>.</h1>
+  <svg viewBox="0 0 1200 30" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 29.5 H760" stroke="rgba(31,29,26,.3)" stroke-width="1"/>
+    <path d="M760 29.5 C 850 29.5, 890 0.5, 980 0.5" stroke="#1E5A43" stroke-width="2"/>
+    <path d="M980 0.5 H1200" stroke="rgba(31,29,26,.3)" stroke-width="1"/>
+  </svg>
+  <dl class="spec">
+    <div><dt>Now</dt><dd>MBA / MEng, UC Berkeley Haas &amp; IEOR</dd></div>
+    <div><dt>Before</dt><dd>Three years at AWS</dd></div>
+    <div><dt>Seeking</dt><dd><span class="dot"></span>Summer 2027 PM internship</dd></div>
+  </dl>
 </div>
-<div class="rule"></div>

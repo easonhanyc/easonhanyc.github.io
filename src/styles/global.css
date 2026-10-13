@@ -1,183 +1,527 @@
 /* ============================================================
-   Tokens — stone ground, Berkeley ink.
-   Berkeley blue #003262 / California gold #c99700.
-   Three theme states are covered: bare :root is the complete light
-   palette; the media query handles the un-stamped "system" default;
-   [data-theme] handles an explicit choice in either direction.
+   Eason Han — design system.
+
+   A showroom and a timing sheet. Travertine ground, warm ink, racing
+   green for the interface and brass for emphasis inside figures —
+   green leather and brass fittings rather than a tech palette.
+   Fraunces carries the one serif moment on each screen, Hanken Grotesk
+   everything that is read, IBM Plex Mono every number and label.
+
+   Three theme states: bare :root is the complete light palette, the
+   media query covers the unstamped "system" default, and [data-theme]
+   covers an explicit choice in either direction.
    ============================================================ */
 :root{
-  --bg:#eceae4; --surface:#f7f6f2; --border:#dbd8d0; --border-strong:#c6c2b8;
-  --ink:#14161a; --ink-2:#474b51; --ink-3:#5f636a;
-  --accent:#003262; --accent-2:#1a5c96; --gold:#c99700;
-  --tag-bg:#e2dfd7;
-  /* cinematic panel — derived from the Berkeley accent, not a new hue */
-  --panel:#0d1b2a; --panel-2:#12263a;
-  --panel-ink:#f4f2ef; --panel-ink-2:#a8b6c4; --panel-ink-3:#6f8298;
-  --panel-line:rgba(255,255,255,.10);
-  --ok-bg:rgba(0,120,60,.11); --ok-ink:#0a7c42;
-  --shadow:0 1px 2px rgba(20,18,15,.05), 0 4px 16px rgba(20,18,15,.04);
-  --shadow-hover:0 2px 4px rgba(20,18,15,.07), 0 10px 32px rgba(20,18,15,.09);
+  --bg:#F3EFE8; --bg-2:#EBE5DB; --surface:#F8F5F0;
+  --rule:rgba(31,29,26,.14); --rule-strong:rgba(31,29,26,.3);
+  --ink:#1F1D1A; --ink-2:#4B4740; --ink-3:#67625A;
+  --accent:#1E5A43; --accent-2:#164536; --accent-ink:#F3EFE8;
+  /* The highlight colour inside figures. Named --gold for the 40-odd drawings
+     that already use it; brass now, and lighter wherever it sits on a plinth. */
+  --gold:#7A5A22;
+  --tag-bg:#E2DBCE;
+  --ok-ink:var(--accent); --ok-bg:rgba(30,90,67,.1);
 
-  --display:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
-  --prose:"Source Serif 4",Georgia,"Times New Roman",serif;
-  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --measure:64ch;
+  /* Product mocks stand on a dark plinth in both themes. */
+  --plinth:#1B1A18; --plinth-2:#262420;
+  --plinth-ink:#EDE8E0; --plinth-ink-2:#B5AEA3; --plinth-ink-3:#8E877C;
+  --plinth-line:rgba(255,255,255,.11); --plinth-hi:#D4B37C;
+
+  /* Older names still used by inline SVG and scoped styles. */
+  --border:var(--rule); --border-strong:var(--rule-strong); --panel:var(--plinth);
+
+  --f-display:"Fraunces","Iowan Old Style","Times New Roman",serif;
+  --f-sans:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --display:var(--f-sans); --prose:var(--f-sans); --mono:var(--f-mono);
+
+  --max:1440px;
+  --gutter:clamp(20px,5.5vw,88px);
+  --gap:clamp(16px,2vw,28px);
+  --measure:66ch;
+  --ease:cubic-bezier(.16,1,.3,1);
+
+  /* paper grain — a 4% speckle tiled behind everything */
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .045 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#131313; --surface:#1b1b1b; --border:#2e2c2a; --border-strong:#3d3a37;
-    --ink:#f0eeeb; --ink-2:#bab6b1; --ink-3:#8b8781;
-    --accent:#7ab3e0; --accent-2:#9cc8ee; --gold:#e0b23c;
-    --tag-bg:#262523;
-    --panel:#0a141f; --panel-2:#0f1e2e;
-    --ok-bg:rgba(60,200,120,.14); --ok-ink:#5ed99a;
-    --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
-    --shadow-hover:0 2px 4px rgba(0,0,0,.4), 0 10px 32px rgba(0,0,0,.3);
+    --bg:#131211; --bg-2:#1B1917; --surface:#211F1C;
+    --rule:rgba(237,232,224,.13); --rule-strong:rgba(237,232,224,.28);
+    --ink:#EDE8E0; --ink-2:#BDB6AB; --ink-3:#958E83;
+    --accent:#8FCFAB; --accent-2:#AEDDC3; --accent-ink:#0F1A14;
+    --gold:#D4B37C; --tag-bg:#29261F;
+    --ok-bg:rgba(143,207,171,.12);
+    --plinth:#0B0A09; --plinth-2:#171513;
+    --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .03 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
 }
 :root[data-theme="dark"]{
-  --bg:#131313; --surface:#1b1b1b; --border:#2e2c2a; --border-strong:#3d3a37;
-  --ink:#f0eeeb; --ink-2:#bab6b1; --ink-3:#8b8781;
-  --accent:#7ab3e0; --accent-2:#9cc8ee; --gold:#e0b23c;
-  --tag-bg:#262523;
-  --panel:#0a141f; --panel-2:#0f1e2e;
-  --ok-bg:rgba(60,200,120,.14); --ok-ink:#5ed99a;
-  --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
-  --shadow-hover:0 2px 4px rgba(0,0,0,.4), 0 10px 32px rgba(0,0,0,.3);
+  --bg:#131211; --bg-2:#1B1917; --surface:#211F1C;
+  --rule:rgba(237,232,224,.13); --rule-strong:rgba(237,232,224,.28);
+  --ink:#EDE8E0; --ink-2:#BDB6AB; --ink-3:#958E83;
+  --accent:#8FCFAB; --accent-2:#AEDDC3; --accent-ink:#0F1A14;
+  --gold:#D4B37C; --tag-bg:#29261F;
+  --ok-bg:rgba(143,207,171,.12);
+  --plinth:#0B0A09; --plinth-2:#171513;
+  --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .03 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
 body{
-  margin:0; background:var(--bg); color:var(--ink);
-  font:400 16px/1.65 var(--display); -webkit-font-smoothing:antialiased;
+  margin:0; background-color:var(--bg); background-image:var(--grain); color:var(--ink);
+  font:400 17px/1.6 var(--f-sans); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   overflow-x:hidden;
 }
 img{max-width:100%; height:auto}
 a{color:var(--accent); text-decoration:none}
-a:hover{text-decoration:underline}
-:focus-visible{outline:2px solid var(--gold); outline-offset:3px; border-radius:3px}
-.skip{position:absolute; left:-9999px; top:0; z-index:200; background:var(--surface); padding:12px 18px; border-radius:0 0 8px 0}
+a:hover{text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:1px}
+::selection{background:var(--accent); color:var(--accent-ink)}
+.skip{position:absolute; left:-9999px; top:0; z-index:200; background:var(--ink); color:var(--bg); padding:12px 18px}
 .skip:focus{left:0}
 
-.wrap{max-width:1080px; margin:0 auto; padding-inline:24px}
-.narrow{max-width:760px; margin:0 auto; padding-inline:24px}
-.sectionpad{padding-block:112px}
-hr.rule{border:0; border-top:1px solid var(--border); margin:0}
+/* ── layout ───────────────────────────────────────────────── */
+.wrap{max-width:var(--max); margin-inline:auto; padding-inline:var(--gutter)}
+.narrow{max-width:calc(780px + 2 * var(--gutter)); margin-inline:auto; padding-inline:var(--gutter)}
+.sectionpad{padding-block:clamp(80px,10vw,152px)}
+.g12{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gap)}
+hr.rule{border:0; border-top:1px solid var(--rule); margin:0}
 
+/* ── type ─────────────────────────────────────────────────── */
 .eyebrow{
-  font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
-  color:var(--ink-3); font-weight:500; margin:0 0 18px;
+  font-family:var(--f-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-3); font-weight:500; margin:0 0 22px;
 }
-h1{font-size:clamp(34px,5.4vw,68px); line-height:1.06; letter-spacing:-.024em; font-weight:600; margin:0 0 28px; text-wrap:balance}
-h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; font-weight:600; margin:0 0 22px; text-wrap:balance}
-.sub{font-family:var(--prose); font-size:18px; line-height:1.62; color:var(--ink-2); max-width:var(--measure); margin:0 0 34px}
-.lede{font-family:var(--prose); font-size:clamp(18px,2vw,22px); line-height:1.62; color:var(--ink-2); max-width:var(--measure); margin:0 0 30px}
+h1,h2,h3{
+  font-family:var(--f-display); font-optical-sizing:auto; font-weight:340; color:var(--ink);
+  text-wrap:balance; margin:0;
+}
+h1{font-size:clamp(46px,8.2vw,140px); line-height:.98; letter-spacing:-.036em; margin:0 0 36px}
+h2{font-size:clamp(38px,5.6vw,92px); line-height:1; letter-spacing:-.032em; margin:0 0 28px}
+h3{font-size:clamp(22px,1.9vw,28px); line-height:1.15; letter-spacing:-.016em; font-weight:400}
+/* The italic half of a display line — Fraunces' italic, in the accent. One per heading. */
+.em{font-family:var(--f-display); font-style:italic; font-weight:300; color:var(--accent); letter-spacing:-.02em}
+.sub{font-size:clamp(18px,1.4vw,20px); line-height:1.6; color:var(--ink-2); max-width:46ch; margin:0 0 36px}
+.lede{font-size:clamp(19px,1.6vw,23px); line-height:1.55; color:var(--ink-2); max-width:44ch; margin:0 0 40px}
 .lede strong,.sub strong{color:var(--ink); font-weight:600}
 
-/* Display emphasis — serif italic in the accent, set against the sans display face.
-   Used on one phrase per heading, never more. */
-.em{font-family:var(--prose); font-style:italic; font-weight:400; color:var(--accent); letter-spacing:-.012em}
-.panel .em{color:var(--gold)}
+/* Chapter opener: a light numeral, a hairline, then the label — a catalogue's
+   section mark rather than a web eyebrow. */
+.chap{display:flex; align-items:center; gap:18px; margin:0 0 clamp(28px,3vw,44px)}
+.chap .no{
+  font-family:var(--f-display); font-weight:300; font-size:clamp(40px,4vw,60px); line-height:.8;
+  letter-spacing:-.04em; color:var(--ink); font-variant-numeric:lining-nums;
+}
+.chap .ln{flex:1; height:1px; background:var(--rule-strong); min-width:24px}
+.chap .lb{
+  font-family:var(--f-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-2); font-weight:500; white-space:nowrap;
+}
+@media (max-width:560px){ .chap .lb{white-space:normal; text-align:right} }
 
-/* chips / buttons */
-.chips{display:flex; flex-wrap:wrap; gap:9px}
+/* ── actions ──────────────────────────────────────────────── */
+.chips{display:flex; flex-wrap:wrap; align-items:center; gap:10px 12px}
 .chip{
-  display:inline-flex; align-items:center; gap:7px; padding:8px 15px;
-  border:1px solid var(--border-strong); border-radius:4px; background:var(--surface);
-  font-size:13.5px; font-weight:500; color:var(--ink-2);
-  transition:border-color .16s, color .16s, transform .16s;
+  display:inline-flex; align-items:center; gap:8px; min-height:46px; padding:0 20px;
+  border:1px solid var(--rule-strong); border-radius:2px; background:transparent;
+  font:500 15px/1 var(--f-sans); color:var(--ink); letter-spacing:.005em;
+  transition:background-color .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease);
 }
-.chip:hover{border-color:var(--accent); color:var(--accent); text-decoration:none; transform:translateY(-1px)}
-.chip.solid{background:var(--accent); border-color:var(--accent); color:#fff}
-.chip.solid:hover{background:var(--accent-2); border-color:var(--accent-2); color:#fff}
-:root[data-theme="dark"] .chip.solid,
-:root[data-theme="dark"] .chip.solid:hover{color:#0d1b2a}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .chip.solid,
-  :root:not([data-theme="light"]) .chip.solid:hover{color:#0d1b2a}
+.chip:hover{border-color:var(--ink); text-decoration:none}
+.chip.solid{background:var(--ink); border-color:var(--ink); color:var(--bg)}
+.chip.solid:hover{background:var(--accent); border-color:var(--accent); color:var(--accent-ink)}
+/* A text link whose underline retracts on hover rather than appearing. */
+.ulink{
+  color:var(--ink); font-weight:500; padding-bottom:2px;
+  background:linear-gradient(currentColor,currentColor) 0 100% / 100% 1px no-repeat;
+  transition:background-size .5s var(--ease), color .3s;
 }
+.ulink:hover{text-decoration:none; background-size:0 1px; background-position:100% 100%; color:var(--accent)}
 
 .tag{
-  font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:.09em; text-transform:uppercase;
-  padding:3px 8px; border-radius:5px; background:var(--tag-bg); color:var(--ink-3); white-space:nowrap;
+  display:inline-flex; align-items:center; gap:6px;
+  font:500 11px/1 var(--f-mono); letter-spacing:.08em; text-transform:uppercase;
+  padding:6px 8px; border:1px solid var(--rule-strong); border-radius:2px; color:var(--ink-2); white-space:nowrap;
 }
-.tag.live{background:var(--ok-bg); color:var(--ok-ink)}
-.tag.deep{background:transparent; color:var(--gold); border:1px solid var(--gold)}
+.tag.live{border-color:var(--accent); color:var(--accent)}
+.tag.live::before{content:""; width:6px; height:6px; border-radius:50%; background:currentColor}
+.tag.deep{border-color:var(--ink); color:var(--ink)}
 
-/* status strip */
-.strip{border-block:1px solid var(--border); background:var(--tag-bg); font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; color:var(--ink-2)}
-.strip .wrap{display:flex; flex-wrap:wrap; gap:10px 26px; padding-block:13px}
-.strip b{color:var(--ink); font-weight:500}
-.dot{width:6px; height:6px; border-radius:50%; background:var(--ok-ink); display:inline-block; margin-right:7px; vertical-align:1px}
+/* ── spec sheet ───────────────────────────────────────────
+   Label over value, hairline above — the way a furniture house lists
+   dimensions and finishes. The hero facts and the case-study header. */
+.spec{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr)); gap:0 var(--gap); margin:0}
+.spec > div{border-top:1px solid var(--rule-strong); padding:16px 0 18px}
+.spec dt{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); font-weight:500}
+.spec dd{margin:8px 0 0; font-size:16.5px; line-height:1.45; color:var(--ink)}
+.spec .live-dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--accent); margin-right:9px; vertical-align:1px}
 
-/* cinematic panel */
-.panel{background:var(--panel); color:var(--panel-ink)}
-.panel h1,.panel h2,.panel h3{color:var(--panel-ink)}
-.panel .sub{color:var(--panel-ink-2)}
-.panel .eyebrow{color:var(--panel-ink-3)}
-/* The home page's section labels are the only thing naming what kind of work each
-   section is, so they carry more weight than a page eyebrow. The .panel rule needs
-   the doubled class or the line above outranks it. */
-.eyebrow-lg{font-size:13px; letter-spacing:.14em; color:var(--ink-2); font-weight:600}
-.panel .eyebrow.eyebrow-lg{color:var(--panel-ink-2)}
-.panel a{color:var(--gold)}
-/* A .chip keeps its own light background inside the panel, so the gold above
-   lands on --surface at 2.45:1. Same trap .bk hit. :not(.solid) leaves a filled
-   chip and its dark-theme override alone. */
-.panel .chip:not(.solid){color:var(--ink-2)}
-.panel .chip:not(.solid):hover{color:var(--accent)}
+/* Big numerals over a caption — a result row. Real figures only. */
+.figs{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr)); gap:0 var(--gap); margin:0}
+.figs > div{border-top:1px solid var(--rule-strong); padding:18px 0 4px}
+.figs .n{
+  display:block; font-family:var(--f-display); font-weight:330; font-size:clamp(34px,3.6vw,54px);
+  line-height:1; letter-spacing:-.03em; color:var(--ink); font-variant-numeric:lining-nums tabular-nums;
+}
+.figs .l{display:block; font-family:var(--f-mono); font-size:11.5px; line-height:1.45; color:var(--ink-3); margin-top:12px; letter-spacing:.02em}
 
-/* long-form prose */
-.prose{font-family:var(--prose); font-size:18.5px; line-height:1.74; color:var(--ink-2); max-width:var(--measure)}
+/* ── plinth ───────────────────────────────────────────────
+   The dark surface product mocks stand on. Everything inside reads
+   light-on-dark, and the figure highlight lightens to match. */
+.plinth{
+  --gold:var(--plinth-hi);
+  background:var(--plinth); color:var(--plinth-ink); border-radius:2px;
+}
+
+/* ── long-form prose ──────────────────────────────────────── */
+.prose{font-size:18px; line-height:1.72; color:var(--ink-2)}
+.prose > *{max-width:var(--measure)}
+.prose > .dg,.prose > table,.prose > .tablewrap,.prose > h2,.prose > hr{max-width:none}
 .prose > *:first-child{margin-top:0}
-.prose p{margin:0 0 19px}
+.prose p{margin:0 0 20px}
 .prose strong{color:var(--ink); font-weight:600}
-.prose h2{font-family:var(--display); font-size:24px; line-height:1.25; letter-spacing:-.015em; font-weight:650; color:var(--ink); margin:46px 0 14px; padding-top:24px; border-top:1px solid var(--border)}
-.prose h3{font-family:var(--display); font-size:18px; font-weight:640; letter-spacing:-.008em; color:var(--ink); margin:32px 0 10px}
-.prose ul,.prose ol{margin:0 0 19px; padding-left:24px}
-.prose li{margin-bottom:9px}
-.prose li::marker{color:var(--ink-3)}
-/* The 30-second abstract and mid-page pull-quotes — the loud end of a page.
-   A rule above rather than a box around, matching the figure plates. */
-.prose blockquote{
-  margin:36px 0; padding:22px 0 0; border:0; border-top:2px solid var(--gold);
-  background:none; border-radius:0; font-size:20.5px; line-height:1.56; color:var(--ink);
+.prose a{text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:3px; text-decoration-color:color-mix(in srgb, var(--accent) 45%, transparent)}
+.prose a:hover{text-decoration-color:var(--accent)}
+.prose h2{
+  font-family:var(--f-display); font-weight:360; font-size:clamp(28px,2.7vw,40px); line-height:1.1;
+  letter-spacing:-.024em; color:var(--ink); margin:80px 0 22px; padding-top:30px;
+  border-top:1px solid var(--rule-strong); scroll-margin-top:96px;
 }
+.prose h3{font-family:var(--f-sans); font-size:19px; font-weight:600; letter-spacing:-.008em; color:var(--ink); margin:36px 0 10px}
+.prose ul,.prose ol{margin:0 0 20px; padding-left:22px}
+.prose li{margin-bottom:10px}
+.prose li::marker{color:var(--ink-3)}
+/* The 30-second version and pull-quotes: the page's serif moment. */
+.prose blockquote{
+  margin:44px 0; padding:0 0 0 26px; border:0; border-left:2px solid var(--accent);
+  font-family:var(--f-display); font-weight:340; font-size:clamp(21px,1.9vw,26px); line-height:1.45;
+  letter-spacing:-.008em; color:var(--ink);
+}
+.prose blockquote strong{font-weight:500}
+.prose blockquote p:last-child{margin:0}
 /* Boilerplate, deliberately quiet — it must not compete with the argument. */
 .prose .note{
   font-size:14.5px; line-height:1.62; color:var(--ink-3);
-  border-block:1px solid var(--border); padding:14px 0; margin:26px 0;
+  border-block:1px solid var(--rule); padding:16px 0; margin:30px 0;
 }
 .prose .note strong{color:var(--ink-2); font-weight:600}
-.prose blockquote p:last-child{margin:0}
-.prose hr{border:0; border-top:1px solid var(--border); margin:44px 0}
-.prose code{font-family:var(--mono); font-size:13.5px; background:var(--tag-bg); padding:2px 6px; border-radius:4px; color:var(--ink)}
-.prose pre{background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:16px 18px; overflow-x:auto; margin:0 0 20px}
-.prose pre code{background:none; padding:0; font-size:12.8px; line-height:1.55}
-.tablewrap{overflow-x:auto; margin:0 0 22px}
+.prose hr{border:0; border-top:1px solid var(--rule); margin:48px 0}
+/* A rule followed by a section heading would draw two lines; the heading's wins. */
+.prose hr:has(+ h2){display:none}
+.prose code{font-family:var(--f-mono); font-size:.82em; background:var(--tag-bg); padding:2px 6px; border-radius:2px; color:var(--ink)}
+.prose pre{background:var(--plinth) !important; color:var(--plinth-ink); border-radius:2px; padding:18px 20px; overflow-x:auto; margin:0 0 22px}
+.prose pre code{background:none; padding:0; font-size:12.8px; line-height:1.6; color:inherit}
+/* The highlighter inlines its comment grey (#6A737D), which sits at about
+   3.6:1 on the plinth. Lifted to the plinth's own muted ink, which clears AA. */
+.prose pre span[style*="#6A737D" i]{color:var(--plinth-ink-3) !important}
+.tablewrap{overflow-x:auto; margin:0 0 24px}
 /* The table is its own scroll container: max-content keeps columns readable,
-   max-width caps it at the text column, and overflow-x scrolls the rest.
-   Avoids a wrapper element, so no build plugin and no JS are involved. */
+   max-width caps it at the column, overflow-x scrolls the rest. No wrapper,
+   so no build plugin and no JS are involved. */
 .prose table{
   display:block; width:max-content; max-width:100%; overflow-x:auto;
-  border-collapse:collapse; font-size:15px; font-family:var(--display);
+  border-collapse:collapse; font-size:15.5px; margin:8px 0 28px;
 }
-.prose th{text-align:left; font-weight:640; color:var(--ink); padding:10px 14px; border-bottom:2px solid var(--border-strong); font-size:13.5px; vertical-align:bottom}
-.prose td{padding:11px 14px; border-bottom:1px solid var(--border); color:var(--ink-2); vertical-align:top; line-height:1.55}
+.prose th{
+  text-align:left; font-family:var(--f-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase;
+  font-weight:500; color:var(--ink-3); padding:10px 18px 10px 0; border-bottom:1px solid var(--rule-strong); vertical-align:bottom;
+}
+.prose td{padding:13px 18px 13px 0; border-bottom:1px solid var(--rule); color:var(--ink-2); vertical-align:top; line-height:1.55}
+.prose td strong{color:var(--ink)}
 .prose tr:last-child td{border-bottom:0}
 
-/* ---- Tier 2: reveal on scroll. Content ships visible; JS opts it into animating. ---- */
-.rv{opacity:1; transform:none}
-:root.js-rv .rv{opacity:0; transform:translateY(20px)}
-:root.js-rv .rv.in{opacity:1; transform:none; transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)}
+/* Diagrams inside prose sit on a plinth of their own, wider than the text. */
+.prose .dg{margin:48px 0; padding:clamp(18px,3vw,40px); background:var(--bg-2); border-radius:2px}
+.prose .dg svg{display:block; width:100%; height:auto; max-width:100%}
+.prose .dg figcaption{
+  font-family:var(--f-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-3); margin-top:18px; line-height:1.5;
+}
 
-/* ---- Tier 3: native scroll-driven reading progress, progressive ---- */
+/* ── figure plates (home page) ────────────────────────────── */
+.plate{margin:0; padding:clamp(22px,4vw,56px); background:var(--bg-2); border-radius:2px}
+.plate svg{display:block; width:100%; height:auto; max-width:100%}
+.plate figcaption{
+  font-family:var(--f-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-3); margin-top:22px;
+}
+
+/* ── diagram scroll container ────────────────────────────────
+   A 700-wide viewBox squeezed into a phone-width column renders its
+   labels at about 5px. Below 700px the figure keeps its own size and the
+   reader swipes it, the same trade .tablewrap makes for tables. Only the
+   SVG goes inside — a caption in here would need scrolling too. */
+.dgscroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.dgscroll svg{display:block; width:100%; height:auto}
+@media (max-width:700px){
+  /* .prose .dg svg and .plate svg both outrank a bare .dgscroll svg. */
+  .prose .dg .dgscroll svg,
+  .plate .dgscroll svg{width:680px; max-width:none}
+  .prose .dg figcaption::before,
+  .plate figcaption::before{content:"Scroll the diagram sideways · "; color:var(--accent)}
+}
+
+/* ── doc pages ────────────────────────────────────────────── */
+.backbar{padding:30px 0 0; font-family:var(--f-mono); font-size:12px; letter-spacing:.06em; text-transform:uppercase}
+.backbar a{color:var(--ink-3)}
+.backbar a:hover{color:var(--ink); text-decoration:none}
+.dochead{padding:clamp(40px,6vw,88px) 0 0}
+.docmeta{display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; font-family:var(--f-mono); font-size:12.5px; color:var(--ink-3); margin:0 0 28px}
+
+/* Sticky contents rail with sector progress. Each row fills as you read
+   through its section; ships as a plain list of anchors without JS. */
+.toc{position:sticky; top:96px; align-self:start; font-size:14px}
+.toc .eyebrow{margin-bottom:16px}
+.toc ol{list-style:none; margin:0; padding:0; border-top:1px solid var(--rule)}
+.toc li{border-bottom:1px solid var(--rule)}
+.toc a{
+  display:grid; grid-template-columns:28px minmax(0,1fr); gap:6px; padding:11px 0 12px;
+  color:var(--ink-3); line-height:1.35; position:relative; transition:color .3s;
+}
+.toc a:hover{color:var(--ink); text-decoration:none}
+.toc a .k{font-family:var(--f-mono); font-size:11.5px; padding-top:1px; font-variant-numeric:tabular-nums}
+.toc a::after{
+  content:""; position:absolute; left:0; bottom:-1px; height:1px; width:100%;
+  background:var(--accent); transform-origin:0 50%; transform:scaleX(var(--p,0));
+}
+.toc a.on{color:var(--ink)}
+.toc a.on .k{color:var(--accent)}
+
+/* ── project index (/work): a timing sheet ───────────────── */
+.filters{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 34px}
+.fbtn{
+  font:500 12px/1 var(--f-mono); letter-spacing:.08em; text-transform:uppercase;
+  min-height:44px; padding:0 15px; border-radius:2px; border:1px solid var(--rule-strong);
+  background:transparent; color:var(--ink-2); cursor:pointer;
+  transition:border-color .2s, color .2s, background-color .2s;
+}
+.fbtn:hover{color:var(--ink); border-color:var(--ink)}
+.fbtn[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--bg)}
+
+.sheet{border-top:1px solid var(--ink)}
+.sheet-head,.proj{
+  display:grid; gap:4px var(--gap);
+  grid-template-columns:44px minmax(0,1fr);
+}
+.sheet-head{
+  font-family:var(--f-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3);
+  padding:12px 0; border-bottom:1px solid var(--rule-strong);
+}
+.sheet-head span:nth-child(n+3){display:none}
+.proj{position:relative; padding:22px 0 24px; border-bottom:1px solid var(--rule)}
+.proj[hidden]{display:none}
+.proj .pos{font-family:var(--f-mono); font-size:13px; color:var(--ink-3); padding-top:6px; font-variant-numeric:tabular-nums; transition:color .3s}
+.proj .main{min-width:0}
+.proj h3{font-size:clamp(22px,2vw,28px); font-weight:380; margin:0}
+.proj h3 a{color:var(--ink)}
+.proj h3 a:hover{text-decoration:none; color:var(--accent)}
+.proj .d{font-size:15.5px; line-height:1.55; color:var(--ink-2); margin:8px 0 0; max-width:62ch}
+.proj .ctx,.proj .res{font-family:var(--f-mono); font-size:12.5px; line-height:1.5; color:var(--ink-3); grid-column:2}
+.proj .res b{color:var(--ink); font-weight:500; font-variant-numeric:tabular-nums}
+.proj .tags{display:flex; flex-wrap:wrap; gap:6px; margin-top:12px}
+.proj .go{display:none}
+.proj::before{
+  content:""; position:absolute; left:0; top:-1px; bottom:-1px; width:2px; background:var(--accent);
+  transform:scaleY(0); transform-origin:50% 0; transition:transform .45s var(--ease);
+}
+.proj:hover::before,.proj:focus-within::before{transform:scaleY(1)}
+.proj:hover .pos,.proj:focus-within .pos{color:var(--accent)}
+@media (min-width:980px){
+  .sheet-head,.proj{grid-template-columns:56px minmax(0,1.7fr) minmax(0,.9fr) minmax(0,1fr) 28px; align-items:start}
+  .sheet-head span:nth-child(n+3){display:block}
+  .proj{padding:26px 0 28px}
+  .proj .ctx,.proj .res{grid-column:auto; padding-top:8px}
+  .proj .go{display:block; padding-top:6px; color:var(--ink-3); transition:transform .45s var(--ease), color .3s}
+  .proj:hover .go{transform:translateX(4px); color:var(--accent)}
+  .proj .pos{padding-left:14px}
+}
+.empty{font-family:var(--f-mono); font-size:13px; color:var(--ink-3); padding:28px 0}
+
+/* ── artifact cards ───────────────────────────────────────── */
+.arts{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); column-gap:var(--gap); border-top:1px solid var(--rule-strong)}
+.art{
+  display:flex; flex-direction:column; gap:10px; padding:24px 0 28px; color:var(--ink);
+  border-bottom:1px solid var(--rule); position:relative;
+}
+.art:hover{text-decoration:none}
+.art:hover .t{color:var(--accent)}
+.art .k{font-family:var(--f-mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
+.art .t{font-family:var(--f-display); font-weight:380; font-size:24px; line-height:1.15; letter-spacing:-.015em; color:var(--ink); transition:color .3s}
+.art .d{font-size:15px; color:var(--ink-2); line-height:1.55}
+
+/* ── home: catalogue of everything else ───────────────────
+   A product catalogue rather than a card grid: shared hairlines, a
+   drawing on its own plinth, the name, then one real result. */
+.cat{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr)); border-top:1px solid var(--ink); border-left:1px solid var(--rule)}
+.bk{
+  display:flex; flex-direction:column; gap:14px; padding:22px 22px 26px; color:var(--ink);
+  border-right:1px solid var(--rule); border-bottom:1px solid var(--rule);
+  position:relative; transition:background-color .45s var(--ease);
+}
+.bk:hover{text-decoration:none; background:var(--surface)}
+.bk .top{display:flex; justify-content:space-between; gap:12px; font-family:var(--f-mono); font-size:11.5px; letter-spacing:.06em; color:var(--ink-3)}
+.bk .no{font-variant-numeric:tabular-nums}
+.bk .viz{display:block; height:112px; padding:24px 26px; background:var(--bg-2); color:var(--ink-2); transition:background-color .45s var(--ease), color .45s var(--ease)}
+.bk:hover .viz{background:var(--plinth); color:var(--plinth-ink); --gold:var(--plinth-hi)}
+.bk .viz svg{width:100%; height:100%; display:block; overflow:visible}
+.bk .t{font-family:var(--f-display); font-weight:380; font-size:clamp(22px,1.8vw,26px); line-height:1.15; letter-spacing:-.016em; margin-top:6px}
+.bk .m{display:flex; justify-content:space-between; align-items:baseline; gap:16px; font-family:var(--f-mono); font-size:12px; line-height:1.5; color:var(--ink-3); margin-top:auto}
+.bk .m b{color:var(--ink); font-weight:500; font-variant-numeric:tabular-nums}
+.bk .arrow{flex:none; font-family:var(--f-sans); font-size:15px; color:var(--ink-3); transition:transform .45s var(--ease), color .3s}
+.bk:hover .arrow{transform:translateX(4px); color:var(--accent)}
+@media (prefers-reduced-motion:reduce){ .bk,.bk .viz,.bk .arrow{transition:none} }
+
+/* ============================================================
+   Feature highlights deck.
+   Ships as a four-up grid that reads on its own; JS turns it into a
+   deck with a button on either side. Nothing here follows scroll
+   position — pinning the section made the page feel stuck.
+   ============================================================ */
+.hl-head h2{max-width:12ch}
+.hl-head .sub{max-width:40ch}
+.steps{display:grid; gap:1px; margin-top:48px; background:var(--plinth-line); border-radius:2px; overflow:hidden}
+.step{background:var(--plinth); padding:28px 26px}
+.step .n{
+  font-family:var(--f-display); font-weight:330; font-size:clamp(34px,4vw,52px); letter-spacing:-.03em; line-height:1.02;
+  color:var(--plinth-ink); display:block; text-wrap:balance;
+}
+.step .viz{display:none}
+.step .viz svg{display:block; width:100%; height:auto}
+.step .u{font-family:var(--f-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--plinth-hi); margin-top:16px; display:block}
+.step .d{font-size:16.5px; line-height:1.6; color:var(--plinth-ink-2); margin-top:12px}
+@media (min-width:760px){ .steps{grid-template-columns:repeat(4,1fr)} }
+
+/* the deck's children are laid out by .stage until JS says otherwise */
+.deck{display:contents}
+.arw,.rail{display:none}
+
+:root.js-hl .deck{
+  display:grid; align-items:center;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  grid-template-areas:"prev steps next" ".    rail  .";
+  gap:30px clamp(10px,2.4vw,32px); margin-top:56px;
+  padding:clamp(24px,3.4vw,48px) clamp(14px,2.4vw,32px);
+  background:var(--plinth); color:var(--plinth-ink); border-radius:2px;
+  --gold:var(--plinth-hi);
+}
+:root.js-hl .steps{
+  grid-area:steps; grid-template-columns:1fr; background:none; border-radius:0;
+  gap:0; margin:0; overflow:visible;
+}
+/* Every step shares one grid cell, so the deck is exactly as tall as the
+   tallest of them. A fixed height with overflow hidden once sheared the top
+   off any heading that ran to two lines. */
+:root.js-hl .step{
+  grid-area:1 / 1; padding:0; background:none; opacity:0; transform:translateY(12px); pointer-events:none;
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+}
+:root.js-hl .step.on{opacity:1; transform:none; pointer-events:auto}
+:root.js-hl .step .viz{display:block; margin-bottom:28px}
+:root.js-hl .step .n{font-size:clamp(36px,3.8vw,58px)}
+:root.js-hl .step .d{font-size:clamp(16.5px,1.3vw,18.5px); max-width:46ch}
+
+:root.js-hl .arw{
+  display:grid; place-items:center; width:48px; height:48px; border-radius:50%;
+  background:none; border:1px solid var(--plinth-line); color:var(--plinth-ink);
+  cursor:pointer; transition:background-color .3s, border-color .3s;
+}
+:root.js-hl .arw.prev{grid-area:prev}
+:root.js-hl .arw.next{grid-area:next}
+:root.js-hl .arw:hover{background:rgba(255,255,255,.08); border-color:var(--plinth-ink-3)}
+:root.js-hl .arw:focus-visible{outline-color:var(--plinth-hi)}
+
+:root.js-hl .rail{grid-area:rail; display:flex; gap:8px}
+.railb{
+  flex:1; display:flex; flex-direction:column; align-items:flex-start; gap:9px;
+  background:none; border:0; padding:0; cursor:pointer;
+  font:500 11px/1 var(--f-mono); letter-spacing:.12em; color:var(--plinth-ink-3);
+  transition:color .3s;
+}
+.railb i{display:block; width:100%; height:2px; background:var(--plinth-line); overflow:hidden; position:relative}
+.railb i::after{content:""; position:absolute; inset:0; background:var(--plinth-hi); transform:scaleX(0); transform-origin:left; transition:transform .5s var(--ease)}
+.railb.on i::after{transform:scaleX(1)}
+.railb.on{color:var(--plinth-hi)}
+.railb:hover{color:var(--plinth-ink)}
+.railb:focus-visible{outline:2px solid var(--plinth-hi); outline-offset:4px}
+
+@media (min-width:1000px){
+  .hl .stage{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gap); align-items:start}
+  .hl-head{grid-column:1 / span 5; padding-right:clamp(0px,2vw,32px)}
+  .hl .deck,.hl .steps{grid-column:6 / -1}
+  .steps{margin-top:0}
+  :root.js-hl .deck{margin-top:0}
+}
+/* Narrow: the step takes the full width and the two buttons drop to either
+   end of the rail, so they stay on opposite sides without crowding the text. */
+@media (max-width:760px){
+  :root.js-hl .deck{grid-template-areas:"steps steps steps" "prev rail next"; gap:26px 14px; padding-inline:10px}
+  :root.js-hl .arw{width:46px; height:46px}
+}
+@media (prefers-reduced-motion:reduce){ :root.js-hl .step{transition:none} }
+
+/* ── motion ───────────────────────────────────────────────
+   Everything ships visible and readable. JS stamps :root.js-rv to opt
+   in, so a failed script leaves a complete page rather than a blank one.
+   One easing everywhere; reduced motion switches all of it off. */
+.rv{opacity:1; transform:none}
+:root.js-rv .rv{opacity:0; transform:translateY(18px)}
+:root.js-rv .rv.in{opacity:1; transform:none; transition:opacity .8s var(--ease) var(--d,0ms), transform .8s var(--ease) var(--d,0ms)}
+
+/* Display type is uncovered from below rather than faded in. */
+.rv-w{transform:none}
+:root.js-rv .rv-w{
+  -webkit-mask-image:linear-gradient(180deg,#000 50%,transparent 50%);
+          mask-image:linear-gradient(180deg,#000 50%,transparent 50%);
+  -webkit-mask-size:100% 200%;  mask-size:100% 200%;
+  -webkit-mask-position:0 100%; mask-position:0 100%;
+  transform:translateY(22px);
+}
+:root.js-rv .rv-w.in{
+  -webkit-mask-position:0 0; mask-position:0 0; transform:none;
+  transition:-webkit-mask-position 1.15s var(--ease) var(--d,0ms), mask-position 1.15s var(--ease) var(--d,0ms), transform 1.15s var(--ease) var(--d,0ms);
+}
+
+/* The hero's apex rule is wiped in from the left. A mask rather than a clip:
+   a clip-path inset to nothing has no area, so IntersectionObserver never
+   reports it and the line would stay hidden. */
+:root.js-rv .apex{
+  -webkit-mask-image:linear-gradient(90deg,#000 50%,transparent 50%);
+          mask-image:linear-gradient(90deg,#000 50%,transparent 50%);
+  -webkit-mask-size:200% 100%; mask-size:200% 100%;
+  -webkit-mask-position:100% 0; mask-position:100% 0;
+}
+:root.js-rv .apex.in{
+  -webkit-mask-position:0 0; mask-position:0 0;
+  transition:-webkit-mask-position 1.8s var(--ease) .25s, mask-position 1.8s var(--ease) .25s;
+}
+
+/* Figures draw themselves: stroked geometry runs its own length. */
+:root.js-rv .plate svg [data-draw],
+:root.js-rv .prose .dg svg [data-draw]{stroke-dasharray:var(--len); stroke-dashoffset:var(--len)}
+:root.js-rv .plate.in svg [data-draw],
+:root.js-rv .prose .dg.in svg [data-draw]{stroke-dashoffset:0; transition:stroke-dashoffset 1.3s cubic-bezier(.3,1,.4,1) .12s}
+
+/* Plates settle into scale as they arrive, where the browser can tie it to
+   scroll. Longhands, with the timeline in its own rule — the minifier folds a
+   timeline into the animation shorthand, which Chrome rejects outright. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    :root.js-rv .plate,:root.js-hl .deck{
+      animation-name:settle; animation-duration:auto; animation-timing-function:linear; animation-fill-mode:both;
+    }
+    :root.js-rv .plate:not(#\9),:root.js-hl .deck:not(#\9){animation-timeline:view(); animation-range:entry 0% cover 30%}
+    @keyframes settle{from{transform:scale(.96)} to{transform:none}}
+  }
+}
+
+/* Reading progress: a hairline across the top, tied to scroll where supported. */
 .readbar{display:none}
 @supports (animation-timeline: scroll()){
   .readbar{
     display:block; position:fixed; top:0; left:0; height:2px; width:100%; transform-origin:0 50%;
-    background:var(--gold); z-index:90; transform:scaleX(0);
+    background:var(--accent); z-index:90; transform:scaleX(0);
     animation-name:readprog; animation-duration:auto; animation-timing-function:linear;
     animation-fill-mode:both;
   }
@@ -189,283 +533,32 @@ h2{font-size:clamp(28px,4.2vw,50px); line-height:1.1; letter-spacing:-.02em; fon
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none !important; transition:none !important}
   .rv{opacity:1 !important; transform:none !important}
+  .rv-w,:root.js-rv .rv-w,:root.js-rv .apex{-webkit-mask-image:none !important; mask-image:none !important; transform:none !important}
+  :root.js-rv .plate svg [data-draw],
+  :root.js-rv .prose .dg svg [data-draw]{stroke-dasharray:none !important; stroke-dashoffset:0 !important}
   .readbar{display:none !important}
 }
 
 @media (max-width:560px){
-  .wrap,.narrow{padding-inline:18px}
-  .sectionpad{padding-block:62px}
-  .prose{font-size:16.5px}
+  .prose{font-size:17px}
+  .prose h2{margin-top:60px}
 }
 
-/* ============================================================
-   Feature highlights.
-   Ships as a four-up grid that reads on its own; JS turns it into a
-   deck with a button on either side. Nothing here is driven by scroll
-   position — pinning the section made the page feel stuck.
-   ============================================================ */
-.hl .stage{padding-block:96px}
-.hl-head h2{max-width:20ch}
-.hl-head .sub{max-width:var(--measure); font-size:20px}
-.steps{display:grid; gap:1px; margin-top:48px; background:var(--panel-line); border:1px solid var(--panel-line); border-radius:8px; overflow:hidden}
-.step{background:var(--panel); padding:26px 24px}
-.step .n{
-  font-size:clamp(34px,5vw,52px); font-weight:700; letter-spacing:-.025em; line-height:1.04;
-  color:var(--panel-ink); font-variant-numeric:tabular-nums; display:block; text-wrap:balance;
-}
-.step .viz{display:none}
-.step .viz svg{display:block; width:100%; height:auto}
-:root.js-hl .step .viz{display:block; margin-bottom:26px}
-.step .u{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-top:14px; display:block}
-.step .d{font-family:var(--prose); font-size:17px; line-height:1.6; color:var(--panel-ink-2); margin-top:14px}
-@media (min-width:760px){ .steps{grid-template-columns:repeat(4,1fr)} }
-
-/* the deck's own children are laid out by .stage until JS says otherwise */
-.deck{display:contents}
-.arw,.rail{display:none}
-
-/* ---- the deck, once JS is running ---- */
-:root.js-hl .deck{
-  display:grid; align-items:center;
-  grid-template-columns:auto minmax(0,1fr) auto;
-  grid-template-areas:"prev steps next" ".    rail  .";
-  gap:34px clamp(10px,3.4vw,44px); margin-top:54px;
-}
-:root.js-hl .steps{
-  grid-area:steps; grid-template-columns:1fr; background:none; border:0; border-radius:0;
-  gap:0; margin:0; overflow:visible;
-}
-/* Every step shares one grid cell, so the deck is exactly as tall as the tallest
-   of them. The previous build gave the cell a fixed height and hid the overflow,
-   which sheared the top off any heading that ran to two lines. */
-:root.js-hl .step{
-  grid-area:1 / 1; padding:0; opacity:0; transform:translateY(14px); pointer-events:none;
-  transition:opacity .45s cubic-bezier(.22,1,.36,1), transform .45s cubic-bezier(.22,1,.36,1);
-}
-:root.js-hl .step.on{opacity:1; transform:none; pointer-events:auto}
-:root.js-hl .step .n{font-size:clamp(38px,4.4vw,62px)}
-:root.js-hl .step .d{font-size:clamp(17px,1.5vw,20px); max-width:46ch}
-
-:root.js-hl .arw{
-  display:grid; place-items:center; width:54px; height:54px; border-radius:50%;
-  background:none; border:1px solid var(--panel-line); color:var(--panel-ink);
-  cursor:pointer; transition:background .25s, border-color .25s;
-}
-:root.js-hl .arw.prev{grid-area:prev}
-:root.js-hl .arw.next{grid-area:next}
-:root.js-hl .arw:hover{background:rgba(255,255,255,.09); border-color:var(--panel-ink-3)}
-:root.js-hl .arw:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
-
-:root.js-hl .rail{grid-area:rail; display:flex; gap:10px}
-.railb{
-  flex:1; display:flex; flex-direction:column; align-items:flex-start; gap:8px;
-  background:none; border:0; padding:0; cursor:pointer;
-  font-family:var(--mono); font-size:10px; letter-spacing:.13em; color:var(--panel-ink-3);
-  transition:color .3s;
-}
-.railb i{display:block; width:100%; height:2px; background:var(--panel-line); border-radius:2px; overflow:hidden; position:relative}
-.railb i::after{content:""; position:absolute; inset:0; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform .45s ease}
-.railb.on i::after{transform:scaleX(1)}
-.railb.on{color:var(--gold)}
-.railb:hover{color:var(--panel-ink)}
-.railb:focus-visible{outline:2px solid var(--gold); outline-offset:4px; border-radius:2px}
-
-@media (min-width:1000px){
-  .hl .stage{display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:0 62px; align-items:start}
-  .hl-head .sub{max-width:none}
-  .steps{margin-top:0}
-  :root.js-hl .deck{margin-top:0; gap:30px 20px}
-}
-
-/* Narrow: the step takes the full width and the two buttons drop to either end
-   of the rail, so they stay on opposite sides without crowding the text. */
-@media (max-width:760px){
-  :root.js-hl .deck{grid-template-areas:"steps steps steps" "prev rail next"; gap:26px 14px}
-  :root.js-hl .arw{width:46px; height:46px}
-}
-
-@media (prefers-reduced-motion:reduce){
-  :root.js-hl .step{transition:none}
-}
-
-/* ---- non-goals: struck-through motif ---- */
-
-/* ---- project grid ---- */
-.filters{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 28px}
-.fbtn{
-  font-family:var(--mono); font-size:11px; letter-spacing:.09em; text-transform:uppercase;
-  padding:8px 14px; border-radius:999px; border:1px solid var(--border-strong);
-  background:var(--surface); color:var(--ink-3); cursor:pointer; font-weight:500;
-  transition:border-color .15s, color .15s, background .15s;
-}
-.fbtn:hover{color:var(--ink); border-color:var(--ink-3)}
-.fbtn[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:#fff}
-:root[data-theme="dark"] .fbtn[aria-pressed="true"]{color:#0d1b2a}
-@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .fbtn[aria-pressed="true"]{color:#0d1b2a} }
-
-.grid{display:grid; gap:16px; grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
-.proj{
-  background:var(--surface); border:1px solid var(--border); border-radius:6px;
-  padding:24px 22px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:11px;
-  transition:box-shadow .18s, border-color .18s, transform .18s;
-}
-.proj:hover{box-shadow:var(--shadow-hover); border-color:var(--border-strong); transform:translateY(-2px)}
-.proj[hidden]{display:none}
-.proj .top{display:flex; flex-wrap:wrap; align-items:baseline; gap:9px}
-.proj h3{font-size:19px; font-weight:600; letter-spacing:-.015em; margin:0}
-.proj h3 a{color:var(--ink)}
-.proj h3 a:hover{color:var(--accent); text-decoration:none}
-.proj .role{font-family:var(--mono); font-size:11.5px; color:var(--ink-3); margin:0}
-.proj p.d{font-family:var(--prose); font-size:15px; line-height:1.6; color:var(--ink-2); margin:0}
-.proj .mini{display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:auto; padding-top:6px}
-.proj .mini span{font-family:var(--mono); font-size:11.5px; color:var(--ink-3)}
-.proj .mini b{color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums}
-.empty{font-family:var(--mono); font-size:13px; color:var(--ink-3); padding:26px 0}
-
-/* ---- artifact cards ---- */
-.arts{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px}
-.art{display:flex; flex-direction:column; gap:6px; background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:20px; transition:border-color .15s, transform .15s}
-.art:hover{border-color:var(--accent); text-decoration:none; transform:translateY(-2px)}
-.art .k{font-family:var(--mono); font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold)}
-.art .t{font-weight:610; color:var(--ink); font-size:15.5px}
-.art .d{font-family:var(--prose); font-size:14px; color:var(--ink-3); line-height:1.55}
-
-/* ---- doc header ---- */
-.dochead{padding:56px 0 0}
-.docmeta{display:flex; flex-wrap:wrap; gap:8px 18px; font-family:var(--mono); font-size:12px; color:var(--ink-3); margin:0 0 26px}
-.backbar{padding:26px 0 0; font-family:var(--mono); font-size:12px}
-.backbar a{color:var(--ink-3)}
-.backbar a:hover{color:var(--accent)}
-
-/* ---- inline diagrams inside prose ---- */
-/* Work-page figures use the same rule-bracketed plate as the home page,
-   so a diagram reads as part of the argument rather than a card beside it. */
-.prose .dg{margin:40px 0; padding:24px 0; border-block:1px solid var(--border)}
-.prose .dg svg{display:block; width:100%; height:auto; max-width:100%}
-.prose .dg figcaption{
-  font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--ink-3); margin-top:14px;
-}
-
-/* ── project blocks ─────────────────────────────────────────
-   The index of everything not featured. Lives on .panel, which is
-   the single dark beat on the home page. Replaces a plain title list. */
-.blocks{display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(264px,1fr)); margin-top:42px}
-.bk{
-  position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between;
-  min-height:208px; padding:24px 22px; border-radius:6px; color:var(--panel-ink); text-decoration:none;
-  background:linear-gradient(165deg,rgba(255,255,255,.085),rgba(255,255,255,.018));
-  border:1px solid var(--panel-line);
-  transition:transform .5s cubic-bezier(.16,1,.3,1), border-color .5s;
-}
-.panel .bk,.panel .bk:hover{color:var(--panel-ink)}
-.bk:hover{transform:translateY(-5px); border-color:rgba(255,255,255,.3); text-decoration:none}
-.bk > *{position:relative; z-index:1}
-.bk .no{font-family:var(--mono); font-size:11px; letter-spacing:.14em; color:var(--panel-ink-3)}
-.bk .viz{width:100%; height:56px; margin-top:16px; opacity:.9}
-.bk .viz svg{width:100%; height:100%; display:block; overflow:visible}
-.bk .t{font-size:20px; font-weight:600; letter-spacing:-.014em; line-height:1.2; margin-top:auto}
-.bk .m{font-family:var(--mono); font-size:11px; line-height:1.5; color:var(--panel-ink-2); margin-top:10px}
-.bk .m b{color:var(--gold); font-weight:500; font-variant-numeric:tabular-nums}
-.bk .glow{position:absolute; z-index:0; left:-14%; right:-14%; bottom:-62%; height:150px; border-radius:50%; filter:blur(52px); opacity:.32; transition:opacity .5s}
-.bk:hover .glow{opacity:.56}
-@media (prefers-reduced-motion:reduce){ .bk,.bk .glow{transition:none} .bk:hover{transform:none} }
-
-/* ── figure plates ──────────────────────────────────────────
-   Rules rather than cards: the figure sits in the text column,
-   bracketed top and bottom, so it reads as part of the argument. */
-.plate{margin:44px 0; padding:26px 0; border-block:1px solid var(--border)}
-.plate svg{display:block; width:100%; height:auto; max-width:100%}
-.plate figcaption{
-  font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--ink-3); margin-top:16px;
-}
-.panel .plate{border-block-color:var(--panel-line)}
-.panel .plate figcaption{color:var(--panel-ink-3)}
-
-/* ── motion ─────────────────────────────────────────────────
-   Everything ships visible and readable. JS stamps :root.js-rv to
-   opt in, so a failed script leaves a complete page rather than a
-   blank one. prefers-reduced-motion switches all of it off. */
-
-/* Display type is uncovered from below rather than faded in. */
-.rv-w{transform:none}
-:root.js-rv .rv-w{
-  -webkit-mask-image:linear-gradient(180deg,#000 50%,transparent 50%);
-          mask-image:linear-gradient(180deg,#000 50%,transparent 50%);
-  -webkit-mask-size:100% 200%;  mask-size:100% 200%;
-  -webkit-mask-position:0 100%; mask-position:0 100%;
-  transform:translateY(18px);
-}
-:root.js-rv .rv-w.in{
-  -webkit-mask-position:0 0; mask-position:0 0; transform:none;
-  transition:-webkit-mask-position 1.05s cubic-bezier(.16,1,.3,1),
-             mask-position 1.05s cubic-bezier(.16,1,.3,1),
-             transform 1.05s cubic-bezier(.16,1,.3,1);
-}
-
-/* Figures draw themselves: stroked geometry runs its own length. */
-:root.js-rv .plate svg [data-draw],
-:root.js-rv .prose .dg svg [data-draw]{stroke-dasharray:var(--len); stroke-dashoffset:var(--len)}
-:root.js-rv .plate.in svg [data-draw],
-:root.js-rv .prose .dg.in svg [data-draw]{
-  stroke-dashoffset:0; transition:stroke-dashoffset 1.25s cubic-bezier(.3,1,.4,1) .12s;
-}
-
-/* Slow drift between a figure and the text column it belongs to. */
-@supports (animation-timeline:view()){
-  @media (prefers-reduced-motion:no-preference){
-    :root.js-rv .plate svg{animation:plate-drift linear both; animation-timeline:view(); animation-range:entry 8% exit 92%}
-    @keyframes plate-drift{from{transform:translateY(15px)} to{transform:translateY(-15px)}}
-  }
-}
-@media (prefers-reduced-motion:reduce){
-  .rv-w,:root.js-rv .rv-w{-webkit-mask-image:none !important; mask-image:none !important; transform:none !important; transition:none !important}
-  :root.js-rv .plate svg [data-draw],
-  :root.js-rv .prose .dg svg [data-draw]{stroke-dasharray:none !important; stroke-dashoffset:0 !important}
-}
-
-/* The block diagrams take their neutral stroke from currentColor, so each
-   surface sets the colour it wants and one drawing serves both. */
-.bk .viz{color:var(--panel-ink)}
-.proj .viz{display:block; width:100%; height:46px; color:var(--ink-3); margin:2px 0 4px}
-.proj .viz svg{width:100%; height:100%; display:block; overflow:visible}
-
-/* ── diagram scroll container ────────────────────────────────────────
-   A 700-wide viewBox squeezed into a phone-width text column renders its
-   labels at about 5px. Below 700px the figure keeps its own size and the
-   reader swipes it, the same trade .tablewrap already makes for tables.
-   Only the SVG goes inside — a caption in here would need scrolling too. */
-.dgscroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
-.dgscroll svg{display:block; width:100%; height:auto}
-@media (max-width:700px){
-  /* .prose .dg svg and .plate svg both outrank a bare .dgscroll svg, so the
-     narrow-width width has to be at least as specific as they are. */
-  .prose .dg .dgscroll svg,
-  .plate .dgscroll svg{width:680px; max-width:none}
-  .prose .dg figcaption::before,
-  .plate figcaption::before{content:"Scroll the diagram sideways · "; color:var(--gold)}
-  .panel .plate figcaption::before{color:var(--gold)}
-}
-
-/* ── touch targets ──────────────────────────────────────────────────
-   Several controls are visually small by design — a 21px stepper segment,
-   a 30px nav link. Rather than inflate them and bloat the sticky bar, give
-   each an invisible 44px hit area on touch devices only. */
+/* ── touch targets ───────────────────────────────────────────
+   Several controls are visually small by design — a 2px stepper
+   segment, a short nav link. Rather than inflate them, give each a 44px
+   hit area on touch devices only. */
 @media (pointer:coarse){
   .railb,.sig{position:relative}
   .railb::before,.sig::before{
     content:""; position:absolute; left:0; right:0; top:50%;
     height:44px; transform:translateY(-50%);
   }
-  /* A project card should be tappable anywhere, not on a 21px strip of title.
-     The title link stretches over the whole card. */
-  .proj{position:relative}
+  /* A project row is tappable anywhere, not on a strip of title text. */
   .proj h3 a::after{content:""; position:absolute; inset:0}
-  /* .navlinks scrolls horizontally, and an overflow container clips a
-     pseudo-element that reaches past the content box, so the nav uses real
-     padding instead — set in Nav.astro, where the scoped styles live. */
-  .fbtn{padding-block:14px}
   .backbar a{position:relative; display:inline-block}
   .backbar a::before{content:""; position:absolute; left:-6px; right:-6px; top:50%; height:44px; transform:translateY(-50%)}
+  .toc a{padding-block:13px}
+  .ulink{position:relative}
+  .ulink::before{content:""; position:absolute; left:-4px; right:-4px; top:50%; height:44px; transform:translateY(-50%)}
 }

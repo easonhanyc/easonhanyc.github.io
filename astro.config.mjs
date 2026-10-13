@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://easonhanyc.github.io',
   integrations: [mdx(), sitemap()],
-  markdown: { shikiConfig: { theme: 'github-dark-dimmed', wrap: true } },
+  markdown: { shikiConfig: { theme: 'github-dark', wrap: true } },
   // The AI project was renamed when its case study was corrected to describe
   // release automation rather than code review. Keeps the old URL alive.
   redirects: {
