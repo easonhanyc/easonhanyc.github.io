@@ -443,38 +443,38 @@ h3{font-size:clamp(21px,1.8vw,26px); line-height:1.2; letter-spacing:-.03em}
 .cta .addr{font:500 13px var(--f-mono); color:var(--ink-3); overflow-wrap:anywhere}
 .cta .addr:hover{color:var(--accent)}
 
-/* TripMatch: a working copy of the rides board */
+/* TripMatch: a working copy of the rides board. It sits on an ordinary tile in
+   the page's own colours; the rides are inset rows, like the ranked list beside it. */
 .trip{display:flex; flex-direction:column; gap:14px}
 .trip .th,.tile .th{display:flex; justify-content:space-between; align-items:center; gap:12px}
 .trip h2{font-size:clamp(30px,2.8vw,42px); margin:0}
-.trip .d{font-size:15.5px; line-height:1.6; color:var(--plinth-ink-2); max-width:56ch; margin:0}
+.trip .d{font-size:15.5px; line-height:1.6; color:var(--ink-2); max-width:56ch; margin:0}
 .board{font-size:15px}
 .board ul{list-style:none; margin:0; padding:0; display:grid; gap:6px}
 .board li{
   display:grid; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:14px;
-  padding:9px 9px 9px 14px; background:var(--plinth-2); border-radius:13px; border:1px solid transparent;
+  padding:9px 9px 9px 14px; background:var(--bg-2); border-radius:13px; border:1px solid var(--rule);
   transition:border-color .35s, background-color .35s;
 }
-.board li b{display:block; font-weight:600; line-height:1.3; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
-.board li .when{display:block; font:400 12.5px/1.4 var(--f-mono); color:var(--plinth-ink-2)}
-.board .s{font:500 13px var(--f-mono); font-variant-numeric:tabular-nums; text-align:right; min-width:4.2em; display:inline-block; color:var(--plinth-ink)}
+.board li b{display:block; font-weight:600; line-height:1.3; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.board li .when{display:block; font:400 12.5px/1.4 var(--f-mono); color:var(--ink-3)}
+.board .s{font:500 13px var(--f-mono); font-variant-numeric:tabular-nums; text-align:right; min-width:4.2em; display:inline-block; color:var(--ink)}
 /* the buttons only exist once the script that drives them has run */
 .board button{display:none}
 :root.js .board button{
   display:block; min-width:84px; min-height:40px; padding:0 14px; border-radius:999px; cursor:pointer;
-  border:1px solid var(--plinth-line); background:rgba(255,255,255,.03); color:var(--plinth-ink); font:600 14px var(--f-sans);
+  border:1px solid var(--rule-strong); background:var(--surface); box-shadow:var(--hl); color:var(--ink); font:600 14px var(--f-sans);
   transition:background-color .2s, color .2s, border-color .2s, transform .15s;
 }
-:root.js .board button:hover{background:rgba(255,255,255,.09)}
+:root.js .board button:hover{border-color:var(--ink)}
 :root.js .board button:active{transform:scale(.95)}
-:root.js .board button:disabled{opacity:.45; cursor:default; background:transparent}
-.board button:focus-visible{outline-color:var(--plinth-ok)}
-.board li.in{border-color:rgba(134,212,172,.6); background:rgba(134,212,172,.08)}
-:root.js .board li.in button{background:var(--plinth-ok); border-color:var(--plinth-ok); color:#06130D}
+:root.js .board button:disabled{cursor:default; background:transparent; box-shadow:none; border-style:dashed; border-color:var(--rule-strong); color:var(--ink-3)}
+.board li.in{border-color:color-mix(in srgb, var(--accent) 55%, transparent); background:var(--tint)}
+:root.js .board li.in button{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); box-shadow:none}
 .board .s.pop{animation:pop .55s var(--ease)}
-@keyframes pop{35%{transform:scale(1.4); color:var(--plinth-ok)}}
-.board .toast{min-height:1.6em; padding:10px 4px 0; margin:0; font-size:13.5px; color:var(--plinth-ink-2)}
-.board .toast b{color:var(--plinth-ok); font-weight:600}
+@keyframes pop{35%{transform:scale(1.4); color:var(--accent)}}
+.board .toast{min-height:1.6em; padding:10px 4px 0; margin:0; font-size:13.5px; color:var(--ink-2)}
+.board .toast b{color:var(--accent); font-weight:600}
 @media (max-width:420px){ .board li{gap:10px; padding-left:12px} :root.js .board button{min-width:64px} }
 
 /* Berkeley time */

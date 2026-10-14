@@ -65,7 +65,7 @@ const ideas = [
     </aside>
 
     <div class="bento">
-      <section class="tile plinth pad trip rv" aria-labelledby="tm-h">
+      <section class="tile pad trip rv" aria-labelledby="tm-h">
         <div class="th"><span class="lbl">0→1 build · Aug 2026</span><span class="lbl"><span class="dot"></span>Live</span></div>
         <h2 id="tm-h">TripMatch</h2>
         <p class="d">A rides board I designed, built and shipped for my Berkeley Haas class. Post a trip; whoever needs the seat taps once and it's theirs. No app to install, and only verified classmates can see it.</p>
@@ -186,10 +186,10 @@ const ideas = [
 
   .trip .board{margin-top:4px}
   .trip .go{margin-top:auto}
-  .feats{list-style:none; margin:4px 0 0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:var(--plinth-line); border-radius:12px; overflow:hidden}
+  .feats{list-style:none; margin:4px 0 0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:12px; overflow:hidden}
   @media (min-width:700px){ .feats{grid-template-columns:repeat(4,minmax(0,1fr))} }
-  .feats li{background:var(--plinth); padding:12px 14px; font-size:13px; line-height:1.45; color:var(--plinth-ink-2)}
-  .feats b{display:block; font-size:15px; font-weight:600; color:var(--plinth-ink); letter-spacing:-.01em; margin-bottom:2px}
+  .feats li{background:var(--bg-2); padding:12px 14px; font-size:13px; line-height:1.45; color:var(--ink-2)}
+  .feats b{display:block; font-size:15px; font-weight:600; color:var(--ink); letter-spacing:-.01em; margin-bottom:2px}
   .ideat .q:not(.on){display:none}
   :root:not(.js) .ideat .q:not(.on){display:block}
 
