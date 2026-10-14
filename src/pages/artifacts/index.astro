@@ -13,7 +13,7 @@ const artifacts = (await getCollection('artifacts')).sort((a, b) => a.data.order
     </div>
     <div class="arts">
       {artifacts.map((a) => (
-        <a class="art rv" href={`/artifacts/${a.id}`}>
+        <a class="tile art rv" href={`/artifacts/${a.id}`}>
           <span class="k">{a.data.kind}</span>
           <span class="t">{a.data.title}</span>
           <span class="d">{a.data.description}</span>

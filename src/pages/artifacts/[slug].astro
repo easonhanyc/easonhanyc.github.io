@@ -30,7 +30,7 @@ const parent = d.related ? projects.find((p) => p.id === d.related) : undefined;
 
     <div class="doc">
       <Toc headings={headings} />
-      <article class="prose"><Content /></article>
+      <article class="prose sheet"><Content /></article>
     </div>
 
     <div class="end chips">
@@ -45,11 +45,11 @@ const parent = d.related ? projects.find((p) => p.id === d.related) : undefined;
   .dochead .spec{max-width:480px}
   .doc{margin-top:clamp(56px,7vw,104px)}
   .doc :global(.toc){display:none}
-  .doc .prose{max-width:820px}
+  .doc .prose{max-width:900px}
   @media (min-width:1100px){
     .doc{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gap); align-items:start}
     .doc :global(.toc){display:block; grid-column:1 / span 3; padding-right:clamp(0px,1.5vw,24px)}
-    .doc .prose{grid-column:4 / span 8; max-width:none}
+    .doc .prose{grid-column:4 / span 9; max-width:none}
   }
   .end{padding:clamp(56px,6vw,88px) 0 24px}
 </style>

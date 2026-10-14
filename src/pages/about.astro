@@ -27,7 +27,7 @@ const principles = [
       the one who makes it.
     </p>
 
-    <section class="band">
+    <section class="band tile">
       <p class="eyebrow">How I work</p>
       <ol class="principles">
         {principles.map((p, i) => (
@@ -39,7 +39,7 @@ const principles = [
       </ol>
     </section>
 
-    <section class="band">
+    <section class="band tile">
       <p class="eyebrow">Background</p>
       <div>
         <p class="sub rv">
@@ -50,7 +50,7 @@ const principles = [
       </div>
     </section>
 
-    <section class="band">
+    <section class="band tile">
       <p class="eyebrow">Skills</p>
       <dl class="skills">
         {skills.map((s) => (
@@ -59,7 +59,7 @@ const principles = [
       </dl>
     </section>
 
-    <section class="band">
+    <section class="band tile">
       <p class="eyebrow">Reach me</p>
       <div>
         <div class="chips rv">
@@ -79,7 +79,8 @@ const principles = [
 
   /* Each section is a row: its label on a narrow rail, the content beside it —
      a catalogue's spec page rather than a stacked document. */
-  .band{display:grid; gap:18px; margin-top:clamp(64px,8vw,120px); padding-top:24px; border-top:1px solid var(--rule-strong)}
+  .band{display:grid; gap:18px; margin-top:12px; padding:clamp(22px,3vw,40px)}
+  .lede + .band{margin-top:clamp(40px,5vw,72px)}
   @media (min-width:900px){
     .band{grid-template-columns:minmax(0,3fr) minmax(0,9fr); column-gap:var(--gap)}
   }

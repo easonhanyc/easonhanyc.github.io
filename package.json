@@ -10,7 +10,7 @@
     "check": "astro check",
     "check:diagrams": "node scripts/check-diagrams.cjs",
     "check:touch": "node scripts/check-touch.cjs",
-    "check:deck": "node scripts/check-deck.cjs",
+    "check:board": "node scripts/check-board.cjs",
     "build:og": "node scripts/build-og.cjs",
     "check:links": "node scripts/check-links.cjs"
   },

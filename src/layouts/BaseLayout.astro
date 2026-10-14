@@ -33,10 +33,12 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" />
-  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#0B0B0C" media="(prefers-color-scheme: dark)" />
-  <!-- Applied before first paint so an explicit theme choice never flashes the other palette. -->
+  <meta name="theme-color" content="#E4E8E5" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0E1412" media="(prefers-color-scheme: dark)" />
+  <!-- Applied before first paint so an explicit theme choice never flashes the other
+       palette. `js` lets controls that only work with script stay hidden without it. -->
   <script is:inline>
+    document.documentElement.classList.add('js');
     try {
       var t = localStorage.getItem('theme');
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
@@ -64,7 +66,25 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
       try { localStorage.setItem('theme', next); } catch (e) {}
     });
 
-    const targets = Array.from(document.querySelectorAll<HTMLElement>('.rv, .rv-w, .plate, .prose .dg, .apex'));
+    // A soft light follows the cursor across whichever tile it is over.
+    // Pointer devices only; one rAF per frame however fast the mouse moves.
+    if (window.matchMedia('(hover: hover)').matches && !reduce) {
+      let raf = 0, ev: PointerEvent | null = null;
+      addEventListener('pointermove', (e) => {
+        ev = e;
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const t = (ev!.target as Element | null)?.closest?.<HTMLElement>('.tile');
+          if (!t) return;
+          const r = t.getBoundingClientRect();
+          t.style.setProperty('--mx', `${ev!.clientX - r.left}px`);
+          t.style.setProperty('--my', `${ev!.clientY - r.top}px`);
+        });
+      }, { passive: true });
+    }
+
+    const targets = Array.from(document.querySelectorAll<HTMLElement>('.rv, .rv-w, .plate, .prose .dg'));
     if (hasIO && !reduce && targets.length) {
       document.documentElement.classList.add('js-rv');
 

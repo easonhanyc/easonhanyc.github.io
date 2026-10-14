@@ -1,26 +1,30 @@
 ---
-// One row of the work index: position, the project and its one-line summary,
-// where and when, then the single result it is best known for.
+// One project as a raised block: where and when, the project's own small
+// drawing, its name, then the single result it is best known for. The home
+// page shows the short form; /work adds the summary and tags with `detail`.
 import type { CollectionEntry } from 'astro:content';
-interface Props { project: CollectionEntry<'projects'>; pos: number; reveal?: boolean }
-const { project, pos, reveal = true } = Astro.props;
+import { viz } from '../lib/viz';
+interface Props { project: CollectionEntry<'projects'>; detail?: boolean }
+const { project, detail = false } = Astro.props;
 const d = project.data;
 const m = d.metrics[0];
+const shortOrg: Record<string, string> = {
+  'Amazon Web Services': 'AWS', 'University of Notre Dame': 'Notre Dame', 'UC Berkeley': 'Berkeley',
+};
 ---
-<article class:list={['proj', reveal && 'rv']} data-tags={d.tags.join(' ')}>
-  <span class="pos">{String(pos).padStart(2, '0')}</span>
-  <div class="main">
-    <h3><a href={`/work/${project.id}`}>{d.title}</a></h3>
-    <p class="d">{d.summary}</p>
-    {(d.live || d.depth === 'case-study' || d.badges.length > 0) && (
-      <div class="tags">
-        {d.live && <span class="tag live">Live</span>}
-        {d.depth === 'case-study' && <span class="tag deep">Case study</span>}
-        {d.badges.map((b) => <span class="tag">{b}</span>)}
-      </div>
-    )}
-  </div>
-  <span class="ctx">{d.org ?? 'Independent'}<br />{d.period}</span>
-  <span class="res">{m ? <><b>{m.n}</b> {m.l}</> : ''}</span>
-  <span class="go" aria-hidden="true">→</span>
-</article>
+<a class="tile bk rv" href={`/work/${project.id}`} data-tags={d.tags.join(' ')}>
+  <span class="top"><span>{shortOrg[d.org ?? ''] ?? d.org ?? 'Independent'}</span><span>{d.period}</span></span>
+  {viz[project.id] && <span class="viz" set:html={viz[project.id]} />}
+  <span class="t">{d.title}</span>
+  {detail && <span class="d">{d.summary}</span>}
+  {detail && (d.live || d.depth === 'case-study') && (
+    <span class="tags">
+      {d.live && <span class="tag live">Live</span>}
+      {d.depth === 'case-study' && <span class="tag deep">Case study</span>}
+    </span>
+  )}
+  <span class="m">
+    <span>{m && <><b>{m.n}</b> {m.l}</>}</span>
+    <span class="arrow" aria-hidden="true">→</span>
+  </span>
+</a>
