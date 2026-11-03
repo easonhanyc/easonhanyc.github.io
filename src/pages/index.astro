@@ -13,7 +13,6 @@ const rides = [
   { name: 'SFO airport', when: 'Fri 4:00pm', n: 3, cap: 4 },
   { name: 'Tahoe trek', when: 'Sat 8:00am', n: 1, cap: 3 },
   { name: 'Napa, Sunday', when: 'Sun 9:30am', n: 4, cap: 4 },
-  { name: 'San Jose', when: 'Fri 6:15pm', n: 2, cap: 4 },
 ];
 
 // Three working principles, shortened from /about. All three render, so the
@@ -26,36 +25,48 @@ const ideas = [
   { t: 'Where users are decides what you can build.',
     d: "A link tapped inside WhatsApp opens in WhatsApp's own browser, where Google sign-in can't finish. The channel that reached every user was the one place sign-in broke." },
 ];
+
+// The page reads in this order, and the card on the left lists it.
+const sections = [
+  { id: 'featured', k: '01', t: 'Featured projects' },
+  { id: 'more', k: '02', t: 'More projects' },
+  { id: 'beyond', k: '03', t: 'Beyond the work' },
+];
 ---
 <BaseLayout
   title="Eason Han"
   description="Product portfolio of Yichen (Eason) Han — MBA/MEng at UC Berkeley Haas, former AWS. 0-to-1 products, PRDs, and shipped code."
 >
-  <!-- The person stays pinned on the left; the work scrolls past on the right. -->
+  <!-- Read in order: who I am (left, pinned), then 01 the two featured projects
+       side by side, 02 every other project, 03 the context around the work. -->
   <div class="axc">
     <aside class="side">
       <div class="tile idp rv">
         <div class="idtop">
-        <div class="who">
-          <span class="mono" aria-hidden="true">E<span>H</span></span>
-          <div>
-            <h1>Eason Han</h1>
-            <p class="role">Product manager · Berkeley Haas</p>
+          <div class="who">
+            <span class="mono" aria-hidden="true">E<span>H</span></span>
+            <div>
+              <h1>Eason Han</h1>
+              <p class="role">Product manager · Berkeley Haas</p>
+            </div>
           </div>
-        </div>
-        <p class="pitch">I build the products <span class="em">I pitch.</span></p>
-        <p class="bio">MBA / M.Eng candidate at <strong>UC Berkeley Haas &amp; IEOR</strong>. Three years at <strong>AWS</strong> building analytics products for an $80B sales org.</p>
+          <p class="pitch">I build the products <span class="em">I pitch.</span></p>
+          <p class="bio"><span class="nw">MBA / M.Eng</span> candidate at <strong>UC Berkeley Haas &amp; IEOR</strong>. Three years at <strong>AWS</strong> building analytics products for an $80B sales org.</p>
         </div>
         <dl class="facts">
-          <div><dt>Now</dt><dd>First semester, MBA / M.Eng</dd></div>
-          <div><dt>Just shipped</dt><dd><a href="/work/job-search-agent">Job Search Agent</a></dd></div>
+          <div><dt>Seeking</dt><dd><span class="dot pulse"></span>Summer 2027 PM internship</dd></div>
           <div><dt>Focus</dt><dd>AI · Mobility · Consumer · Enterprise</dd></div>
-          <div><dt>Off the clock</dt><dd>Formula 1 · soccer</dd></div>
+          <div><dt>Now</dt><dd><span class="nw">MBA / M.Eng</span> in IEOR, first semester</dd></div>
+          <div><dt>Just shipped</dt><dd><a href="https://github.com/easonhanyc/mba290t-Multi-Agent-Large-Data-Processing-Pipeline" {...ext} aria-label="Spotify Insight Pipeline (opens in a new tab)">Spotify Insight Pipeline ↗</a><small>Final project, Fundamentals of Agentic AI</small></dd></div>
         </dl>
+        <nav class="onpage" aria-label="On this page">
+          <p class="lbl">On this page</p>
+          <ol>
+            {sections.map((s) => <li><a href={`#${s.id}`} data-sec={s.id}><span class="k">{s.k}</span>{s.t}</a></li>)}
+          </ol>
+        </nav>
         <div class="cta">
-          <p class="avail"><span class="dot pulse"></span>Open to Summer 2027 PM internships</p>
           <div class="chips">
-            <a class="chip solid" href="/work">See the work</a>
             <a class="chip" href="https://www.linkedin.com/in/yichen-eason-han/" {...ext} aria-label="LinkedIn (opens in a new tab)">LinkedIn ↗</a>
             <a class="chip" href="https://github.com/easonhanyc" {...ext} aria-label="GitHub (opens in a new tab)">GitHub ↗</a>
           </div>
@@ -64,81 +75,76 @@ const ideas = [
       </div>
     </aside>
 
-    <div class="bento">
-      <section class="tile pad trip rv" aria-labelledby="tm-h">
-        <div class="th"><span class="lbl">0→1 build · Aug 2026</span><span class="lbl"><span class="dot"></span>Live</span></div>
-        <h2 id="tm-h">TripMatch</h2>
-        <p class="d">A rides board I designed, built and shipped for my Berkeley Haas class. Post a trip; whoever needs the seat taps once and it's theirs. No app to install, and only verified classmates can see it.</p>
-        <div class="board" data-board>
-          <ul aria-label="Sample rides">
-            {rides.map((r) => (
-              <li data-n={r.n} data-cap={r.cap}>
-                <span><b>{r.name}</b><span class="when">{r.when}</span></span>
-                <span class="s">{r.n} of {r.cap}</span>
-                <button type="button" aria-pressed="false" aria-label={`Take a seat on ${r.name}`}>+1</button>
-              </li>
-            ))}
-          </ul>
-          <p class="toast" aria-live="polite">A working copy of the board, with sample rides.</p>
+    <div class="main">
+      <!-- 01: the two projects, built from one template so they read as a pair -->
+      <section class="sec" id="featured" aria-labelledby="featured-h">
+        <header class="sec-h rv">
+          <span class="no">01</span>
+          <h2 id="featured-h">Featured projects</h2>
+          <p>Two products I took from idea to launch: one on my own, one at AWS.</p>
+        </header>
+        <div class="fgrid">
+          <article class="tile ft rv" aria-labelledby="tm-h">
+            <div class="ft-top"><span class="ft-badge">Featured · 01</span><span class="lbl"><span class="dot"></span>Live · Aug 2026</span></div>
+            <div class="ft-head">
+              <h3 id="tm-h">TripMatch</h3>
+              <p class="kind">0→1 build · sole PM, designer and engineer</p>
+            </div>
+            <p class="d">A rides board for my Berkeley Haas class. Post a trip; whoever needs the seat taps once and it's theirs. No app to install, and only verified classmates can see it.</p>
+            <div class="ft-vis">
+              <p class="lbl">Sample rides · try it</p>
+              <div class="board" data-board>
+                <ul aria-label="Sample rides">
+                  {rides.map((r) => (
+                    <li data-n={r.n} data-cap={r.cap}>
+                      <span><b>{r.name}</b><span class="when">{r.when}</span></span>
+                      <span class="s">{r.n} of {r.cap}</span>
+                      <button type="button" aria-pressed="false" aria-label={`Take a seat on ${r.name}`}>+1</button>
+                    </li>
+                  ))}
+                </ul>
+                <p class="toast" aria-live="polite">A working copy of the board, with sample rides.</p>
+              </div>
+            </div>
+            <dl class="ft-figs">
+              <div><dt>One board</dt><dd>every ride in one place</dd></div>
+              <div><dt>+1</dt><dd>one tap and the seat is yours</dd></div>
+            </dl>
+            <a class="go" href="/work/tripmatch">Read the case study <i>→</i></a>
+          </article>
+
+          <article class="tile ft rv" aria-labelledby="ah-h">
+            <div class="ft-top"><span class="ft-badge">Featured · 02</span><span class="lbl">AWS · 2023–2026</span></div>
+            <div class="ft-head">
+              <h3 id="ah-h">Action Hub</h3>
+              <p class="kind">0→1 at scale · product owner</p>
+            </div>
+            <p class="d">The screen an AWS seller opens first thing in the morning. It ranks what needs attention across every account they own and writes the next step on each line, in place of about 200 dashboards.</p>
+            <div class="ft-vis" aria-hidden="true">
+              <p class="lbl">Today's list · most urgent first</p>
+              <div class="ranked">
+                <div><i style="background:var(--red)"></i><span><b>Renewal risk · 3 accounts</b><span>Next: schedule exec review this week</span></span><em>01</em></div>
+                <div><i style="background:var(--gold)"></i><span><b>Idle capacity · 7 accounts</b><span>Next: propose rightsizing plan</span></span><em>02</em></div>
+                <div><i style="background:var(--accent)"></i><span><b>Support backlog · 2 accounts</b><span>Next: escalate to TAM</span></span><em>03</em></div>
+              </div>
+            </div>
+            <dl class="ft-figs">
+              <div><dt><span data-count="70">70</span>%</dt><dd>less time for sellers to find account insights</dd></div>
+              <div><dt>10,000+</dt><dd>sellers served</dd></div>
+            </dl>
+            <a class="go" href="/work/action-hub">Read the case study <i>→</i></a>
+          </article>
         </div>
-        <ul class="feats" aria-label="What it does">
-          <li><b>One board</b>every ride in one place</li>
-          <li><b>+1</b>one tap and the seat is yours</li>
-          <li><b>No app</b>opens from the group chat</li>
-          <li><b>Verified</b>Berkeley classmates only</li>
-        </ul>
-        <a class="go" href="/work/tripmatch">How I built it <i>→</i></a>
       </section>
 
-      <section class="tile pad nowt rv" aria-label="Local time in Berkeley">
-        <div class="th"><span class="lbl">Right now in Berkeley</span><span class="lbl" data-day></span></div>
-        <div class="clock" data-clock>Pacific Time</div>
-        <p>Two degrees at once: an MBA at Haas and an M.Eng in IEOR.</p>
-      </section>
-
-      <section class="tile pad aht rv" aria-labelledby="ah-h">
-        <div class="th"><span class="lbl" id="ah-h">Action Hub · AWS 2023–26</span></div>
-        <div class="big"><span data-count="70">70</span><sup>%</sup></div>
-        <p>less time for sellers to find account insights: one ranked list in place of about 200 dashboards, for <strong>10,000+ sellers</strong>.</p>
-        <div class="ranked" aria-hidden="true">
-          <div><i style="background:var(--red)"></i><span><b>Renewal risk · 3 accounts</b><span>Next: schedule exec review this week</span></span><em>01</em></div>
-          <div><i style="background:var(--gold)"></i><span><b>Idle capacity · 7 accounts</b><span>Next: propose rightsizing plan</span></span><em>02</em></div>
-        </div>
-        <a class="go" href="/work/action-hub">Read the case study <i>→</i></a>
-      </section>
-
-      <section class="tile pad rt rv" aria-label="The route so far">
-        <div class="th"><span class="lbl">The route so far</span><a class="go" href="/experience">Experience <i>→</i></a></div>
-        <ol class="route">
-          <li class="edu"><span class="y">2019</span><b>Notre Dame</b><span class="r">Business analytics &amp; math</span></li>
-          <li><span class="y">2020</span><b>IDG Capital</b><span class="r">Venture intern</span></li>
-          <li><span class="y">2021</span><b>TikTok</b><span class="r">Ads integrity intern</span></li>
-          <li><span class="y">2023</span><b>AWS</b><span class="r">Three years, sales analytics</span></li>
-          <li class="edu"><span class="y">2026</span><b>Berkeley Haas</b><span class="r">MBA / M.Eng</span></li>
-        </ol>
-      </section>
-
-      <section class="tile pad f1t rv" aria-labelledby="f1-h">
-        <div class="th"><span class="lbl">Off the clock</span></div>
-        <div class="chk" aria-hidden="true"></div>
-        <h3 id="f1-h">Formula 1</h3>
-        <p class="fig"><b>32</b><span>seasons of results, scraped</span></p>
-        <p>to work out car speed, which F1 doesn't publish.</p>
-        <a class="go" href="/work/formula-1-trends">The analysis <i>→</i></a>
-      </section>
-
-      <section class="tile pad ideat rv" aria-label="How I work" data-ideas>
-        {ideas.map((x, i) => (
-          <p class:list={['q', i === 0 && 'on']}>{x.t}<span>{x.d}</span></p>
-        ))}
-        <div class="ctl"><span class="n">1 / {ideas.length}</span><button class="chip" type="button">Next idea →</button><a class="go" href="/about">More on how I work <i>→</i></a></div>
-      </section>
-
-      <section class="moreb" aria-labelledby="more-h">
-        <div class="mh">
-          <h2 id="more-h">More <span class="em">projects</span></h2>
+      <!-- 02: everything else, one block each, each with its own small drawing -->
+      <section class="sec" id="more" aria-labelledby="more-h">
+        <header class="sec-h rv">
+          <span class="no">02</span>
+          <h2 id="more-h">More projects</h2>
           <a class="go" href="/work">All work <i>→</i></a>
-        </div>
+          <p>{rest.length} more, from AWS, Berkeley, Notre Dame and on my own.</p>
+        </header>
         <div class="cat">
           {rest.map((p) => <ProjectCard project={p} />)}
           <a class="tile bk all rv" href="/work">
@@ -148,6 +154,50 @@ const ideas = [
           </a>
         </div>
       </section>
+
+      <!-- 03: context around the work, outlined rather than raised -->
+      <section class="sec" id="beyond" aria-labelledby="beyond-h">
+        <header class="sec-h rv">
+          <span class="no">03</span>
+          <h2 id="beyond-h">Beyond the work</h2>
+          <p>Where I've studied and worked, how I work, and what I do off the clock.</p>
+        </header>
+        <div class="bgrid">
+          <section class="tile quiet pad rt rv" aria-label="The route so far">
+            <div class="th"><span class="lbl">The route so far</span><a class="go" href="/experience">Experience <i>→</i></a></div>
+            <ol class="route">
+              <li class="edu"><span class="y">2019</span><b>Notre Dame</b><span class="r">Business analytics &amp; math</span></li>
+              <li><span class="y">2020</span><b>IDG Capital</b><span class="r">Venture intern</span></li>
+              <li><span class="y">2021</span><b>TikTok</b><span class="r">Ads integrity intern</span></li>
+              <li><span class="y">2023</span><b>AWS</b><span class="r">Three years, sales analytics</span></li>
+              <li class="edu"><span class="y">2026</span><b>Berkeley Haas</b><span class="r">MBA / M.Eng</span></li>
+            </ol>
+          </section>
+
+          <section class="tile quiet pad nowt rv" aria-label="Local time in Berkeley">
+            <div class="th"><span class="lbl">Right now in Berkeley</span><span class="lbl" data-day></span></div>
+            <div class="clock" data-clock>Pacific Time</div>
+            <p>Two degrees at once: an MBA at Haas and an M.Eng in IEOR.</p>
+          </section>
+
+          <section class="tile quiet pad f1t rv" aria-labelledby="f1-h">
+            <div class="th"><span class="lbl">Off the clock</span></div>
+            <div class="chk" aria-hidden="true"></div>
+            <h3 id="f1-h">Formula 1</h3>
+            <p class="fig"><b>32</b><span>seasons of results, scraped</span></p>
+            <p>to work out car speed, which F1 doesn't publish.</p>
+            <a class="go" href="/work/formula-1-trends">The analysis <i>→</i></a>
+          </section>
+
+          <section class="tile quiet pad ideat rv" aria-label="How I work" data-ideas>
+            <p class="lbl hw">How I work</p>
+            {ideas.map((x, i) => (
+              <p class:list={['q', i === 0 && 'on']}>{x.t}<span>{x.d}</span></p>
+            ))}
+            <div class="ctl"><span class="n">1 / {ideas.length}</span><button class="chip" type="button">Next idea →</button><a class="go" href="/about">More on how I work <i>→</i></a></div>
+          </section>
+        </div>
+      </section>
     </div>
   </div>
 </BaseLayout>
@@ -155,47 +205,31 @@ const ideas = [
 <style>
   .axc{max-width:var(--shell); margin:12px auto 0; padding-inline:var(--edge); display:grid; gap:12px}
   @media (min-width:1100px){
-    .axc{grid-template-columns:clamp(340px,27vw,400px) minmax(0,1fr); align-items:start}
+    .axc{grid-template-columns:clamp(340px,27vw,400px) minmax(0,1fr); align-items:start; column-gap:clamp(16px,2vw,32px)}
     .side{position:sticky; top:84px; height:calc(100vh - 96px); height:calc(100dvh - 96px)}
     .side > .idp{height:100%; overflow:auto; scrollbar-width:none}
   }
   /* Between phone and desktop the card sits on top, in two columns. */
   .idtop{display:flex; flex-direction:column; gap:20px}
+  @media (min-width:1100px) and (max-height:860px){ .idtop{gap:14px} }
   @media (min-width:760px) and (max-width:1099px){
     .side > .idp{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); grid-template-areas:"top facts" "cta cta"; gap:22px 32px; align-items:start}
     .idtop{grid-area:top} .idp :global(.facts){grid-area:facts}
     .idp :global(.cta){grid-area:cta; display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px; padding-top:18px; border-top:1px solid var(--rule)}
   }
+  .main{min-width:0}
+  @media (max-width:1099px){ .main{margin-top:clamp(28px,5vw,48px)} }
 
-  .bento{display:grid; gap:12px; grid-template-columns:minmax(0,1fr); align-content:start}
+  /* 03: the route runs wide; the clock, Formula 1 and the ideas share the rest */
+  .bgrid{display:grid; gap:12px; grid-template-columns:minmax(0,1fr)}
   @media (min-width:700px){
-    .bento{grid-template-columns:repeat(6,minmax(0,1fr))}
-    .trip,.rt,.moreb{grid-column:1 / -1}
-    .nowt,.aht{grid-column:span 3}
-    .f1t{grid-column:span 2}
-    .ideat{grid-column:span 4}
+    .bgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .rt,.ideat{grid-column:span 2}
   }
-  @media (min-width:1360px){
-    .trip{grid-column:1 / span 4; grid-row:1 / span 2}
-    .nowt{grid-column:5 / span 2; grid-row:1}
-    .aht{grid-column:5 / span 2; grid-row:2}
-    .rt{grid-column:1 / span 4}
-    .f1t{grid-column:5 / span 2}
-    .ideat{grid-column:1 / -1}
-  }
-
-  .trip .board{margin-top:4px}
-  .trip .go{margin-top:auto}
-  .feats{list-style:none; margin:4px 0 0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:12px; overflow:hidden}
-  @media (min-width:700px){ .feats{grid-template-columns:repeat(4,minmax(0,1fr))} }
-  .feats li{background:var(--bg-2); padding:12px 14px; font-size:13px; line-height:1.45; color:var(--ink-2)}
-  .feats b{display:block; font-size:15px; font-weight:600; color:var(--ink); letter-spacing:-.01em; margin-bottom:2px}
+  .ideat{align-content:start}
+  .ideat .hw{flex-basis:100%}
   .ideat .q:not(.on){display:none}
   :root:not(.js) .ideat .q:not(.on){display:block}
-
-  .moreb{margin-top:clamp(28px,4vw,56px)}
-  .mh{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:10px 24px; padding:0 6px 16px}
-  .mh h2{font-size:clamp(30px,3.4vw,48px); margin:0}
 </style>
 
 <script>
@@ -256,6 +290,16 @@ const ideas = [
       requestAnimationFrame(step);
     }), { threshold: .6 });
     document.querySelectorAll('[data-count]').forEach((c) => io.observe(c));
+  }
+
+  // ── the card's "On this page" list follows the section being read ──
+  const marks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.onpage a[data-sec]'));
+  if (marks.length && 'IntersectionObserver' in window) {
+    const spy = new IntersectionObserver((entries) => entries.forEach((en) => {
+      if (en.isIntersecting) marks.forEach((a) => a.classList.toggle('on', a.dataset.sec === en.target.id));
+    }), { rootMargin: '-25% 0px -65% 0px' });
+    marks.forEach((a) => { const s = document.getElementById(a.dataset.sec!); if (s) spy.observe(s); });
+    marks[0].classList.add('on');
   }
 
   // ── how I work, one idea at a time ──

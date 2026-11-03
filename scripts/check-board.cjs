@@ -42,7 +42,7 @@ const bad = (m) => { console.log('  ✗ ' + m); fail++; };
       name: li.querySelector('b').textContent, seats: li.querySelector('.s').textContent,
       btn: getComputedStyle(li.querySelector('button')).display !== 'none', disabled: li.querySelector('button').disabled,
     })));
-    rows.length === 4 ? ok('four sample rides on the board') : bad(`${rows.length} rides on the board`);
+    rows.length >= 3 ? ok(`${rows.length} sample rides on the board`) : bad(`${rows.length} rides on the board`);
     rows.every((r) => r.btn) ? ok('every ride has its button') : bad('a ride is missing its button');
     const full = rows.filter((r) => { const [n, , c] = r.seats.split(' '); return +n >= +c; });
     full.every((r) => r.disabled) ? ok(`${full.length} full ride(s) can't be joined`) : bad('a full ride can still be joined');
@@ -86,11 +86,12 @@ const bad = (m) => { console.log('  ✗ ' + m); fail++; };
   const nojs = await np.evaluate(() => ({
     buttons: [...document.querySelectorAll('[data-board] button, [data-ideas] button')].filter((b) => getComputedStyle(b).display !== 'none').length,
     rides: [...document.querySelectorAll('[data-board] li')].filter((li) => li.offsetHeight > 0).length,
+    total: document.querySelectorAll('[data-board] li').length,
     ideas: [...document.querySelectorAll('[data-ideas] .q')].filter((q) => q.offsetHeight > 0).length,
     faint: [...document.querySelectorAll('.rv')].filter((e) => parseFloat(getComputedStyle(e).opacity) < 0.9).length,
   }));
   nojs.buttons === 0 ? ok('no dead buttons without JS') : bad(`${nojs.buttons} button(s) that do nothing without JS`);
-  nojs.rides === 4 ? ok('all four rides readable without JS') : bad(`${nojs.rides} ride(s) readable without JS`);
+  nojs.rides === nojs.total ? ok(`all ${nojs.total} rides readable without JS`) : bad(`${nojs.rides} of ${nojs.total} ride(s) readable without JS`);
   nojs.ideas === 3 ? ok('all three ideas readable without JS') : bad(`${nojs.ideas} idea(s) readable without JS`);
   nojs.faint === 0 ? ok('nothing left faded without JS') : bad(`${nojs.faint} element(s) left faded without JS`);
 

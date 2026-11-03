@@ -431,29 +431,88 @@ h3{font-size:clamp(21px,1.8vw,26px); line-height:1.2; letter-spacing:-.03em}
 .pitch{font:600 clamp(21px,1.7vw,25px)/1.25 var(--f-display); letter-spacing:-.035em; color:var(--ink); margin:0}
 .bio{font-size:15.5px; line-height:1.6; color:var(--ink-2); margin:-8px 0 0}
 .bio strong{color:var(--ink); font-weight:600}
-.facts{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; margin:0; background:var(--rule); border:1px solid var(--rule); border-radius:var(--r-in); overflow:hidden}
-.facts div{background:var(--bg-2); padding:10px 13px 11px}
-.facts dt{font:500 10.5px/1.5 var(--f-mono); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
-.facts dd{margin:3px 0 0; font-size:14px; line-height:1.4; font-weight:500; color:var(--ink)}
-.facts dd a{color:var(--ink)}
+/* The card's facts: label and value on one row, set dark enough to read at a glance. */
+.facts{margin:0; border-top:1px solid var(--rule-strong)}
+.facts div{display:grid; grid-template-columns:96px minmax(0,1fr); gap:12px; padding:10px 0; border-bottom:1px solid var(--rule-strong)}
+.facts dt{font:500 11px/1.9 var(--f-mono); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2)}
+.facts dd{margin:0; font-size:15px; line-height:1.45; font-weight:550; color:var(--ink)}
+.facts dd small{display:block; margin-top:2px; font-size:13px; font-weight:400; color:var(--ink-2)}
+.nw{white-space:nowrap}
+/* A short laptop screen: the pinned card tightens so everything in it still fits. */
+@media (min-width:1100px) and (max-height:860px){
+  .idp{gap:14px; padding:22px 24px}
+  .idp .mono{width:60px; height:60px; border-radius:17px; font-size:21px}
+  .idp .who h1{font-size:34px}
+  .pitch{font-size:21px}
+  .bio{font-size:15px; margin-top:-4px}
+  .facts div{padding:7px 0}
+  .facts dd{font-size:14.5px}
+}
+.facts dd a{color:var(--ink); text-decoration:underline; text-decoration-color:var(--rule-strong); text-underline-offset:3px}
 .facts dd a:hover{color:var(--accent)}
+.onpage{display:none}
+@media (min-width:1100px) and (min-height:780px){
+  .onpage{display:block}
+  .onpage .lbl{margin-bottom:6px}
+  .onpage ol{list-style:none; margin:0; padding:0}
+  .onpage a{
+    display:grid; grid-template-columns:30px minmax(0,1fr) auto; align-items:center; gap:6px; min-height:34px;
+    font-size:14.5px; font-weight:500; color:var(--ink-2); border-radius:8px; transition:color .25s;
+  }
+  .onpage a:hover{color:var(--ink); text-decoration:none}
+  .onpage .k{font:500 11.5px var(--f-mono); color:var(--ink-3); font-variant-numeric:tabular-nums}
+  .onpage a::after{content:""; width:18px; height:1px; background:currentColor; opacity:.35; transition:width .4s var(--ease), opacity .3s}
+  .onpage a.on{color:var(--ink)}
+  .onpage a.on .k{color:var(--accent)}
+  .onpage a.on::after{width:34px; opacity:1; background:var(--accent)}
+}
 .cta{margin-top:auto; display:grid; gap:12px}
 .cta .avail{font-size:14px; color:var(--ink-2); margin:0}
 .cta .chip{min-height:42px; padding:0 16px; font-size:14px}
 .cta .addr{font:500 13px var(--f-mono); color:var(--ink-3); overflow-wrap:anywhere}
 .cta .addr:hover{color:var(--accent)}
 
-/* TripMatch: a working copy of the rides board. It sits on an ordinary tile in
-   the page's own colours; the rides are inset rows, like the ranked list beside it. */
-.trip{display:flex; flex-direction:column; gap:14px}
-.trip .th,.tile .th{display:flex; justify-content:space-between; align-items:center; gap:12px}
-.trip h2{font-size:clamp(30px,2.8vw,42px); margin:0}
-.trip .d{font-size:15.5px; line-height:1.6; color:var(--ink-2); max-width:56ch; margin:0}
+/* Section headers: a number for the order, a title, and one line saying what's in it. */
+.sec + .sec{margin-top:clamp(48px,6vw,88px)}
+.sec-h{
+  display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:baseline; gap:4px 14px;
+  padding:4px 6px 16px; margin-bottom:14px; border-bottom:1px solid var(--rule-strong);
+}
+.sec-h .no{font:500 13px var(--f-mono); letter-spacing:.06em; color:var(--accent); font-variant-numeric:tabular-nums}
+.sec-h h2{font-size:clamp(26px,2.6vw,36px); letter-spacing:-.04em; margin:0}
+.sec-h p{grid-column:2 / -1; margin:0; font-size:15.5px; line-height:1.5; color:var(--ink-2)}
+.sec-h .go{grid-column:3; grid-row:1}
+.tile .th{display:flex; justify-content:space-between; align-items:center; gap:12px}
+
+/* Featured projects: two tiles built from one template, so they read as a pair.
+   Where subgrid is available the rows line up across both tiles. */
+.fgrid{display:grid; gap:12px; grid-template-columns:minmax(0,1fr)}
+.ft{display:flex; flex-direction:column; gap:14px; padding:clamp(22px,2.4vw,32px)}
+@media (min-width:900px) and (max-width:1099px), (min-width:1240px){
+  .fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  @supports (grid-template-rows:subgrid){
+    .fgrid{grid-template-rows:repeat(6,auto)}
+    .ft{display:grid; grid-row:span 6; grid-template-rows:subgrid; row-gap:14px}
+  }
+}
+.ft-top{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap}
+.ft-badge{display:inline-flex; align-items:center; gap:8px; font:500 11px var(--f-mono); letter-spacing:.12em; text-transform:uppercase;
+  color:var(--accent); background:var(--tint); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); padding:5px 10px; border-radius:999px}
+.ft-head h3{font-size:clamp(30px,2.8vw,42px); letter-spacing:-.045em; line-height:1; margin:0}
+.ft-head .kind{margin:8px 0 0; font:500 12px/1.5 var(--f-mono); letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3)}
+.ft .d{font-size:15.5px; line-height:1.6; color:var(--ink-2); margin:0}
+.ft-vis{background:var(--bg-2); border:1px solid var(--rule); border-radius:var(--r-in); padding:12px; display:flex; flex-direction:column; gap:8px}
+.ft-vis > .lbl{padding:2px 4px}
+.ft-figs{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:0}
+.ft-figs div{border-top:1px solid var(--rule-strong); padding-top:10px}
+.ft-figs dt{font:600 clamp(24px,2.1vw,30px)/1.05 var(--f-display); letter-spacing:-.045em; color:var(--accent); font-variant-numeric:tabular-nums}
+.ft-figs dd{margin:6px 0 0; font-size:13.5px; line-height:1.45; color:var(--ink-3)}
+.ft .go{align-self:start}
 .board{font-size:15px}
 .board ul{list-style:none; margin:0; padding:0; display:grid; gap:6px}
 .board li{
   display:grid; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:14px;
-  padding:9px 9px 9px 14px; background:var(--bg-2); border-radius:13px; border:1px solid var(--rule);
+  padding:8px 8px 8px 14px; background:var(--surface); border-radius:12px; border:1px solid var(--rule);
   transition:border-color .35s, background-color .35s;
 }
 .board li b{display:block; font-weight:600; line-height:1.3; color:var(--ink); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
@@ -473,7 +532,7 @@ h3{font-size:clamp(21px,1.8vw,26px); line-height:1.2; letter-spacing:-.03em}
 :root.js .board li.in button{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); box-shadow:none}
 .board .s.pop{animation:pop .55s var(--ease)}
 @keyframes pop{35%{transform:scale(1.4); color:var(--accent)}}
-.board .toast{min-height:1.6em; padding:10px 4px 0; margin:0; font-size:13.5px; color:var(--ink-2)}
+.board .toast{min-height:1.6em; padding:6px 4px 0; margin:0; font-size:13.5px; color:var(--ink-2)}
 .board .toast b{color:var(--accent); font-weight:600}
 @media (max-width:420px){ .board li{gap:10px; padding-left:12px} :root.js .board button{min-width:64px} }
 
@@ -486,19 +545,17 @@ h3{font-size:clamp(21px,1.8vw,26px); line-height:1.2; letter-spacing:-.03em}
 :root:not(.js) .clock{font-size:clamp(30px,2.6vw,40px); letter-spacing:-.04em}
 .nowt p{font-size:15px; line-height:1.55; color:var(--ink-2); margin:0}
 
-/* Action Hub: the result, and the list that produced it */
-.aht{display:flex; flex-direction:column; gap:12px}
-.big{font:600 clamp(60px,5.4vw,90px)/.86 var(--f-display); letter-spacing:-.065em; color:var(--accent); font-variant-numeric:tabular-nums}
-.big sup{font-size:.42em; vertical-align:.95em; margin-left:2px; letter-spacing:-.02em}
-.aht p{font-size:15px; line-height:1.55; color:var(--ink-2); margin:0}
-.aht p strong{color:var(--ink); font-weight:600}
+/* Action Hub: the ranked list it puts in front of a seller */
 .ranked{display:grid; gap:6px}
-.ranked div{display:grid; grid-template-columns:4px minmax(0,1fr) auto; gap:12px; align-items:center; background:var(--bg-2); border:1px solid var(--rule); border-radius:12px; padding:9px 12px 9px 0; overflow:hidden}
+.ranked div{display:grid; grid-template-columns:4px minmax(0,1fr) auto; gap:12px; align-items:center; background:var(--surface); border:1px solid var(--rule); border-radius:12px; padding:10px 12px 10px 0; overflow:hidden}
 .ranked i{align-self:stretch; border-radius:0 3px 3px 0}
 .ranked b{display:block; font-size:14px; font-weight:600; line-height:1.35; color:var(--ink)}
 .ranked span{display:block; font-size:12.5px; color:var(--ink-3); line-height:1.4}
 .ranked em{font:500 11.5px var(--f-mono); font-style:normal; color:var(--ink-3)}
-.aht .go{margin-top:auto}
+
+/* Beyond the work: outlined rather than raised, so it reads as context next to the projects. */
+.tile.quiet{background:color-mix(in srgb, var(--surface) 40%, transparent); box-shadow:none; border-color:var(--rule-strong)}
+.quiet .route li::before{background:var(--bg)}
 
 /* the route so far */
 .rt{display:flex; flex-direction:column; gap:14px}
