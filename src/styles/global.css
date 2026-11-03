@@ -153,6 +153,8 @@ hr.rule{border:0; border-top:1px solid var(--rule); margin:0}
 }
 .lbl{font:500 11.5px/1.4 var(--f-mono); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); margin:0}
 .plinth .lbl{color:var(--plinth-ink-2)}
+/* The one word in a label that matters: in the accent, a weight up. */
+.hi{color:var(--accent); font-weight:600}
 h1,h2,h3{font-family:var(--f-display); font-weight:600; color:var(--ink); text-wrap:balance; margin:0}
 h1{font-size:clamp(44px,7vw,112px); line-height:1; letter-spacing:-.05em; margin:0 0 36px}
 h2{font-size:clamp(34px,4.8vw,76px); line-height:1.02; letter-spacing:-.045em; margin:0 0 28px}
@@ -436,6 +438,7 @@ h3{font-size:clamp(21px,1.8vw,26px); line-height:1.2; letter-spacing:-.03em}
 .facts div{display:grid; grid-template-columns:96px minmax(0,1fr); gap:12px; padding:10px 0; border-bottom:1px solid var(--rule-strong)}
 .facts dt{font:500 11px/1.9 var(--f-mono); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2)}
 .facts dd{margin:0; font-size:15px; line-height:1.45; font-weight:550; color:var(--ink)}
+.facts dd.hi{color:var(--accent); font-weight:600}
 .facts dd small{display:block; margin-top:2px; font-size:13px; font-weight:400; color:var(--ink-2)}
 .nw{white-space:nowrap}
 /* A short laptop screen: the pinned card tightens so everything in it still fits. */
@@ -481,6 +484,7 @@ h3{font-size:clamp(21px,1.8vw,26px); line-height:1.2; letter-spacing:-.03em}
 .sec-h .no{font:500 13px var(--f-mono); letter-spacing:.06em; color:var(--accent); font-variant-numeric:tabular-nums}
 .sec-h h2{font-size:clamp(26px,2.6vw,36px); letter-spacing:-.04em; margin:0}
 .sec-h p{grid-column:2 / -1; margin:0; font-size:15.5px; line-height:1.5; color:var(--ink-2)}
+.sec-h p strong{color:var(--ink); font-weight:600}
 .sec-h .go{grid-column:3; grid-row:1}
 .tile .th{display:flex; justify-content:space-between; align-items:center; gap:12px}
 
@@ -500,14 +504,30 @@ h3{font-size:clamp(21px,1.8vw,26px); line-height:1.2; letter-spacing:-.03em}
   color:var(--accent); background:var(--tint); border:1px solid color-mix(in srgb, var(--accent) 30%, transparent); padding:5px 10px; border-radius:999px}
 .ft-head h3{font-size:clamp(30px,2.8vw,42px); letter-spacing:-.045em; line-height:1; margin:0}
 .ft-head .kind{margin:8px 0 0; font:500 12px/1.5 var(--f-mono); letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3)}
+.ft-head .kind b{color:var(--accent); font-weight:600}
 .ft .d{font-size:15.5px; line-height:1.6; color:var(--ink-2); margin:0}
+.ft .d strong{color:var(--ink); font-weight:600}
 .ft-vis{background:var(--bg-2); border:1px solid var(--rule); border-radius:var(--r-in); padding:12px; display:flex; flex-direction:column; gap:8px}
-.ft-vis > .lbl{padding:2px 4px}
+.ft-vis > .lbl{padding:2px 4px; display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px}
+/* The board's invitation: the one solid green pill on the page, so it is seen first. */
+.try{
+  display:inline-flex; align-items:center; gap:7px; padding:5px 11px 5px 9px; border-radius:999px;
+  background:var(--accent); color:var(--accent-ink); font-weight:600; letter-spacing:.1em;
+}
+.try::before{content:""; width:6px; height:6px; border-radius:50%; background:currentColor; animation:pulse 2.4s ease-in-out infinite}
 .ft-figs{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin:0}
 .ft-figs div{border-top:1px solid var(--rule-strong); padding-top:10px}
 .ft-figs dt{font:600 clamp(24px,2.1vw,30px)/1.05 var(--f-display); letter-spacing:-.045em; color:var(--accent); font-variant-numeric:tabular-nums}
-.ft-figs dd{margin:6px 0 0; font-size:13.5px; line-height:1.45; color:var(--ink-3)}
+.ft-figs dd{margin:6px 0 0; font-size:14px; line-height:1.45; color:var(--ink-2)}
 .ft .go{align-self:start}
+/* The way into each case study: a green-outlined pill rather than a bare link. */
+.cta-go{
+  justify-self:start; width:max-content; max-width:100%;
+  min-height:42px; padding:0 18px; border-radius:999px; font-weight:600;
+  border:1px solid color-mix(in srgb, var(--accent) 45%, transparent); background:var(--tint);
+  transition:background-color .25s, color .25s, border-color .25s;
+}
+.cta-go:hover{background:var(--accent); border-color:var(--accent); color:var(--accent-ink)}
 .board{font-size:15px}
 .board ul{list-style:none; margin:0; padding:0; display:grid; gap:6px}
 .board li{
@@ -531,6 +551,8 @@ h3{font-size:clamp(21px,1.8vw,26px); line-height:1.2; letter-spacing:-.03em}
 .board li.in{border-color:color-mix(in srgb, var(--accent) 55%, transparent); background:var(--tint)}
 :root.js .board li.in button{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); box-shadow:none}
 .board .s.pop{animation:pop .55s var(--ease)}
+:root.js .board li:first-child button:not(:disabled):not([aria-pressed="true"]){animation:nudge 2.2s 1.2s ease-out 2}
+@keyframes nudge{0%,100%{box-shadow:var(--hl), 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent)} 40%{box-shadow:var(--hl), 0 0 0 7px color-mix(in srgb, var(--accent) 22%, transparent)}}
 @keyframes pop{35%{transform:scale(1.4); color:var(--accent)}}
 .board .toast{min-height:1.6em; padding:6px 4px 0; margin:0; font-size:13.5px; color:var(--ink-2)}
 .board .toast b{color:var(--accent); font-weight:600}
@@ -555,6 +577,7 @@ h3{font-size:clamp(21px,1.8vw,26px); line-height:1.2; letter-spacing:-.03em}
 
 /* Beyond the work: outlined rather than raised, so it reads as context next to the projects. */
 .tile.quiet{background:color-mix(in srgb, var(--surface) 40%, transparent); box-shadow:none; border-color:var(--rule-strong)}
+.quiet .th > .lbl:first-child{color:var(--ink-2)}
 .quiet .route li::before{background:var(--bg)}
 
 /* the route so far */
