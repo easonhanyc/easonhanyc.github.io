@@ -34,6 +34,7 @@ const PAGES = [
   'action-hub', 'allowlist', 'asteroid-screening', 'datafest-2023', 'formula-1-trends',
   'genai-adoption-program', 'genai-target-setting', 'kickstarter-scraper', 'pr-automation',
   'tripmatch', 'pacman-dqn', 'secure-networking-tracker', 'job-search-agent',
+  'spotify-insight-pipeline',
 ];
 
 (async () => {

@@ -29,8 +29,8 @@ const ideas = [
 // The page reads in this order, and the card on the left lists it.
 const sections = [
   { id: 'featured', k: '01', t: 'Featured projects' },
-  { id: 'more', k: '02', t: 'More projects' },
-  { id: 'beyond', k: '03', t: 'Beyond the work' },
+  { id: 'background', k: '02', t: 'Background' },
+  { id: 'more', k: '03', t: 'More projects' },
 ];
 ---
 <BaseLayout
@@ -38,7 +38,7 @@ const sections = [
   description="Product portfolio of Yichen (Eason) Han — MBA/MEng at UC Berkeley Haas, former AWS. 0-to-1 products, PRDs, and shipped code."
 >
   <!-- Read in order: who I am (left, pinned), then 01 the two featured projects
-       side by side, 02 every other project, 03 the context around the work. -->
+       side by side, 02 my background, 03 every other project. -->
   <div class="axc">
     <aside class="side">
       <div class="tile idp rv">
@@ -57,7 +57,7 @@ const sections = [
           <div><dt>Seeking</dt><dd><span class="dot pulse"></span>Summer 2027 PM internship</dd></div>
           <div><dt>Focus</dt><dd>AI · Mobility · Consumer · Enterprise</dd></div>
           <div><dt>Now</dt><dd><span class="nw">MBA / M.Eng</span> in IEOR, first semester</dd></div>
-          <div><dt>Just shipped</dt><dd><a href="https://github.com/easonhanyc/mba290t-Multi-Agent-Large-Data-Processing-Pipeline" {...ext} aria-label="Spotify Insight Pipeline (opens in a new tab)">Spotify Insight Pipeline ↗</a><small>Final project, Fundamentals of Agentic AI</small></dd></div>
+          <div><dt>Just shipped</dt><dd><a href="/work/spotify-insight-pipeline">Spotify Insight Pipeline</a><small>Final project, Fundamentals of Agentic AI</small></dd></div>
         </dl>
         <nav class="onpage" aria-label="On this page">
           <p class="lbl">On this page</p>
@@ -137,29 +137,12 @@ const sections = [
         </div>
       </section>
 
-      <!-- 02: everything else, one block each, each with its own small drawing -->
-      <section class="sec" id="more" aria-labelledby="more-h">
+      <!-- 02: who I am outside the two projects: path, time zone, how I work, off the clock.
+           Outlined rather than raised, so it reads as context next to the projects. -->
+      <section class="sec" id="background" aria-labelledby="background-h">
         <header class="sec-h rv">
           <span class="no">02</span>
-          <h2 id="more-h">More projects</h2>
-          <a class="go" href="/work">All work <i>→</i></a>
-          <p>{rest.length} more, from AWS, Berkeley, Notre Dame and on my own.</p>
-        </header>
-        <div class="cat">
-          {rest.map((p) => <ProjectCard project={p} />)}
-          <a class="tile bk all rv" href="/work">
-            <span class="top"><span>Index</span><span>2022–2026</span></span>
-            <span class="t">See all {projects.length} projects</span>
-            <span class="m"><span>Case studies, builds and coursework</span><span class="arrow" aria-hidden="true">→</span></span>
-          </a>
-        </div>
-      </section>
-
-      <!-- 03: context around the work, outlined rather than raised -->
-      <section class="sec" id="beyond" aria-labelledby="beyond-h">
-        <header class="sec-h rv">
-          <span class="no">03</span>
-          <h2 id="beyond-h">Beyond the work</h2>
+          <h2 id="background-h">Background</h2>
           <p>Where I've studied and worked, how I work, and what I do off the clock.</p>
         </header>
         <div class="bgrid">
@@ -198,6 +181,24 @@ const sections = [
           </section>
         </div>
       </section>
+
+      <!-- 03: everything else, one block each, each with its own small drawing -->
+      <section class="sec" id="more" aria-labelledby="more-h">
+        <header class="sec-h rv">
+          <span class="no">03</span>
+          <h2 id="more-h">More projects</h2>
+          <a class="go" href="/work">All work <i>→</i></a>
+          <p>{rest.length} more, from AWS, Berkeley, Notre Dame and on my own.</p>
+        </header>
+        <div class="cat">
+          {rest.map((p) => <ProjectCard project={p} />)}
+          <a class="tile bk all rv" href="/work">
+            <span class="top"><span>Index</span><span>2022–2026</span></span>
+            <span class="t">See all {projects.length} projects</span>
+            <span class="m"><span>Case studies, builds and coursework</span><span class="arrow" aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </section>
     </div>
   </div>
 </BaseLayout>
@@ -220,7 +221,7 @@ const sections = [
   .main{min-width:0}
   @media (max-width:1099px){ .main{margin-top:clamp(28px,5vw,48px)} }
 
-  /* 03: the route runs wide; the clock, Formula 1 and the ideas share the rest */
+  /* 02: the route runs wide; the clock, Formula 1 and the ideas share the rest */
   .bgrid{display:grid; gap:12px; grid-template-columns:minmax(0,1fr)}
   @media (min-width:700px){
     .bgrid{grid-template-columns:repeat(3,minmax(0,1fr))}

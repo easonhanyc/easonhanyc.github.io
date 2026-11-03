@@ -34,6 +34,8 @@ export const viz: Record<string, string> = {
   'job-search-agent': `<svg viewBox="0 0 200 46" aria-hidden="true"><rect x="4" y="6" width="192" height="9" rx="2" ${L}/><rect x="38" y="19" width="124" height="9" rx="2" ${L}/><rect x="86" y="32" width="28" height="9" rx="2" ${G}/></svg>`,
   // two hundred dashboards, one ranked list
   'action-hub': `<svg viewBox="0 0 200 46" aria-hidden="true"><rect x="4" y="8" width="60" height="30" rx="3" ${L}/><rect x="12" y="13" width="60" height="30" rx="3" ${L}/><path d="M84 23 L106 23" ${L}/><rect x="114" y="8" width="82" height="9" rx="2" fill="var(--gold)"/><rect x="114" y="21" width="82" height="9" rx="2" ${F}/><rect x="114" y="34" width="82" height="9" rx="2" ${F}/></svg>`,
+  // a wall of reviews reduced to a short ranked list, with one call at the top
+  'spotify-insight-pipeline': `<svg viewBox="0 0 200 46" aria-hidden="true">${[0,1,2,3,4,5,6,7].map((c)=>[0,1,2,3].map((r)=>`<rect x="${4+c*9}" y="${6+r*9}" width="5" height="5" rx="1" ${F}/>`).join('')).join('')}<path d="M82 23 L104 23" ${L}/><rect x="114" y="8" width="82" height="8" rx="2" fill="var(--gold)"/><rect x="114" y="20" width="74" height="8" rx="2" ${F}/><rect x="114" y="32" width="58" height="8" rx="2" ${F}/></svg>`,
   // five things it would never do are why the scope held
   'tripmatch': `<svg viewBox="0 0 200 46" aria-hidden="true"><rect x="4" y="14" width="34" height="18" rx="3" ${G}/>${[0,1,2,3,4].map((i)=>`<line x1="${52+i*30}" y1="14" x2="${74+i*30}" y2="32" stroke="currentColor" stroke-opacity=".34" stroke-width="1.5"/><line x1="${52+i*30}" y1="32" x2="${74+i*30}" y2="14" stroke="currentColor" stroke-opacity=".34" stroke-width="1.5"/>`).join('')}</svg>`,
 };
