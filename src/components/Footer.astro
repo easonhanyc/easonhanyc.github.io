@@ -1,62 +1,38 @@
 ---
+import { contact, visitorLog } from '../lib/site';
 const year = new Date().getFullYear();
+const ext = { target: '_blank', rel: 'noopener noreferrer' };
 ---
-<footer class="ft">
-  <div class="tile card">
-    <p class="eyebrow">Get in touch</p>
-    <a class="mail" href="mailto:eason_han@berkeley.edu">eason_han@berkeley.edu</a>
-
+<!-- The one contact block, on every page. -->
+<footer class="foot wrap">
+  <div class="in">
+    <p class="lbl">Get in touch</p>
+    <a class="mail" href={`mailto:${contact.email}`} data-log="email-click">{contact.email}</a>
     <div class="row">
-      <div class="who">
-        <span class="name">Yichen (Eason) Han</span>
-        <span>Berkeley, CA · Seeking a Summer 2027 PM internship</span>
-      </div>
-      <div class="links">
-        <a href="https://www.linkedin.com/in/yichen-eason-han/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">LinkedIn ↗</a>
-        <a href="https://github.com/easonhanyc" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">GitHub ↗</a>
-      </div>
+      <p class="who"><strong>Yichen (Eason) Han</strong> · Berkeley, CA · Seeking a Summer 2027 PM internship</p>
+      <p class="links">
+        <a class="ulink" href={contact.linkedin} {...ext} aria-label="LinkedIn (opens in a new tab)">LinkedIn ↗</a>
+        <a class="ulink" href={contact.github} {...ext} aria-label="GitHub (opens in a new tab)">GitHub ↗</a>
+      </p>
     </div>
-
-    <a class="off" href="/work/formula-1-trends">
-      <span class="k">Off the clock</span>
-      <span>Formula 1 — home simulation and race analytics</span>
-      <span aria-hidden="true">→</span>
-    </a>
+    <p class="fine">© {year} Yichen Han · Set in Newsreader and Geist · Built with Astro{visitorLog.goatcounter.trim() && ' · Visits are counted without cookies'}</p>
   </div>
-  <p class="fine">© {year} Yichen Han · Set in Geist and Geist Mono · Built with Astro</p>
 </footer>
 
 <style>
-  .ft{max-width:var(--shell); margin:clamp(48px,6vw,96px) auto 0; padding:0 var(--edge) 28px}
-  .card{padding:clamp(28px,4.4vw,64px); color:var(--ink-2)}
+  .foot{margin-top:clamp(64px,9vw,128px); padding-bottom:32px}
+  .in{border-top:1px solid var(--rule-strong); padding-top:clamp(28px,4vw,48px)}
   .mail{
-    display:inline-block; font-family:var(--f-display); font-weight:600; color:var(--ink);
-    font-size:clamp(28px,5.6vw,88px); line-height:1.02; letter-spacing:-.05em;
-    overflow-wrap:anywhere; padding-bottom:10px;
-    background:linear-gradient(var(--accent),var(--accent)) 0 100% / 0 2px no-repeat;
-    transition:background-size .7s var(--ease), color .35s;
+    display:inline-block; margin-top:14px; font:400 var(--t-heading)/1.1 var(--f-serif); letter-spacing:-.02em;
+    color:var(--ink); overflow-wrap:anywhere; transition:color .3s;
   }
-  .mail:hover{text-decoration:none; color:var(--accent); background-size:100% 2px}
-  .row{
-    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:20px 40px;
-    margin-top:clamp(36px,4.4vw,64px); padding-top:22px; border-top:1px solid var(--rule);
-  }
-  .who{display:flex; flex-direction:column; gap:4px; font-size:15px}
-  .name{color:var(--ink); font-weight:600}
-  .links{display:flex; gap:0 28px; font-family:var(--f-mono); font-size:13px; letter-spacing:.04em}
-  .links a{color:var(--ink-2)}
-  .links a:hover{color:var(--accent); text-decoration:none}
-  .off{
-    display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; margin-top:28px; padding-block:10px;
-    color:var(--ink-2); font-size:15px;
-  }
-  .off .k{font-family:var(--f-mono); font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3)}
-  .off:hover{color:var(--accent); text-decoration:none}
-  .fine{margin:18px 0 0; padding-inline:8px; font-family:var(--f-mono); font-size:11.5px; color:var(--ink-3); letter-spacing:.02em; line-height:1.6}
-
-  /* Real padding rather than an overlay: these sit close together and an
-     overlay would steal taps from its neighbour. */
-  @media (pointer:coarse){
-    .links a{display:inline-block; padding-block:12px}
-  }
+  .mail:hover{text-decoration:none; color:var(--accent)}
+  @media (max-width:460px){ .mail{font-size:var(--t-sub)} }
+  .row{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:10px 40px; margin-top:clamp(28px,4vw,48px)}
+  .who{margin:0; font-size:var(--t-small); color:var(--ink-2)}
+  .who strong{color:var(--ink); font-weight:600}
+  .links{display:flex; gap:0 28px; margin:0; font-size:var(--t-small)}
+  /* Touch target: the address is one line of type, so pad it rather than enlarge it. */
+  @media (pointer:coarse){ .mail{padding-block:12px; margin-top:2px} }
+  .fine{margin:28px 0 0; font-size:var(--t-small); color:var(--ink-3); line-height:1.6}
 </style>

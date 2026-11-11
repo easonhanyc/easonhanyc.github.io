@@ -249,7 +249,7 @@ requires UC Berkeley IT to register TripMatch as an approved **Service
 Provider** — an application, a review, a security questionnaire, and a
 production-hosted SP with a metadata endpoint and certificate management.
 That is a multi-week process at best, and a static GitHub Pages site cannot be
-an SP at all. Your own PRD already recorded this as a v1 non-goal for exactly
+an SP at all. Your own PRD already recorded this as something v1 would not do, for exactly
 these reasons.
 
 What ships instead is **Google Sign-In restricted to the `berkeley.edu`

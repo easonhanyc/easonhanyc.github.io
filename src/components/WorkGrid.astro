@@ -18,10 +18,10 @@ const FILTERS = [
   ))}
 </div>
 
-<!-- The same blocks as the home page, with the summary added: each project
-     carries its own small drawing. Order follows the curated list. -->
+<!-- The same blocks as the home page: each project carries its own small
+     drawing. Order follows the curated list. -->
 <div class="cat" data-grid>
-  {projects.map((p) => <ProjectCard project={p} detail />)}
+  {projects.map((p) => <ProjectCard project={p} />)}
 </div>
 <p class="empty" data-empty hidden>No projects match that filter.</p>
 

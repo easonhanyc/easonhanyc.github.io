@@ -13,5 +13,7 @@ export default defineConfig({
   redirects: {
     '/work/ai-code-review': '/work/pr-automation',
     '/work/aws-insights-platform': '/work/action-hub',
+    // The experience timeline now lives on the About page.
+    '/experience': '/about#experience',
   },
 });

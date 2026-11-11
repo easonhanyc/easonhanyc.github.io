@@ -12,8 +12,8 @@ const { project } = Astro.props;
 const d = project.data;
 const { Content, headings } = await render(project);
 
-// Retitled projects carry their context after an em-dash. Setting that half in
-// the accent keeps the name itself the thing you read first.
+// Retitled projects carry their context after an em-dash. The name is the
+// headline; the context sits on its own line beneath it.
 const [name, ...ctx] = d.title.split(' — ');
 const context = ctx.join(' — ');
 
@@ -25,21 +25,23 @@ const artifacts = (await getCollection('artifacts'))
   <div class="wrap">
     <div class="backbar"><a href="/work">← All work</a></div>
 
+    <!-- A project opens the same way every time: where and when, the name,
+         the role, then either the three-line summary or one paragraph. -->
     <header class="dochead">
-      <p class="eyebrow">{d.org ?? 'Independent'}</p>
-      <h1 class="rv-w">{name}{context && <> <span class="em">{context}</span></>}</h1>
+      <p class="eyebrow rv">{d.org ?? 'Independent'} · {d.period}{d.live && ' · Live'}</p>
+      <h1 class="rv">{name}</h1>
+      {context && <p class="ctx rv">{context}</p>}
+      <p class="role rv">{d.role}</p>
 
-      <dl class="spec rv">
-        <div><dt>Role</dt><dd>{d.role}</dd></div>
-        <div><dt>When</dt><dd>{d.period}</dd></div>
-        <div>
-          <dt>Status</dt>
-          <dd>
-            {d.live ? <><span class="live-dot"></span>Live</> : d.depth === 'case-study' ? 'Case study' : 'Project'}
-            {d.badges.length > 0 && <span class="badges">{d.badges.join(' · ')}</span>}
-          </dd>
-        </div>
-      </dl>
+      {d.brief ? (
+        <dl class="brief rv">
+          <div><dt>The problem</dt><dd>{d.brief.problem}</dd></div>
+          <div><dt>What I did</dt><dd>{d.brief.did}</dd></div>
+          <div><dt>The result</dt><dd>{d.brief.result}</dd></div>
+        </dl>
+      ) : (
+        <p class="lede rv">{d.summary}</p>
+      )}
 
       {d.metrics.length > 0 && (
         <div class="figs rv">
@@ -50,7 +52,7 @@ const artifacts = (await getCollection('artifacts'))
       )}
 
       {(d.links.live || d.links.code || d.links.prd) && (
-        <div class="chips rv links">
+        <div class="chips rv">
           {d.links.live && <a class="chip solid" href={d.links.live} target="_blank" rel="noopener noreferrer" aria-label="Try it live (opens in a new tab)">Try it live ↗</a>}
           {d.links.code && <a class="chip" href={d.links.code} target="_blank" rel="noopener noreferrer" aria-label="Source (opens in a new tab)">Source ↗</a>}
           {d.links.prd && <a class="chip" href={d.links.prd}>The PRD →</a>}
@@ -60,44 +62,28 @@ const artifacts = (await getCollection('artifacts'))
 
     <div class="doc">
       <Toc headings={headings} />
-      <article class="prose sheet"><Content /></article>
+      <article class="prose"><Content /></article>
     </div>
 
     {artifacts.length > 0 && (
-      <section class="more-docs">
-        <p class="eyebrow">Working documents</p>
-        <div class="arts">
+      <section class="sec" aria-labelledby="docs-h">
+        <header class="sec-h"><h2 id="docs-h">Working documents</h2></header>
+        <ul class="rows">
           {artifacts.map((a) => (
-            <a class="tile art" href={`/artifacts/${a.id}`}>
-              <span class="k">{a.data.kind}</span>
-              <span class="t">{a.data.title}</span>
-              <span class="d">{a.data.description}</span>
-            </a>
+            <li><a href={`/artifacts/${a.id}`}>
+              <span class="lbl">{a.data.kind}</span>
+              <span><span class="t">{a.data.title}</span><span class="d">{a.data.description}</span></span>
+              <span class="arrow" aria-hidden="true">→</span>
+            </a></li>
           ))}
-        </div>
+        </ul>
       </section>
     )}
 
-    <div class="end"><a class="chip" href="/work">← All work</a></div>
+    <div class="docend"><a class="chip" href="/work">← All work</a></div>
   </div>
 </BaseLayout>
 
 <style>
-  .dochead h1{font-size:clamp(42px,6.4vw,104px); max-width:16ch; margin-bottom:clamp(36px,4vw,56px)}
-  .badges{display:block; font-family:var(--f-mono); font-size:12px; color:var(--ink-3); margin-top:6px; letter-spacing:.02em}
-  .dochead .spec{margin-top:clamp(28px,3vw,40px)}
-  .figs{margin-top:10px}
-  .links{margin-top:clamp(28px,3vw,40px)}
-
-  .doc{margin-top:clamp(64px,8vw,120px)}
-  .doc :global(.toc){display:none}
-  .doc .prose{max-width:900px}
-  @media (min-width:1100px){
-    .doc{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gap); align-items:start}
-    .doc :global(.toc){display:block; grid-column:1 / span 3; padding-right:clamp(0px,1.5vw,24px)}
-    .doc .prose{grid-column:4 / span 9; max-width:none}
-  }
-
-  .more-docs{margin-top:clamp(56px,7vw,104px)}
-  .end{padding:clamp(56px,6vw,88px) 0 24px}
+  .dochead .lede{max-width:60ch; margin-bottom:clamp(28px,3.4vw,44px)}
 </style>

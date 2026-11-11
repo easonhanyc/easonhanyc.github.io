@@ -1,11 +1,9 @@
 /**
- * Home page check: the working rides board and the pinned profile card.
+ * Home page check: the working rides board.
  *
  *   - the board's +1 takes a seat and gives it back, a full ride can't be joined,
  *     and the count and the announcement follow along
- *   - with JS off there are no dead buttons, and every ride and every idea still reads
- *   - the profile card fits the viewport it is pinned in, so nothing in it is
- *     reachable only by scrolling a sticky box
+ *   - with JS off there are no dead buttons, and every ride still reads
  *
  * Usage:  node scripts/check-board.cjs http://127.0.0.1:8080
  */
@@ -65,16 +63,6 @@ const bad = (m) => { console.log('  ✗ ' + m); fail++; };
     const back = await page.evaluate((i) => document.querySelectorAll('[data-board] li')[i].querySelector('.s').textContent, open);
     back === before ? ok('a second tap gives the seat back') : bad(`second tap left ${back}, expected ${before}`);
 
-    const card = await page.evaluate(() => {
-      const c = document.querySelector('.idp');
-      const pinned = getComputedStyle(c.parentElement).position === 'sticky';
-      return { pinned, over: c.scrollHeight - c.clientHeight };
-    });
-    if (card.pinned) card.over <= 1 ? ok('the pinned profile card fits its viewport') : bad(`the pinned profile card overflows by ${card.over}px`);
-    else ok('profile card flows with the page at this width');
-
-    const time = await page.evaluate(() => document.querySelector('[data-clock]').textContent);
-    /\d{1,2}:\d{2}/.test(time) ? ok(`Berkeley clock reads ${time}`) : bad(`clock reads "${time}"`);
     await page.close();
   }
 
@@ -84,15 +72,13 @@ const bad = (m) => { console.log('  ✗ ' + m); fail++; };
   await np.route('**://fonts.g*/**', (r) => r.abort());
   await np.goto(BASE + '/', { waitUntil: 'domcontentloaded' });
   const nojs = await np.evaluate(() => ({
-    buttons: [...document.querySelectorAll('[data-board] button, [data-ideas] button')].filter((b) => getComputedStyle(b).display !== 'none').length,
+    buttons: [...document.querySelectorAll('[data-board] button')].filter((b) => getComputedStyle(b).display !== 'none').length,
     rides: [...document.querySelectorAll('[data-board] li')].filter((li) => li.offsetHeight > 0).length,
     total: document.querySelectorAll('[data-board] li').length,
-    ideas: [...document.querySelectorAll('[data-ideas] .q')].filter((q) => q.offsetHeight > 0).length,
     faint: [...document.querySelectorAll('.rv')].filter((e) => parseFloat(getComputedStyle(e).opacity) < 0.9).length,
   }));
   nojs.buttons === 0 ? ok('no dead buttons without JS') : bad(`${nojs.buttons} button(s) that do nothing without JS`);
   nojs.rides === nojs.total ? ok(`all ${nojs.total} rides readable without JS`) : bad(`${nojs.rides} of ${nojs.total} ride(s) readable without JS`);
-  nojs.ideas === 3 ? ok('all three ideas readable without JS') : bad(`${nojs.ideas} idea(s) readable without JS`);
   nojs.faint === 0 ? ok('nothing left faded without JS') : bad(`${nojs.faint} element(s) left faded without JS`);
 
   await browser.close();

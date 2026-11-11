@@ -1,21 +1,20 @@
 ---
 const path = Astro.url.pathname;
 const is = (p: string) => path === p || (p !== '/' && path.startsWith(p));
-// The home page's profile card already says this, beside the nav.
+// The home page's opening section already says this, right under the nav.
 const home = path === '/';
 const links = [
   ['/work', 'Work'],
-  ['/experience', 'Experience'],
   ['/artifacts', 'Artifacts'],
   ['/about', 'About'],
 ];
 ---
-<!-- A floating pill rather than a full-width bar: it sits on the canvas like
-     every other tile, and the page shows through its frosted glass. -->
+<!-- A floating pill rather than a full-width bar, and the page shows
+     through its frosted glass. -->
 <header class="hdr">
   <nav class="pill" aria-label="Primary">
     <a class="sig" href="/">Eason Han</a>
-    {!home && <span class="st"><span class="dot pulse"></span>Open to Summer 2027 PM internships</span>}
+    {!home && <span class="st"><span class="dot"></span>Open to Summer 2027 PM internships</span>}
     <div class="navlinks">
       {links.map(([href, label]) => (
         <a href={href} aria-current={is(href) ? 'page' : undefined}>{label}</a>
@@ -31,46 +30,44 @@ const links = [
 </header>
 
 <style>
-  .hdr{position:sticky; top:12px; z-index:60; max-width:var(--shell); margin:12px auto 0; padding-inline:var(--edge)}
+  .hdr{position:sticky; top:12px; z-index:60; max-width:calc(var(--max) + 2 * var(--gutter)); margin:12px auto 0; padding-inline:calc(var(--gutter) - 14px)}
   .pill{
-    display:flex; align-items:center; gap:18px; min-height:60px; padding:8px 8px 8px 22px;
+    display:flex; align-items:center; gap:18px; min-height:56px; padding:6px 6px 6px 22px;
     border-radius:999px; border:1px solid var(--rule);
     background:color-mix(in srgb, var(--surface) 76%, transparent);
     -webkit-backdrop-filter:blur(18px) saturate(1.35); backdrop-filter:blur(18px) saturate(1.35);
     box-shadow:var(--hl), 0 12px 32px -20px rgba(0,0,0,.3);
   }
-  .sig{
-    font-family:var(--f-display); font-weight:600; font-size:20px; letter-spacing:-.045em;
-    color:var(--ink); white-space:nowrap; flex-shrink:0; line-height:1;
-  }
+  .sig{font:600 var(--t-body)/1 var(--f-sans); letter-spacing:-.02em; color:var(--ink); white-space:nowrap; flex-shrink:0}
   .sig:hover{text-decoration:none; color:var(--accent)}
-  .st{font-size:13.5px; color:var(--ink-2); white-space:nowrap}
+  .st{font-size:var(--t-small); color:var(--ink-2); white-space:nowrap}
   .navlinks{display:flex; align-items:center; gap:2px; margin-left:auto; min-width:0}
   .navlinks a{
-    font-size:15px; font-weight:500; color:var(--ink-2); padding:10px 14px; border-radius:999px; white-space:nowrap;
+    font-size:var(--t-small); font-weight:500; color:var(--ink-2); padding:10px 14px; border-radius:999px; white-space:nowrap;
     transition:color .25s, background-color .25s;
   }
   .navlinks a:hover{color:var(--ink); background:var(--bg-2); text-decoration:none}
-  .navlinks a[aria-current="page"]{color:var(--ink); background:var(--bg-2); box-shadow:inset 0 0 0 1px var(--rule)}
+  .navlinks a[aria-current="page"]{color:var(--ink); background:var(--bg-2)}
   .themebtn{
     display:grid; place-items:center; width:42px; height:42px; flex:none;
-    border:1px solid var(--rule-strong); border-radius:50%; background:var(--surface); color:var(--ink-2);
-    cursor:pointer; transition:color .25s, border-color .25s, transform .6s var(--ease);
+    border:1px solid var(--rule-strong); border-radius:50%; background:transparent; color:var(--ink-2);
+    cursor:pointer; transition:color .25s, border-color .25s;
   }
-  .themebtn:hover{color:var(--ink); border-color:var(--ink); transform:rotate(180deg)}
+  .themebtn:hover{color:var(--ink); border-color:var(--ink)}
 
-  @media (max-width:980px){ .st{display:none} }
+  @media (max-width:900px){ .st{display:none} }
   @media (max-width:640px){
-    .hdr{top:8px; margin-top:8px}
-    .pill{min-height:54px; gap:8px; padding:6px 6px 6px 16px}
-    .sig{font-size:18px}
-    /* One row at any width: the links scroll rather than wrap. */
-    .navlinks{gap:0; flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;
-      -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 18px),transparent);
-              mask-image:linear-gradient(90deg,#000 calc(100% - 18px),transparent)}
-    .navlinks::-webkit-scrollbar{display:none}
-    .navlinks a{flex:0 0 auto; font-size:14px; padding:10px 9px}
-    .themebtn{width:40px; height:40px}
+    .hdr{top:8px; margin-top:8px; padding-inline:12px}
+    .pill{min-height:52px; gap:8px; padding:5px 5px 5px 16px}
+    .navlinks a{padding:10px 10px}
+  }
+
+  /* The narrowest phones: three links still fit on one row. */
+  @media (max-width:360px){
+    .hdr{padding-inline:8px}
+    .pill{gap:2px; padding-left:12px}
+    .navlinks{gap:0}
+    .navlinks a{padding-inline:6px}
   }
 
   /* Touch targets — last, because the narrow rule above also matches on a phone. */

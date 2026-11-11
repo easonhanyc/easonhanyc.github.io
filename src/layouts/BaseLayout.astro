@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { visitorLog } from '../lib/site';
 
 interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
@@ -9,6 +10,8 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : As
 // twitter:card below asks for a large image, so one has to exist or a shared
 // link renders an empty card. Regenerate with `npm run build:og`.
 const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
+const logCode = visitorLog.goatcounter.trim();
+const liveHost = Astro.site?.hostname ?? '';
 ---
 <!doctype html>
 <html lang="en">
@@ -32,7 +35,7 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..600&family=Geist+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&display=swap" />
   <meta name="theme-color" content="#E4E8E5" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0E1412" media="(prefers-color-scheme: dark)" />
   <!-- Applied before first paint so an explicit theme choice never flashes the other
@@ -44,17 +47,38 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
       if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
     } catch (e) {}
   </script>
+  <!-- Visitor log: counts visits without cookies, on the live site only.
+       A link tagged ?from=name is recorded as where the visit came from.
+       Nothing loads until a site code is set in src/lib/site.ts. -->
+  {logCode && (
+    <script is:inline define:vars={{ logCode, liveHost }}>
+      if (location.hostname === liveHost) {
+        var tag = new URLSearchParams(location.search).get('from');
+        window.goatcounter = { referrer: function () { return tag || document.referrer; } };
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://gc.zgo.at/count.js';
+        s.setAttribute('data-goatcounter', 'https://' + logCode + '.goatcounter.com/count');
+        document.head.appendChild(s);
+        // Three actions are logged by name: any element carrying data-log.
+        document.addEventListener('click', function (e) {
+          var el = e.target && e.target.closest ? e.target.closest('[data-log]') : null;
+          if (el && window.goatcounter && window.goatcounter.count) {
+            window.goatcounter.count({ path: el.getAttribute('data-log'), title: el.getAttribute('data-log'), event: true });
+          }
+        });
+      }
+    </script>
+  )}
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <div class="readbar" aria-hidden="true"></div>
   <Nav />
   <main id="main"><slot /></main>
   <Footer />
 
   <script>
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const hasIO = 'IntersectionObserver' in window;
 
     const btn = document.getElementById('theme-toggle');
     btn?.addEventListener('click', () => {
@@ -66,51 +90,19 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
       try { localStorage.setItem('theme', next); } catch (e) {}
     });
 
-    // A soft light follows the cursor across whichever tile it is over.
-    // Pointer devices only; one rAF per frame however fast the mouse moves.
-    if (window.matchMedia('(hover: hover)').matches && !reduce) {
-      let raf = 0, ev: PointerEvent | null = null;
-      addEventListener('pointermove', (e) => {
-        ev = e;
-        if (raf) return;
-        raf = requestAnimationFrame(() => {
-          raf = 0;
-          const t = (ev!.target as Element | null)?.closest?.<HTMLElement>('.tile');
-          if (!t) return;
-          const r = t.getBoundingClientRect();
-          t.style.setProperty('--mx', `${ev!.clientX - r.left}px`);
-          t.style.setProperty('--my', `${ev!.clientY - r.top}px`);
-        });
-      }, { passive: true });
-    }
-
-    const targets = Array.from(document.querySelectorAll<HTMLElement>('.rv, .rv-w, .plate, .prose .dg'));
-    if (hasIO && !reduce && targets.length) {
+    // Content fades in once as it enters. Nothing else on the page moves.
+    const targets = Array.from(document.querySelectorAll<HTMLElement>('.rv'));
+    if ('IntersectionObserver' in window && !reduce && targets.length) {
       document.documentElement.classList.add('js-rv');
-
-      // Stroked geometry inside a figure draws itself along its own length.
-      // Measured here rather than hand-authored so a diagram can be edited freely.
-      for (const fig of document.querySelectorAll('.plate svg, .prose .dg svg')) {
-        for (const el of fig.querySelectorAll<SVGGeometryElement>('path, line, polyline, circle, ellipse, rect')) {
-          const stroke = getComputedStyle(el).stroke;
-          if (!stroke || stroke === 'none') continue;
-          let len = 0;
-          try { len = el.getTotalLength(); } catch (e) { continue; }
-          if (len < 8 || len > 6000) continue;          // skip dots and outliers
-          el.setAttribute('data-draw', '');
-          el.style.setProperty('--len', String(Math.ceil(len)));
-        }
-      }
-
       const ro = new IntersectionObserver((entries) => {
         for (const e of entries) {
           if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
         }
-      }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
       targets.forEach((el, i) => {
         // A stagger for the reveal only. An inline transition-delay would also hold
         // back every other transition on the element — a theme switch included.
-        el.style.setProperty('--d', `${Math.min(i % 6, 5) * 60}ms`);
+        el.style.setProperty('--d', `${Math.min(i % 4, 3) * 60}ms`);
         ro.observe(el);
       });
     }

@@ -1,30 +1,28 @@
 ---
-// One project as a raised block: where and when, the project's own small
-// drawing, its name, then the single result it is best known for. The home
-// page shows the short form; /work adds the summary and tags with `detail`.
+// One project as a raised block: its own small drawing across the top, then
+// where and when, the name, one line, and the single result it is best known
+// for. The same block is used on the home page and on /work.
 import type { CollectionEntry } from 'astro:content';
 import { viz } from '../lib/viz';
-interface Props { project: CollectionEntry<'projects'>; detail?: boolean }
-const { project, detail = false } = Astro.props;
+interface Props { project: CollectionEntry<'projects'> }
+const { project } = Astro.props;
 const d = project.data;
 const m = d.metrics[0];
 const shortOrg: Record<string, string> = {
   'Amazon Web Services': 'AWS', 'University of Notre Dame': 'Notre Dame', 'UC Berkeley': 'Berkeley',
 };
+// Retitled projects carry their context after an em-dash; the block shows the name.
+const name = d.title.split(' — ')[0];
 ---
 <a class="tile bk rv" href={`/work/${project.id}`} data-tags={d.tags.join(' ')}>
-  <span class="top"><span>{shortOrg[d.org ?? ''] ?? d.org ?? 'Independent'}</span><span>{d.period}</span></span>
   {viz[project.id] && <span class="viz" set:html={viz[project.id]} />}
-  <span class="t">{d.title}</span>
-  {detail && <span class="d">{d.summary}</span>}
-  {detail && (d.live || d.depth === 'case-study') && (
-    <span class="tags">
-      {d.live && <span class="tag live">Live</span>}
-      {d.depth === 'case-study' && <span class="tag deep">Case study</span>}
+  <span class="b">
+    <span class="lbl">{shortOrg[d.org ?? ''] ?? d.org ?? 'Independent'} · {d.period}</span>
+    <span class="t">{name}</span>
+    <span class="d">{d.description}</span>
+    <span class="m">
+      <span>{m && <><b>{m.n}</b> {m.l}</>}</span>
+      <span class="arrow" aria-hidden="true">→</span>
     </span>
-  )}
-  <span class="m">
-    <span>{m && <><b>{m.n}</b> {m.l}</>}</span>
-    <span class="arrow" aria-hidden="true">→</span>
   </span>
 </a>

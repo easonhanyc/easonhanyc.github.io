@@ -1,7 +1,11 @@
 ---
 title: "TripMatch"
 description: "Sole PM, designer and engineer \u2014 problem framing, PRD, flow design, front end and API, through to production."
-summary: "A 400-person class coordinates rides by scrolling a WhatsApp chat, where requests get buried and matching seats go unused. I shipped a verified, Berkeley-only rides board \u2014 and then tested it against its own launch load, which is where the interesting part starts."
+summary: "A 400-person class coordinates rides by scrolling a WhatsApp chat, where requests get buried and matching seats go unused. I shipped a verified, Berkeley-only rides board, then tested it against its own launch load and fixed three defects before any real user hit them."
+brief:
+  problem: "A 400-person class arranges rides by scrolling a WhatsApp chat, where requests get buried and open seats go unused."
+  did: "Worked alone as PM, designer and engineer: wrote the requirements, designed the flow, and built a verified, Berkeley-only rides board in six days."
+  result: "A live board where one tap takes a seat. Testing it against its own launch load caught three defects before any real user hit them."
 role: "Sole PM, designer, and engineer"
 period: "Aug 2026"
 depth: "case-study"
@@ -59,9 +63,9 @@ That reframe is what made a one-week build viable. I wasn't solving matching at 
 
 ## 2. What I deliberately chose *not* to build
 
-Scope discipline was the main reason this shipped in a week. The [PRD's non-goals](/artifacts/tripmatch-prd) were written before any code:
+Scope discipline was the main reason this shipped in six days. The [PRD's list of what it would not build](/artifacts/tripmatch-prd) was written before any code:
 
-| Non-goal | Reasoning |
+| Not building | Reasoning |
 |---|---|
 | **Not a payments / cost-splitting tool** | Venmo already works. Adding money introduces trust and liability complexity that buys no additional matches. |
 | **Not real-time dispatch (not Uber)** | The job is *surfacing the match*. Logistics coordination between two classmates is already a solved problem — they text each other. |
@@ -198,7 +202,7 @@ The honest caveat I'd give in an interview: there is **no pre-existing baseline*
 
 | Artifact | What it shows |
 |---|---|
-| [Product Requirements Document](/artifacts/tripmatch-prd) | Problem framing, non-goals, user stories, P0/P1/P2 requirements with acceptance criteria, success metrics, open questions |
+| [Product Requirements Document](/artifacts/tripmatch-prd) | Problem framing, what it will not build, user stories, P0/P1/P2 requirements with acceptance criteria, success metrics, open questions |
 | [Infrastructure & scalability analysis](/artifacts/tripmatch-infrastructure) | The pre-launch architecture review — what would have broken, at what load, and the mitigation |
 | <a href="https://tripmatch-app.github.io/" target="_blank" rel="noopener noreferrer" aria-label="Live product (opens in a new tab)">Live product</a> | The shipped app |
 | <a href="https://github.com/tripmatch-app/tripmatch-app.github.io" target="_blank" rel="noopener noreferrer" aria-label="Source repository (opens in a new tab)">Source repository</a> | 34 commits, 168 automated checks, deploy runbook |

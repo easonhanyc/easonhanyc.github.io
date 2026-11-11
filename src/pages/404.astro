@@ -2,10 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Not found · Eason Han" description="That page doesn't exist.">
-  <div class="wrap sectionpad">
-    <div class="chap"><span class="no">404</span><span class="ln"></span><span class="lb">Not found</span></div>
-    <h2 style="max-width:14ch">That page <span class="em">doesn't exist</span>.</h2>
-    <p class="sub">It may have moved when this site was rebuilt. These do exist:</p>
+  <div class="wrap">
+    <header class="pagehead">
+      <p class="eyebrow">404 · Not found</p>
+      <h1>That page <span class="em">doesn't exist.</span></h1>
+      <p class="lede">It may have moved when this site was rebuilt. These do exist:</p>
+    </header>
     <div class="chips">
       <a class="chip solid" href="/">Home</a>
       <a class="chip" href="/work">Work</a>

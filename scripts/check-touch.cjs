@@ -27,7 +27,7 @@ try {
 
 const BASE = process.argv[2] || 'http://127.0.0.1:8080';
 const MIN = 40;
-const ROUTES = ['/', '/work/', '/experience/', '/about/', '/artifacts/',
+const ROUTES = ['/', '/work/', '/about/', '/artifacts/',
                 '/work/action-hub/', '/work/tripmatch/', '/artifacts/tripmatch-prd/'];
 
 (async () => {

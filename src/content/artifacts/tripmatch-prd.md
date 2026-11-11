@@ -1,6 +1,6 @@
 ---
 title: "TripMatch \u2014 Product Requirements Document"
-description: "The full PRD: problem framing, non-goals, P0/P1/P2 requirements, success metrics, open questions."
+description: "The full PRD: problem framing, what it will not do, P0/P1/P2 requirements, success metrics, open questions."
 kind: "PRD"
 related: "tripmatch"
 order: 1
@@ -45,7 +45,7 @@ have survived the class it was built for. Four things shipped this round.
 **The constraint, stated plainly:** true CalNet SSO (Shibboleth/SAML) requires
 UC Berkeley IT to register TripMatch as an approved Service Provider — an
 application, a review, and a server-side SP that a static GitHub Pages site
-cannot be. The non-goal below recorded this correctly and it still holds.
+cannot be. The "will not do" list below recorded this correctly and it still holds.
 
 **What shipped instead:** Google Sign-In restricted to the `berkeley.edu`
 Workspace domain. Berkeley's bMail runs on Google Workspace, so every CalNet
@@ -126,7 +126,7 @@ of them survive, which the v1 design would have failed.
 
 ---
 
-## Non-Goals
+## What this will not do
 
 - **Not a payments or cost-splitting tool.** Venmo/cash stays off-platform — out of scope for v1, adds trust/liability complexity not worth solving here.
 - **Not a real-time dispatch or booking system.** This is not Uber — it connects people who then coordinate logistics themselves.

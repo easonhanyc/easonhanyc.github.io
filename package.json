@@ -11,6 +11,7 @@
     "check:diagrams": "node scripts/check-diagrams.cjs",
     "check:touch": "node scripts/check-touch.cjs",
     "check:board": "node scripts/check-board.cjs",
+    "check:budget": "node scripts/check-budget.cjs",
     "build:og": "node scripts/build-og.cjs",
     "check:links": "node scripts/check-links.cjs"
   },

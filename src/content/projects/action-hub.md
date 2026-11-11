@@ -1,7 +1,11 @@
 ---
 title: "Action Hub — Ranked Alerts with Next Actions"
 description: "A technical sales org had roughly 200 dashboards and no agreed place to start the day. This is the screen that replaced a manual sweep across five to ten of them."
-summary: "A sales org with roughly 200 dashboards and no agreed starting point. The Action Hub ranks every open issue across a seller's accounts and puts the next action on each one — cutting time-to-insight 70% for 10,000+ sellers."
+summary: "A sales org with roughly 200 dashboards and no agreed starting point. The Action Hub ranks every open issue across a seller's accounts and puts the next action on each one. It cut the time taken for an employee to find account insights by 70%, for 10,000+ sellers."
+brief:
+  problem: "A sales org had roughly 200 dashboards and no agreed place to start the day. Finding what was wrong took a manual sweep across five to ten of them."
+  did: "Owned the first screen a seller lands on, end to end: discovery, PRD, mockups, the alert ranking, roadmap and launch."
+  result: "Cut time taken for employee to find account insights by 70%, for 10,000+ sellers."
 role: "Product owner · AWS Global Sales Strategy & Analytics"
 period: "Jul 2023 – May 2026"
 depth: "case-study"
@@ -11,7 +15,7 @@ live: false
 tags: ["product", "ai", "analytics"]
 metrics:
   - n: "70%"
-    l: "less time-to-insight"
+    l: "less time taken for an employee to find account insights"
   - n: "10,000"
     l: "sellers served"
   - n: "$80B"
@@ -23,13 +27,13 @@ order: 2
 ---
 <aside class="note"><strong>Confidentiality note.</strong> Written at the level of detail already public on my resume. Internal system names, screenshots, dashboards and proprietary data are omitted; the diagram below is redrawn for this portfolio rather than captured from the product. Where an artifact appears it is a <strong>reconstruction</strong> built to show method, and is labelled as one.</aside>
 
-> **The 30-second version.** A company-wide effort set out to replace AWS Sales's roughly 200 dashboards with a single source of truth, each org owning a chapter of it. I owned the technical sales chapter's **first tab** — the screen a seller lands on. The hard question was never what to display. It was what to put *first*, and what to say about it: an alert that names no next action moves the work rather than removing it. Time-to-insight fell **70%** for **10,000+ sellers**.
+> **The 30-second version.** A company-wide effort set out to replace AWS Sales's roughly 200 dashboards with a single source of truth, each org owning a chapter of it. I owned the technical sales chapter's **first tab** — the screen a seller lands on. The hard question was never what to display. It was what to put *first*, and what to say about it: an alert that names no next action moves the work rather than removing it. The time taken for an employee to find account insights fell **70%**, for **10,000+ sellers**.
 
 | | |
 |---|---|
 | **Problem** | Sellers had dashboards but no prescribed action; finding what was wrong took a manual sweep across 5–10 of them |
 | **My role** | End-to-end: discovery, PRD, mockups, alert design and ranking model, roadmap prioritization, launch |
-| **Outcome** | 70% reduction in time-to-insight · 10,000+ sellers |
+| **Outcome** | Cut time taken for employee to find account insights by 70% · 10,000+ sellers |
 | **Core decision** | Rank by **severity × account value**, and attach a destination to every alert — the alert is not the product, the redirect is |
 
 ---

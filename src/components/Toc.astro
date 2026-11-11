@@ -15,7 +15,7 @@ const items = headings
 ---
 {items.length > 1 && (
   <nav class="toc" aria-label={label} data-toc>
-    <p class="eyebrow">{label}</p>
+    <p class="lbl">{label}</p>
     <ol>
       {items.map((it) => (
         <li><a href={`#${it.slug}`} data-sec={it.slug}><span class="k">{it.k}</span><span>{it.text}</span></a></li>

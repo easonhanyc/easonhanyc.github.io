@@ -18,6 +18,8 @@ const projects = defineCollection({
     title: z.string(),
     description: z.string(),
     summary: z.string(),
+    // The three lines a case study opens with. Written from the page's own content.
+    brief: z.object({ problem: z.string(), did: z.string(), result: z.string() }).optional(),
     role: z.string(),
     period: z.string(),
     depth: z.enum(['case-study', 'project']),

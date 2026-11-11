@@ -14,42 +14,25 @@ const { Content, headings } = await render(artifact);
 
 const projects = await getCollection('projects');
 const parent = d.related ? projects.find((p) => p.id === d.related) : undefined;
+const parentName = parent?.data.title.split(' — ')[0];
 ---
 <BaseLayout title={`${d.title} · Eason Han`} description={d.description}>
   <div class="wrap">
     <div class="backbar"><a href="/artifacts">← All artifacts</a></div>
     <header class="dochead">
-      <p class="eyebrow">{d.kind}</p>
-      <h1 class="rv-w">{d.title}</h1>
-      {parent && (
-        <dl class="spec rv">
-          <div><dt>Written for</dt><dd><a class="ulink" href={`/work/${parent.id}`}>{parent.data.title}</a></dd></div>
-        </dl>
-      )}
+      <p class="eyebrow rv">{d.kind}</p>
+      <h1 class="rv">{d.title}</h1>
+      {parent && <p class="role rv">Written for <a class="ulink" href={`/work/${parent.id}`}>{parentName}</a></p>}
     </header>
 
     <div class="doc">
       <Toc headings={headings} />
-      <article class="prose sheet"><Content /></article>
+      <article class="prose"><Content /></article>
     </div>
 
-    <div class="end chips">
+    <div class="docend chips">
       <a class="chip" href="/artifacts">← All artifacts</a>
-      {parent && <a class="chip" href={`/work/${parent.id}`}>{parent.data.title} case study →</a>}
+      {parent && <a class="chip" href={`/work/${parent.id}`}>{parentName} case study →</a>}
     </div>
   </div>
 </BaseLayout>
-
-<style>
-  .dochead h1{font-size:clamp(38px,5.4vw,84px); max-width:18ch; margin-bottom:clamp(32px,4vw,52px)}
-  .dochead .spec{max-width:480px}
-  .doc{margin-top:clamp(56px,7vw,104px)}
-  .doc :global(.toc){display:none}
-  .doc .prose{max-width:900px}
-  @media (min-width:1100px){
-    .doc{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gap); align-items:start}
-    .doc :global(.toc){display:block; grid-column:1 / span 3; padding-right:clamp(0px,1.5vw,24px)}
-    .doc .prose{grid-column:4 / span 9; max-width:none}
-  }
-  .end{padding:clamp(56px,6vw,88px) 0 24px}
-</style>

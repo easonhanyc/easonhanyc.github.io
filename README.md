@@ -16,12 +16,13 @@ to keep in sync.
 | Framework | **Astro 7** | Content-first. Ships zero JavaScript by default and adds it per component, which suits a site that is mostly long-form prose with a few interactive moments. |
 | Content | **Content collections** (`glob` loader + Zod schemas) | Every project and artifact is one Markdown file with typed front matter. A missing or malformed field fails the build instead of rendering a broken page. |
 | Markup | **MDX** (`@astrojs/mdx`) | Markdown for the prose, with the option of components where a page needs one. |
-| Styling | **Plain CSS, custom properties** | The whole design system is ~270 lines. A framework would have been more code than the thing it replaced. |
-| Type | Instrument Sans · Source Serif 4 · JetBrains Mono | Display / long-form prose / spec labels. Serif body text is deliberate — a portfolio whose pitch is "I write the PRD" should read like a document. |
+| Styling | **Plain CSS, custom properties** | The whole design system is one stylesheet of about 500 lines. A framework would have been more code than the thing it replaced. |
+| Type | Newsreader · Geist · Geist Mono | Newsreader for the large headlines only, Geist for everything else, Geist Mono for dates and short labels. Six text sizes across the whole site. |
 | Hosting | **GitHub Pages** via GitHub Actions | Static, free, and the build step runs in CI rather than being committed. |
 
-Palette is Berkeley blue `#003262` and California gold `#c99700`, carried over from the previous
-version of this site.
+Two grounds, never pure white or black: Mist (a green-tinted grey) in light mode and Forest in
+dark. Three greys for text and one accent, green. The rules are written at the top of
+[`src/styles/global.css`](src/styles/global.css) and enforced by `npm run check:budget`.
 
 ## Content model
 
@@ -139,3 +140,25 @@ src/
 - **The pinned section is a scroll-position calculation,** not a native scroll timeline. It could
   move to `animation-timeline: view()` once Firefox ships it unflagged, which would remove the
   scroll listener entirely.
+
+## Visitor log
+
+The site can count visits without cookies (GoatCounter). It is off until a site code is set in
+[`src/lib/site.ts`](src/lib/site.ts); with no code, no script loads and the footer says nothing
+about it. Once on, it records each visit, the pages viewed, where the visit came from, and three
+actions: a tap on the rides board, a click into a featured case study, and a click on the email
+address. It runs on the live site only, never on local builds.
+
+To see which application a visit came from, send each one its own link, for example
+`https://easonhanyc.github.io/?from=acme-apm`. The page ignores the tag; the log records it.
+
+## Checks
+
+```
+npm run build && npx serve dist        # or any static server
+npm run check:budget -- http://localhost:3000   # the simplicity limits
+npm run check:board  -- http://localhost:3000   # the rides board
+npm run check:touch  -- http://localhost:3000   # tap targets on a phone
+npm run check:diagrams -- http://localhost:3000
+npm run check:links
+```
