@@ -371,22 +371,41 @@ h3{font:600 var(--t-sub)/1.25 var(--f-sans); letter-spacing:-.02em}
    Home. Kept here rather than scoped to the page, because the rides
    board writes some of its own markup at runtime.
    ============================================================ */
-/* 1. Opening: who, the pitch, one line of background, how to reach me. */
-.hero{padding-top:clamp(44px,9vh,112px)}
+/* 1. Opening: who, the pitch, one line of background, how to reach me.
+   On a phone the portrait is a small square beside the name; on a laptop it
+   stands to the right of the pitch. */
+.hero{
+  padding-top:clamp(40px,7vh,96px);
+  display:grid; grid-template-columns:84px minmax(0,1fr); column-gap:18px; align-items:center;
+  grid-template-areas:"photo top" "pitch pitch" "bio bio" "links links";
+}
+.hero-top{grid-area:top; display:flex; flex-direction:column; gap:6px}
+.hero-name{font:600 var(--t-sub)/1.2 var(--f-sans); letter-spacing:-.02em; margin:0}
+.hero-name span{display:block; font-weight:400; color:var(--ink-3)}
+.hero-name i{display:none; font-style:normal}
+.hero-seek{margin:0; font-size:var(--t-small); font-weight:600; color:var(--accent)}
+.hero-photo{
+  grid-area:photo; display:block; width:100%; height:auto; aspect-ratio:1; object-fit:cover; object-position:50% 22%;
+  border-radius:var(--r); border:1px solid var(--rule); background:var(--bg-2);
+}
+.hero-pitch{grid-area:pitch; max-width:15ch; margin:clamp(24px,3.6vh,48px) 0 clamp(20px,3.6vh,40px)}
+.hero-bio{grid-area:bio; font-size:var(--t-sub); line-height:1.5; color:var(--ink-2); max-width:38ch; margin:0 0 clamp(22px,4vh,36px); letter-spacing:-.005em}
+.hero-bio strong{color:var(--ink); font-weight:600}
+.hero-links{grid-area:links; display:flex; flex-wrap:wrap; gap:6px 28px; margin:0; font-size:var(--t-small)}
 /* On a laptop the opening fills the first screen, and the next section's
    heading shows at its foot as the cue to scroll. */
 @media (min-width:960px){
-  .hero{min-height:min(calc(100svh - 190px), 720px); display:flex; flex-direction:column; justify-content:center; padding-top:clamp(32px,5vh,64px)}
+  .hero{
+    min-height:min(calc(100svh - 190px), 720px); padding-top:clamp(32px,5vh,64px);
+    grid-template-columns:minmax(0,1fr) clamp(260px,25vw,340px); column-gap:clamp(32px,6vw,96px);
+    grid-template-areas:"top top" "pitch photo" "bio photo" "links photo"; align-content:center;
+  }
+  .hero-top{flex-direction:row; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:6px 24px}
+  .hero-name span{display:inline}
+  .hero-name i{display:inline}
+  .hero-photo{aspect-ratio:4 / 5; box-shadow:var(--shadow); align-self:center; margin-top:20px}
 }
 .hero + .sec{padding-top:clamp(40px,5vw,56px)}
-.hero-top{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:6px 24px; margin-bottom:clamp(28px,5vh,56px)}
-.hero-name{font:600 var(--t-sub)/1.2 var(--f-sans); letter-spacing:-.02em; margin:0}
-.hero-name span{font-weight:400; color:var(--ink-3)}
-.hero-seek{margin:0; font-size:var(--t-small); font-weight:600; color:var(--accent)}
-.hero-pitch{max-width:13ch; margin-bottom:clamp(24px,4vh,44px)}
-.hero-bio{font-size:var(--t-sub); line-height:1.5; color:var(--ink-2); max-width:38ch; margin:0 0 clamp(24px,4vh,40px); letter-spacing:-.005em}
-.hero-bio strong{color:var(--ink); font-weight:600}
-.hero-links{display:flex; flex-wrap:wrap; gap:6px 28px; margin:0; font-size:var(--t-small)}
 
 /* 2 and 3. The two featured projects: one template, so they read as a pair.
    Words on the left, the product itself on the right. */

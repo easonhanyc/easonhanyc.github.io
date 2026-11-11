@@ -2,7 +2,9 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import { Image } from 'astro:assets';
 import { contact } from '../lib/site';
+import portrait from '../assets/portrait.jpg';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 // Six blocks on this page; the Work page has all of them.
@@ -27,10 +29,11 @@ const rides = [
   <!-- 1. Opening -->
   <section class="hero wrap" aria-labelledby="hero-name">
     <div class="hero-top rv">
-      <h1 class="hero-name" id="hero-name">Eason Han <span>· Product manager</span></h1>
+      <h1 class="hero-name" id="hero-name">Eason Han <span><i aria-hidden="true">· </i>Product manager</span></h1>
       <p class="hero-seek"><span class="dot"></span>Seeking a Summer 2027 PM internship</p>
     </div>
-    <p class="display hero-pitch rv">I build the products <span class="em">I pitch.</span></p>
+    <Image class="hero-photo rv" src={portrait} alt="Portrait of Eason Han" widths={[200, 400, 720]} sizes="(min-width: 960px) 340px, 84px" loading="eager" />
+    <p class="display hero-pitch rv">I take products from <span class="em">idea to launch.</span></p>
     <p class="hero-bio rv"><span class="nw">MBA / M.Eng</span> candidate at <strong>UC Berkeley Haas &amp; IEOR</strong>, after three years at <strong>AWS</strong> building analytics products for an $80B sales org.</p>
     <p class="hero-links rv">
       <a class="ulink" href={contact.linkedin} {...ext} aria-label="LinkedIn (opens in a new tab)">LinkedIn ↗</a>
